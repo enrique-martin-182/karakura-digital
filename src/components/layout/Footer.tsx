@@ -6,10 +6,8 @@ export function Footer() {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-gutter px-4 md:px-gutter max-w-[1280px] mx-auto">
         <div className="col-span-1">
           <a href="#" className="flex items-center gap-3 mb-4">
-            <Image src="/assets/logo-kd.png" alt="Karakura Digital" width={32} height={32} />
-            <span className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-container to-secondary">
-              Karakura Digital
-            </span>
+            <Image src="/logo.svg" alt="Icono" width={32} height={32} />
+            <Image src="/assets/logo-kd.png" alt="Karakura Digital" width={160} height={32} className="object-contain" />
           </a>
           <p className="text-body-md text-on-surface-variant mt-3 leading-relaxed">
             Tecnología a medida para empresas que buscan liderar el mañana.
