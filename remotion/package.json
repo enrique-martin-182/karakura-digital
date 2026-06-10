@@ -1,0 +1,20 @@
+{
+  "name": "karakura-hero-animation",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "studio": "remotion studio",
+    "render": "remotion render HeroBackground --output ../public/hero-bg.webm --codec vp9",
+    "render-mp4": "remotion render HeroBackground --output ../public/hero-bg.mp4 --codec h264"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "4.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.0",
+    "typescript": "^5.5.0"
+  }
+}

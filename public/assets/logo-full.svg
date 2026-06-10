@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 48" fill="none">
+  <defs>
+    <linearGradient id="grad-orange-f" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF7A00"/>
+      <stop offset="100%" stop-color="#FFB68B"/>
+    </linearGradient>
+    <linearGradient id="grad-green-f" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4EDEA3"/>
+      <stop offset="100%" stop-color="#10B981"/>
+    </linearGradient>
+    <linearGradient id="text-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF7A00"/>
+      <stop offset="100%" stop-color="#4EDEA3"/>
+    </linearGradient>
+    <filter id="glow-f">
+      <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <!-- Icon -->
+  <rect x="2" y="2" width="44" height="44" rx="12" fill="#001711" stroke="url(#grad-green-f)" stroke-width="1" stroke-opacity="0.3"/>
+  <path d="M14 12 L14 36" stroke="url(#grad-orange-f)" stroke-width="4" stroke-linecap="round" filter="url(#glow-f)"/>
+  <path d="M14 24 L28 12" stroke="url(#grad-orange-f)" stroke-width="4" stroke-linecap="round" filter="url(#glow-f)"/>
+  <path d="M14 24 L28 36" stroke="url(#grad-orange-f)" stroke-width="4" stroke-linecap="round" filter="url(#glow-f)"/>
+  <circle cx="28" cy="12" r="2.5" fill="url(#grad-green-f)" filter="url(#glow-f)"/>
+  <circle cx="28" cy="36" r="2.5" fill="url(#grad-green-f)" filter="url(#glow-f)"/>
+  <path d="M30.5 12 L36 12 L36 18" stroke="url(#grad-green-f)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
+  <path d="M30.5 36 L36 36 L36 30" stroke="url(#grad-green-f)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
+  <circle cx="36" cy="18" r="1.5" fill="#4EDEA3" opacity="0.9"/>
+  <circle cx="36" cy="30" r="1.5" fill="#4EDEA3" opacity="0.9"/>
+  <circle cx="14" cy="24" r="3" fill="#FF7A00" opacity="0.3"/>
+  <!-- Text -->
+  <text x="58" y="31" font-family="Plus Jakarta Sans, sans-serif" font-size="20" font-weight="700" fill="url(#text-grad)">Karakura Digital</text>
+</svg>
