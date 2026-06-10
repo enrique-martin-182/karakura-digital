@@ -15,9 +15,9 @@ export function Navbar() {
   }, []);
 
   const links = [
+    { href: "#iniciativa", label: "Iniciativa" },
     { href: "#services", label: "Servicios" },
     { href: "#process", label: "Proceso" },
-    { href: "#solutions", label: "Soluciones" },
     { href: "#results", label: "Resultados" },
     { href: "#portfolio", label: "Portfolio" },
   ];
@@ -30,7 +30,7 @@ export function Navbar() {
     >
       <div className="flex justify-between items-center px-4 md:px-gutter max-w-[1280px] mx-auto h-20">
         <a href="#" className="flex items-center gap-3">
-          <Image src="/logo.svg" alt="Karakura Digital" width={40} height={40} />
+          <Image src="/assets/logo-kd.png" alt="Karakura Digital" width={40} height={40} />
           <span className="font-bold text-xl text-transparent bg-clip-text bg-gradient-to-r from-primary-container to-secondary tracking-tight hidden sm:inline">
             Karakura Digital
           </span>

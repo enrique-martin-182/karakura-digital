@@ -12,25 +12,27 @@ const jakarta = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL("https://karakura-digital.vercel.app/"),
   title: {
-    default: "Karakura Digital | Automatización y Desarrollo Web B2B",
+    default: "Karakura Digital | Fortaleciendo el Comercio en Córdoba, España",
     template: "%s | Karakura Digital",
   },
   description:
-    "Karakura Digital ayuda a escalar tu empresa con automatización inteligente y desarrollo web B2B de alto rendimiento. Software a medida para el crecimiento acelerado.",
+    "Iniciativa para fortalecer la red digital de los comercios de Córdoba, España. Ayudamos a los negocios locales con tecnología, automatización y desarrollo web para ampliar su alcance.",
   keywords: [
     "Karakura Digital",
+    "Córdoba España",
+    "comercio local Córdoba",
+    "digitalización Córdoba",
     "automatización empresarial",
     "desarrollo web B2B",
     "software a medida",
     "transformación digital",
     "n8n",
     "inteligencia artificial",
-    "automatización IA",
   ],
   openGraph: {
-    title: "Karakura Digital | Automatización y Desarrollo Web B2B",
+    title: "Karakura Digital | Impulsando la Red Digital de Córdoba",
     description:
-      "Eliminamos los cuellos de botella manuales que frenan tu crecimiento. Desarrollo web, software a medida y automatizaciones con IA.",
+      "Fortalecemos el tejido digital de los comercios de Córdoba, España. Tecnología a medida para que tu negocio local llegue más lejos.",
     url: "https://karakura-digital.vercel.app/",
     siteName: "Karakura Digital",
     type: "website",
@@ -38,8 +40,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Karakura Digital",
-    description: "Tecnología a medida para empresas que buscan liderar el mañana.",
+    title: "Karakura Digital - Iniciativa Digital en Córdoba",
+    description: "Impulsando el alcance digital de los comercios en Córdoba, España.",
   },
   robots: { index: true, follow: true },
 };
@@ -51,23 +53,23 @@ export default function RootLayout({
 }>) {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
+    "@type": "LocalBusiness",
     "name": "Karakura Digital",
-    "image": "https://karakura-digital.vercel.app/logo.svg",
+    "image": "https://karakura-digital.vercel.app/assets/logo-kd.png",
     "url": "https://karakura-digital.vercel.app/",
     "telephone": "",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "",
-      "addressLocality": "Madrid",
-      "addressRegion": "Madrid",
+      "addressLocality": "Córdoba",
+      "addressRegion": "Andalucía",
       "postalCode": "",
       "addressCountry": "ES"
     },
     "sameAs": [
       "https://www.linkedin.com/company/karakura-digital"
     ],
-    "description": "Agencia de automatización y desarrollo web B2B. Ayudamos a empresas a escalar con tecnología a medida e inteligencia artificial."
+    "description": "Iniciativa dedicada a fortalecer la red digital del comercio en Córdoba, facilitando labores operativas y aumentando el alcance a clientes potenciales."
   };
 
   return (
