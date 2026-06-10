@@ -10,21 +10,29 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Karakura Digital — Automatización y Desarrollo Web B2B",
+  metadataBase: new URL("https://karakura-digital.vercel.app/"),
+  title: {
+    default: "Karakura Digital | Automatización y Desarrollo Web B2B",
+    template: "%s | Karakura Digital",
+  },
   description:
-    "Escala tu empresa con tecnología a medida y automatización inteligente. Desarrollo web de alto rendimiento y software personalizado para el crecimiento acelerado.",
+    "Karakura Digital ayuda a escalar tu empresa con automatización inteligente y desarrollo web B2B de alto rendimiento. Software a medida para el crecimiento acelerado.",
   keywords: [
+    "Karakura Digital",
     "automatización empresarial",
     "desarrollo web B2B",
     "software a medida",
     "transformación digital",
     "n8n",
     "inteligencia artificial",
+    "automatización IA",
   ],
   openGraph: {
-    title: "Karakura Digital — Automatización y Desarrollo Web B2B",
+    title: "Karakura Digital | Automatización y Desarrollo Web B2B",
     description:
       "Eliminamos los cuellos de botella manuales que frenan tu crecimiento. Desarrollo web, software a medida y automatizaciones con IA.",
+    url: "https://karakura-digital.vercel.app/",
+    siteName: "Karakura Digital",
     type: "website",
     locale: "es_ES",
   },
@@ -41,8 +49,35 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Karakura Digital",
+    "image": "https://karakura-digital.vercel.app/logo.svg",
+    "url": "https://karakura-digital.vercel.app/",
+    "telephone": "",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "",
+      "addressLocality": "Madrid",
+      "addressRegion": "Madrid",
+      "postalCode": "",
+      "addressCountry": "ES"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/company/karakura-digital"
+    ],
+    "description": "Agencia de automatización y desarrollo web B2B. Ayudamos a empresas a escalar con tecnología a medida e inteligencia artificial."
+  };
+
   return (
     <html lang="es" className={`${jakarta.variable} dark`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="min-h-screen font-sans antialiased overflow-x-hidden">
         {children}
       </body>
