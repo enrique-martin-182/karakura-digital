@@ -19,6 +19,7 @@ export function Navbar() {
     { href: "#process", label: "Proceso" },
     { href: "#solutions", label: "Soluciones" },
     { href: "#results", label: "Resultados" },
+    { href: "#portfolio", label: "Portfolio" },
   ];
 
   return (
