@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
+import { ScrollProgress } from "@/components/effects/ScrollProgress";
 import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -81,6 +82,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen font-sans antialiased overflow-x-hidden">
+        <ScrollProgress />
         {children}
       </body>
     </html>

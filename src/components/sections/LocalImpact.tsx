@@ -3,6 +3,9 @@
 import { motion } from "framer-motion";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { ScrollReveal } from "@/components/effects/ScrollReveal";
+import { StaggerContainer, StaggerItem } from "@/components/effects/Stagger";
+import { AnimatedCounter } from "@/components/effects/AnimatedCounter";
 import { MapPin, Users, Zap, Globe } from "lucide-react";
 
 const impactStats = [
@@ -55,7 +58,7 @@ export function LocalImpact() {
               ¿Por qué Córdoba? Porque creemos en el potencial de nuestra tierra.
             </h3>
             <p className="text-body-lg text-on-surface-variant mb-8 leading-relaxed">
-              Karakura Digital no es solo una agencia; es una iniciativa nacida para transformar la manera en que los negocios cordobeses interactúan con el mundo digital. 
+              Karakura Digital no es solo una agencia; es una iniciativa nacida para transformar la manera en que los negocios cordobeses interactúan con el mundo digital.
               España está en plena transformación, y queremos que Córdoba sea el referente de esta evolución.
             </p>
             <div className="space-y-6">
@@ -80,37 +83,25 @@ export function LocalImpact() {
             </div>
           </motion.div>
 
-          <div className="grid grid-cols-2 gap-4 md:gap-6">
-            {impactStats.map((stat, i) => (
-              <GlassCard key={stat.label} className="p-6 md:p-8 text-center" hover>
-                <div className={`flex justify-center mb-4 ${stat.color}`}>
-                  {stat.icon}
-                </div>
-                <div className="text-3xl md:text-4xl font-black text-white mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-xs md:text-sm uppercase tracking-widest text-on-surface-variant/70 font-bold">
-                  {stat.label}
-                </div>
-              </GlassCard>
+          <StaggerContainer className="grid grid-cols-2 gap-4 md:gap-6">
+            {impactStats.map((stat) => (
+              <StaggerItem key={stat.label}>
+                <GlassCard className="p-6 md:p-8 text-center" hover>
+                  <div className={`flex justify-center mb-4 ${stat.color}`}>
+                    {stat.icon}
+                  </div>
+                  <div className="text-3xl md:text-4xl font-black text-white mb-2">
+                    <AnimatedCounter value={stat.value} />
+                  </div>
+                  <div className="text-xs md:text-sm uppercase tracking-widest text-on-surface-variant/70 font-bold">
+                    {stat.label}
+                  </div>
+                </GlassCard>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </div>
     </section>
-  );
-}
-
-// Helper to avoid import issues if ScrollReveal is needed
-function ScrollReveal({ children }: { children: React.ReactNode }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-    >
-      {children}
-    </motion.div>
   );
 }

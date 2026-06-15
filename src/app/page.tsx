@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
+import { Interactive3D } from "@/components/sections/Interactive3D";
 import { LocalImpact } from "@/components/sections/LocalImpact";
 import { GapComparison } from "@/components/sections/GapComparison";
 import { Services } from "@/components/sections/Services";
@@ -17,6 +18,7 @@ export default function Home() {
       <Navbar />
       <main className="pt-20">
         <Hero />
+        <Interactive3D />
         <LocalImpact />
         <GapComparison />
         <Services />

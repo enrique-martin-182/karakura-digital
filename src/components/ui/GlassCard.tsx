@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useMotionTemplate } from "framer-motion";
 import { cn } from "@/lib/cn";
 
 interface GlassCardProps {
@@ -23,12 +23,19 @@ export function GlassCard({
   hover = true,
   className,
 }: GlassCardProps) {
+  const mouseX = useMotionValue(50);
+  const mouseY = useMotionValue(50);
+  const spotlight = useMotionTemplate`radial-gradient(400px circle at ${mouseX}% ${mouseY}%, rgba(255,255,255,0.08), transparent 70%)`;
+
+  function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+    const rect = e.currentTarget.getBoundingClientRect();
+    mouseX.set(((e.clientX - rect.left) / rect.width) * 100);
+    mouseY.set(((e.clientY - rect.top) / rect.height) * 100);
+  }
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
+      onMouseMove={handleMouseMove}
       whileHover={hover ? { y: -8, transition: { duration: 0.3 } } : {}}
       className={cn(
         "glass-panel rounded-2xl p-8 md:p-10 relative overflow-hidden group",
@@ -37,8 +44,11 @@ export function GlassCard({
       )}
     >
       {/* Spotlight Effect */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-      
+      <motion.div
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+        style={{ background: spotlight }}
+      />
+
       <div className="relative z-10">{children}</div>
     </motion.div>
   );

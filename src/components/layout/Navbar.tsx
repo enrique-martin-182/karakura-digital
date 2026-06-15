@@ -2,7 +2,10 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
+
+const EASE = [0.16, 1, 0.3, 1] as const;
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -56,39 +59,57 @@ export function Navbar() {
           aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
           aria-expanded={mobileOpen}
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            {mobileOpen ? (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            )}
-          </svg>
+          <div className="w-6 h-6 flex flex-col items-center justify-center gap-1.5">
+            <motion.span
+              className="block w-6 h-0.5 bg-current rounded-full"
+              animate={mobileOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
+              transition={{ duration: 0.25, ease: EASE }}
+            />
+            <motion.span
+              className="block w-6 h-0.5 bg-current rounded-full"
+              animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
+              transition={{ duration: 0.2 }}
+            />
+            <motion.span
+              className="block w-6 h-0.5 bg-current rounded-full"
+              animate={mobileOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
+              transition={{ duration: 0.25, ease: EASE }}
+            />
+          </div>
         </button>
       </div>
 
-      {mobileOpen && (
-        <div className="md:hidden bg-background/95 backdrop-blur-2xl border-t border-outline-variant/10 pb-6">
-          <div className="flex flex-col space-y-4 px-gutter pt-4">
-            {links.map((link) => (
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25, ease: EASE }}
+            className="md:hidden bg-background/95 backdrop-blur-2xl border-t border-outline-variant/10 overflow-hidden"
+          >
+            <div className="flex flex-col space-y-4 px-gutter pt-4 pb-6">
+              {links.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="text-on-surface-variant hover:text-white transition-colors py-2 text-body-lg"
+                >
+                  {link.label}
+                </a>
+              ))}
               <a
-                key={link.href}
-                href={link.href}
+                href="#contact"
                 onClick={() => setMobileOpen(false)}
-                className="text-on-surface-variant hover:text-white transition-colors py-2 text-body-lg"
+                className="bg-primary-container text-white px-6 py-3 rounded-xl text-label-md font-semibold text-center mt-2"
               >
-                {link.label}
+                Contáctanos
               </a>
-            ))}
-            <a
-              href="#contact"
-              onClick={() => setMobileOpen(false)}
-              className="bg-primary-container text-white px-6 py-3 rounded-xl text-label-md font-semibold text-center mt-2"
-            >
-              Contáctanos
-            </a>
-          </div>
-        </div>
-      )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }

@@ -1,5 +1,6 @@
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { ScrollReveal } from "@/components/effects/ScrollReveal";
+import { StaggerContainer, StaggerItem } from "@/components/effects/Stagger";
 import { VideoBackground } from "@/components/effects/VideoBackground";
 
 const steps = [
@@ -43,9 +44,9 @@ export function Process() {
           />
         </ScrollReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {steps.map((step, i) => (
-            <ScrollReveal key={step.number} delay={i * 100}>
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {steps.map((step) => (
+            <StaggerItem key={step.number}>
               <div className="relative text-center group">
                 <div
                   className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform ${
@@ -68,9 +69,9 @@ export function Process() {
                   <div className="hidden md:block absolute top-8 left-[60%] w-[80%] h-px bg-gradient-to-r from-primary-container/50 to-transparent" />
                 )}
               </div>
-            </ScrollReveal>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );

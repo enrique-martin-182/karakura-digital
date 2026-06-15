@@ -1,10 +1,15 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
+import { motion, Variants, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { GradientBlob } from "@/components/effects/GradientBlob";
 
 export function Hero() {
+  const { scrollY } = useScroll();
+  const shouldReduceMotion = useReducedMotion();
+  const yOrange = useTransform(scrollY, [0, 800], [0, 160]);
+  const yGreen = useTransform(scrollY, [0, 800], [0, -120]);
+
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -49,8 +54,16 @@ export function Hero() {
       {/* Overlay to ensure text readability */}
       <div className="absolute inset-0 bg-background/50 backdrop-blur-[1px]" />
 
-      <GradientBlob color="orange" position="top-1/4 left-1/4" />
-      <GradientBlob color="green" position="bottom-1/4 right-1/4" />
+      <GradientBlob
+        color="orange"
+        position="top-1/4 left-1/4"
+        y={shouldReduceMotion ? undefined : yOrange}
+      />
+      <GradientBlob
+        color="green"
+        position="bottom-1/4 right-1/4"
+        y={shouldReduceMotion ? undefined : yGreen}
+      />
 
       <div className="max-w-[1280px] mx-auto px-4 md:px-gutter w-full relative z-10 py-16 md:py-24">
         <motion.div

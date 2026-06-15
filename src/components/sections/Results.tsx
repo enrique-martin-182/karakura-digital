@@ -1,6 +1,8 @@
 import { GlassCard } from "@/components/ui/GlassCard";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { ScrollReveal } from "@/components/effects/ScrollReveal";
+import { StaggerContainer, StaggerItem } from "@/components/effects/Stagger";
+import { AnimatedCounter } from "@/components/effects/AnimatedCounter";
 import { VideoBackground } from "@/components/effects/VideoBackground";
 
 const metrics = [
@@ -20,18 +22,18 @@ export function Results() {
           <SectionHeader overline="Resultados" headline="Números que hablan" />
         </ScrollReveal>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-          {metrics.map((metric, i) => (
-            <ScrollReveal key={metric.value} delay={i * 80}>
+        <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+          {metrics.map((metric) => (
+            <StaggerItem key={metric.value}>
               <GlassCard hover className="text-center h-full flex flex-col items-center justify-center">
                 <div className="text-3xl md:text-4xl font-extrabold text-gradient-primary mb-2">
-                  {metric.value}
+                  <AnimatedCounter value={metric.value} />
                 </div>
                 <p className="text-on-surface-variant text-sm">{metric.label}</p>
               </GlassCard>
-            </ScrollReveal>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );

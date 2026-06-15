@@ -1,6 +1,7 @@
 import { GlassCard } from "@/components/ui/GlassCard";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { ScrollReveal } from "@/components/effects/ScrollReveal";
+import { StaggerContainer, StaggerItem } from "@/components/effects/Stagger";
 import { VideoBackground } from "@/components/effects/VideoBackground";
 
 const services = [
@@ -67,9 +68,9 @@ export function Services() {
           <SectionHeader overline="Capacidades" headline="Tres pilares para tu transformación" />
         </ScrollReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {services.map((service, i) => (
-            <ScrollReveal key={service.title} delay={i * 100}>
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {services.map((service) => (
+            <StaggerItem key={service.title}>
               <GlassCard
                 variant={service.variant}
                 hover
@@ -95,9 +96,9 @@ export function Services() {
                   ))}
                 </ul>
               </GlassCard>
-            </ScrollReveal>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );

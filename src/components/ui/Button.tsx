@@ -1,8 +1,15 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { cn } from "@/lib/cn";
 
 type ButtonVariant = "primary" | "secondary" | "ghost";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps
+  extends Omit<
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    "onDrag" | "onDragStart" | "onDragEnd" | "onAnimationStart" | "onAnimationEnd"
+  > {
   variant?: ButtonVariant;
   href?: string;
   children: React.ReactNode;
@@ -16,6 +23,8 @@ const variants: Record<ButtonVariant, string> = {
   ghost: "text-on-surface-variant hover:text-white underline-offset-4 hover:underline",
 };
 
+const EASE = [0.16, 1, 0.3, 1] as const;
+
 export function Button({
   variant = "primary",
   href,
@@ -24,22 +33,34 @@ export function Button({
   ...props
 }: ButtonProps) {
   const classes = cn(
-    "inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl text-label-md font-semibold transition-all duration-300 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-container",
+    "inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl text-label-md font-semibold transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-container",
     variants[variant],
     className
   );
 
   if (href) {
     return (
-      <a href={href} className={classes}>
+      <motion.a
+        href={href}
+        className={classes}
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.97 }}
+        transition={{ duration: 0.2, ease: EASE }}
+      >
         {children}
-      </a>
+      </motion.a>
     );
   }
 
   return (
-    <button className={classes} {...props}>
+    <motion.button
+      className={classes}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.97 }}
+      transition={{ duration: 0.2, ease: EASE }}
+      {...props}
+    >
       {children}
-    </button>
+    </motion.button>
   );
 }
