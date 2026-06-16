@@ -53,6 +53,16 @@ const projects: Project[] = [
     glowColor: "rgba(168, 85, 247, 0.2)",
   },
   {
+    title: "Ink & Soul Atelier",
+    description:
+      "Estudio de tatuajes premium en Madrid. Diseños personalizados de fine line, realismo y blackwork con artistas residentes y certificación ISO 9001.",
+    url: "https://estudio-tatoo.vercel.app/",
+    image: "/assets/portfolio-tatoo.png",
+    tags: ["Arte", "Next.js", "Premium"],
+    accentColor: "rgba(220, 220, 220, 0.8)",
+    glowColor: "rgba(220, 220, 220, 0.15)",
+  },
+  {
     title: "Delicia Fresca",
     description:
       "Tienda de productos orgánicos con entrega a domicilio. Catálogo por categorías, ofertas semanales y proceso de compra sencillo.",
