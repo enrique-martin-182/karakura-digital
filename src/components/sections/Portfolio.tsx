@@ -53,6 +53,16 @@ const projects: Project[] = [
     glowColor: "rgba(168, 85, 247, 0.2)",
   },
   {
+    title: "Aethelgard Legal",
+    description:
+      "Boutique de asesoría legal internacional en Madrid, Nueva York y Ginebra. Litigación corporativa, defensa penal y preservación de patrimonio para grandes clientes.",
+    url: "https://abogados-mkui.vercel.app/",
+    image: "/assets/portfolio-abogados.png",
+    tags: ["Legal", "Next.js", "Corporativo"],
+    accentColor: "rgba(202, 160, 80, 0.8)",
+    glowColor: "rgba(202, 160, 80, 0.2)",
+  },
+  {
     title: "Ink & Soul Atelier",
     description:
       "Estudio de tatuajes premium en Madrid. Diseños personalizados de fine line, realismo y blackwork con artistas residentes y certificación ISO 9001.",
