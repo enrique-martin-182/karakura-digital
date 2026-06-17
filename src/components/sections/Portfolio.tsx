@@ -73,6 +73,26 @@ const projects: Project[] = [
     glowColor: "rgba(220, 220, 220, 0.15)",
   },
   {
+    title: "MechanicPro",
+    description:
+      "Taller de mecánica de precisión en Madrid Centro. Más de 15 años de experiencia, técnicos certificados, piezas OEM originales y diagnóstico digital con garantía escrita.",
+    url: "https://mecanico-flax.vercel.app/",
+    image: "/assets/portfolio-mecanico.png",
+    tags: ["Automoción", "Next.js", "Servicios"],
+    accentColor: "rgba(234, 179, 8, 0.8)",
+    glowColor: "rgba(234, 179, 8, 0.2)",
+  },
+  {
+    title: "VetEmpathy",
+    description:
+      "Clínica veterinaria premium en Madrid que combina medicina avanzada con atención empática. Cirugía, diagnóstico por imagen, odontología y medicina preventiva.",
+    url: "https://veterinario-eosin.vercel.app/",
+    image: "/assets/portfolio-veterinario.png",
+    tags: ["Veterinaria", "Next.js", "Salud"],
+    accentColor: "rgba(16, 185, 129, 0.8)",
+    glowColor: "rgba(16, 185, 129, 0.2)",
+  },
+  {
     title: "Delicia Fresca",
     description:
       "Tienda de productos orgánicos con entrega a domicilio. Catálogo por categorías, ofertas semanales y proceso de compra sencillo.",
