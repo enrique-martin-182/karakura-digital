@@ -8,7 +8,7 @@ import { Services } from "@/components/sections/Services";
 import { Process } from "@/components/sections/Process";
 import { Results } from "@/components/sections/Results";
 import { Portfolio } from "@/components/sections/Portfolio";
-import { Testimonials } from "@/components/sections/Testimonials";
+
 import { FAQ } from "@/components/sections/FAQ";
 import { ContactCTA } from "@/components/sections/ContactCTA";
 
@@ -25,7 +25,7 @@ export default function Home() {
         <Process />
         <Results />
         <Portfolio />
-        <Testimonials />
+
         <FAQ />
         <ContactCTA />
       </main>

@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://karakura-digital.vercel.app/sitemap.xml",
+    sitemap: "https://karakuradigital.es/sitemap.xml",
   };
 }

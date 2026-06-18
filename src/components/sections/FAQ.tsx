@@ -11,7 +11,7 @@ const faqs = [
   {
     question: "¿Cuánto tiempo toma ver resultados?",
     answer:
-      "Las primeras automatizaciones están en producción en 2-4 semanas. Proyectos completos de software: 6-12 semanas dependiendo del alcance.",
+      "Para una web o un producto sencillo, podemos ir mostrándote partes del proceso desde la primera semana, dependiendo del volumen de trabajo que tenga nuestro equipo de desarrollo. Proyectos más complejos de software: 6-12 semanas según el alcance.",
   },
   {
     question: "¿Necesito cambiar mis herramientas actuales?",

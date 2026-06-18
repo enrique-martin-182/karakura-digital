@@ -11,7 +11,7 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://karakura-digital.vercel.app/"),
+  metadataBase: new URL("https://karakuradigital.es/"),
   title: {
     default: "Karakura Digital | Fortaleciendo el Comercio en Córdoba, España",
     template: "%s | Karakura Digital",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     title: "Karakura Digital | Impulsando la Red Digital de Córdoba",
     description:
       "Fortalecemos el tejido digital de los comercios de Córdoba, España. Tecnología a medida para que tu negocio local llegue más lejos.",
-    url: "https://karakura-digital.vercel.app/",
+    url: "https://karakuradigital.es/",
     siteName: "Karakura Digital",
     type: "website",
     locale: "es_ES",
@@ -56,20 +56,17 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Karakura Digital",
-    "image": "https://karakura-digital.vercel.app/assets/logo-kd.png",
-    "url": "https://karakura-digital.vercel.app/",
-    "telephone": "",
+    "image": "https://karakuradigital.es/assets/logo-kd.png",
+    "url": "https://karakuradigital.es/",
+    "telephone": "+34 646 262 917",
+    "email": "enrique.karakuradigital@gmail.com",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "",
       "addressLocality": "Córdoba",
       "addressRegion": "Andalucía",
-      "postalCode": "",
       "addressCountry": "ES"
     },
-    "sameAs": [
-      "https://www.linkedin.com/company/karakura-digital"
-    ],
+    "sameAs": [],
     "description": "Iniciativa dedicada a fortalecer la red digital del comercio en Córdoba, facilitando labores operativas y aumentando el alcance a clientes potenciales."
   };
 
