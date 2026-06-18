@@ -93,6 +93,16 @@ const projects: Project[] = [
     glowColor: "rgba(16, 185, 129, 0.2)",
   },
   {
+    title: "Urgencias Eléctricas Madrid",
+    description:
+      "Servicio de electricista 24h en Madrid con llegada en 30 minutos. Cortocircuitos, apagones y reparaciones urgentes para hogares y negocios con técnicos certificados.",
+    url: "https://electricista-65br.vercel.app/",
+    image: "/assets/portfolio-electricista.png",
+    tags: ["Electricidad", "Next.js", "Urgencias"],
+    accentColor: "rgba(250, 204, 21, 0.8)",
+    glowColor: "rgba(250, 204, 21, 0.2)",
+  },
+  {
     title: "Delicia Fresca",
     description:
       "Tienda de productos orgánicos con entrega a domicilio. Catálogo por categorías, ofertas semanales y proceso de compra sencillo.",
@@ -294,9 +304,9 @@ export function Portfolio() {
       <div className="max-w-[1280px] mx-auto px-4 md:px-gutter relative z-10">
         <ScrollReveal>
           <SectionHeader
-            overline="Proyectos reales"
-            headline="Webs que ya están funcionando"
-            subheadline="Ejemplos de lo que construimos para nuestros clientes: diseño premium, rendimiento real y negocio detrás de cada pixel."
+            overline="Nuestro portfolio"
+            headline="Ejemplos desarrollados por nuestro equipo"
+            subheadline="Páginas web diseñadas y desarrolladas por Karakura Digital como muestra de nuestro trabajo: diseño premium, rendimiento real y atención al detalle en cada proyecto."
           />
         </ScrollReveal>
 
