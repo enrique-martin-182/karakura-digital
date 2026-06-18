@@ -30,11 +30,11 @@ const services = [
     ),
     title: "Tu proceso, tu software",
     description:
-      "Dejamos de forzar tu negocio en herramientas genéricas. Construimos exactamente lo que necesitas: dashboards internos, portales de clientes, ERPs ligeros, CRMs a medida.",
+      "Dejamos de forzar tu negocio en herramientas genéricas. Construimos exactamente lo que necesitas: sistemas de gestión de clientes (CRM), asistentes virtuales inteligentes y software personalizado adaptado a las necesidades de cada negocio.",
     bullets: [
-      "Integración con tus sistemas actuales",
-      "Escalable desde el día 1",
-      "Tu equipo lo adopta sin semanas de formación",
+      "CRMs y sistemas de gestión a medida",
+      "Asistentes virtuales con IA para atención al cliente",
+      "Software personalizado según tus necesidades",
     ],
     variant: "default" as const,
     iconWrapper: "bg-surface-variant text-primary-container",
