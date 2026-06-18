@@ -21,6 +21,9 @@ const services = [
     ],
     variant: "default" as const,
     iconWrapper: "bg-surface-variant text-primary-container",
+    accentColor: "from-primary-container/40 to-transparent",
+    tag: "Desarrollo Web",
+    tagColor: "text-primary-container bg-primary-container/10 border-primary-container/20",
   },
   {
     icon: (
@@ -38,6 +41,9 @@ const services = [
     ],
     variant: "default" as const,
     iconWrapper: "bg-surface-variant text-primary-container",
+    accentColor: "from-blue-500/30 to-transparent",
+    tag: "Software a Medida",
+    tagColor: "text-blue-400 bg-blue-500/10 border-blue-500/20",
   },
   {
     icon: (
@@ -55,6 +61,9 @@ const services = [
     ],
     variant: "glow-green" as const,
     iconWrapper: "bg-secondary/20 text-secondary shadow-[0_0_15px_rgba(78,222,163,0.3)]",
+    accentColor: "from-secondary/30 to-transparent",
+    tag: "Automatización & IA",
+    tagColor: "text-secondary bg-secondary/10 border-secondary/20",
   },
 ];
 
@@ -74,18 +83,28 @@ export function Services() {
               <GlassCard
                 variant={service.variant}
                 hover
-                className="h-full hover:shadow-[0_0_30px_-5px_rgba(255,122,0,0.3)]"
+                className="h-full hover:shadow-[0_0_30px_-5px_rgba(255,122,0,0.3)] relative overflow-hidden"
               >
+                {/* Top accent gradient */}
+                <div className={`absolute top-0 left-0 right-0 h-32 bg-gradient-to-b ${service.accentColor} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} />
+
+                {/* Tag */}
+                <div className="relative mb-6">
+                  <span className={`inline-block text-xs font-bold px-3 py-1 rounded-full border ${service.tagColor}`}>
+                    {service.tag}
+                  </span>
+                </div>
+
                 <div
-                  className={`w-16 h-16 rounded-xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform ${service.iconWrapper}`}
+                  className={`relative w-16 h-16 rounded-xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform ${service.iconWrapper}`}
                 >
                   {service.icon}
                 </div>
-                <h3 className="text-xl md:text-2xl font-bold text-white mb-4">{service.title}</h3>
-                <p className="text-[15px] text-on-surface-variant leading-relaxed mb-6">
+                <h3 className="relative text-xl md:text-2xl font-bold text-white mb-4">{service.title}</h3>
+                <p className="relative text-[15px] text-on-surface-variant leading-relaxed mb-6">
                   {service.description}
                 </p>
-                <ul className="space-y-3">
+                <ul className="relative space-y-3">
                   {service.bullets.map((bullet) => (
                     <li key={bullet} className="flex items-start gap-2 text-sm text-on-surface-variant">
                       <svg className="w-4 h-4 text-secondary shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
