@@ -39,7 +39,7 @@ export function ContactCTA() {
         </ScrollReveal>
 
         <ScrollReveal delay={200}>
-          <div className="glass-panel p-6 md:p-10 rounded-2xl glow-accent backdrop-blur-2xl">
+          <div className="glass-panel p-6 md:p-10 rounded-2xl glow-accent">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-8">
               <a
                 href="mailto:enrique.karakuradigital@gmail.com"

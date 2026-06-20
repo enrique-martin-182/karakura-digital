@@ -21,7 +21,7 @@ interface Project {
   glowColor: string;
 }
 
-const projects: Project[] = [
+const webProjects: Project[] = [
   {
     title: "DentalCare Innovación",
     description:
@@ -114,6 +114,19 @@ const projects: Project[] = [
   },
 ];
 
+const appProjects: Project[] = [
+  {
+    title: "Zenith CRM",
+    description:
+      "Sistema de gestión de clientes y citas con panel de estadísticas en tiempo real, seguimiento de citas por estado y analíticas de rendimiento del negocio.",
+    url: "https://zenith-crm-henna.vercel.app/",
+    image: "/assets/portfolio-zenith-crm.png",
+    tags: ["CRM", "React", "Dashboard"],
+    accentColor: "rgba(99, 102, 241, 0.8)",
+    glowColor: "rgba(99, 102, 241, 0.2)",
+  },
+];
+
 function ArrowUpRight() {
   return (
     <svg
@@ -183,9 +196,7 @@ function ProjectCard({ project }: { project: Project }) {
         rotateX: shouldReduceMotion ? 0 : rotateX,
         rotateY: shouldReduceMotion ? 0 : rotateY,
         transformPerspective: 800,
-        background: "rgba(0, 23, 17, 0.4)",
-        backdropFilter: "blur(24px)",
-        WebkitBackdropFilter: "blur(24px)",
+        background: "rgba(0, 23, 17, 0.7)",
         boxShadow: "0 4px 30px rgba(0,0,0,0.2)",
       }}
       className="group block relative rounded-2xl overflow-hidden border border-outline-variant/30 hover:border-primary-container/40 transition-colors duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
@@ -204,6 +215,8 @@ function ProjectCard({ project }: { project: Project }) {
         <img
           src={project.image}
           alt={`Captura de pantalla de ${project.title}`}
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
         />
         {/* Overlay gradient */}
@@ -306,24 +319,57 @@ export function Portfolio() {
           <SectionHeader
             overline="Nuestro portfolio"
             headline="Ejemplos desarrollados por nuestro equipo"
-            subheadline="Páginas web diseñadas y desarrolladas por Karakura Digital como muestra de nuestro trabajo: diseño premium, rendimiento real y atención al detalle en cada proyecto."
+            subheadline="Proyectos diseñados y desarrollados por Karakura Digital como muestra de nuestro trabajo: diseño premium, rendimiento real y atención al detalle."
           />
         </ScrollReveal>
 
-        {/* Projects grid: 2 cols on desktop, 1 on mobile */}
+        {/* Web projects subsection */}
+        <ScrollReveal>
+          <div className="flex items-center gap-4 mb-8">
+            <div className="w-10 h-10 rounded-xl bg-primary-container/20 text-primary-container flex items-center justify-center shrink-0">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5a17.92 17.92 0 01-8.716-2.247m0 0A8.966 8.966 0 013 12c0-1.264.26-2.467.732-3.558" />
+              </svg>
+            </div>
+            <h3 className="text-2xl md:text-3xl font-bold text-white">Páginas Web</h3>
+          </div>
+        </ScrollReveal>
+
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {projects.map((project) => (
+          {webProjects.map((project) => (
             <StaggerItem key={project.title}>
               <ProjectCard project={project} />
             </StaggerItem>
           ))}
         </StaggerContainer>
 
+        {/* Apps subsection */}
+        <div className="mt-24">
+          <ScrollReveal>
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-10 h-10 rounded-xl bg-secondary-container/20 text-secondary flex items-center justify-center shrink-0">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 3h12a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V5a2 2 0 012-2zm3 14h6m-3-3v3" />
+                </svg>
+              </div>
+              <h3 className="text-2xl md:text-3xl font-bold text-white">Apps Funcionales</h3>
+            </div>
+          </ScrollReveal>
+
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {appProjects.map((project) => (
+              <StaggerItem key={project.title}>
+                <ProjectCard project={project} />
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </div>
+
         {/* Bottom CTA */}
         <ScrollReveal delay={400}>
           <div className="mt-16 text-center">
             <p className="text-on-surface-variant mb-6 text-body-lg">
-              ¿Quieres que tu negocio tenga una web así?
+              ¿Quieres que tu negocio tenga una web o app así?
             </p>
             <a
               href="#contact"

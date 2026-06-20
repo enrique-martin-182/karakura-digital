@@ -112,9 +112,7 @@ body {
 
 /* Glass panels */
 .glass-panel {
-  background: rgba(0, 23, 17, 0.4);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  background: rgba(0, 23, 17, 0.7);
   border: 1px solid rgba(255, 122, 0, 0.1);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
@@ -210,17 +208,18 @@ body {
 
 .aurora-blob {
   position: absolute;
-  filter: blur(80px);
   border-radius: 50%;
-  mix-blend-mode: screen;
+  background: radial-gradient(circle, currentColor 0%, transparent 70%);
   animation: aurora-float 20s infinite alternate;
+  will-change: transform;
+  contain: strict;
 }
 
 @keyframes aurora-float {
-  0% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(10%, 10%) scale(1.1); }
-  66% { transform: translate(-5%, 15%) scale(0.9); }
-  100% { transform: translate(5%, -5%) scale(1); }
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  33% { transform: translate3d(10%, 10%, 0) scale(1.1); }
+  66% { transform: translate3d(-5%, 15%, 0) scale(0.9); }
+  100% { transform: translate3d(5%, -5%, 0) scale(1); }
 }
 
 /* Nav scroll state */
