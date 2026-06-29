@@ -93,8 +93,8 @@ export function Hero() {
 
           <motion.div variants={itemVariants}>
             <p className="text-body-lg text-on-surface-variant/90 mb-12 max-w-2xl md:text-xl leading-relaxed font-medium">
-              Con sede en Córdoba y clientes en todo el mundo, creamos software, automatización e IA
-              que simplifican operaciones y multiplican tu alcance digital.
+              Desde Córdoba, creamos software, automatización e IA
+              que simplifican operaciones y multiplican tu alcance digital. Sin fronteras.
             </p>
           </motion.div>
 

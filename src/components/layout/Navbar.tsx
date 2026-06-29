@@ -34,7 +34,7 @@ export function Navbar() {
     >
       <div className="flex justify-between items-center px-4 md:px-gutter max-w-[1280px] mx-auto h-20">
         <a href="/" className="flex items-center gap-3">
-          <Image src="/logo.svg" alt="Icono" width={40} height={40} />
+          <Image src="/KD LOGO 3.png" alt="Karakura Digital logo" width={40} height={40} className="rounded-full" />
           <Image src="/assets/logo-kd.png" alt="Karakura Digital" width={180} height={40} className="hidden sm:block object-contain" />
         </a>
 

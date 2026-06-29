@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     template: "%s | Karakura Digital",
   },
   description:
-    "Empresa de desarrollo de software con sede en Córdoba y clientes internacionales. Creamos webs, CRMs, automatizaciones e inteligencia artificial a medida para negocios que quieren escalar.",
+    "Empresa de desarrollo de software con sede en Córdoba. Creamos webs, CRMs, automatizaciones e inteligencia artificial a medida para negocios que quieren escalar.",
   keywords: [
     "Karakura Digital",
     "desarrollo software a medida",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Karakura Digital | Software, Automatización e IA a Medida",
     description:
-      "Con sede en Córdoba y clientes internacionales. Desarrollo web, CRMs, automatización e IA para negocios que quieren escalar sin límites.",
+      "Desde Córdoba, desarrollo web, CRMs, automatización e IA para negocios que quieren escalar sin límites.",
     url: "https://karakuradigital.es/",
     siteName: "Karakura Digital",
     type: "website",
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Karakura Digital - Software y Automatización a Medida",
-    description: "Sede en Córdoba, clientes en todo el mundo. Desarrollo web, CRMs e IA para empresas que escalan.",
+    description: "Desde Córdoba, desarrollo web, CRMs e IA para empresas que quieren escalar.",
     images: ["https://karakuradigital.es/assets/og-image.png"],
   },
   alternates: {
@@ -92,7 +92,7 @@ export default function RootLayout({
         }
       ],
       "sameAs": [],
-      "description": "Empresa de desarrollo de software con sede en Córdoba (España) y clientes internacionales. Especializada en desarrollo web, CRMs, automatización e inteligencia artificial a medida."
+      "description": "Empresa de desarrollo de software con sede en Córdoba (España). Especializada en desarrollo web, CRMs, automatización e inteligencia artificial a medida."
     },
     {
       "@context": "https://schema.org",

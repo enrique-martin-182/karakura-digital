@@ -87,8 +87,8 @@ export function LocalImpact() {
               Nacidos en Córdoba, con visión global.
             </h3>
             <p className="text-body-lg text-on-surface-variant mb-10 leading-relaxed">
-              Karakura Digital nació en Córdoba con una misión clara: llevar tecnología de primer nivel a negocios de cualquier parte del mundo.
-              Trabajamos con clientes internacionales que necesitan soluciones digitales a medida, sin importar su ubicación.
+              Karakura Digital nació en Córdoba con una misión clara: llevar tecnología de primer nivel a cualquier negocio que quiera dar el salto digital.
+              Operamos sin fronteras geográficas, ofreciendo soluciones a medida estés donde estés.
             </p>
 
             <div className="space-y-5">
