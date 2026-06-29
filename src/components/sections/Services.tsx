@@ -33,9 +33,9 @@ const services = [
     ),
     title: "Tu proceso, tu software",
     description:
-      "Dejamos de forzar tu negocio en herramientas genéricas. Construimos exactamente lo que necesitas: sistemas de gestión de clientes (CRM), asistentes virtuales inteligentes y software personalizado adaptado a las necesidades de cada negocio.",
+      "Dejamos de forzar tu negocio en herramientas genéricas. Construimos exactamente lo que necesitas: sistemas de gestión de clientes y citas (CRM), asistentes virtuales inteligentes y software personalizado adaptado a las necesidades de cada negocio.",
     bullets: [
-      "CRMs y sistemas de gestión a medida",
+      "CRMs y gestión de clientes y citas a medida",
       "Asistentes virtuales con IA para atención al cliente",
       "Software personalizado según tus necesidades",
     ],

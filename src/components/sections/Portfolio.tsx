@@ -7,6 +7,7 @@ import {
   useSpring,
   useReducedMotion,
 } from "framer-motion";
+import Image from "next/image";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { ScrollReveal } from "@/components/effects/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/effects/Stagger";
@@ -212,11 +213,12 @@ function ProjectCard({ project }: { project: Project }) {
 
       {/* Screenshot preview */}
       <div className="relative overflow-hidden aspect-[16/9]">
-        <img
+        <Image
           src={project.image}
           alt={`Captura de pantalla de ${project.title}`}
+          width={640}
+          height={360}
           loading="lazy"
-          decoding="async"
           className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
         />
         {/* Overlay gradient */}

@@ -64,3 +64,11 @@ next-env.d.ts
 *.njsproj
 *.sln
 *.swp
+
+# Claude Code
+.claude/
+
+# Remotion rendered output (regenerate with `cd remotion && npm run render`)
+# Uncomment if you prefer not to track large video files:
+# public/*-bg.webm
+# public/*-bg.mp4

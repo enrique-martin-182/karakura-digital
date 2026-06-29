@@ -3,7 +3,7 @@ import { AbsoluteFill, useCurrentFrame, interpolate } from "remotion";
 // Concept: Soft conversation bubbles / speech ripples emanating outward
 // Represents voices, testimonials, social proof — organic and human
 
-const TOTAL_FRAMES = 180;
+const TOTAL_FRAMES = 360;
 
 interface Ripple {
   cx: number;

@@ -1,22 +1,23 @@
+import dynamic from "next/dynamic";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
-import { Interactive3D } from "@/components/sections/Interactive3D";
 import { LocalImpact } from "@/components/sections/LocalImpact";
-import { GapComparison } from "@/components/sections/GapComparison";
-import { Services } from "@/components/sections/Services";
-import { Process } from "@/components/sections/Process";
-import { Results } from "@/components/sections/Results";
-import { Portfolio } from "@/components/sections/Portfolio";
 
-import { FAQ } from "@/components/sections/FAQ";
-import { ContactCTA } from "@/components/sections/ContactCTA";
+const Interactive3D = dynamic(() => import("@/components/sections/Interactive3D").then(m => ({ default: m.Interactive3D })));
+const GapComparison = dynamic(() => import("@/components/sections/GapComparison").then(m => ({ default: m.GapComparison })));
+const Services = dynamic(() => import("@/components/sections/Services").then(m => ({ default: m.Services })));
+const Process = dynamic(() => import("@/components/sections/Process").then(m => ({ default: m.Process })));
+const Results = dynamic(() => import("@/components/sections/Results").then(m => ({ default: m.Results })));
+const Portfolio = dynamic(() => import("@/components/sections/Portfolio").then(m => ({ default: m.Portfolio })));
+const FAQ = dynamic(() => import("@/components/sections/FAQ").then(m => ({ default: m.FAQ })));
+const ContactCTA = dynamic(() => import("@/components/sections/ContactCTA").then(m => ({ default: m.ContactCTA })));
 
 export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="pt-20">
+      <main id="main-content" className="pt-20">
         <Hero />
         <Interactive3D />
         <LocalImpact />
@@ -25,7 +26,6 @@ export default function Home() {
         <Process />
         <Results />
         <Portfolio />
-
         <FAQ />
         <ContactCTA />
       </main>

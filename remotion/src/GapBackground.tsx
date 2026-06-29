@@ -3,7 +3,7 @@ import { AbsoluteFill, useCurrentFrame, useVideoConfig, interpolate } from "remo
 // Concept: Two opposing force fields — chaos (red/error side) dissolving into order (green side)
 // Particles drift from left chaotic pattern to right organized grid
 
-const TOTAL_FRAMES = 180;
+const TOTAL_FRAMES = 360;
 
 interface FloatingParticle {
   id: number;

@@ -3,7 +3,7 @@ import { AbsoluteFill, useCurrentFrame, interpolate } from "remotion";
 // Concept: Converging energy — particles and lines flow inward toward center
 // Represents the call to action, energy focusing, decision point
 
-const TOTAL_FRAMES = 180;
+const TOTAL_FRAMES = 360;
 
 interface ConvergingLine {
   startX: number;

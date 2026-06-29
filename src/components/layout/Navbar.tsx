@@ -27,6 +27,7 @@ export function Navbar() {
 
   return (
     <nav
+      aria-label="Navegación principal"
       className={`fixed top-0 w-full z-50 bg-background/70 backdrop-blur-xl border-b border-outline-variant/10 transition-all duration-300 ${
         scrolled ? "nav-scrolled" : ""
       }`}

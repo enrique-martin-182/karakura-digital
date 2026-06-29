@@ -38,6 +38,7 @@ export function Hero() {
         loop
         muted
         playsInline
+        poster="/assets/hero-poster.jpg"
         className="absolute inset-0 w-full h-full object-cover"
         aria-hidden="true"
       >
@@ -79,21 +80,21 @@ export function Hero() {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
               </span>
               <span className="text-label-sm uppercase tracking-widest text-on-surface-variant font-extrabold">
-                Iniciativa Digital Córdoba
+                Desde Córdoba para toda España
               </span>
             </div>
           </motion.div>
 
           <motion.div variants={itemVariants}>
             <h1 className="text-headline-mobile md:text-headline-xl text-gradient mb-8 leading-[1.1] tracking-tight">
-              Fortaleciendo la red digital de los comercios de <span className="text-primary-container inline-block">Córdoba</span>.
+              Transformamos el panorama digital de los negocios en <span className="text-primary-container inline-block">España</span>.
             </h1>
           </motion.div>
 
           <motion.div variants={itemVariants}>
             <p className="text-body-lg text-on-surface-variant/90 mb-12 max-w-2xl md:text-xl leading-relaxed font-medium">
-              Impulsamos el comercio local cordobés facilitando sus labores diarias y ampliando su alcance digital.
-              Software, automatización e IA diseñados para que los negocios de nuestra ciudad lideren el mañana.
+              Impulsamos comercios de toda España facilitando sus labores diarias y ampliando su alcance digital.
+              Software, automatización e IA diseñados para que los negocios lideren el mañana.
             </p>
           </motion.div>
 

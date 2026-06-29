@@ -3,7 +3,7 @@ import { AbsoluteFill, useCurrentFrame, interpolate } from "remotion";
 // Concept: Three hexagonal zones representing the three services
 // Hexagons breathe/pulse with gentle rotation, connected by flowing energy lines
 
-const TOTAL_FRAMES = 180;
+const TOTAL_FRAMES = 360;
 
 interface Hexagon {
   cx: number;

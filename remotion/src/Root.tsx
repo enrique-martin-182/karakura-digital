@@ -13,56 +13,56 @@ export const RemotionRoot: React.FC = () => {
       <Composition
         id="HeroBackground"
         component={HeroBackground}
-        durationInFrames={180}
-        fps={30}
+        durationInFrames={360}
+        fps={60}
         width={1920}
         height={1080}
       />
       <Composition
         id="GapBackground"
         component={GapBackground}
-        durationInFrames={180}
-        fps={30}
+        durationInFrames={360}
+        fps={60}
         width={1920}
         height={1080}
       />
       <Composition
         id="ServicesBackground"
         component={ServicesBackground}
-        durationInFrames={180}
-        fps={30}
+        durationInFrames={360}
+        fps={60}
         width={1920}
         height={1080}
       />
       <Composition
         id="ProcessBackground"
         component={ProcessBackground}
-        durationInFrames={180}
-        fps={30}
+        durationInFrames={360}
+        fps={60}
         width={1920}
         height={1080}
       />
       <Composition
         id="ResultsBackground"
         component={ResultsBackground}
-        durationInFrames={180}
-        fps={30}
+        durationInFrames={360}
+        fps={60}
         width={1920}
         height={1080}
       />
       <Composition
         id="TestimonialsBackground"
         component={TestimonialsBackground}
-        durationInFrames={180}
-        fps={30}
+        durationInFrames={360}
+        fps={60}
         width={1920}
         height={1080}
       />
       <Composition
         id="ContactBackground"
         component={ContactBackground}
-        durationInFrames={180}
-        fps={30}
+        durationInFrames={360}
+        fps={60}
         width={1920}
         height={1080}
       />

@@ -220,7 +220,9 @@ export const HeroBackground: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  const loopFrame = frame % 180;
+  const totalFrames = fps * 6;
+  const half = totalFrames / 2;
+  const loopFrame = frame % totalFrames;
 
   return (
     <AbsoluteFill style={{ backgroundColor: COLORS.bg }}>
@@ -235,7 +237,7 @@ export const HeroBackground: React.FC = () => {
           borderRadius: "50%",
           background: `radial-gradient(circle, ${COLORS.orange}22 0%, transparent 70%)`,
           filter: "blur(80px)",
-          opacity: interpolate(loopFrame, [0, 90, 180], [0.4, 0.7, 0.4], {
+          opacity: interpolate(loopFrame, [0, half, totalFrames], [0.4, 0.7, 0.4], {
             extrapolateRight: "clamp",
           }),
         }}
@@ -250,7 +252,7 @@ export const HeroBackground: React.FC = () => {
           borderRadius: "50%",
           background: `radial-gradient(circle, ${COLORS.green}22 0%, transparent 70%)`,
           filter: "blur(80px)",
-          opacity: interpolate(loopFrame, [0, 90, 180], [0.5, 0.3, 0.5], {
+          opacity: interpolate(loopFrame, [0, half, totalFrames], [0.5, 0.3, 0.5], {
             extrapolateRight: "clamp",
           }),
         }}

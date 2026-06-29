@@ -3,7 +3,7 @@ import { AbsoluteFill, useCurrentFrame, interpolate } from "remotion";
 // Concept: Rising bar chart / growth indicators — abstract vertical lines growing and pulsing
 // Represents metrics, data, measurable results
 
-const TOTAL_FRAMES = 180;
+const TOTAL_FRAMES = 360;
 
 interface Bar {
   x: number;

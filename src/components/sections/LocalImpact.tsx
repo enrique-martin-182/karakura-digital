@@ -35,7 +35,7 @@ const impactStats = [
   },
   {
     icon: <MapPin className="w-6 h-6" />,
-    label: "Foco Local",
+    label: "Sede Central",
     value: "Córdoba",
     color: "text-secondary",
     bgColor: "bg-secondary/10",
@@ -54,7 +54,7 @@ const features = [
     icon: <Users className="w-5 h-5 text-secondary" />,
     iconBg: "bg-secondary/20 border-secondary/30",
     title: "Mayor Alcance",
-    description: "Llevamos tu escaparate de la Judería o de las Tendillas a pantallas de todo el mundo.",
+    description: "Llevamos tu escaparate local a pantallas de todo el mundo, estés donde estés en España.",
   },
   {
     icon: <Sparkles className="w-5 h-5 text-primary-container" />,
@@ -72,7 +72,7 @@ export function LocalImpact() {
           <SectionHeader
             overline="Nuestra Iniciativa"
             overlineColor="orange"
-            headline="Fortaleciendo el Corazón Digital de Córdoba"
+            headline="Impulsando la Transformación Digital en España"
           />
         </ScrollReveal>
 
@@ -84,11 +84,11 @@ export function LocalImpact() {
             transition={{ duration: 0.8 }}
           >
             <h3 className="text-2xl md:text-3xl font-bold text-white mb-6 leading-tight">
-              ¿Por qué Córdoba? Porque creemos en el potencial de nuestra tierra.
+              Nacidos en Córdoba, con visión nacional.
             </h3>
             <p className="text-body-lg text-on-surface-variant mb-10 leading-relaxed">
-              Karakura Digital no es solo una agencia; es una iniciativa nacida para transformar la manera en que los negocios cordobeses interactúan con el mundo digital.
-              España está en plena transformación, y queremos que Córdoba sea el referente de esta evolución.
+              Karakura Digital es una iniciativa nacida en Córdoba para transformar la manera en que los negocios de toda España interactúan con el mundo digital.
+              El tejido empresarial del país está en plena evolución, y queremos ser parte activa de ese cambio.
             </p>
 
             <div className="space-y-5">

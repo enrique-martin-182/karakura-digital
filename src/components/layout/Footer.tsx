@@ -15,7 +15,7 @@ export function Footer() {
         </div>
 
         <div className="col-span-1 md:col-span-3 flex flex-col md:flex-row justify-end gap-10 md:gap-16 mt-10 md:mt-0">
-          <div className="flex flex-col space-y-4">
+          <nav aria-label="Navegación del pie de página" className="flex flex-col space-y-4">
             <span className="text-label-sm text-on-surface-variant/60 uppercase tracking-widest">
               Navegación
             </span>
@@ -28,7 +28,7 @@ export function Footer() {
             <a href="#portfolio" className="text-body-md text-on-surface-variant hover:text-white transition-colors">
               Portfolio
             </a>
-          </div>
+          </nav>
           <div className="flex flex-col space-y-4">
             <span className="text-label-sm text-on-surface-variant/60 uppercase tracking-widest">
               Contacto

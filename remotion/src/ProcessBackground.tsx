@@ -4,7 +4,7 @@ import { AbsoluteFill, useCurrentFrame, interpolate } from "remotion";
 // Particles orbit each ring — represents iterative methodology phases interlocking
 // Inner ring = Discovery, outer = Optimization — all connected by radial spokes
 
-const TOTAL_FRAMES = 180;
+const TOTAL_FRAMES = 360;
 
 interface OrbitalParticle {
   ring: number;
