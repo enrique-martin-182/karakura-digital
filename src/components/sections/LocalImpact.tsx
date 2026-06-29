@@ -28,7 +28,7 @@ const impactStats = [
   {
     icon: <Globe className="w-6 h-6" />,
     label: "Alcance Digital",
-    value: "Global",
+    value: "Internacional",
     color: "text-primary-container",
     bgColor: "bg-primary-container/10",
     borderColor: "border-primary-container/20",
@@ -54,7 +54,7 @@ const features = [
     icon: <Users className="w-5 h-5 text-secondary" />,
     iconBg: "bg-secondary/20 border-secondary/30",
     title: "Mayor Alcance",
-    description: "Llevamos tu escaparate local a pantallas de todo el mundo, estés donde estés en España.",
+    description: "Llevamos tu negocio a pantallas de todo el mundo, sin importar dónde esté tu sede.",
   },
   {
     icon: <Sparkles className="w-5 h-5 text-primary-container" />,
@@ -72,7 +72,7 @@ export function LocalImpact() {
           <SectionHeader
             overline="Nuestra Iniciativa"
             overlineColor="orange"
-            headline="Impulsando la Transformación Digital en España"
+            headline="Impulsando la Transformación Digital a Nivel Internacional"
           />
         </ScrollReveal>
 
@@ -84,11 +84,11 @@ export function LocalImpact() {
             transition={{ duration: 0.8 }}
           >
             <h3 className="text-2xl md:text-3xl font-bold text-white mb-6 leading-tight">
-              Nacidos en Córdoba, con visión nacional.
+              Nacidos en Córdoba, con visión global.
             </h3>
             <p className="text-body-lg text-on-surface-variant mb-10 leading-relaxed">
-              Karakura Digital es una iniciativa nacida en Córdoba para transformar la manera en que los negocios de toda España interactúan con el mundo digital.
-              El tejido empresarial del país está en plena evolución, y queremos ser parte activa de ese cambio.
+              Karakura Digital nació en Córdoba con una misión clara: llevar tecnología de primer nivel a negocios de cualquier parte del mundo.
+              Trabajamos con clientes internacionales que necesitan soluciones digitales a medida, sin importar su ubicación.
             </p>
 
             <div className="space-y-5">

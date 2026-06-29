@@ -24,7 +24,7 @@ No test framework is configured. If Turbopack panics ("Next.js package not found
 
 ## Architecture
 
-Single-page marketing site for Karakura Digital (based in Cordoba, Spain; national scope across Spain). Next.js 16 + React 19 + Tailwind CSS 4 + Framer Motion. Spanish language throughout.
+Single-page marketing site for Karakura Digital (based in Cordoba, Spain; international clients). Next.js 16 + React 19 + Tailwind CSS 4 + Framer Motion. Spanish language throughout.
 
 **Stack:** Next.js 16.2.7, Tailwind v4 (uses `@theme inline` in globals.css, not tailwind.config), Framer Motion 12, Spline 3D (lazy loaded).
 

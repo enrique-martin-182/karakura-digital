@@ -80,21 +80,21 @@ export function Hero() {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
               </span>
               <span className="text-label-sm uppercase tracking-widest text-on-surface-variant font-extrabold">
-                Desde Córdoba para toda España
+                Desde Córdoba al mundo
               </span>
             </div>
           </motion.div>
 
           <motion.div variants={itemVariants}>
             <h1 className="text-headline-mobile md:text-headline-xl text-gradient mb-8 leading-[1.1] tracking-tight">
-              Transformamos el panorama digital de los negocios en <span className="text-primary-container inline-block">España</span>.
+              Transformamos negocios con tecnología que <span className="text-primary-container inline-block">escala sin fronteras</span>.
             </h1>
           </motion.div>
 
           <motion.div variants={itemVariants}>
             <p className="text-body-lg text-on-surface-variant/90 mb-12 max-w-2xl md:text-xl leading-relaxed font-medium">
-              Impulsamos comercios de toda España facilitando sus labores diarias y ampliando su alcance digital.
-              Software, automatización e IA diseñados para que los negocios lideren el mañana.
+              Con sede en Córdoba y clientes en todo el mundo, creamos software, automatización e IA
+              que simplifican operaciones y multiplican tu alcance digital.
             </p>
           </motion.div>
 

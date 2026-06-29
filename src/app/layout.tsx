@@ -13,27 +13,29 @@ const jakarta = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL("https://karakuradigital.es/"),
   title: {
-    default: "Karakura Digital | Transformación Digital para Negocios en España",
+    default: "Karakura Digital | Software, Automatización e IA para Empresas",
     template: "%s | Karakura Digital",
   },
   description:
-    "Iniciativa nacida en Córdoba para impulsar la transformación digital de negocios en toda España. Tecnología, automatización y desarrollo web para ampliar tu alcance.",
+    "Empresa de desarrollo de software con sede en Córdoba y clientes internacionales. Creamos webs, CRMs, automatizaciones e inteligencia artificial a medida para negocios que quieren escalar.",
   keywords: [
     "Karakura Digital",
-    "transformación digital España",
-    "digitalización negocios España",
-    "desarrollo web empresas",
+    "desarrollo software a medida",
+    "empresa desarrollo web",
+    "CRM personalizado",
     "automatización empresarial",
-    "desarrollo web B2B",
+    "inteligencia artificial empresas",
     "software a medida",
     "transformación digital",
-    "n8n",
-    "inteligencia artificial",
+    "desarrollo web Córdoba",
+    "agencia digital internacional",
+    "n8n automatización",
+    "consultoría tecnológica",
   ],
   openGraph: {
-    title: "Karakura Digital | Impulsando Negocios en España",
+    title: "Karakura Digital | Software, Automatización e IA a Medida",
     description:
-      "Desde Córdoba, impulsamos la transformación digital de negocios en toda España. Tecnología a medida para que tu negocio llegue más lejos.",
+      "Con sede en Córdoba y clientes internacionales. Desarrollo web, CRMs, automatización e IA para negocios que quieren escalar sin límites.",
     url: "https://karakuradigital.es/",
     siteName: "Karakura Digital",
     type: "website",
@@ -49,8 +51,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Karakura Digital - Transformación Digital en España",
-    description: "Desde Córdoba, impulsando el alcance digital de los negocios en toda España.",
+    title: "Karakura Digital - Software y Automatización a Medida",
+    description: "Sede en Córdoba, clientes en todo el mundo. Desarrollo web, CRMs e IA para empresas que escalan.",
     images: ["https://karakuradigital.es/assets/og-image.png"],
   },
   alternates: {
@@ -79,12 +81,18 @@ export default function RootLayout({
         "addressRegion": "Andalucía",
         "addressCountry": "ES"
       },
-      "areaServed": {
-        "@type": "Country",
-        "name": "España"
-      },
+      "areaServed": [
+        {
+          "@type": "Country",
+          "name": "España"
+        },
+        {
+          "@type": "Place",
+          "name": "Internacional"
+        }
+      ],
       "sameAs": [],
-      "description": "Iniciativa nacida en Córdoba dedicada a impulsar la transformación digital de negocios en toda España, facilitando labores operativas y aumentando el alcance a clientes potenciales."
+      "description": "Empresa de desarrollo de software con sede en Córdoba (España) y clientes internacionales. Especializada en desarrollo web, CRMs, automatización e inteligencia artificial a medida."
     },
     {
       "@context": "https://schema.org",
@@ -139,12 +147,12 @@ export default function RootLayout({
         "@type": "LocalBusiness",
         "name": "Karakura Digital"
       },
-      "serviceType": ["Desarrollo Web", "Software a Medida", "Automatización e IA"],
+      "serviceType": ["Desarrollo Web", "Software a Medida", "CRM Personalizado", "Automatización e IA"],
       "areaServed": {
-        "@type": "Country",
-        "name": "España"
+        "@type": "Place",
+        "name": "Internacional"
       },
-      "description": "Desarrollo web, software a medida (CRM, gestión de clientes y citas), automatización con IA y transformación digital para negocios en toda España."
+      "description": "Desarrollo web, CRMs personalizados, software a medida, automatización con IA y transformación digital para empresas de cualquier parte del mundo."
     }
   ];
 
