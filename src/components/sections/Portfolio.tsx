@@ -7,10 +7,41 @@ import {
   useSpring,
   useReducedMotion,
 } from "framer-motion";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { ScrollReveal } from "@/components/effects/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/effects/Stagger";
+
+const ForestScene = dynamic(
+  () => import("@/components/3d/ForestScene").then((m) => ({ default: m.ForestScene })),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-[700px] rounded-2xl bg-surface-container-lowest/50 border border-white/[0.06] flex items-center justify-center">
+        <div className="flex flex-col items-center gap-3 text-white/40">
+          <div className="w-8 h-8 border-2 border-secondary/40 border-t-secondary rounded-full animate-spin" />
+          <span className="text-sm">Cargando escena 3D...</span>
+        </div>
+      </div>
+    ),
+  }
+);
+
+const WorldDiorama = dynamic(
+  () => import("@/components/3d/world/WorldDiorama").then((m) => ({ default: m.WorldDiorama })),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-[700px] rounded-2xl bg-surface-container-lowest/50 border border-white/[0.06] flex items-center justify-center">
+        <div className="flex flex-col items-center gap-3 text-white/40">
+          <div className="w-8 h-8 border-2 border-secondary/40 border-t-secondary rounded-full animate-spin" />
+          <span className="text-sm">Cargando mapa del mundo...</span>
+        </div>
+      </div>
+    ),
+  }
+);
 
 interface Project {
   title: string;
@@ -365,6 +396,34 @@ export function Portfolio() {
               </StaggerItem>
             ))}
           </StaggerContainer>
+        </div>
+
+        {/* 3D Premium Components subsection */}
+        <div className="mt-24">
+          <ScrollReveal>
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-10 h-10 rounded-xl bg-primary-container/20 text-primary-container flex items-center justify-center shrink-0">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
+                </svg>
+              </div>
+              <h3 className="text-2xl md:text-3xl font-bold text-white">Componentes Premium 3D</h3>
+            </div>
+            <p className="text-on-surface-variant text-body-lg mb-8 max-w-2xl">
+              Experiencias WebGL inmersivas integradas en la web. Explora el diorama: arrastra para orbitar, haz clic en los orbes luminosos para descubrir cada proyecto.
+            </p>
+          </ScrollReveal>
+
+          <ScrollReveal>
+            <ForestScene />
+          </ScrollReveal>
+
+          <div className="mt-12">
+            <ScrollReveal>
+              <h4 className="text-lg font-semibold text-white/80 mb-4">Mapa Mundial Interactivo</h4>
+              <WorldDiorama />
+            </ScrollReveal>
+          </div>
         </div>
 
         {/* Bottom CTA */}
