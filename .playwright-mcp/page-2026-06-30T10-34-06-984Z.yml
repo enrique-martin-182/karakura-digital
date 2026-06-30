@@ -1,0 +1,234 @@
+- generic [ref=f1e1]:
+  - generic [ref=f1e7]:
+    - banner [ref=f1e8]:
+      - generic [ref=f1e9]:
+        - link [ref=f1e10] [cursor=pointer]:
+          - /url: /
+          - img [ref=f1e11]
+        - link "poly.pizza" [ref=f1e14] [cursor=pointer]:
+          - /url: /
+          - heading "poly.pizza" [level=6] [ref=f1e15]
+        - generic [ref=f1e16]:
+          - generic:
+            - img
+          - textbox "search" [ref=f1e18]:
+            - /placeholder: Search
+    - generic [ref=f1e19]:
+      - generic [ref=f1e20]:
+        - generic [ref=f1e21]:
+          - generic:
+            - insertion
+          - generic [ref=f1e23]:
+            - generic [ref=f1e24]:
+              - button "Auto rotate" [ref=f1e25] [cursor=pointer]:
+                - img [ref=f1e27]
+              - button "FullScreen" [ref=f1e29] [cursor=pointer]:
+                - img [ref=f1e31]
+            - generic [ref=f1e33]:
+              - generic [ref=f1e34]:
+                - img "Fox" [ref=f1e35]
+                - generic:
+                  - generic:
+                    - button
+                - generic:
+                  - generic:
+                    - generic:
+                      - img
+              - status: All 3D models in the page have loaded
+            - generic [ref=f1e39]:
+              - button "Play/Pause" [ref=f1e40] [cursor=pointer]:
+                - img [ref=f1e42]
+              - slider [ref=f1e47] [cursor=pointer]
+              - generic [ref=f1e48]:
+                - button "Attack" [ref=f1e49] [cursor=pointer]
+                - textbox: "0"
+                - img
+        - generic [ref=f1e51]:
+          - generic [ref=f1e52]:
+            - generic [ref=f1e53]:
+              - heading "Fox" [level=1] [ref=f1e54]
+              - paragraph [ref=f1e55]:
+                - img [ref=f1e56]
+                - text: 1.8k
+              - paragraph [ref=f1e58]:
+                - img [ref=f1e59]
+                - text: 2.27k
+              - paragraph [ref=f1e61]:
+                - img [ref=f1e62]
+                - text: "19"
+              - paragraph [ref=f1e64]:
+                - img [ref=f1e65]
+                - text: 3.6k
+            - generic [ref=f1e67]:
+              - button "Like" [ref=f1e69] [cursor=pointer]:
+                - generic [ref=f1e70]:
+                  - img [ref=f1e72]
+                  - text: Like
+              - button "List" [ref=f1e75] [cursor=pointer]:
+                - generic [ref=f1e76]:
+                  - img [ref=f1e78]
+                  - text: List
+              - button "Download" [ref=f1e81] [cursor=pointer]:
+                - generic [ref=f1e82]:
+                  - img [ref=f1e84]
+                  - text: Download
+              - button "more" [ref=f1e87] [cursor=pointer]:
+                - img [ref=f1e89]
+          - separator [ref=f1e91]
+          - generic [ref=f1e92]:
+            - generic [ref=f1e93]:
+              - generic [ref=f1e94]:
+                - img "Avatar for Quaternius" [ref=f1e96]
+                - heading "Quaternius" [level=3] [ref=f1e97]:
+                  - link "Quaternius" [ref=f1e98] [cursor=pointer]:
+                    - /url: /u/Quaternius
+                - generic [ref=f1e99]:
+                  - link "Twitter" [ref=f1e100] [cursor=pointer]:
+                    - /url: https://twitter.com/quaternius
+                    - img [ref=f1e102]
+                  - link "Pateron" [ref=f1e104] [cursor=pointer]:
+                    - /url: https://patreon.com/quaternius
+                    - img [ref=f1e106]
+                  - link "Website" [ref=f1e110] [cursor=pointer]:
+                    - /url: https://quaternius.com/
+                    - img [ref=f1e112]
+              - generic [ref=f1e114]:
+                - generic [ref=f1e115]:
+                  - paragraph
+                - generic [ref=f1e117]:
+                  - img [ref=f1e118]
+                  - button "Low Poly" [ref=f1e120] [cursor=pointer]:
+                    - generic [ref=f1e121]: Low Poly
+                  - button "Animals" [ref=f1e122] [cursor=pointer]:
+                    - generic [ref=f1e123]: Animals
+                  - button "Animated" [ref=f1e124] [cursor=pointer]:
+                    - generic [ref=f1e125]: Animated
+                  - button "#Fox" [ref=f1e126] [cursor=pointer]:
+                    - generic [ref=f1e127]: "#Fox"
+                  - button "#Wildlife" [ref=f1e128] [cursor=pointer]:
+                    - generic [ref=f1e129]: "#Wildlife"
+                  - button "#Red Fox" [ref=f1e130] [cursor=pointer]:
+                    - generic [ref=f1e131]: "#Red Fox"
+                - paragraph [ref=f1e133]:
+                  - text: Sep 7, 2021 • FBX/GLTF format • Public Domain (CC0)
+                  - link [ref=f1e134] [cursor=pointer]:
+                    - /url: https://creativecommons.org/publicdomain/zero/1.0/
+                    - img [ref=f1e135]
+            - generic [ref=f1e137]:
+              - heading "Included in:" [level=6] [ref=f1e138]
+              - link "Animated Animal Pack 12 models" [ref=f1e139] [cursor=pointer]:
+                - /url: /bundle/Animated-Animal-Pack-ILAPXeUYiS
+                - generic [ref=f1e140]:
+                  - img [ref=f1e141]
+                  - generic [ref=f1e142]:
+                    - paragraph [ref=f1e143]: Animated Animal Pack
+                    - generic [ref=f1e145]: 12 models
+              - generic [ref=f1e146]: and 38 more lists
+          - separator [ref=f1e147]
+          - heading "1 Comments" [level=3] [ref=f1e150]
+          - generic [ref=f1e151]:
+            - progressbar [ref=f1e153]:
+              - img [ref=f1e154]
+            - generic [ref=f1e158]:
+              - img [ref=f1e160]
+              - generic [ref=f1e163]:
+                - textbox "Like this model? Let the creator know!" [ref=f1e164]
+                - group
+      - generic [ref=f1e165]:
+        - generic [ref=f1e166]:
+          - generic:
+            - insertion
+        - generic [ref=f1e168]:
+          - link "Wolf" [ref=f1e169] [cursor=pointer]:
+            - /url: /m/P1gU3Qkr9r
+            - generic "Wolf" [ref=f1e170]:
+              - img "Wolf" [ref=f1e172]
+          - generic [ref=f1e173]:
+            - generic "dp" [ref=f1e175]:
+              - img [ref=f1e176]
+            - generic [ref=f1e177]:
+              - link "Wolf" [ref=f1e179] [cursor=pointer]:
+                - /url: /m/P1gU3Qkr9r
+              - link "Quaternius" [ref=f1e181] [cursor=pointer]:
+                - /url: /u/Quaternius
+        - generic [ref=f1e183]:
+          - link "Stag" [ref=f1e184] [cursor=pointer]:
+            - /url: /m/tQdzbZ1Cmw
+            - generic "Stag" [ref=f1e185]:
+              - img "Stag" [ref=f1e187]
+          - generic [ref=f1e188]:
+            - generic "dp" [ref=f1e190]:
+              - img [ref=f1e191]
+            - generic [ref=f1e192]:
+              - link "Stag" [ref=f1e194] [cursor=pointer]:
+                - /url: /m/tQdzbZ1Cmw
+              - link "Quaternius" [ref=f1e196] [cursor=pointer]:
+                - /url: /u/Quaternius
+        - generic [ref=f1e198]:
+          - link "Husky" [ref=f1e199] [cursor=pointer]:
+            - /url: /m/wcWiuEqwzq
+            - generic "Husky" [ref=f1e200]:
+              - img "Husky" [ref=f1e202]
+          - generic [ref=f1e203]:
+            - generic "dp" [ref=f1e205]:
+              - img [ref=f1e206]
+            - generic [ref=f1e207]:
+              - link "Husky" [ref=f1e209] [cursor=pointer]:
+                - /url: /m/wcWiuEqwzq
+              - link "Quaternius" [ref=f1e211] [cursor=pointer]:
+                - /url: /u/Quaternius
+    - contentinfo [ref=f1e212]:
+      - heading "Made with 🍕 by dook" [level=6] [ref=f1e213]
+      - generic [ref=f1e214]:
+        - link "Twitter" [ref=f1e215] [cursor=pointer]:
+          - /url: https://twitter.com/duckpizza_
+          - img [ref=f1e217]
+        - link "Youtube" [ref=f1e219] [cursor=pointer]:
+          - /url: https://www.youtube.com/c/dookdook
+          - img [ref=f1e221]
+        - link "Discord" [ref=f1e223] [cursor=pointer]:
+          - /url: https://discord.gg/mEwMwSU
+          - img [ref=f1e225]
+        - link "Email" [ref=f1e228] [cursor=pointer]:
+          - /url: mailto:hi@duck.pizza
+          - img [ref=f1e230]
+      - generic [ref=f1e232]:
+        - link "Terms" [ref=f1e233] [cursor=pointer]:
+          - /url: /docs/tos
+        - link "Privacy" [ref=f1e234] [cursor=pointer]:
+          - /url: /docs/privacy
+        - link "Security" [ref=f1e235] [cursor=pointer]:
+          - /url: /docs/security
+        - link "Press" [ref=f1e236] [cursor=pointer]:
+          - /url: /docs/press
+        - link "API" [ref=f1e237] [cursor=pointer]:
+          - /url: /docs/api/v1.1
+  - dialog "poly.pizza solicita tu consentimiento para usar tus datos personales con los siguientes fines:" [active] [ref=f1e243]:
+    - generic [ref=f1e245]:
+      - generic [ref=f1e246]:
+        - paragraph [ref=f1e248]: Te damos la bienvenida a poly.pizza
+        - heading "poly.pizza solicita tu consentimiento para usar tus datos personales con los siguientes fines:" [level=1] [ref=f1e249]
+      - list [ref=f1e251]:
+        - listitem [ref=f1e252]:
+          - img [ref=f1e255]
+          - generic [ref=f1e257]: Publicidad y contenido personalizados, medición de publicidad y contenido, investigación de audiencia y desarrollo de servicios
+        - listitem [ref=f1e258]:
+          - img [ref=f1e261]
+          - generic [ref=f1e263]: Almacenar la información en un dispositivo y/o acceder a ella
+      - button "Más información" [ref=f1e264] [cursor=pointer]:
+        - img [ref=f1e267]
+        - generic [ref=f1e269]: Más información
+      - generic [ref=f1e270]:
+        - paragraph [ref=f1e271]:
+          - text: Tus datos personales se tratarán y la información de tu dispositivo (cookies, identificadores únicos y otros datos en el dispositivo) podrá ser almacenada y consultada por 210 partners y compartida con ellos, o bien usada específicamente por este sitio. Tanto nosotros como nuestros partners podemos usar datos precisos de geolocalización.
+          - button "Lista de partners" [ref=f1e272] [cursor=pointer]
+          - text: .
+        - paragraph [ref=f1e273]: Es posible que algunos proveedores traten tus datos personales en virtud de un interés legítimo, algo a lo que puedes oponerte gestionando tus opciones a continuación. En la parte inferior de esta página o en el menú del sitio, busca un enlace para gestionar o retirar el consentimiento en la configuración de privacidad y cookies.
+    - generic [ref=f1e274]:
+      - generic [ref=f1e276]:
+        - button "Consentir" [ref=f1e277] [cursor=pointer]:
+          - paragraph [ref=f1e279]: Consentir
+        - button "No consentir" [ref=f1e280] [cursor=pointer]:
+          - paragraph [ref=f1e282]: No consentir
+      - button "Gestionar opciones" [ref=f1e283] [cursor=pointer]:
+        - paragraph [ref=f1e284]: Gestionar opciones

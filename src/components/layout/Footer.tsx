@@ -60,6 +60,18 @@ export function Footer() {
           <p className="text-body-md text-on-surface-variant">
             &copy; 2026 Karakura Digital. Todos los derechos reservados.
           </p>
+          <p className="text-label-sm text-on-surface-variant/50 mt-2">
+            Modelos 3D del diorama de portfolio: Quaternius (CC0) y Poly by Google vía{" "}
+            <a
+              href="https://poly.pizza"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-on-surface-variant"
+            >
+              Poly Pizza
+            </a>{" "}
+            (CC-BY 3.0).
+          </p>
         </div>
       </div>
     </footer>

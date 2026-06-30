@@ -3,9 +3,10 @@
 import { useMemo, type ReactNode } from "react";
 import * as THREE from "three";
 import { BIOMES } from "./types";
-import { Toucan, Monkey, Camel, Scorpion, Penguin, Seal, Turtle, FishSchool, Fox, Rabbit, Iguana, Crab } from "./BiomeAnimals";
+import { Scorpion, Seal, FishSchool, Iguana, Crab } from "./BiomeAnimals";
 import { TreeCluster, useTreeCluster, CoralCluster, useCoralCluster } from "./InstancedDecor";
 import { LavaMaterial } from "./LavaMaterial";
+import { RiggedAnimal, StaticAnimal } from "./GLTFAnimal";
 
 function BiomeRegion({
   position,
@@ -110,10 +111,10 @@ function JungleDecor({ position }: { position: [number, number, number] }) {
         <boxGeometry args={[0.8, 1.2, 0.8]} />
         <meshStandardMaterial color="#5a5a4a" roughness={0.85} />
       </mesh>
-      <Toucan position={[bx + 1.6, 1.6, bz - 0.6]} />
-      <Toucan position={[bx - 1.2, 1.9, bz + 1.4]} />
-      <Monkey position={[bx + 2, 1.3, bz - 1]} />
-      <Monkey position={[bx - 0.6, 0.9, bz - 1.8]} />
+      <StaticAnimal file="toucan.glb" position={[bx + 1.6, 1.6, bz - 0.6]} scale={0.5} rotationY={0.6} bobSpeed={1.6} />
+      <StaticAnimal file="toucan.glb" position={[bx - 1.2, 1.9, bz + 1.4]} scale={0.42} rotationY={-1.2} bobSpeed={1.4} />
+      <RiggedAnimal file="monkey.glb" animationMatch="idle" position={[bx + 2, 1.3, bz - 1]} scale={0.22} rotationY={2.4} />
+      <RiggedAnimal file="monkey.glb" animationMatch="idle" position={[bx - 0.6, 0.9, bz - 1.8]} scale={0.2} rotationY={0.4} />
     </group>
   );
 }
@@ -146,8 +147,8 @@ function DesertDecor({ position }: { position: [number, number, number] }) {
           </group>
         );
       })}
-      <Camel position={[bx - 2, 1.0, bz + 1]} />
-      <Camel position={[bx - 1.4, 0.95, bz + 1.6]} />
+      <StaticAnimal file="camel.glb" position={[bx - 2, 0.65, bz + 1]} scale={0.0026} rotationY={0.8} bobAmount={0.02} bobSpeed={0.9} />
+      <StaticAnimal file="camel.glb" position={[bx - 1.4, 0.6, bz + 1.6]} scale={0.0022} rotationY={-0.4} bobAmount={0.02} bobSpeed={0.85} />
       <Scorpion position={[bx + 0.6, 0.85, bz - 1.2]} />
     </group>
   );
@@ -194,7 +195,15 @@ function ArcticDecor({ position }: { position: [number, number, number] }) {
       <Seal position={[bx - 1.5, 0.3, bz - 1]} />
       <Seal position={[bx - 0.9, 0.32, bz - 1.6]} />
       {[0, 1, 2, 3].map((i) => (
-        <Penguin key={i} position={[bx - 2 + i * 0.4, 0.2, bz + 2]} />
+        <StaticAnimal
+          key={i}
+          file="penguin.glb"
+          position={[bx - 2 + i * 0.4, 0.2, bz + 2]}
+          scale={0.0014}
+          rotationY={i * 0.9}
+          bobSpeed={2 + i * 0.3}
+          bobAmount={0.025}
+        />
       ))}
     </group>
   );
@@ -207,8 +216,8 @@ function OceanDecor({ position }: { position: [number, number, number] }) {
   return (
     <group>
       <CoralCluster corals={corals} y={-0.8} />
-      <Turtle position={[bx + 1, 0.1, bz - 1]} />
-      <Turtle position={[bx - 1.5, -0.1, bz - 0.5]} />
+      <StaticAnimal file="turtle.glb" position={[bx + 1, 0.1, bz - 1]} scale={0.022} rotationY={1.1} bobAmount={0.06} bobSpeed={0.7} />
+      <StaticAnimal file="turtle.glb" position={[bx - 1.5, -0.1, bz - 0.5]} scale={0.018} rotationY={-0.6} bobAmount={0.06} bobSpeed={0.6} />
       <FishSchool center={[bx + 0.5, -0.4, bz + 0.5]} count={10} />
       <group position={[bx - 2, -1, bz + 2]} rotation={[0, 0.5, 0.2]}>
         <mesh castShadow>
@@ -242,9 +251,9 @@ function ForestDecor({ position }: { position: [number, number, number] }) {
           <meshStandardMaterial color="#8a3a1a" flatShading />
         </mesh>
       </group>
-      <Fox position={[bx + 2, 0.5, bz - 1]} />
-      <Rabbit position={[bx + 1.4, 0.4, bz - 0.4]} />
-      <Rabbit position={[bx - 1, 0.35, bz + 0.6]} />
+      <RiggedAnimal file="fox.glb" animationMatch="idle_2" position={[bx + 2, 0.5, bz - 1]} scale={0.22} rotationY={-1.8} />
+      <RiggedAnimal file="rabbit.glb" animationMatch="sitting_idle" position={[bx + 1.4, 0.4, bz - 0.4]} scale={0.18} rotationY={0.5} />
+      <RiggedAnimal file="rabbit.glb" animationMatch="idle" position={[bx - 1, 0.35, bz + 0.6]} scale={0.16} rotationY={2.1} />
     </group>
   );
 }

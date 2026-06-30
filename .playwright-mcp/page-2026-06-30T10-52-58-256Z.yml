@@ -1,0 +1,205 @@
+- generic [active] [ref=f187e1]:
+  - generic [ref=f187e7]:
+    - banner [ref=f187e8]:
+      - generic [ref=f187e9]:
+        - link [ref=f187e10] [cursor=pointer]:
+          - /url: /
+          - img [ref=f187e11]
+        - link "poly.pizza" [ref=f187e14] [cursor=pointer]:
+          - /url: /
+          - heading "poly.pizza" [level=6] [ref=f187e15]
+        - generic [ref=f187e16]:
+          - generic:
+            - img
+          - textbox "search" [ref=f187e18]:
+            - /placeholder: Search
+    - generic [ref=f187e19]:
+      - generic [ref=f187e20]:
+        - generic [ref=f187e21]:
+          - generic:
+            - insertion
+          - generic [ref=f187e23]:
+            - generic [ref=f187e24]:
+              - button "Auto rotate" [ref=f187e25] [cursor=pointer]:
+                - img [ref=f187e27]
+              - button "FullScreen" [ref=f187e29] [cursor=pointer]:
+                - img [ref=f187e31]
+            - generic [ref=f187e33]:
+              - generic [ref=f187e34]:
+                - img "Penguin" [ref=f187e35]
+                - generic:
+                  - generic:
+                    - button
+                - generic:
+                  - generic:
+                    - generic:
+                      - img
+              - status: All 3D models in the page have loaded
+        - generic [ref=f187e39]:
+          - generic [ref=f187e40]:
+            - generic [ref=f187e41]:
+              - heading "Penguin" [level=1] [ref=f187e42]
+              - paragraph [ref=f187e43]:
+                - img [ref=f187e44]
+                - text: "456"
+              - paragraph [ref=f187e46]:
+                - img [ref=f187e47]
+                - text: 5.27k
+              - paragraph [ref=f187e49]:
+                - img [ref=f187e50]
+                - text: "2"
+              - paragraph [ref=f187e52]:
+                - img [ref=f187e53]
+                - text: "832"
+            - generic [ref=f187e55]:
+              - button "Like" [ref=f187e57] [cursor=pointer]:
+                - generic [ref=f187e58]:
+                  - img [ref=f187e60]
+                  - text: Like
+              - button "List" [ref=f187e63] [cursor=pointer]:
+                - generic [ref=f187e64]:
+                  - img [ref=f187e66]
+                  - text: List
+              - button "Download" [ref=f187e69] [cursor=pointer]:
+                - generic [ref=f187e70]:
+                  - img [ref=f187e72]
+                  - text: Download
+              - button "more" [ref=f187e75] [cursor=pointer]:
+                - img [ref=f187e77]
+          - separator [ref=f187e79]
+          - generic [ref=f187e80]:
+            - generic [ref=f187e81]:
+              - generic [ref=f187e82]:
+                - img "Avatar for Poly by Google" [ref=f187e84]
+                - heading "Poly by Google" [level=3] [ref=f187e85]:
+                  - link "Poly by Google" [ref=f187e86] [cursor=pointer]:
+                    - /url: /u/Poly by Google
+              - generic [ref=f187e87]:
+                - paragraph [ref=f187e89]: "#penguin #bird #seabird #flightless"
+                - generic [ref=f187e91]:
+                  - img [ref=f187e92]
+                  - button "Low Poly" [ref=f187e94] [cursor=pointer]:
+                    - generic [ref=f187e95]: Low Poly
+                  - button "Animals" [ref=f187e96] [cursor=pointer]:
+                    - generic [ref=f187e97]: Animals
+                  - button "#penguin" [ref=f187e98] [cursor=pointer]:
+                    - generic [ref=f187e99]: "#penguin"
+                  - button "#bird" [ref=f187e100] [cursor=pointer]:
+                    - generic [ref=f187e101]: "#bird"
+                  - button "#seabird" [ref=f187e102] [cursor=pointer]:
+                    - generic [ref=f187e103]: "#seabird"
+                  - button "#flightless" [ref=f187e104] [cursor=pointer]:
+                    - generic [ref=f187e105]: "#flightless"
+                - paragraph [ref=f187e107]:
+                  - text: Sep 28, 2017 • OBJ/GLTF format • Creative Commons Attribution
+                  - link [ref=f187e108] [cursor=pointer]:
+                    - /url: https://creativecommons.org/licenses/by/3.0/
+                    - img [ref=f187e109]
+            - generic [ref=f187e111]:
+              - heading "Included in:" [level=6] [ref=f187e112]
+              - generic [ref=f187e114]:
+                - img [ref=f187e115]
+                - paragraph [ref=f187e117]: 24 User lists
+          - separator [ref=f187e118]
+          - heading "0 Comments" [level=3] [ref=f187e121]
+          - generic [ref=f187e122]:
+            - progressbar [ref=f187e124]:
+              - img [ref=f187e125]
+            - generic [ref=f187e129]:
+              - img [ref=f187e131]
+              - generic [ref=f187e134]:
+                - textbox "Like this model? Let the creator know!" [ref=f187e135]
+                - group
+      - generic [ref=f187e136]:
+        - generic [ref=f187e137]:
+          - generic:
+            - insertion
+        - generic [ref=f187e139]:
+          - link "Chicken" [ref=f187e140] [cursor=pointer]:
+            - /url: /m/1YE8U35HXsI
+            - generic "Chicken" [ref=f187e141]:
+              - img "Chicken" [ref=f187e143]
+          - generic [ref=f187e144]:
+            - generic "dp" [ref=f187e146]:
+              - img [ref=f187e147]
+            - generic [ref=f187e148]:
+              - link "Chicken" [ref=f187e150] [cursor=pointer]:
+                - /url: /m/1YE8U35HXsI
+              - link "jeremy" [ref=f187e152] [cursor=pointer]:
+                - /url: /u/jeremy
+        - generic [ref=f187e154]:
+          - link "Chicken" [ref=f187e155] [cursor=pointer]:
+            - /url: /m/ineV9pU5VL
+            - generic "Chicken" [ref=f187e156]:
+              - img "Chicken" [ref=f187e158]
+          - generic [ref=f187e159]:
+            - generic "dp" [ref=f187e161]:
+              - img [ref=f187e162]
+            - generic [ref=f187e163]:
+              - link "Chicken" [ref=f187e165] [cursor=pointer]:
+                - /url: /m/ineV9pU5VL
+              - link "Quaternius" [ref=f187e167] [cursor=pointer]:
+                - /url: /u/Quaternius
+        - generic [ref=f187e169]:
+          - link "Pigeon" [ref=f187e170] [cursor=pointer]:
+            - /url: /m/9NGlBTpDEr
+            - generic "Pigeon" [ref=f187e171]:
+              - img "Pigeon" [ref=f187e173]
+          - generic [ref=f187e174]:
+            - generic "dp" [ref=f187e176]:
+              - img [ref=f187e177]
+            - generic [ref=f187e178]:
+              - link "Pigeon" [ref=f187e180] [cursor=pointer]:
+                - /url: /m/9NGlBTpDEr
+              - link "Quaternius" [ref=f187e182] [cursor=pointer]:
+                - /url: /u/Quaternius
+    - contentinfo [ref=f187e183]:
+      - heading "Made with 🍕 by dook" [level=6] [ref=f187e184]
+      - generic [ref=f187e185]:
+        - link "Twitter" [ref=f187e186] [cursor=pointer]:
+          - /url: https://twitter.com/duckpizza_
+          - img [ref=f187e188]
+        - link "Youtube" [ref=f187e190] [cursor=pointer]:
+          - /url: https://www.youtube.com/c/dookdook
+          - img [ref=f187e192]
+        - link "Discord" [ref=f187e194] [cursor=pointer]:
+          - /url: https://discord.gg/mEwMwSU
+          - img [ref=f187e196]
+        - link "Email" [ref=f187e199] [cursor=pointer]:
+          - /url: mailto:hi@duck.pizza
+          - img [ref=f187e201]
+      - generic [ref=f187e203]:
+        - link "Terms" [ref=f187e204] [cursor=pointer]:
+          - /url: /docs/tos
+        - link "Privacy" [ref=f187e205] [cursor=pointer]:
+          - /url: /docs/privacy
+        - link "Security" [ref=f187e206] [cursor=pointer]:
+          - /url: /docs/security
+        - link "Press" [ref=f187e207] [cursor=pointer]:
+          - /url: /docs/press
+        - link "API" [ref=f187e208] [cursor=pointer]:
+          - /url: /docs/api/v1.1
+  - insertion [ref=f187e212]:
+    - iframe [ref=f187e214]:
+      - generic [active] [ref=f196e1]:
+        - generic [ref=f196e6]:
+          - generic [ref=f196e7]:
+            - generic "MongoDB Atlas" [ref=f196e9]:
+              - link "Start building for free" [ref=f196e10] [cursor=pointer]:
+                - /url: https://www.googleadservices.com/pagead/aclk?sa=L&ai=Cey7hCaBDap2hH_HKwuIP_ZCx-A7Fk4-BiAHWi8Dn3hSes6iMg0cQASDLw8qEAWDVpdICoAHNxtehA8gBAagDAcgDywSqBNoBT9BaBqg1Iai5gbDlL1rHGnhn0AUX7O7LVDQz3epq06rxZ1Te4uUIkbtc67EYHLC-kQP67VQR0VRzvG5bCSTWesoaM6HLNK3XFrCfC6trXIaROK6K4y-0ahojlsL3uoqDwYtU6LwGMbyRzJM_vZYvdFtgm8JWYrZMPHvfvOoBlX6jIwu-28YJbSqLZQJ5v9HbKThH7TC20z7W-hj9hGXbjOjsPZoO_WWJ3IKien_duMun7Fl2oUxU9LT50KABF6goag6YJdbiybfUQsDLi__D_vn8dXeC8jFA69jABPGPqbC_BYgFk4TZ3FWAB5u5qF6oB6fMsQKoB6a-G6gHzM6xAqgH89EbqAeW2BuoB6qbsQKoB47OG6gHk9gbqAfw4BuoB-6WsQKoB_6esQKoB6--sQKoB9XJG6gH2baxAqgHmgaoB_-esQKoB9-fsQKoB_jCsQKoB_vCsQLYBwHSCDYIgOGAEBABGJ8DMgiqgoCAgICACDoQgMADgICEgICUruADqIeAEEi9_cE6WN7O44XmrpUDYAGxCaaRaJZOzSZKgAoBmAsByAsBqg0CRVPIDQHqDRMIv8_kheaulQMVcaVQBh19SAzv8A0CiA4J2BMM0BUByhYCCgD4FgGAFwGyFwQYAVAGuhcCOAGyGAkSArhQGAEiAQDQGAHoGAHCGQIIAQ&ae=1&gclid=EAIaIQobChMI3cnkheaulQMVcaVQBh19SAzvEAEYASAAEgK2CfD_BwE&num=1&cid=CAQSbwARCiqBxy89rG9UaAgJ_ulcv61kHZVJ2SsmxJAsxfy-lvngQ_FbA4DbLjourvFBvuPUUirIpUypYc6PQLE2fuiB4ehuaVBTbtOIM5Zf5phP6heHtN6MaxHFUAaANENjp3Lm6r3v9MqUu60TaBEOkRgB&sig=AOD64_0gC2-xW0FMhXTgb5v_-H0-Ha_7SQ&client=ca-pub-4279852833813635&rf=1&nb=0&adurl=https://www.mongodb.com/lp/cloud/atlas/try2-reg%3Futm_content%3Dgdn-computerrewind%26utm_source%3Dgdn%26utm_campaign%3Ddisplay_gd_pl_evergreen_atlas_general_prosp_mad_emea-es_dev_desktop_eng_lead%26utm_term%3Dprospecting%26utm_medium%3Ddisplay%26utm_ad%3D%26utm_ad_campaign_id%3D23011410451%26adgroup%3D188811462641%26cq_cmp%3D23011410451%26gad_source%3D5%26gad_campaignid%3D23011410451%26gclid%3DEAIaIQobChMI3cnkheaulQMVcaVQBh19SAzvEAEYASAAEgK2CfD_BwE
+            - generic [ref=f196e11]:
+              - link "Run anywhere, scale confidently, and reduce complexity." [ref=f196e13] [cursor=pointer]:
+                - /url: https://www.googleadservices.com/pagead/aclk?sa=L&ai=Cey7hCaBDap2hH_HKwuIP_ZCx-A7Fk4-BiAHWi8Dn3hSes6iMg0cQASDLw8qEAWDVpdICoAHNxtehA8gBAagDAcgDywSqBNoBT9BaBqg1Iai5gbDlL1rHGnhn0AUX7O7LVDQz3epq06rxZ1Te4uUIkbtc67EYHLC-kQP67VQR0VRzvG5bCSTWesoaM6HLNK3XFrCfC6trXIaROK6K4y-0ahojlsL3uoqDwYtU6LwGMbyRzJM_vZYvdFtgm8JWYrZMPHvfvOoBlX6jIwu-28YJbSqLZQJ5v9HbKThH7TC20z7W-hj9hGXbjOjsPZoO_WWJ3IKien_duMun7Fl2oUxU9LT50KABF6goag6YJdbiybfUQsDLi__D_vn8dXeC8jFA69jABPGPqbC_BYgFk4TZ3FWAB5u5qF6oB6fMsQKoB6a-G6gHzM6xAqgH89EbqAeW2BuoB6qbsQKoB47OG6gHk9gbqAfw4BuoB-6WsQKoB_6esQKoB6--sQKoB9XJG6gH2baxAqgHmgaoB_-esQKoB9-fsQKoB_jCsQKoB_vCsQLYBwHSCDYIgOGAEBABGJ8DMgiqgoCAgICACDoQgMADgICEgICUruADqIeAEEi9_cE6WN7O44XmrpUDYAGxCaaRaJZOzSZKgAoBmAsByAsBqg0CRVPIDQHqDRMIv8_kheaulQMVcaVQBh19SAzv8A0CiA4J2BMM0BUByhYCCgD4FgGAFwGyFwQYAVAGuhcCOAGyGAkSArhQGAEiAQDQGAHoGAHCGQIIAQ&ae=1&gclid=EAIaIQobChMI3cnkheaulQMVcaVQBh19SAzvEAEYASAAEgK2CfD_BwE&num=1&cid=CAQSbwARCiqBxy89rG9UaAgJ_ulcv61kHZVJ2SsmxJAsxfy-lvngQ_FbA4DbLjourvFBvuPUUirIpUypYc6PQLE2fuiB4ehuaVBTbtOIM5Zf5phP6heHtN6MaxHFUAaANENjp3Lm6r3v9MqUu60TaBEOkRgB&sig=AOD64_0gC2-xW0FMhXTgb5v_-H0-Ha_7SQ&client=ca-pub-4279852833813635&rf=1&nb=7&adurl=https://www.mongodb.com/lp/cloud/atlas/try2-reg%3Futm_content%3Dgdn-computerrewind%26utm_source%3Dgdn%26utm_campaign%3Ddisplay_gd_pl_evergreen_atlas_general_prosp_mad_emea-es_dev_desktop_eng_lead%26utm_term%3Dprospecting%26utm_medium%3Ddisplay%26utm_ad%3D%26utm_ad_campaign_id%3D23011410451%26adgroup%3D188811462641%26cq_cmp%3D23011410451%26gad_source%3D5%26gad_campaignid%3D23011410451%26gclid%3DEAIaIQobChMI3cnkheaulQMVcaVQBh19SAzvEAEYASAAEgK2CfD_BwE
+              - link [ref=f196e14] [cursor=pointer]:
+                - /url: https://www.googleadservices.com/pagead/aclk?sa=L&ai=Cey7hCaBDap2hH_HKwuIP_ZCx-A7Fk4-BiAHWi8Dn3hSes6iMg0cQASDLw8qEAWDVpdICoAHNxtehA8gBAagDAcgDywSqBNoBT9BaBqg1Iai5gbDlL1rHGnhn0AUX7O7LVDQz3epq06rxZ1Te4uUIkbtc67EYHLC-kQP67VQR0VRzvG5bCSTWesoaM6HLNK3XFrCfC6trXIaROK6K4y-0ahojlsL3uoqDwYtU6LwGMbyRzJM_vZYvdFtgm8JWYrZMPHvfvOoBlX6jIwu-28YJbSqLZQJ5v9HbKThH7TC20z7W-hj9hGXbjOjsPZoO_WWJ3IKien_duMun7Fl2oUxU9LT50KABF6goag6YJdbiybfUQsDLi__D_vn8dXeC8jFA69jABPGPqbC_BYgFk4TZ3FWAB5u5qF6oB6fMsQKoB6a-G6gHzM6xAqgH89EbqAeW2BuoB6qbsQKoB47OG6gHk9gbqAfw4BuoB-6WsQKoB_6esQKoB6--sQKoB9XJG6gH2baxAqgHmgaoB_-esQKoB9-fsQKoB_jCsQKoB_vCsQLYBwHSCDYIgOGAEBABGJ8DMgiqgoCAgICACDoQgMADgICEgICUruADqIeAEEi9_cE6WN7O44XmrpUDYAGxCaaRaJZOzSZKgAoBmAsByAsBqg0CRVPIDQHqDRMIv8_kheaulQMVcaVQBh19SAzv8A0CiA4J2BMM0BUByhYCCgD4FgGAFwGyFwQYAVAGuhcCOAGyGAkSArhQGAEiAQDQGAHoGAHCGQIIAQ&ae=1&gclid=EAIaIQobChMI3cnkheaulQMVcaVQBh19SAzvEAEYASAAEgK2CfD_BwE&num=1&cid=CAQSbwARCiqBxy89rG9UaAgJ_ulcv61kHZVJ2SsmxJAsxfy-lvngQ_FbA4DbLjourvFBvuPUUirIpUypYc6PQLE2fuiB4ehuaVBTbtOIM5Zf5phP6heHtN6MaxHFUAaANENjp3Lm6r3v9MqUu60TaBEOkRgB&sig=AOD64_0gC2-xW0FMhXTgb5v_-H0-Ha_7SQ&client=ca-pub-4279852833813635&rf=1&nb=8&adurl=https://www.mongodb.com/lp/cloud/atlas/try2-reg%3Futm_content%3Dgdn-computerrewind%26utm_source%3Dgdn%26utm_campaign%3Ddisplay_gd_pl_evergreen_atlas_general_prosp_mad_emea-es_dev_desktop_eng_lead%26utm_term%3Dprospecting%26utm_medium%3Ddisplay%26utm_ad%3D%26utm_ad_campaign_id%3D23011410451%26adgroup%3D188811462641%26cq_cmp%3D23011410451%26gad_source%3D5%26gad_campaignid%3D23011410451%26gclid%3DEAIaIQobChMI3cnkheaulQMVcaVQBh19SAzvEAEYASAAEgK2CfD_BwE
+                - img [ref=f196e15]
+          - generic "MongoDB Atlas" [ref=f196e17]:
+            - link "MongoDB Atlas" [ref=f196e18] [cursor=pointer]:
+              - /url: https://www.googleadservices.com/pagead/aclk?sa=L&ai=Cey7hCaBDap2hH_HKwuIP_ZCx-A7Fk4-BiAHWi8Dn3hSes6iMg0cQASDLw8qEAWDVpdICoAHNxtehA8gBAagDAcgDywSqBNoBT9BaBqg1Iai5gbDlL1rHGnhn0AUX7O7LVDQz3epq06rxZ1Te4uUIkbtc67EYHLC-kQP67VQR0VRzvG5bCSTWesoaM6HLNK3XFrCfC6trXIaROK6K4y-0ahojlsL3uoqDwYtU6LwGMbyRzJM_vZYvdFtgm8JWYrZMPHvfvOoBlX6jIwu-28YJbSqLZQJ5v9HbKThH7TC20z7W-hj9hGXbjOjsPZoO_WWJ3IKien_duMun7Fl2oUxU9LT50KABF6goag6YJdbiybfUQsDLi__D_vn8dXeC8jFA69jABPGPqbC_BYgFk4TZ3FWAB5u5qF6oB6fMsQKoB6a-G6gHzM6xAqgH89EbqAeW2BuoB6qbsQKoB47OG6gHk9gbqAfw4BuoB-6WsQKoB_6esQKoB6--sQKoB9XJG6gH2baxAqgHmgaoB_-esQKoB9-fsQKoB_jCsQKoB_vCsQLYBwHSCDYIgOGAEBABGJ8DMgiqgoCAgICACDoQgMADgICEgICUruADqIeAEEi9_cE6WN7O44XmrpUDYAGxCaaRaJZOzSZKgAoBmAsByAsBqg0CRVPIDQHqDRMIv8_kheaulQMVcaVQBh19SAzv8A0CiA4J2BMM0BUByhYCCgD4FgGAFwGyFwQYAVAGuhcCOAGyGAkSArhQGAEiAQDQGAHoGAHCGQIIAQ&ae=1&gclid=EAIaIQobChMI3cnkheaulQMVcaVQBh19SAzvEAEYASAAEgK2CfD_BwE&num=1&cid=CAQSbwARCiqBxy89rG9UaAgJ_ulcv61kHZVJ2SsmxJAsxfy-lvngQ_FbA4DbLjourvFBvuPUUirIpUypYc6PQLE2fuiB4ehuaVBTbtOIM5Zf5phP6heHtN6MaxHFUAaANENjp3Lm6r3v9MqUu60TaBEOkRgB&sig=AOD64_0gC2-xW0FMhXTgb5v_-H0-Ha_7SQ&client=ca-pub-4279852833813635&rf=1&nb=1&adurl=https://www.mongodb.com/lp/cloud/atlas/try2-reg%3Futm_content%3Dgdn-computerrewind%26utm_source%3Dgdn%26utm_campaign%3Ddisplay_gd_pl_evergreen_atlas_general_prosp_mad_emea-es_dev_desktop_eng_lead%26utm_term%3Dprospecting%26utm_medium%3Ddisplay%26utm_ad%3D%26utm_ad_campaign_id%3D23011410451%26adgroup%3D188811462641%26cq_cmp%3D23011410451%26gad_source%3D5%26gad_campaignid%3D23011410451%26gclid%3DEAIaIQobChMI3cnkheaulQMVcaVQBh19SAzvEAEYASAAEgK2CfD_BwE
+        - img [ref=f196e22] [cursor=pointer]
+        - button [ref=f196e26] [cursor=pointer]:
+          - img [ref=f196e27]
+        - iframe
+  - generic [ref=f187e216]:
+    - button "Configuración de la privacidad y las cookies" [ref=f187e217] [cursor=pointer]
+    - generic [ref=f187e218]: "Gestionado por Google Cumple el TCF de IAB. ID de CMP: 300"

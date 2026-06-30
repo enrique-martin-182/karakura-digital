@@ -1,0 +1,188 @@
+[    1965ms] TagError: adsbygoogle.push() error: No slot size for availableWidth=0
+    at dp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:163:314)
+    at cp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:162:134)
+    at kp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:166:172)
+    at sp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:183:15)
+    at up (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:184:321)
+    at Fr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:233:141)
+    at Ar.g.client (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:223:45)
+    at kk.g (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:81:545)
+    at rk (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:82:706)
+    at Ar (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:223:33)
+[  213309ms] [ERROR] Attestation check for Shared Storage on https://www.googleadservices.com failed. @ https://www.googleadservices.com/pagead/managed/js/activeview/current/reach_worklet.html:0
+[  848721ms] TypeError: n.plausible is not a function
+    at L (https://poly.pizza/static/js/client.2de45e55.js:4:818585)
+    at onClick (https://poly.pizza/static/js/client.2de45e55.js:4:829606)
+    at Object.He (https://poly.pizza/static/js/client.2de45e55.js:4:509288)
+    at Xe (https://poly.pizza/static/js/client.2de45e55.js:4:509442)
+    at https://poly.pizza/static/js/client.2de45e55.js:4:527451
+    at Er (https://poly.pizza/static/js/client.2de45e55.js:4:527545)
+    at _r (https://poly.pizza/static/js/client.2de45e55.js:4:527960)
+    at https://poly.pizza/static/js/client.2de45e55.js:4:533613
+    at Ne (https://poly.pizza/static/js/client.2de45e55.js:4:609656)
+    at https://poly.pizza/static/js/client.2de45e55.js:4:529421
+[ 1032714ms] TagError: adsbygoogle.push() error: No slot size for availableWidth=0
+    at dp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:163:314)
+    at cp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:162:134)
+    at kp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:166:172)
+    at sp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:183:15)
+    at up (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:184:321)
+    at Fr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:233:141)
+    at https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:223:45
+    at kk.g (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:81:545)
+    at rk (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:82:706)
+    at Ar (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:223:33)
+[ 1034601ms] [ERROR] Attestation check for Shared Storage on https://www.googleadservices.com failed. @ https://www.googleadservices.com/pagead/managed/js/activeview/current/reach_worklet.html:0
+[ 1036837ms] TypeError: n.plausible is not a function
+    at L (https://poly.pizza/static/js/client.2de45e55.js:4:818585)
+    at onClick (https://poly.pizza/static/js/client.2de45e55.js:4:829606)
+    at Object.He (https://poly.pizza/static/js/client.2de45e55.js:4:509288)
+    at Xe (https://poly.pizza/static/js/client.2de45e55.js:4:509442)
+    at https://poly.pizza/static/js/client.2de45e55.js:4:527451
+    at Er (https://poly.pizza/static/js/client.2de45e55.js:4:527545)
+    at _r (https://poly.pizza/static/js/client.2de45e55.js:4:527960)
+    at https://poly.pizza/static/js/client.2de45e55.js:4:533613
+    at Ne (https://poly.pizza/static/js/client.2de45e55.js:4:609656)
+    at https://poly.pizza/static/js/client.2de45e55.js:4:529421
+[ 1072447ms] TagError: adsbygoogle.push() error: No slot size for availableWidth=0
+    at dp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:163:314)
+    at cp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:162:134)
+    at kp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:166:172)
+    at sp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:183:15)
+    at up (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:184:321)
+    at Fr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:233:141)
+    at https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:223:45
+    at kk.g (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:81:545)
+    at rk (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:82:706)
+    at Ar (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:223:33)
+[ 1072695ms] [INFO] Loading the script 'https://www.gstatic.com/recaptcha/releases/TnA7HacJFoBWt9hnlunBlYfK/recaptcha__es.js' violates the following Content Security Policy directive: "script-src 'unsafe-inline'". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The policy is report-only, so the violation has been logged but no further action has been taken. @ https://www.google.com/recaptcha/api2/anchor?ar=1&k=6Lc_LAcaAAAAAJ8RT1-vgmA-GsTDH0KJBZ_toZZV&co=aHR0cHM6Ly9wb2x5LnBpenphOjQ0Mw..&hl=es&v=TnA7HacJFoBWt9hnlunBlYfK&size=invisible&anchor-ms=20000&execute-ms=30000&cb=ykosf5bevqy:0
+[ 1072722ms] [INFO] Creating a worker from 'https://www.google.com/recaptcha/api2/webworker.js?hl=es&v=TnA7HacJFoBWt9hnlunBlYfK' violates the following Content Security Policy directive: "script-src 'unsafe-inline'". Note that 'worker-src' was not explicitly set, so 'script-src' is used as a fallback. The policy is report-only, so the violation has been logged but no further action has been taken. @ https://www.gstatic.com/recaptcha/releases/TnA7HacJFoBWt9hnlunBlYfK/recaptcha__es.js:711
+[ 1072695ms] [INFO] Loading the script 'https://www.gstatic.com/recaptcha/releases/TnA7HacJFoBWt9hnlunBlYfK/recaptcha__es.js' violates the following Content Security Policy directive: "script-src 'unsafe-inline'". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The policy is report-only, so the violation has been logged but no further action has been taken. @ https://www.google.com/recaptcha/api2/anchor?ar=1&k=6Lc_LAcaAAAAAJ8RT1-vgmA-GsTDH0KJBZ_toZZV&co=aHR0cHM6Ly9wb2x5LnBpenphOjQ0Mw..&hl=es&v=TnA7HacJFoBWt9hnlunBlYfK&size=invisible&anchor-ms=20000&execute-ms=30000&cb=ykosf5bevqy:0
+[ 1072722ms] [INFO] Creating a worker from 'https://www.google.com/recaptcha/api2/webworker.js?hl=es&v=TnA7HacJFoBWt9hnlunBlYfK' violates the following Content Security Policy directive: "script-src 'unsafe-inline'". Note that 'worker-src' was not explicitly set, so 'script-src' is used as a fallback. The policy is report-only, so the violation has been logged but no further action has been taken. @ https://www.gstatic.com/recaptcha/releases/TnA7HacJFoBWt9hnlunBlYfK/recaptcha__es.js:711
+[ 1073221ms] [ERROR] Attestation check for Shared Storage on https://www.googleadservices.com failed. @ https://www.googleadservices.com/pagead/managed/js/activeview/current/reach_worklet.html:0
+[ 1074933ms] TypeError: n.plausible is not a function
+    at L (https://poly.pizza/static/js/client.2de45e55.js:4:818585)
+    at onClick (https://poly.pizza/static/js/client.2de45e55.js:4:829606)
+    at Object.He (https://poly.pizza/static/js/client.2de45e55.js:4:509288)
+    at Xe (https://poly.pizza/static/js/client.2de45e55.js:4:509442)
+    at https://poly.pizza/static/js/client.2de45e55.js:4:527451
+    at Er (https://poly.pizza/static/js/client.2de45e55.js:4:527545)
+    at _r (https://poly.pizza/static/js/client.2de45e55.js:4:527960)
+    at https://poly.pizza/static/js/client.2de45e55.js:4:533613
+    at Ne (https://poly.pizza/static/js/client.2de45e55.js:4:609656)
+    at https://poly.pizza/static/js/client.2de45e55.js:4:529421
+[ 1076112ms] TagError: adsbygoogle.push() error: No slot size for availableWidth=0
+    at dp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:163:314)
+    at cp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:162:134)
+    at kp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:166:172)
+    at sp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:183:15)
+    at up (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:184:321)
+    at Fr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:233:141)
+    at https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:223:45
+    at kk.g (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:81:545)
+    at rk (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:82:706)
+    at Ar (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:223:33)
+[ 1077375ms] [ERROR] Attestation check for Shared Storage on https://www.googleadservices.com failed. @ https://www.googleadservices.com/pagead/managed/js/activeview/current/reach_worklet.html:0
+[ 1079573ms] TypeError: n.plausible is not a function
+    at L (https://poly.pizza/static/js/client.2de45e55.js:4:818585)
+    at onClick (https://poly.pizza/static/js/client.2de45e55.js:4:829606)
+    at Object.He (https://poly.pizza/static/js/client.2de45e55.js:4:509288)
+    at Xe (https://poly.pizza/static/js/client.2de45e55.js:4:509442)
+    at https://poly.pizza/static/js/client.2de45e55.js:4:527451
+    at Er (https://poly.pizza/static/js/client.2de45e55.js:4:527545)
+    at _r (https://poly.pizza/static/js/client.2de45e55.js:4:527960)
+    at https://poly.pizza/static/js/client.2de45e55.js:4:533613
+    at Ne (https://poly.pizza/static/js/client.2de45e55.js:4:609656)
+    at https://poly.pizza/static/js/client.2de45e55.js:4:529421
+[ 1080744ms] TagError: adsbygoogle.push() error: No slot size for availableWidth=0
+    at dp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:163:314)
+    at cp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:162:134)
+    at kp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:166:172)
+    at sp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:183:15)
+    at up (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:184:321)
+    at Fr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:233:141)
+    at https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:223:45
+    at kk.g (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:81:545)
+    at rk (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:82:706)
+    at Ar (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:223:33)
+[ 1081556ms] [ERROR] Attestation check for Shared Storage on https://www.googleadservices.com failed. @ https://www.googleadservices.com/pagead/managed/js/activeview/current/reach_worklet.html:0
+[ 1083782ms] TypeError: n.plausible is not a function
+    at L (https://poly.pizza/static/js/client.2de45e55.js:4:818585)
+    at onClick (https://poly.pizza/static/js/client.2de45e55.js:4:829606)
+    at Object.He (https://poly.pizza/static/js/client.2de45e55.js:4:509288)
+    at Xe (https://poly.pizza/static/js/client.2de45e55.js:4:509442)
+    at https://poly.pizza/static/js/client.2de45e55.js:4:527451
+    at Er (https://poly.pizza/static/js/client.2de45e55.js:4:527545)
+    at _r (https://poly.pizza/static/js/client.2de45e55.js:4:527960)
+    at https://poly.pizza/static/js/client.2de45e55.js:4:533613
+    at Ne (https://poly.pizza/static/js/client.2de45e55.js:4:609656)
+    at https://poly.pizza/static/js/client.2de45e55.js:4:529421
+[ 1084950ms] TagError: adsbygoogle.push() error: No slot size for availableWidth=0
+    at dp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:163:314)
+    at cp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:162:134)
+    at kp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:166:172)
+    at sp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:183:15)
+    at up (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:184:321)
+    at Fr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:233:141)
+    at https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:223:45
+    at kk.g (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:81:545)
+    at rk (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:82:706)
+    at Ar (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:223:33)
+[ 1085745ms] [ERROR] Attestation check for Shared Storage on https://www.googleadservices.com failed. @ https://www.googleadservices.com/pagead/managed/js/activeview/current/reach_worklet.html:0
+[ 1088213ms] TypeError: n.plausible is not a function
+    at L (https://poly.pizza/static/js/client.2de45e55.js:4:818585)
+    at onClick (https://poly.pizza/static/js/client.2de45e55.js:4:829606)
+    at Object.He (https://poly.pizza/static/js/client.2de45e55.js:4:509288)
+    at Xe (https://poly.pizza/static/js/client.2de45e55.js:4:509442)
+    at https://poly.pizza/static/js/client.2de45e55.js:4:527451
+    at Er (https://poly.pizza/static/js/client.2de45e55.js:4:527545)
+    at _r (https://poly.pizza/static/js/client.2de45e55.js:4:527960)
+    at https://poly.pizza/static/js/client.2de45e55.js:4:533613
+    at Ne (https://poly.pizza/static/js/client.2de45e55.js:4:609656)
+    at https://poly.pizza/static/js/client.2de45e55.js:4:529421
+[ 1089573ms] TagError: adsbygoogle.push() error: No slot size for availableWidth=0
+    at dp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:163:314)
+    at cp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:162:134)
+    at kp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:166:172)
+    at sp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:183:15)
+    at up (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:184:321)
+    at Fr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:233:141)
+    at https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:223:45
+    at kk.g (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:81:545)
+    at rk (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:82:706)
+    at Ar (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:223:33)
+[ 1090819ms] [ERROR] Attestation check for Shared Storage on https://www.googleadservices.com failed. @ https://www.googleadservices.com/pagead/managed/js/activeview/current/reach_worklet.html:0
+[ 1092262ms] TypeError: n.plausible is not a function
+    at L (https://poly.pizza/static/js/client.2de45e55.js:4:818585)
+    at onClick (https://poly.pizza/static/js/client.2de45e55.js:4:829606)
+    at Object.He (https://poly.pizza/static/js/client.2de45e55.js:4:509288)
+    at Xe (https://poly.pizza/static/js/client.2de45e55.js:4:509442)
+    at https://poly.pizza/static/js/client.2de45e55.js:4:527451
+    at Er (https://poly.pizza/static/js/client.2de45e55.js:4:527545)
+    at _r (https://poly.pizza/static/js/client.2de45e55.js:4:527960)
+    at https://poly.pizza/static/js/client.2de45e55.js:4:533613
+    at Ne (https://poly.pizza/static/js/client.2de45e55.js:4:609656)
+    at https://poly.pizza/static/js/client.2de45e55.js:4:529421
+[ 1093353ms] TagError: adsbygoogle.push() error: No slot size for availableWidth=0
+    at dp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:163:314)
+    at cp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:162:134)
+    at kp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:166:172)
+    at sp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:183:15)
+    at up (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:184:321)
+    at Fr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:233:141)
+    at https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:223:45
+    at kk.g (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:81:545)
+    at rk (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:82:706)
+    at Ar (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:223:33)
+[ 1095007ms] [ERROR] Attestation check for Shared Storage on https://www.googleadservices.com failed. @ https://www.googleadservices.com/pagead/managed/js/activeview/current/reach_worklet.html:0
+[ 1097230ms] TypeError: n.plausible is not a function
+    at L (https://poly.pizza/static/js/client.2de45e55.js:4:818585)
+    at onClick (https://poly.pizza/static/js/client.2de45e55.js:4:829606)
+    at Object.He (https://poly.pizza/static/js/client.2de45e55.js:4:509288)
+    at Xe (https://poly.pizza/static/js/client.2de45e55.js:4:509442)
+    at https://poly.pizza/static/js/client.2de45e55.js:4:527451
+    at Er (https://poly.pizza/static/js/client.2de45e55.js:4:527545)
+    at _r (https://poly.pizza/static/js/client.2de45e55.js:4:527960)
+    at https://poly.pizza/static/js/client.2de45e55.js:4:533613
+    at Ne (https://poly.pizza/static/js/client.2de45e55.js:4:609656)
+    at https://poly.pizza/static/js/client.2de45e55.js:4:529421

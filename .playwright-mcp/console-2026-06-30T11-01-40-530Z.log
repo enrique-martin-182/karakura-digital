@@ -1,0 +1,35 @@
+[     464ms] TagError: adsbygoogle.push() error: No slot size for availableWidth=0
+    at dp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:163:314)
+    at cp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:162:134)
+    at kp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:166:172)
+    at sp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:183:15)
+    at up (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:184:321)
+    at Fr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:233:141)
+    at https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:223:45
+    at kk.g (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:81:545)
+    at rk (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:82:706)
+    at Ar (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4279852833813635:223:33)
+[     861ms] [WARNING] WebGL: INVALID_VALUE: texSubImage2D: bad image data @ https://poly.pizza/static/js/client.2de45e55.js:3
+[    1392ms] [ERROR] Attestation check for Shared Storage on https://www.googleadservices.com failed. @ https://www.googleadservices.com/pagead/managed/js/activeview/current/reach_worklet.html:0
+[   85233ms] TypeError: n.plausible is not a function
+    at L (https://poly.pizza/static/js/client.2de45e55.js:4:818585)
+    at handleClose (https://poly.pizza/static/js/client.2de45e55.js:4:832367)
+    at onKeyDown (https://poly.pizza/static/js/client.2de45e55.js:4:133731)
+    at Object.He (https://poly.pizza/static/js/client.2de45e55.js:4:509288)
+    at Xe (https://poly.pizza/static/js/client.2de45e55.js:4:509442)
+    at https://poly.pizza/static/js/client.2de45e55.js:4:527451
+    at Er (https://poly.pizza/static/js/client.2de45e55.js:4:527545)
+    at _r (https://poly.pizza/static/js/client.2de45e55.js:4:527960)
+    at https://poly.pizza/static/js/client.2de45e55.js:4:533613
+    at Ne (https://poly.pizza/static/js/client.2de45e55.js:4:609656)
+[  130022ms] TypeError: n.plausible is not a function
+    at L (https://poly.pizza/static/js/client.2de45e55.js:4:818585)
+    at onClick (https://poly.pizza/static/js/client.2de45e55.js:4:829606)
+    at Object.He (https://poly.pizza/static/js/client.2de45e55.js:4:509288)
+    at Xe (https://poly.pizza/static/js/client.2de45e55.js:4:509442)
+    at https://poly.pizza/static/js/client.2de45e55.js:4:527451
+    at Er (https://poly.pizza/static/js/client.2de45e55.js:4:527545)
+    at _r (https://poly.pizza/static/js/client.2de45e55.js:4:527960)
+    at https://poly.pizza/static/js/client.2de45e55.js:4:533613
+    at Ne (https://poly.pizza/static/js/client.2de45e55.js:4:609656)
+    at https://poly.pizza/static/js/client.2de45e55.js:4:529421

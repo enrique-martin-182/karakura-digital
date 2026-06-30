@@ -1,0 +1,189 @@
+- generic [active] [ref=f205e1]:
+  - generic [ref=f205e7]:
+    - banner [ref=f205e8]:
+      - generic [ref=f205e9]:
+        - link [ref=f205e10] [cursor=pointer]:
+          - /url: /
+          - img [ref=f205e11]
+        - link "poly.pizza" [ref=f205e14] [cursor=pointer]:
+          - /url: /
+          - heading "poly.pizza" [level=6] [ref=f205e15]
+        - generic [ref=f205e16]:
+          - generic:
+            - img
+          - textbox "search" [ref=f205e18]:
+            - /placeholder: Search
+    - generic [ref=f205e19]:
+      - generic [ref=f205e20]:
+        - generic [ref=f205e21]:
+          - generic:
+            - insertion
+          - generic [ref=f205e23]:
+            - generic [ref=f205e24]:
+              - button "Auto rotate" [ref=f205e25] [cursor=pointer]:
+                - img [ref=f205e27]
+              - button "FullScreen" [ref=f205e29] [cursor=pointer]:
+                - img [ref=f205e31]
+            - generic [ref=f205e33]:
+              - generic [ref=f205e34]:
+                - img "Turtle" [ref=f205e35]
+                - generic:
+                  - generic:
+                    - button
+                - generic:
+                  - generic:
+                    - generic:
+                      - img
+              - status: All 3D models in the page have loaded
+        - generic [ref=f205e39]:
+          - generic [ref=f205e40]:
+            - generic [ref=f205e41]:
+              - heading "Turtle" [level=1] [ref=f205e42]
+              - paragraph [ref=f205e43]:
+                - img [ref=f205e44]
+                - text: 3.9k
+              - paragraph [ref=f205e46]:
+                - img [ref=f205e47]
+                - text: 2.94k
+              - paragraph [ref=f205e49]:
+                - img [ref=f205e50]
+                - text: "6"
+              - paragraph [ref=f205e52]:
+                - img [ref=f205e53]
+                - text: 1.28k
+            - generic [ref=f205e55]:
+              - button "Like" [ref=f205e57] [cursor=pointer]:
+                - generic [ref=f205e58]:
+                  - img [ref=f205e60]
+                  - text: Like
+              - button "List" [ref=f205e63] [cursor=pointer]:
+                - generic [ref=f205e64]:
+                  - img [ref=f205e66]
+                  - text: List
+              - button "Download" [ref=f205e69] [cursor=pointer]:
+                - generic [ref=f205e70]:
+                  - img [ref=f205e72]
+                  - text: Download
+              - button "more" [ref=f205e75] [cursor=pointer]:
+                - img [ref=f205e77]
+          - separator [ref=f205e79]
+          - generic [ref=f205e80]:
+            - generic [ref=f205e81]:
+              - generic [ref=f205e82]:
+                - img "Avatar for Poly by Google" [ref=f205e84]
+                - heading "Poly by Google" [level=3] [ref=f205e85]:
+                  - link "Poly by Google" [ref=f205e86] [cursor=pointer]:
+                    - /url: /u/Poly by Google
+              - generic [ref=f205e87]:
+                - paragraph [ref=f205e89]: "#shell #reptile"
+                - generic [ref=f205e91]:
+                  - img [ref=f205e92]
+                  - button "Low Poly" [ref=f205e94] [cursor=pointer]:
+                    - generic [ref=f205e95]: Low Poly
+                  - button "Animals" [ref=f205e96] [cursor=pointer]:
+                    - generic [ref=f205e97]: Animals
+                  - button "#shell" [ref=f205e98] [cursor=pointer]:
+                    - generic [ref=f205e99]: "#shell"
+                  - button "#reptile" [ref=f205e100] [cursor=pointer]:
+                    - generic [ref=f205e101]: "#reptile"
+                - paragraph [ref=f205e103]:
+                  - text: Oct 23, 2017 • OBJ/GLTF format • Creative Commons Attribution
+                  - link [ref=f205e104] [cursor=pointer]:
+                    - /url: https://creativecommons.org/licenses/by/3.0/
+                    - img [ref=f205e105]
+            - generic [ref=f205e107]:
+              - heading "Included in:" [level=6] [ref=f205e108]
+              - generic [ref=f205e110]:
+                - img [ref=f205e111]
+                - paragraph [ref=f205e113]: 50 User lists
+          - separator [ref=f205e114]
+          - heading "0 Comments" [level=3] [ref=f205e117]
+          - generic [ref=f205e118]:
+            - progressbar [ref=f205e120]:
+              - img [ref=f205e121]
+            - generic [ref=f205e125]:
+              - img [ref=f205e127]
+              - generic [ref=f205e130]:
+                - textbox "Like this model? Let the creator know!" [ref=f205e131]
+                - group
+      - generic [ref=f205e132]:
+        - generic [ref=f205e133]:
+          - generic:
+            - insertion
+        - generic [ref=f205e135]:
+          - link "T-Rex" [ref=f205e136] [cursor=pointer]:
+            - /url: /m/UYtneO5FpF
+            - generic "T-Rex" [ref=f205e137]:
+              - img "T-Rex" [ref=f205e139]
+          - generic [ref=f205e140]:
+            - generic "dp" [ref=f205e142]:
+              - img [ref=f205e143]
+            - generic [ref=f205e144]:
+              - link "T-Rex" [ref=f205e146] [cursor=pointer]:
+                - /url: /m/UYtneO5FpF
+              - link "Quaternius" [ref=f205e148] [cursor=pointer]:
+                - /url: /u/Quaternius
+        - generic [ref=f205e150]:
+          - link "Cat" [ref=f205e151] [cursor=pointer]:
+            - /url: /m/2f54vbV0In
+            - generic "Cat" [ref=f205e152]:
+              - img "Cat" [ref=f205e154]
+          - generic [ref=f205e155]:
+            - generic "dp" [ref=f205e157]:
+              - img [ref=f205e158]
+            - generic [ref=f205e159]:
+              - link "Cat" [ref=f205e161] [cursor=pointer]:
+                - /url: /m/2f54vbV0In
+              - link "Quaternius" [ref=f205e163] [cursor=pointer]:
+                - /url: /u/Quaternius
+        - generic [ref=f205e165]:
+          - link "Shark" [ref=f205e166] [cursor=pointer]:
+            - /url: /m/sZR8AMLMz5
+            - generic "Shark" [ref=f205e167]:
+              - img "Shark" [ref=f205e169]
+          - generic [ref=f205e170]:
+            - generic "dp" [ref=f205e172]:
+              - img [ref=f205e173]
+            - generic [ref=f205e174]:
+              - link "Shark" [ref=f205e176] [cursor=pointer]:
+                - /url: /m/sZR8AMLMz5
+              - link "Quaternius" [ref=f205e178] [cursor=pointer]:
+                - /url: /u/Quaternius
+    - contentinfo [ref=f205e179]:
+      - heading "Made with 🍕 by dook" [level=6] [ref=f205e180]
+      - generic [ref=f205e181]:
+        - link "Twitter" [ref=f205e182] [cursor=pointer]:
+          - /url: https://twitter.com/duckpizza_
+          - img [ref=f205e184]
+        - link "Youtube" [ref=f205e186] [cursor=pointer]:
+          - /url: https://www.youtube.com/c/dookdook
+          - img [ref=f205e188]
+        - link "Discord" [ref=f205e190] [cursor=pointer]:
+          - /url: https://discord.gg/mEwMwSU
+          - img [ref=f205e192]
+        - link "Email" [ref=f205e195] [cursor=pointer]:
+          - /url: mailto:hi@duck.pizza
+          - img [ref=f205e197]
+      - generic [ref=f205e199]:
+        - link "Terms" [ref=f205e200] [cursor=pointer]:
+          - /url: /docs/tos
+        - link "Privacy" [ref=f205e201] [cursor=pointer]:
+          - /url: /docs/privacy
+        - link "Security" [ref=f205e202] [cursor=pointer]:
+          - /url: /docs/security
+        - link "Press" [ref=f205e203] [cursor=pointer]:
+          - /url: /docs/press
+        - link "API" [ref=f205e204] [cursor=pointer]:
+          - /url: /docs/api/v1.1
+  - insertion [ref=f205e208]:
+    - generic [ref=f205e211]:
+      - heading "These are topics related to the article that might interest you" [level=2] [ref=f205e213]: Discover more
+      - link "Low poly art" [ref=f205e214] [cursor=pointer]:
+        - generic "Low poly art" [ref=f205e215]
+        - img [ref=f205e217]
+      - link "Company News" [ref=f205e219] [cursor=pointer]:
+        - generic "Company News" [ref=f205e220]
+        - img [ref=f205e222]
+      - link "Pizza delivery service" [ref=f205e224] [cursor=pointer]:
+        - generic "Pizza delivery service" [ref=f205e225]
+        - img [ref=f205e227]

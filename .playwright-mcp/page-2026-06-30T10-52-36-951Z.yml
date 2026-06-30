@@ -1,0 +1,193 @@
+- generic [active] [ref=f157e1]:
+  - generic [ref=f157e7]:
+    - banner [ref=f157e8]:
+      - generic [ref=f157e9]:
+        - link [ref=f157e10] [cursor=pointer]:
+          - /url: /
+          - img [ref=f157e11]
+        - link "poly.pizza" [ref=f157e14] [cursor=pointer]:
+          - /url: /
+          - heading "poly.pizza" [level=6] [ref=f157e15]
+        - generic [ref=f157e16]:
+          - generic:
+            - img
+          - textbox "search" [ref=f157e18]:
+            - /placeholder: Search
+    - generic [ref=f157e19]:
+      - generic [ref=f157e20]:
+        - generic [ref=f157e21]:
+          - generic:
+            - insertion
+          - generic [ref=f157e23]:
+            - generic [ref=f157e24]:
+              - button "Auto rotate" [ref=f157e25] [cursor=pointer]:
+                - img [ref=f157e27]
+              - button "FullScreen" [ref=f157e29] [cursor=pointer]:
+                - img [ref=f157e31]
+            - generic [ref=f157e33]:
+              - generic [ref=f157e34]:
+                - img "Camel" [ref=f157e35]
+                - generic:
+                  - generic:
+                    - button
+                - generic:
+                  - generic:
+                    - generic:
+                      - img
+              - status: All 3D models in the page have loaded
+        - generic [ref=f157e39]:
+          - generic [ref=f157e40]:
+            - generic [ref=f157e41]:
+              - heading "Camel" [level=1] [ref=f157e42]
+              - paragraph [ref=f157e43]:
+                - img [ref=f157e44]
+                - text: "822"
+              - paragraph [ref=f157e46]:
+                - img [ref=f157e47]
+                - text: 1.01k
+              - paragraph [ref=f157e49]:
+                - img [ref=f157e50]
+                - text: "2"
+              - paragraph [ref=f157e52]:
+                - img [ref=f157e53]
+                - text: "652"
+            - generic [ref=f157e55]:
+              - button "Like" [ref=f157e57] [cursor=pointer]:
+                - generic [ref=f157e58]:
+                  - img [ref=f157e60]
+                  - text: Like
+              - button "List" [ref=f157e63] [cursor=pointer]:
+                - generic [ref=f157e64]:
+                  - img [ref=f157e66]
+                  - text: List
+              - button "Download" [ref=f157e69] [cursor=pointer]:
+                - generic [ref=f157e70]:
+                  - img [ref=f157e72]
+                  - text: Download
+              - button "more" [ref=f157e75] [cursor=pointer]:
+                - img [ref=f157e77]
+          - separator [ref=f157e79]
+          - generic [ref=f157e80]:
+            - generic [ref=f157e81]:
+              - generic [ref=f157e82]:
+                - img "Avatar for Poly by Google" [ref=f157e84]
+                - heading "Poly by Google" [level=3] [ref=f157e85]:
+                  - link "Poly by Google" [ref=f157e86] [cursor=pointer]:
+                    - /url: /u/Poly by Google
+              - generic [ref=f157e87]:
+                - paragraph [ref=f157e89]: "#caravan #desert #mammal #hump"
+                - generic [ref=f157e91]:
+                  - img [ref=f157e92]
+                  - button "Low Poly" [ref=f157e94] [cursor=pointer]:
+                    - generic [ref=f157e95]: Low Poly
+                  - button "Animals" [ref=f157e96] [cursor=pointer]:
+                    - generic [ref=f157e97]: Animals
+                  - button "#caravan" [ref=f157e98] [cursor=pointer]:
+                    - generic [ref=f157e99]: "#caravan"
+                  - button "#desert" [ref=f157e100] [cursor=pointer]:
+                    - generic [ref=f157e101]: "#desert"
+                  - button "#mammal" [ref=f157e102] [cursor=pointer]:
+                    - generic [ref=f157e103]: "#mammal"
+                  - button "#hump" [ref=f157e104] [cursor=pointer]:
+                    - generic [ref=f157e105]: "#hump"
+                - paragraph [ref=f157e107]:
+                  - text: Oct 22, 2017 • OBJ/GLTF format • Creative Commons Attribution
+                  - link [ref=f157e108] [cursor=pointer]:
+                    - /url: https://creativecommons.org/licenses/by/3.0/
+                    - img [ref=f157e109]
+            - generic [ref=f157e111]:
+              - heading "Included in:" [level=6] [ref=f157e112]
+              - generic [ref=f157e114]:
+                - img [ref=f157e115]
+                - paragraph [ref=f157e117]: 23 User lists
+          - separator [ref=f157e118]
+          - heading "0 Comments" [level=3] [ref=f157e121]
+          - generic [ref=f157e122]:
+            - progressbar [ref=f157e124]:
+              - img [ref=f157e125]
+            - generic [ref=f157e129]:
+              - img [ref=f157e131]
+              - generic [ref=f157e134]:
+                - textbox "Like this model? Let the creator know!" [ref=f157e135]
+                - group
+      - generic [ref=f157e136]:
+        - generic [ref=f157e137]:
+          - generic:
+            - insertion
+        - generic [ref=f157e139]:
+          - link "Cow" [ref=f157e140] [cursor=pointer]:
+            - /url: /m/26zM1outCr
+            - generic "Cow" [ref=f157e141]:
+              - img "Cow" [ref=f157e143]
+          - generic [ref=f157e144]:
+            - generic "dp" [ref=f157e146]:
+              - img [ref=f157e147]
+            - generic [ref=f157e148]:
+              - link "Cow" [ref=f157e150] [cursor=pointer]:
+                - /url: /m/26zM1outCr
+              - link "Quaternius" [ref=f157e152] [cursor=pointer]:
+                - /url: /u/Quaternius
+        - generic [ref=f157e154]:
+          - link "Horse" [ref=f157e155] [cursor=pointer]:
+            - /url: /m/qvTrSG9pZF
+            - generic "Horse" [ref=f157e156]:
+              - img "Horse" [ref=f157e158]
+          - generic [ref=f157e159]:
+            - generic "dp" [ref=f157e161]:
+              - img [ref=f157e162]
+            - generic [ref=f157e163]:
+              - link "Horse" [ref=f157e165] [cursor=pointer]:
+                - /url: /m/qvTrSG9pZF
+              - link "Quaternius" [ref=f157e167] [cursor=pointer]:
+                - /url: /u/Quaternius
+        - generic [ref=f157e169]:
+          - link "Donkey" [ref=f157e170] [cursor=pointer]:
+            - /url: /m/qmX6nhnvp7
+            - generic "Donkey" [ref=f157e171]:
+              - img "Donkey" [ref=f157e173]
+          - generic [ref=f157e174]:
+            - generic "dp" [ref=f157e176]:
+              - img [ref=f157e177]
+            - generic [ref=f157e178]:
+              - link "Donkey" [ref=f157e180] [cursor=pointer]:
+                - /url: /m/qmX6nhnvp7
+              - link "Quaternius" [ref=f157e182] [cursor=pointer]:
+                - /url: /u/Quaternius
+    - contentinfo [ref=f157e183]:
+      - heading "Made with 🍕 by dook" [level=6] [ref=f157e184]
+      - generic [ref=f157e185]:
+        - link "Twitter" [ref=f157e186] [cursor=pointer]:
+          - /url: https://twitter.com/duckpizza_
+          - img [ref=f157e188]
+        - link "Youtube" [ref=f157e190] [cursor=pointer]:
+          - /url: https://www.youtube.com/c/dookdook
+          - img [ref=f157e192]
+        - link "Discord" [ref=f157e194] [cursor=pointer]:
+          - /url: https://discord.gg/mEwMwSU
+          - img [ref=f157e196]
+        - link "Email" [ref=f157e199] [cursor=pointer]:
+          - /url: mailto:hi@duck.pizza
+          - img [ref=f157e201]
+      - generic [ref=f157e203]:
+        - link "Terms" [ref=f157e204] [cursor=pointer]:
+          - /url: /docs/tos
+        - link "Privacy" [ref=f157e205] [cursor=pointer]:
+          - /url: /docs/privacy
+        - link "Security" [ref=f157e206] [cursor=pointer]:
+          - /url: /docs/security
+        - link "Press" [ref=f157e207] [cursor=pointer]:
+          - /url: /docs/press
+        - link "API" [ref=f157e208] [cursor=pointer]:
+          - /url: /docs/api/v1.1
+  - insertion [ref=f157e212]:
+    - generic [ref=f157e215]:
+      - heading "These are topics related to the article that might interest you" [level=2] [ref=f157e217]: Discover more
+      - link "Digital art marketplace" [ref=f157e218] [cursor=pointer]:
+        - generic "Digital art marketplace" [ref=f157e219]
+        - img [ref=f157e221]
+      - link "Pizza delivery service" [ref=f157e223] [cursor=pointer]:
+        - generic "Pizza delivery service" [ref=f157e224]
+        - img [ref=f157e226]
+      - link "Custom 3D modeling" [ref=f157e228] [cursor=pointer]:
+        - generic "Custom 3D modeling" [ref=f157e229]
+        - img [ref=f157e231]
