@@ -71,6 +71,8 @@ function BiomeRegion({
     }
 
     geo.setAttribute("color", new THREE.BufferAttribute(col, 3));
+    // Smooth (non-flat) normals: soft rolling hills instead of hard faceted terrain — the
+    // single biggest factor in reading as "cozy low-poly" rather than raw polygonal.
     geo.computeVertexNormals();
     return geo;
   }, [color, id]);
@@ -83,7 +85,7 @@ function BiomeRegion({
       receiveShadow
       userData={{ biomeId: id }}
     >
-      <meshStandardMaterial vertexColors roughness={0.75} metalness={0.02} flatShading />
+      <meshStandardMaterial vertexColors roughness={0.7} metalness={0.02} />
     </mesh>
   );
 }
@@ -106,7 +108,7 @@ function JungleDecor({ position }: { position: [number, number, number] }) {
       <TreeCluster trees={trees} canopyShape="cone" trunkColor="#3a2a15" />
       <mesh position={[bx - 1, 0.8, bz + 1]} castShadow>
         <boxGeometry args={[0.8, 1.2, 0.8]} />
-        <meshStandardMaterial color="#5a5a4a" roughness={0.95} flatShading />
+        <meshStandardMaterial color="#5a5a4a" roughness={0.85} />
       </mesh>
       <Toucan position={[bx + 1.6, 1.6, bz - 0.6]} />
       <Toucan position={[bx - 1.2, 1.9, bz + 1.4]} />
@@ -120,12 +122,13 @@ function DesertDecor({ position }: { position: [number, number, number] }) {
   const [bx, , bz] = position;
   return (
     <group>
+      {/* Pyramid keeps hard 4-sided facets intentionally — it's a built structure, not organic */}
       <mesh position={[bx, 1.5, bz]} castShadow>
         <coneGeometry args={[2, 3, 4]} />
         <meshStandardMaterial color="#d4a84a" flatShading />
       </mesh>
       <mesh position={[bx + 2, 0.02, bz + 2]} rotation={[-Math.PI / 2, 0, 0]}>
-        <circleGeometry args={[1, 12]} />
+        <circleGeometry args={[1, 24]} />
         <meshPhysicalMaterial color="#2a6a8a" transparent opacity={0.75} roughness={0.15} clearcoat={0.6} />
       </mesh>
       {[0, 1, 2].map((i) => {
@@ -133,12 +136,12 @@ function DesertDecor({ position }: { position: [number, number, number] }) {
         return (
           <group key={i} position={[bx + 2 + Math.cos(angle) * 1.2, 0, bz + 2 + Math.sin(angle) * 1.2]}>
             <mesh position={[0, 0.8, 0]} castShadow>
-              <cylinderGeometry args={[0.05, 0.07, 1.6, 5]} />
-              <meshStandardMaterial color="#6a4a2a" flatShading />
+              <cylinderGeometry args={[0.05, 0.07, 1.6, 8]} />
+              <meshStandardMaterial color="#6a4a2a" roughness={0.85} />
             </mesh>
             <mesh position={[0, 1.7, 0]} castShadow>
-              <sphereGeometry args={[0.4, 5, 4]} />
-              <meshStandardMaterial color="#2a6a1a" flatShading />
+              <sphereGeometry args={[0.4, 10, 8]} />
+              <meshStandardMaterial color="#2a6a1a" roughness={0.75} />
             </mesh>
           </group>
         );
@@ -165,8 +168,8 @@ function ArcticDecor({ position }: { position: [number, number, number] }) {
     <group>
       {icebergs.map((ice, i) => (
         <mesh key={i} position={ice.pos} castShadow>
-          <dodecahedronGeometry args={[ice.scale, 0]} />
-          {/* Physical material with transmission for a true frosted-glass iceberg look — tjs-materials skill */}
+          {/* detail=1 rounds the iceberg into a softer gem shape instead of a raw dodecahedron */}
+          <dodecahedronGeometry args={[ice.scale, 1]} />
           <meshPhysicalMaterial
             color="#dff4fb"
             transmission={0.55}
@@ -181,11 +184,11 @@ function ArcticDecor({ position }: { position: [number, number, number] }) {
       <group position={[bx + 1, 0.4, bz + 1]}>
         <mesh castShadow>
           <boxGeometry args={[0.8, 0.4, 0.5]} />
-          <meshStandardMaterial color="#d0d0d0" flatShading />
+          <meshStandardMaterial color="#d0d0d0" roughness={0.8} />
         </mesh>
         <mesh position={[0, 0.3, 0]} castShadow>
-          <coneGeometry args={[0.5, 0.3, 4]} />
-          <meshStandardMaterial color="#cc3333" flatShading />
+          <coneGeometry args={[0.5, 0.3, 8]} />
+          <meshStandardMaterial color="#cc3333" roughness={0.7} />
         </mesh>
       </group>
       <Seal position={[bx - 1.5, 0.3, bz - 1]} />
@@ -210,11 +213,11 @@ function OceanDecor({ position }: { position: [number, number, number] }) {
       <group position={[bx - 2, -1, bz + 2]} rotation={[0, 0.5, 0.2]}>
         <mesh castShadow>
           <boxGeometry args={[0.4, 0.3, 1]} />
-          <meshStandardMaterial color="#5a4a30" flatShading />
+          <meshStandardMaterial color="#5a4a30" roughness={0.85} />
         </mesh>
         <mesh position={[0, 0.4, 0]} castShadow>
-          <cylinderGeometry args={[0.03, 0.03, 0.7, 4]} />
-          <meshStandardMaterial color="#4a3a20" flatShading />
+          <cylinderGeometry args={[0.03, 0.03, 0.7, 8]} />
+          <meshStandardMaterial color="#4a3a20" roughness={0.85} />
         </mesh>
       </group>
     </group>
@@ -231,8 +234,9 @@ function ForestDecor({ position }: { position: [number, number, number] }) {
       <group position={[bx, 0.6, bz + 1]}>
         <mesh castShadow>
           <boxGeometry args={[0.7, 0.5, 0.6]} />
-          <meshStandardMaterial color="#6a4a2a" flatShading />
+          <meshStandardMaterial color="#6a4a2a" roughness={0.85} />
         </mesh>
+        {/* Cabin roof keeps hard facets — a built structure, not organic */}
         <mesh position={[0, 0.35, 0]} castShadow>
           <coneGeometry args={[0.55, 0.4, 4]} />
           <meshStandardMaterial color="#8a3a1a" flatShading />
@@ -252,8 +256,8 @@ function VolcanicDecor({ position }: { position: [number, number, number] }) {
     <group>
       <group position={[bx, 0, bz]}>
         <mesh castShadow>
-          <coneGeometry args={[2.5, 4, 8]} />
-          <meshStandardMaterial color="#3a2a1a" flatShading />
+          <coneGeometry args={[2.5, 4, 16]} />
+          <meshStandardMaterial color="#3a2a1a" roughness={0.8} />
         </mesh>
         {/* Animated noise-based lava crater — tjs-shaders skill */}
         <mesh position={[0, 2.2, 0]}>
@@ -266,18 +270,18 @@ function VolcanicDecor({ position }: { position: [number, number, number] }) {
         </mesh>
       </group>
       <mesh position={[bx + 3, 0.05, bz + 2]} rotation={[-Math.PI / 2, 0, 0]}>
-        <circleGeometry args={[1.5, 10]} />
-        <meshStandardMaterial color="#2a2a2a" roughness={0.95} />
+        <circleGeometry args={[1.5, 20]} />
+        <meshStandardMaterial color="#2a2a2a" roughness={0.9} />
       </mesh>
       {[0, 1, 2, 3].map((i) => (
         <group key={i} position={[bx + 2.5 + Math.sin(i) * 1.5, 0.3, bz + 2 + Math.cos(i) * 1]}>
           <mesh position={[0, 0.6, 0]} castShadow>
-            <cylinderGeometry args={[0.04, 0.06, 1.2, 5]} />
-            <meshStandardMaterial color="#5a3a1a" flatShading />
+            <cylinderGeometry args={[0.04, 0.06, 1.2, 8]} />
+            <meshStandardMaterial color="#5a3a1a" roughness={0.85} />
           </mesh>
           <mesh position={[0, 1.3, 0]} castShadow>
-            <sphereGeometry args={[0.35, 5, 4]} />
-            <meshStandardMaterial color="#1a5a1a" flatShading />
+            <sphereGeometry args={[0.35, 10, 8]} />
+            <meshStandardMaterial color="#1a5a1a" roughness={0.75} />
           </mesh>
         </group>
       ))}

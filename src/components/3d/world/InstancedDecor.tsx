@@ -3,10 +3,11 @@
 import { useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 
-const trunkGeo = new THREE.CylinderGeometry(0.05, 0.07, 1, 5);
-const canopyGeoLow = new THREE.SphereGeometry(1, 5, 4);
-const canopyGeoCone = new THREE.ConeGeometry(1, 1, 6);
-const coralGeo = new THREE.ConeGeometry(1, 1, 5);
+// Rounder, higher-segment geometry for a soft "cozy" silhouette instead of raw faceted low-poly
+const trunkGeo = new THREE.CylinderGeometry(0.05, 0.07, 1, 8);
+const canopyGeoLow = new THREE.SphereGeometry(1, 10, 8);
+const canopyGeoCone = new THREE.ConeGeometry(1, 1, 10);
+const coralGeo = new THREE.ConeGeometry(1, 1, 7);
 
 const dummy = new THREE.Object3D();
 
@@ -58,10 +59,10 @@ export function TreeCluster({
   return (
     <>
       <instancedMesh ref={trunkRef} args={[trunkGeo, undefined, trees.length]} castShadow>
-        <meshStandardMaterial color={trunkColor} flatShading />
+        <meshStandardMaterial color={trunkColor} roughness={0.85} />
       </instancedMesh>
       <instancedMesh ref={canopyRef} args={[canopyGeo, undefined, trees.length]} castShadow>
-        <meshStandardMaterial flatShading />
+        <meshStandardMaterial roughness={0.7} />
       </instancedMesh>
     </>
   );
@@ -121,7 +122,7 @@ export function CoralCluster({ corals, y = -0.8 }: { corals: CoralSpec[]; y?: nu
 
   return (
     <instancedMesh ref={ref} args={[coralGeo, undefined, corals.length]} castShadow>
-      <meshStandardMaterial flatShading />
+      <meshStandardMaterial roughness={0.6} />
     </instancedMesh>
   );
 }

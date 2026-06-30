@@ -16,10 +16,10 @@ export function BiomeInfoPanel({
     <AnimatePresence>
       {biome && viewState === "detail" && (
         <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -40 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+          initial={{ opacity: 0, x: -24, scale: 0.96 }}
+          animate={{ opacity: 1, x: 0, scale: 1 }}
+          exit={{ opacity: 0, x: -24, scale: 0.96 }}
+          transition={{ duration: 0.45, ease: [0.34, 1.4, 0.64, 1] }}
           className="absolute top-6 left-6 z-20 max-w-sm"
         >
           <div
@@ -31,7 +31,7 @@ export function BiomeInfoPanel({
           >
             <button
               onClick={onBack}
-              className="flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors mb-4"
+              className="flex items-center gap-2 text-sm text-white/60 hover:text-white focus-visible:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 rounded-md transition-colors mb-4 -ml-1 px-1 py-0.5"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -45,7 +45,7 @@ export function BiomeInfoPanel({
             >
               {biome.name}
             </h3>
-            <p className="text-sm text-white/70 mb-5 leading-relaxed">
+            <p className="text-sm text-white/70 mb-6 leading-relaxed">
               {biome.description}
             </p>
 
@@ -53,16 +53,16 @@ export function BiomeInfoPanel({
               {biome.projects.map((project) => (
                 <div
                   key={project.id}
-                  className="rounded-xl p-4 border border-white/[0.06]"
+                  className="rounded-xl p-4 border border-white/[0.06] hover:border-white/15 transition-colors duration-200"
                   style={{ background: "rgba(255,255,255,0.04)" }}
                 >
                   <h4 className="text-white font-semibold text-sm mb-1">
                     {project.name}
                   </h4>
-                  <p className="text-white/50 text-xs leading-relaxed mb-2">
+                  <p className="text-white/50 text-xs leading-relaxed mb-3">
                     {project.description}
                   </p>
-                  <div className="flex flex-wrap gap-1.5">
+                  <div className="flex flex-wrap gap-2">
                     {project.tech.map((t) => (
                       <span
                         key={t}

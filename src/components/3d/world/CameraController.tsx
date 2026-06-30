@@ -7,7 +7,11 @@ import type { BiomeData, ViewState } from "./types";
 
 const MAP_CAMERA_POS = new THREE.Vector3(0, 25, 30);
 const MAP_CAMERA_TARGET = new THREE.Vector3(0, 0, 0);
-const LERP_SPEED = 0.025;
+
+// Frame-rate-independent smoothing factor (tjs-animation skill): position settles slower
+// than the look-at target so the camera "leads" into frame, a subtle follow-through cue.
+const POS_SMOOTHING = 0.0028;
+const LOOK_SMOOTHING = 0.012;
 
 export function CameraController({
   viewState,
@@ -22,13 +26,13 @@ export function CameraController({
   const targetPos = useRef(MAP_CAMERA_POS.clone());
   const targetLook = useRef(MAP_CAMERA_TARGET.clone());
   const lookAt = useRef(MAP_CAMERA_TARGET.clone());
-  const transitionProgress = useRef(0);
+  const hasSettled = useRef(false);
 
-  useFrame(() => {
+  useFrame((_, delta) => {
     if (viewState === "map") {
       targetPos.current.copy(MAP_CAMERA_POS);
       targetLook.current.copy(MAP_CAMERA_TARGET);
-      transitionProgress.current = 0;
+      hasSettled.current = false;
     } else if (activeBiome && (viewState === "transitioning" || viewState === "detail")) {
       const bp = activeBiome.detailCameraPosition;
       const bt = activeBiome.detailCameraTarget;
@@ -36,14 +40,16 @@ export function CameraController({
       targetLook.current.set(bt[0], bt[1], bt[2]);
     }
 
-    camera.position.lerp(targetPos.current, LERP_SPEED);
-    lookAt.current.lerp(targetLook.current, LERP_SPEED);
+    const posAlpha = 1 - Math.pow(POS_SMOOTHING, delta);
+    const lookAlpha = 1 - Math.pow(LOOK_SMOOTHING, delta);
+    camera.position.lerp(targetPos.current, posAlpha);
+    lookAt.current.lerp(targetLook.current, lookAlpha);
     camera.lookAt(lookAt.current);
 
-    if (viewState === "transitioning") {
+    if (viewState === "transitioning" && !hasSettled.current) {
       const dist = camera.position.distanceTo(targetPos.current);
-      if (dist < 0.3) {
-        transitionProgress.current = 1;
+      if (dist < 0.4) {
+        hasSettled.current = true;
         onTransitionEnd();
       }
     }

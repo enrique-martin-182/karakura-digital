@@ -4,6 +4,7 @@ import { useState, useCallback, Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { PerformanceMonitor } from "@react-three/drei";
 import { EffectComposer, Bloom, Vignette } from "@react-three/postprocessing";
+import { motion, AnimatePresence } from "framer-motion";
 import type { BiomeData, ViewState } from "./types";
 import { WorldTerrain } from "./WorldTerrain";
 import { BiomeMarkers } from "./BiomeMarkers";
@@ -123,14 +124,28 @@ export function WorldDiorama() {
         onBack={handleBack}
       />
 
-      {/* Map title overlay */}
-      {viewState === "map" && (
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-center pointer-events-none">
-          <p className="text-white/40 text-sm">
-            Haz clic en un bioma para explorarlo
-          </p>
-        </div>
-      )}
+      {/* Map hint — glass-panel pattern, not a translucent label, so it reads on the bright sky background */}
+      <AnimatePresence>
+        {viewState === "map" && (
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 8 }}
+            transition={{ duration: 0.4, ease: "easeOut", delay: 0.3 }}
+            className="absolute bottom-6 left-1/2 -translate-x-1/2 pointer-events-none"
+          >
+            <div className="glass-panel flex items-center gap-2 px-4 py-2 rounded-full">
+              <svg className="w-4 h-4 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 9l10.5-3-3 10.5L12 12l-3-3z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 9L4 4" />
+              </svg>
+              <p className="text-white text-sm font-medium">
+                Haz clic en un bioma para explorarlo
+              </p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
