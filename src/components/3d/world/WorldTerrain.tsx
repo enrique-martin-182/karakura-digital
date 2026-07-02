@@ -9,7 +9,8 @@ import { LavaMaterial } from "./LavaMaterial";
 import { RiggedAnimal, StaticAnimal } from "./GLTFAnimal";
 import { NatureTree, NatureProp, GrassField, useGrassField } from "./NatureProp";
 import { IslandBase } from "./IslandBase";
-import { BirdFlock, VolcanoSmoke, AshParticles, JungleMist, DesertHeatHaze, ArcticAurora } from "./BiomeAmbience";
+import { BirdFlock, VolcanoSmoke, AshParticles, JungleMist, DesertHeatHaze, ArcticAurora, CraterSparks } from "./BiomeAmbience";
+import { VolcanoCone, CraterLavaPool, VolcanoGlow, CharredStump } from "./VolcanoCone";
 
 import {
   PhysicsNatureProp,
@@ -402,49 +403,51 @@ function VolcanicDecor() {
   const heightFn = HEIGHT_FN.volcanic;
   const rockFiles = ["rock_tallA.glb", "cliff_large_rock.glb", "stone_largeA.glb", "stone_largeB.glb", "cliff_rock.glb"];
   const rocks = useMemo(
-    () => scatter(11, LOCAL_ORIGIN, 2.2, heightFn, 0).map((p, i) => ({ ...p, file: rockFiles[i % rockFiles.length], scale: 0.4 + p.rand * 0.35, rot: p.rand * Math.PI * 4 })),
+    () => scatter(14, LOCAL_ORIGIN, 2.1, heightFn, 0).map((p, i) => ({
+      ...p, file: rockFiles[i % rockFiles.length],
+      scale: 0.4 + p.rand * 0.35, rot: p.rand * Math.PI * 4
+    })),
     []
   );
 
+  // 5 charred stumps — deterministic positions around the biome
+  const stumps = useMemo(() => [
+    { position: [ 1.4,  heightFn( 1.4,  0.6), 0.6 ] as [number,number,number], rotY: 0.8  },
+    { position: [-1.3,  heightFn(-1.3,  0.9), 0.9 ] as [number,number,number], rotY: 2.1  },
+    { position: [ 0.5,  heightFn( 0.5, -1.6), -1.6] as [number,number,number], rotY: 4.5  },
+    { position: [-0.8,  heightFn(-0.8, -1.2), -1.2] as [number,number,number], rotY: 1.3  },
+    { position: [ 1.8,  heightFn( 1.8, -0.7), -0.7] as [number,number,number], rotY: 3.2  },
+  ], []);
+
   return (
     <group>
+      {/* Rocks */}
       {rocks.map((r, i) => (
         <PhysicsNatureProp key={i} file={r.file} position={[r.x, r.y, r.z]} scale={r.scale} rotationY={r.rot} heightFn={heightFn} />
       ))}
-      <group position={[0, 0, 0]}>
-        <mesh castShadow>
-          <coneGeometry args={[1.5, 2.4, 16]} />
-          <meshStandardMaterial color="#3a2a1a" roughness={0.8} />
-        </mesh>
-        <mesh position={[0, 1.4, 0]}>
-          <sphereGeometry args={[0.4, 16, 16]} />
-          <LavaMaterial />
-        </mesh>
-        <mesh position={[0.5, 0.6, 0.3]} rotation={[0.3, 0, 0.5]}>
-          <cylinderGeometry args={[0.05, 0.12, 1.3, 8]} />
-          <LavaMaterial />
-        </mesh>
-      </group>
+
+      {/* Volcano structure: cone + crater pool + glow + sparks */}
+      <VolcanoCone />
+      <CraterLavaPool />
+      <VolcanoGlow />
+      <CraterSparks />
+
+      {/* Charred stumps (replaced palms) */}
+      {stumps.map((s, i) => (
+        <CharredStump key={i} position={s.position} rotationY={s.rotY} />
+      ))}
+
+      {/* Volcanic ground pools */}
       <mesh position={[1.8, 0.05, 1.2]} rotation={[-Math.PI / 2, 0, 0]}>
         <circleGeometry args={[0.9, 20]} />
-        <meshStandardMaterial color="#2a2a2a" roughness={0.9} />
+        <meshStandardMaterial color="#1a1212" roughness={0.9} />
       </mesh>
-      {[0, 1, 2, 3, 4, 5].map((i) => {
-        const angle = (i / 6) * Math.PI * 2;
-        const x = 1.6 + Math.cos(angle) * 0.8;
-        const z = 1.4 + Math.sin(angle) * 0.8;
-        const seed = Math.sin(i * 311.7) * 0.5 + 0.5;
-        return (
-          <PhysicsNatureTree
-            key={i}
-            file={i % 2 === 0 ? "tree_palmTall.glb" : "tree_palmDetailedTall.glb"}
-            position={[x, heightFn(x, z), z]}
-            scale={0.5 + seed * 0.2}
-            rotationY={seed * Math.PI * 2}
-            heightFn={heightFn}
-          />
-        );
-      })}
+      <mesh position={[-1.2, 0.05, 1.5]} rotation={[-Math.PI / 2, 0, 0]}>
+        <circleGeometry args={[0.5, 16]} />
+        <meshStandardMaterial color="#1a1212" roughness={0.9} />
+      </mesh>
+
+      {/* Fauna */}
       <Iguana position={[1.7, 0.07, 1.0]} />
       <Iguana position={[2.1, 0.07, 1.5]} />
       <Iguana position={[1.4, 0.07, 1.7]} />
@@ -454,6 +457,8 @@ function VolcanicDecor() {
       <Crab position={[1.8, 0.04, 0.7]} />
       <Crab position={[1.5, 0.04, 1.6]} />
       <Crab position={[2.2, 0.04, 1.1]} />
+
+      {/* Ambient effects */}
       <VolcanoSmoke />
       <AshParticles />
     </group>
