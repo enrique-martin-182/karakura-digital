@@ -9,7 +9,7 @@ import { LavaMaterial } from "./LavaMaterial";
 import { RiggedAnimal, StaticAnimal } from "./GLTFAnimal";
 import { NatureTree, NatureProp, GrassField, useGrassField } from "./NatureProp";
 import { IslandBase } from "./IslandBase";
-import { BirdFlock } from "./BiomeAmbience";
+import { BirdFlock, VolcanoSmoke, AshParticles } from "./BiomeAmbience";
 
 import {
   PhysicsNatureProp,
@@ -438,6 +438,8 @@ function VolcanicDecor() {
       <Crab position={[1.8, 0.04, 0.7]} />
       <Crab position={[1.5, 0.04, 1.6]} />
       <Crab position={[2.2, 0.04, 1.1]} />
+      <VolcanoSmoke />
+      <AshParticles />
     </group>
   );
 }
