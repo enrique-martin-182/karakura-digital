@@ -65,7 +65,7 @@ export function Scorpion({ position }: { position: [number, number, number] }) {
 
 // ---------- ARCTIC ----------
 
-export function Seal({ position }: { position: [number, number, number] }) {
+export function Seal({ position, rotationY }: { position: [number, number, number]; rotationY?: number }) {
   const ref = useRef<THREE.Group>(null);
   const seed = useMemo(() => nextSeed(), []);
 
@@ -75,7 +75,7 @@ export function Seal({ position }: { position: [number, number, number] }) {
   });
 
   return (
-    <group ref={ref} position={position} rotation={[0, seed * (Math.PI / 10), 0]}>
+    <group ref={ref} position={position} rotation={[0, rotationY ?? seed * (Math.PI / 10), 0]}>
       <mesh geometry={capsuleGeo} scale={[0.17, 0.4, 0.17]} position={[0, 0.16, 0]} rotation={[Math.PI / 2, 0, 0]} castShadow>
         <meshStandardMaterial color="#8a8a8a" roughness={0.7} />
       </mesh>
