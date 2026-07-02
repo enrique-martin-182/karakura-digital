@@ -236,3 +236,94 @@ export function AshParticles() {
     </points>
   );
 }
+
+// ─── JungleMist ──────────────────────────────────────────────────────────────
+// Translucent sphere with FBM noise shader pulsing in green/teal.
+
+const mistVert = /* glsl */ `
+  uniform float uTime;
+  varying vec3 vPos;
+  void main() {
+    vPos = position;
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+  }
+`;
+
+const mistFrag = /* glsl */ `
+  uniform float uTime;
+  varying vec3 vPos;
+
+  float hash(vec2 p) { return fract(sin(dot(p, vec2(12.9898,78.233))) * 43758.5453); }
+  float noise(vec2 p) {
+    vec2 i = floor(p); vec2 f = fract(p);
+    float a = hash(i); float b = hash(i+vec2(1,0));
+    float c = hash(i+vec2(0,1)); float d = hash(i+vec2(1,1));
+    vec2 u = f*f*(3.0-2.0*f);
+    return mix(a,b,u.x)+(c-a)*u.y*(1.0-u.x)+(d-b)*u.x*u.y;
+  }
+  float fbm(vec2 p) {
+    float v=0.0; float a=0.5;
+    for(int i=0;i<3;i++){v+=noise(p)*a;p*=2.07;a*=0.5;}
+    return v;
+  }
+
+  void main() {
+    vec2 uv = vPos.xz * 0.5 + vec2(uTime * 0.04, uTime * 0.025);
+    float n = fbm(uv);
+    float dist = length(vPos) / 2.2;
+    float alpha = (0.055 + n * 0.04) * smoothstep(1.0, 0.5, dist);
+    gl_FragColor = vec4(0.18, 0.58, 0.32, alpha);
+  }
+`;
+
+export function JungleMist() {
+  const matRef = useRef<THREE.ShaderMaterial>(null);
+  useFrame((s) => { if (matRef.current) matRef.current.uniforms.uTime.value = s.clock.elapsedTime; });
+  return (
+    <mesh position={[0, 0.5, 0]}>
+      <sphereGeometry args={[2.2, 16, 16]} />
+      <shaderMaterial
+        ref={matRef}
+        vertexShader={mistVert}
+        fragmentShader={mistFrag}
+        uniforms={{ uTime: { value: 0 } }}
+        transparent
+        depthWrite={false}
+        blending={THREE.AdditiveBlending}
+        side={THREE.DoubleSide}
+      />
+    </mesh>
+  );
+}
+
+// ─── DesertHeatHaze ──────────────────────────────────────────────────────────
+// Transparent plane whose vertex displacement creates a heat-shimmer effect.
+
+const hazeVert = /* glsl */ `
+  uniform float uTime;
+  void main() {
+    vec3 pos = position;
+    pos.y += sin(pos.x * 4.0 + uTime * 2.1) * 0.018 + sin(pos.z * 3.5 + uTime * 1.7) * 0.015;
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+  }
+`;
+const hazeFrag = /* glsl */ `void main() { gl_FragColor = vec4(0.0); }`;
+
+export function DesertHeatHaze() {
+  const matRef = useRef<THREE.ShaderMaterial>(null);
+  useFrame((s) => { if (matRef.current) matRef.current.uniforms.uTime.value = s.clock.elapsedTime; });
+  return (
+    <mesh position={[0, 0.8, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+      <planeGeometry args={[4, 4, 12, 12]} />
+      <shaderMaterial
+        ref={matRef}
+        vertexShader={hazeVert}
+        fragmentShader={hazeFrag}
+        uniforms={{ uTime: { value: 0 } }}
+        transparent
+        depthWrite={false}
+        side={THREE.DoubleSide}
+      />
+    </mesh>
+  );
+}

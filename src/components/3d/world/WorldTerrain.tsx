@@ -9,7 +9,7 @@ import { LavaMaterial } from "./LavaMaterial";
 import { RiggedAnimal, StaticAnimal } from "./GLTFAnimal";
 import { NatureTree, NatureProp, GrassField, useGrassField } from "./NatureProp";
 import { IslandBase } from "./IslandBase";
-import { BirdFlock, VolcanoSmoke, AshParticles } from "./BiomeAmbience";
+import { BirdFlock, VolcanoSmoke, AshParticles, JungleMist, DesertHeatHaze } from "./BiomeAmbience";
 
 import {
   PhysicsNatureProp,
@@ -167,6 +167,7 @@ function JungleDecor() {
       <StaticAnimal file="toucan.glb" position={[1.6, 0.8, 1.1]} scale={0.46} rotationY={2.1} bobSpeed={1.8} />
       <RiggedAnimal file="monkey.glb" animationMatch="idle" position={[1.2, 0.8, -0.6]} scale={0.22} rotationY={2.4} />
       <RiggedAnimal file="monkey.glb" animationMatch="idle" position={[-0.4, 0.6, -1.1]} scale={0.2} rotationY={0.4} />
+      <JungleMist />
     </group>
   );
 }
@@ -224,6 +225,7 @@ function DesertDecor() {
       <StaticAnimal file="camel.glb" position={[-0.8, 0.42, 1.0]} scale={0.0022} rotationY={-0.4} bobAmount={0.02} bobSpeed={0.85} />
       <Scorpion position={[0.4, 0.55, -0.7]} />
       <Scorpion position={[-0.3, 0.55, -1.4]} />
+      <DesertHeatHaze />
     </group>
   );
 }
