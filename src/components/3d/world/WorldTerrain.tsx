@@ -167,6 +167,9 @@ function JungleDecor() {
       <StaticAnimal file="toucan.glb" position={[1.6, 0.8, 1.1]} scale={0.46} rotationY={2.1} bobSpeed={1.8} />
       <RiggedAnimal file="monkey.glb" animationMatch="idle" position={[1.2, 0.8, -0.6]} scale={0.22} rotationY={2.4} />
       <RiggedAnimal file="monkey.glb" animationMatch="idle" position={[-0.4, 0.6, -1.1]} scale={0.2} rotationY={0.4} />
+      <StaticAnimal file="toucan.glb" position={[-1.3, 0.9, 0.4]} scale={0.44} rotationY={1.8} bobSpeed={1.5} />
+      <RiggedAnimal file="monkey.glb" animationMatch="idle" position={[0.6, 1.1, 1.3]} scale={0.21} rotationY={3.2} />
+      <RiggedAnimal file="monkey.glb" animationMatch="idle" position={[-1.0, 0.7, -0.8]} scale={0.23} rotationY={0.9} />
       <JungleMist />
     </group>
   );
@@ -282,6 +285,9 @@ function ArcticDecor() {
       <Seal position={[-0.9, 0.2, -0.6]} />
       <Seal position={[-0.55, 0.22, -1.0]} />
       <Seal position={[0.25, 0.2, -1.4]} />
+      <Seal position={[-1.8, 0.08, 0.5]} rotationY={2.1} />
+      <Seal position={[0.6, 0.08, -1.9]} rotationY={0.3} />
+      <Seal position={[-0.3, 0.08, 1.6]} rotationY={4.5} />
       {[0, 1, 2, 3, 4, 5].map((i) => (
         <StaticAnimal
           key={i}
@@ -384,6 +390,10 @@ function ForestDecor() {
       <RiggedAnimal file="rabbit.glb" animationMatch="sitting_idle" position={[0.9, 0.28, -0.25]} scale={0.18} rotationY={0.5} />
       <RiggedAnimal file="rabbit.glb" animationMatch="idle" position={[-0.6, 0.24, 0.4]} scale={0.16} rotationY={2.1} />
       <RiggedAnimal file="rabbit.glb" animationMatch="run" position={[-1.2, 0.28, -0.5]} scale={0.17} rotationY={1.4} />
+      <RiggedAnimal file="fox.glb" animationMatch="idle_2" position={[-1.3, 0.24, 0.7]} scale={0.22} rotationY={2.8} />
+      <RiggedAnimal file="fox.glb" animationMatch="idle_2" position={[0.4, 0.24, -1.5]} scale={0.20} rotationY={1.1} />
+      <RiggedAnimal file="rabbit.glb" animationMatch="sitting_idle" position={[1.4, 0.2, 0.9]} scale={0.16} rotationY={3.7} />
+      <RiggedAnimal file="rabbit.glb" animationMatch="idle" position={[-0.8, 0.2, -0.6]} scale={0.17} rotationY={0.2} />
     </group>
   );
 }
@@ -438,6 +448,9 @@ function VolcanicDecor() {
       <Iguana position={[1.7, 0.07, 1.0]} />
       <Iguana position={[2.1, 0.07, 1.5]} />
       <Iguana position={[1.4, 0.07, 1.7]} />
+      <Iguana position={[0.9, 0.07, 1.9]} />
+      <Iguana position={[2.3, 0.07, 0.8]} />
+      <Iguana position={[1.2, 0.07, 0.3]} />
       <Crab position={[1.8, 0.04, 0.7]} />
       <Crab position={[1.5, 0.04, 1.6]} />
       <Crab position={[2.2, 0.04, 1.1]} />
