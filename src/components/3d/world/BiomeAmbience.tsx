@@ -462,7 +462,8 @@ export function CraterSparks() {
       aOffset[i]   = r4;                       // phase offset 0–1
       aLifetime[i] = 1.4 + r5 * 1.2;         // cycle duration 1.4–2.6s
     }
-    return { aV0, aVx, aVz, aOffset, aLifetime };
+    const positions = new Float32Array(SPARKS_COUNT * 3);
+    return { aV0, aVx, aVz, aOffset, aLifetime, positions };
   }, []);
 
   useFrame((s) => {
@@ -473,7 +474,7 @@ export function CraterSparks() {
     <points>
       <bufferGeometry>
         <bufferAttribute attach="attributes-position"
-          array={new Float32Array(SPARKS_COUNT * 3)}
+          array={buffers.positions}
           count={SPARKS_COUNT} itemSize={3} />
         <bufferAttribute attach="attributes-aV0"       array={buffers.aV0}       count={SPARKS_COUNT} itemSize={1} />
         <bufferAttribute attach="attributes-aVx"       array={buffers.aVx}       count={SPARKS_COUNT} itemSize={1} />
