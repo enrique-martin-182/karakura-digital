@@ -234,7 +234,7 @@ export function AshParticles() {
   return (
     <points ref={pointsRef} position={[0, 0.5, 0]}>
       <bufferGeometry>
-        <bufferAttribute attach="attributes-position" array={positions} count={ASH_COUNT} itemSize={3} />
+        <bufferAttribute attach="attributes-position" args={[positions, 3]} />
       </bufferGeometry>
       <pointsMaterial color="#cc6622" size={0.05} transparent opacity={0.75} depthWrite={false} sizeAttenuation />
     </points>
@@ -473,14 +473,12 @@ export function CraterSparks() {
   return (
     <points>
       <bufferGeometry>
-        <bufferAttribute attach="attributes-position"
-          array={buffers.positions}
-          count={SPARKS_COUNT} itemSize={3} />
-        <bufferAttribute attach="attributes-aV0"       array={buffers.aV0}       count={SPARKS_COUNT} itemSize={1} />
-        <bufferAttribute attach="attributes-aVx"       array={buffers.aVx}       count={SPARKS_COUNT} itemSize={1} />
-        <bufferAttribute attach="attributes-aVz"       array={buffers.aVz}       count={SPARKS_COUNT} itemSize={1} />
-        <bufferAttribute attach="attributes-aOffset"   array={buffers.aOffset}   count={SPARKS_COUNT} itemSize={1} />
-        <bufferAttribute attach="attributes-aLifetime" array={buffers.aLifetime} count={SPARKS_COUNT} itemSize={1} />
+        <bufferAttribute attach="attributes-position"   args={[buffers.positions, 3]} />
+        <bufferAttribute attach="attributes-aV0"       args={[buffers.aV0,       1]} />
+        <bufferAttribute attach="attributes-aVx"       args={[buffers.aVx,       1]} />
+        <bufferAttribute attach="attributes-aVz"       args={[buffers.aVz,       1]} />
+        <bufferAttribute attach="attributes-aOffset"   args={[buffers.aOffset,   1]} />
+        <bufferAttribute attach="attributes-aLifetime" args={[buffers.aLifetime, 1]} />
       </bufferGeometry>
       <shaderMaterial
         ref={matRef}
