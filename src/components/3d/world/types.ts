@@ -35,13 +35,13 @@ export const BIOMES: BiomeData[] = [
     id: "jungle",
     name: "Selva Tropical",
     description: "Ecosistema de alta densidad con flora exuberante, ruinas ancestrales y fauna exotica.",
-    position: [-7.5, 4.7, 4.7],   // lat=28°, lon=-58°
+    position: [-6.2, 2.6, 7.4],   // lat=15°N, lon=-40°
     color: "#3a9a4a",
     markerColor: "#4EDEA3",
     cameraPosition: [0, 14, 18],
     cameraTarget: [0, 0, 0],
-    detailCameraPosition: [-13.5, 8.5, 8.5],
-    detailCameraTarget: [-7.5, 4.7, 4.7],
+    detailCameraPosition: [-11.2, 4.7, 13.3],
+    detailCameraTarget: [-6.2, 2.6, 7.4],
     projects: [
       {
         id: 1,
@@ -65,13 +65,13 @@ export const BIOMES: BiomeData[] = [
     id: "desert",
     name: "Desierto Dorado",
     description: "Paisaje arido con dunas esculpidas, piramides ancestrales y oasis escondidos.",
-    position: [0.4, 5.7, 8.2],    // lat=35°, lon=3°
+    position: [1.5, 4.7, 8.7],    // lat=28°N, lon=10°
     color: "#e8c170",
     markerColor: "#FFB347",
     cameraPosition: [0, 14, 18],
     cameraTarget: [0, 0, 0],
-    detailCameraPosition: [0.7, 10.3, 14.8],
-    detailCameraTarget: [0.4, 5.7, 8.2],
+    detailCameraPosition: [2.7, 8.5, 15.7],
+    detailCameraTarget: [1.5, 4.7, 8.7],
     projects: [
       {
         id: 3,
@@ -87,13 +87,13 @@ export const BIOMES: BiomeData[] = [
     id: "arctic",
     name: "Tundra Artica",
     description: "Territorio helado con icebergs majestuosos, bases de investigacion y fauna polar.",
-    position: [5.1, 7.7, 4.0],    // lat=50°, lon=52°
+    position: [4.8, 8.7, 1.3],    // lat=60°N, lon=75°
     color: "#dff4fb",
     markerColor: "#88CCE8",
     cameraPosition: [0, 14, 18],
     cameraTarget: [0, 0, 0],
-    detailCameraPosition: [9.2, 13.9, 7.2],
-    detailCameraTarget: [5.1, 7.7, 4.0],
+    detailCameraPosition: [8.6, 15.7, 2.3],
+    detailCameraTarget: [4.8, 8.7, 1.3],
     projects: [
       {
         id: 4,
@@ -109,13 +109,13 @@ export const BIOMES: BiomeData[] = [
     id: "ocean",
     name: "Oceano Profundo",
     description: "Mundo submarino con arrecifes de coral, fauna marina y restos de naufragios.",
-    position: [-2.6, 1.7, 9.5],   // lat=10°, lon=-15° — equatorial front, shallow reef
+    position: [5.0, -1.4, 8.6],   // lat=8°S, lon=30° — equatorial right-front
     color: "#2a7aa8",
     markerColor: "#4A90D9",
     cameraPosition: [0, 14, 18],
     cameraTarget: [0, 0, 0],
-    detailCameraPosition: [-4.7, 3.1, 17.1],
-    detailCameraTarget: [-2.6, 1.7, 9.5],
+    detailCameraPosition: [9.0, -2.5, 15.5],
+    detailCameraTarget: [5.0, -1.4, 8.6],
     projects: [
       {
         id: 5,
@@ -131,13 +131,13 @@ export const BIOMES: BiomeData[] = [
     id: "forest",
     name: "Bosque Templado",
     description: "Bosque ancestral con arboles caducifolios, rios cristalinos y vida silvestre.",
-    position: [-7.6, 3.8, -5.3],  // lat=22°, lon=-125°
+    position: [-7.4, 4.2, -5.2],  // lat=25°N, lon=-125°
     color: "#5a9a3a",
     markerColor: "#6BCB77",
     cameraPosition: [0, 14, 18],
     cameraTarget: [0, 0, 0],
-    detailCameraPosition: [-13.7, 6.8, -9.5],
-    detailCameraTarget: [-7.6, 3.8, -5.3],
+    detailCameraPosition: [-13.3, 7.6, -9.4],
+    detailCameraTarget: [-7.4, 4.2, -5.2],
     projects: [
       {
         id: 6,
@@ -153,13 +153,13 @@ export const BIOMES: BiomeData[] = [
     id: "volcanic",
     name: "Islas Volcanicas",
     description: "Archipielago volcanico con lava incandescente, playas negras y vegetacion tropical.",
-    position: [8.5, 4.2, -3.1],   // lat=25°, lon=110°
+    position: [8.5, 3.4, -4.0],   // lat=20°N, lon=115°
     color: "#a8421a",
     markerColor: "#FF6B35",
     cameraPosition: [0, 14, 18],
     cameraTarget: [0, 0, 0],
-    detailCameraPosition: [15.3, 7.6, -5.6],
-    detailCameraTarget: [8.5, 4.2, -3.1],
+    detailCameraPosition: [15.3, 6.1, -7.2],
+    detailCameraTarget: [8.5, 3.4, -4.0],
     projects: [
       {
         id: 7,
@@ -175,52 +175,52 @@ export const BIOMES: BiomeData[] = [
     id: "savanna",
     name: "Sabana Dorada",
     description: "Llanura arida con acacias en parasol, termiteros y manadas de camellos bajo el sol abrasador.",
-    position: [4.9, -1.7, 8.5],
+    position: [-2.5, -2.6, -9.3], // lat=15°S, lon=-165° — southern back
     color: "#c9a84c",
     markerColor: "#E8B84B",
     cameraPosition: [0, 14, 18],
     cameraTarget: [0, 0, 0],
-    detailCameraPosition: [8.8, -3.1, 15.3],
-    detailCameraTarget: [4.9, -1.7, 8.5],
+    detailCameraPosition: [-4.5, -4.7, -16.7],
+    detailCameraTarget: [-2.5, -2.6, -9.3],
     projects: [],
   },
   {
     id: "swamp",
     name: "Pantano Profundo",
     description: "Manglares ancestrales sobre aguas turbias, hongos luminiscentes y tortugas entre raices emergentes.",
-    position: [-9.8, 0.9, -1.7],
+    position: [-9.9, 0.9, 0.4],   // lat=5°N, lon=-88° — equatorial left
     color: "#3d5a2a",
     markerColor: "#7BC67E",
     cameraPosition: [0, 14, 18],
     cameraTarget: [0, 0, 0],
-    detailCameraPosition: [-17.6, 1.6, -3.1],
-    detailCameraTarget: [-9.8, 0.9, -1.7],
+    detailCameraPosition: [-17.8, 1.6, 0.7],
+    detailCameraTarget: [-9.9, 0.9, 0.4],
     projects: [],
   },
   {
     id: "taiga",
     name: "Taiga Boreal",
     description: "Bosque de coniferas bajo manto de nieve, zorros entre pinos helados y auroras en el horizonte.",
-    position: [-4.1, 8.2, 3.8],
+    position: [-4.4, 8.2, 3.7],   // lat=55°N, lon=-50° — northern left
     color: "#dce8ee",
     markerColor: "#A8D8EA",
     cameraPosition: [0, 14, 18],
     cameraTarget: [0, 0, 0],
-    detailCameraPosition: [-7.4, 14.8, 6.8],
-    detailCameraTarget: [-4.1, 8.2, 3.8],
+    detailCameraPosition: [-7.9, 14.8, 6.7],
+    detailCameraTarget: [-4.4, 8.2, 3.7],
     projects: [],
   },
   {
     id: "reef",
     name: "Gran Arrecife",
     description: "Coral multicolor bajo aguas tropicales, cardumenes de peces y tortugas marinas entre anemones.",
-    position: [7.5, -3.4, 5.0],
+    position: [8.4, -5.0, 2.2],   // lat=30°S, lon=75° — southern right
     color: "#ffe8a0",
     markerColor: "#00CED1",
     cameraPosition: [0, 14, 18],
     cameraTarget: [0, 0, 0],
-    detailCameraPosition: [13.5, -6.1, 9.0],
-    detailCameraTarget: [7.5, -3.4, 5.0],
+    detailCameraPosition: [15.1, -9.0, 4.0],
+    detailCameraTarget: [8.4, -5.0, 2.2],
     projects: [],
   },
 ];
