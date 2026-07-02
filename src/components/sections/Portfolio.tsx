@@ -14,6 +14,7 @@ import { ScrollReveal } from "@/components/effects/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/effects/Stagger";
 
 
+/* DIORAMA — desactivado temporalmente, descomentar cuando esté listo
 const WorldDiorama = dynamic(
   () => import("@/components/3d/world/WorldDiorama").then((m) => ({ default: m.WorldDiorama })),
   {
@@ -28,6 +29,7 @@ const WorldDiorama = dynamic(
     ),
   }
 );
+*/
 
 interface Project {
   title: string;
@@ -384,7 +386,7 @@ export function Portfolio() {
           </StaggerContainer>
         </div>
 
-        {/* 3D Premium Components subsection */}
+        {/* DIORAMA — desactivado temporalmente, descomentar cuando esté listo
         <div className="mt-24">
           <ScrollReveal>
             <div className="flex items-center gap-4 mb-4">
@@ -404,6 +406,7 @@ export function Portfolio() {
             <WorldDiorama />
           </ScrollReveal>
         </div>
+        */}
 
         {/* Bottom CTA */}
         <ScrollReveal delay={400}>
