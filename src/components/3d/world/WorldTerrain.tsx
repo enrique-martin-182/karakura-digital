@@ -9,7 +9,8 @@ import { LavaMaterial } from "./LavaMaterial";
 import { RiggedAnimal, StaticAnimal } from "./GLTFAnimal";
 import { NatureTree, NatureProp, GrassField, useGrassField } from "./NatureProp";
 import { IslandBase } from "./IslandBase";
-import { BirdFlock, VolcanoSmoke, AshParticles, JungleMist, DesertHeatHaze, ArcticAurora, CraterSparks } from "./BiomeAmbience";
+import { BirdFlock, VolcanoSmoke, AshParticles, JungleMist, DesertHeatHaze, ArcticAurora, CraterSparks, SwampMist } from "./BiomeAmbience";
+import { AcaciaTree, MangroveTree, CoralHead, SeaAnemone } from "./BiomeProcedural";
 import { VolcanoCone, CraterLavaPool, VolcanoGlow, CharredStump } from "./VolcanoCone";
 
 import {
@@ -469,10 +470,201 @@ function VolcanicDecor() {
   );
 }
 
-function SavannaDecor() { return <group />; }
-function SwampDecor()   { return <group />; }
-function TaigaDecor()   { return <group />; }
-function ReefDecor()    { return <group />; }
+function SavannaDecor() {
+  const heightFn = HEIGHT_FN.savanna;
+
+  const acacias = useMemo(() =>
+    scatter(8, LOCAL_ORIGIN, 2.1, heightFn, 10).map((p) => ({
+      position: [p.x, p.y, p.z] as [number, number, number],
+      scale: 0.7 + p.rand * 0.5,
+      rotY: p.rand * Math.PI * 2,
+    })), []);
+
+  const rockFiles = ["rock_largeA.glb", "rock_largeB.glb", "rock_largeC.glb", "rock_largeD.glb"];
+  const rocks = useMemo(() =>
+    scatter(6, LOCAL_ORIGIN, 2.2, heightFn, 30).map((p, i) => ({
+      ...p, file: rockFiles[i % rockFiles.length], scale: 0.3 + p.rand * 0.25, rot: p.rand * Math.PI * 4
+    })), []);
+
+  const grass = useGrassField(60, LOCAL_ORIGIN, 2.2, heightFn);
+
+  // 2 termite mounds deterministas
+  const mounds: [number, number, number][] = [
+    [1.2,  heightFn(1.2,  -0.8), -0.8],
+    [-1.5, heightFn(-1.5,  0.6),  0.6],
+  ];
+
+  return (
+    <group>
+      {acacias.map((a, i) => (
+        <group key={i} position={a.position} rotation={[0, a.rotY, 0]} scale={a.scale}>
+          <AcaciaTree />
+        </group>
+      ))}
+      {rocks.map((r, i) => (
+        <PhysicsNatureProp key={i} file={r.file} position={[r.x, r.y, r.z]} scale={r.scale} rotationY={r.rot} heightFn={heightFn} />
+      ))}
+      <GrassField blades={grass} file="grass_large.glb" />
+      {/* Termite mounds */}
+      {mounds.map((pos, i) => (
+        <group key={i} position={pos}>
+          <mesh castShadow>
+            <cylinderGeometry args={[0.13, 0.32, 0.75, 8]} />
+            <meshStandardMaterial color="#b8864e" roughness={0.9} />
+          </mesh>
+          {[0, 1, 2].map((j) => {
+            const a = (j / 3) * Math.PI * 2 + i * 1.1;
+            return (
+              <mesh key={j} position={[Math.cos(a) * 0.18, 0.18, Math.sin(a) * 0.18]} castShadow>
+                <sphereGeometry args={[0.06, 6, 5]} />
+                <meshStandardMaterial color="#a87040" roughness={0.9} />
+              </mesh>
+            );
+          })}
+        </group>
+      ))}
+      <StaticAnimal file="camel.glb" position={[-0.8,  heightFn(-0.8, 0.5) + 0.35, 0.5]}  scale={0.0024} rotationY={0.7} bobAmount={0.02} bobSpeed={0.9} />
+      <StaticAnimal file="camel.glb" position={[-1.4,  heightFn(-1.4, 1.0) + 0.32, 1.0]}  scale={0.0022} rotationY={-0.3} bobAmount={0.02} bobSpeed={0.85} />
+    </group>
+  );
+}
+
+function SwampDecor() {
+  const heightFn = HEIGHT_FN.swamp;
+
+  const mangroves = useMemo(() =>
+    scatter(6, LOCAL_ORIGIN, 1.9, heightFn, 20).map((p) => ({
+      position: [p.x, p.y, p.z] as [number, number, number],
+      scale: 0.65 + p.rand * 0.45,
+      rotY: p.rand * Math.PI * 2,
+    })), []);
+
+  const clutterFiles = ["mushroom_red.glb", "mushroom_tan.glb", "mushroom_redGroup.glb", "stump_old.glb", "log.glb", "log_large.glb"];
+  const clutter = useMemo(() =>
+    scatter(10, LOCAL_ORIGIN, 2.0, heightFn, 40).map((p, i) => ({
+      ...p, file: clutterFiles[i % clutterFiles.length], scale: 0.4 + p.rand * 0.3, rot: p.rand * Math.PI * 4
+    })), []);
+
+  return (
+    <group>
+      {mangroves.map((m, i) => (
+        <group key={i} position={m.position} rotation={[0, m.rotY, 0]} scale={m.scale}>
+          <MangroveTree />
+        </group>
+      ))}
+      {clutter.map((c, i) => (
+        <PhysicsNatureProp key={i} file={c.file} position={[c.x, c.y, c.z]} scale={c.scale} rotationY={c.rot} heightFn={heightFn} />
+      ))}
+      {/* Charco central */}
+      <mesh position={[0, 0.02, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+        <circleGeometry args={[1.1, 16]} />
+        <meshStandardMaterial color="#2d3d1a" roughness={0.4} transparent opacity={0.75} />
+      </mesh>
+      <StaticAnimal file="turtle.glb" position={[0.4, 0.05, 0.3]}  scale={0.018} rotationY={1.1} bobAmount={0.03} bobSpeed={0.6} />
+      <StaticAnimal file="turtle.glb" position={[-0.5, 0.05, -0.4]} scale={0.016} rotationY={-0.7} bobAmount={0.03} bobSpeed={0.55} />
+      <StaticAnimal file="turtle.glb" position={[0.7, 0.05, -0.6]} scale={0.015} rotationY={2.3} bobAmount={0.03} bobSpeed={0.5} />
+      <SwampMist />
+    </group>
+  );
+}
+
+function TaigaDecor() {
+  const heightFn = HEIGHT_FN.taiga;
+
+  const pineFiles = ["tree_pineTallA.glb", "tree_pineRoundA.glb", "tree_pineRoundB.glb", "tree_pineRoundC.glb", "tree_pineRoundD.glb", "tree_pineSmallA.glb"];
+  const pines = useMemo(() =>
+    scatter(14, LOCAL_ORIGIN, 2.2, heightFn, 0).map((p, i) => ({
+      ...p, file: pineFiles[i % pineFiles.length], scale: 0.45 + p.rand * 0.35, rot: p.rand * Math.PI * 4
+    })), []);
+
+  const rockFiles = ["rock_smallA.glb", "rock_smallB.glb", "stone_smallA.glb", "stone_smallB.glb"];
+  const rocks = useMemo(() =>
+    scatter(5, LOCAL_ORIGIN, 2.0, heightFn, 80).map((p, i) => ({
+      ...p, file: rockFiles[i % rockFiles.length], scale: 0.3 + p.rand * 0.2, rot: p.rand * Math.PI * 4
+    })), []);
+
+  // Snow drifts at base of trees (3 deterministic positions)
+  const snowDrifts: [number, number, number][] = [
+    [0.8,  heightFn(0.8,  -1.1), -1.1],
+    [-1.3, heightFn(-1.3,  0.7),  0.7],
+    [0.3,  heightFn(0.3,   1.5),  1.5],
+  ];
+
+  return (
+    <group>
+      {pines.map((t, i) => (
+        <PhysicsNatureTree key={i} file={t.file} position={[t.x, t.y, t.z]} scale={t.scale} rotationY={t.rot} heightFn={heightFn} />
+      ))}
+      {rocks.map((r, i) => (
+        <PhysicsNatureProp key={i} file={r.file} position={[r.x, r.y, r.z]} scale={r.scale} rotationY={r.rot} heightFn={heightFn} />
+      ))}
+      <NatureProp file="log_stack.glb" position={[1.0, heightFn(1.0, -0.5) + 0.05, -0.5]} scale={0.5} rotationY={0.8} />
+      <NatureProp file="log_stack.glb" position={[-0.6, heightFn(-0.6, 1.2) + 0.05, 1.2]} scale={0.45} rotationY={2.1} />
+      {/* Snow drifts — SphereGeometry muy aplastada */}
+      {snowDrifts.map((pos, i) => (
+        <mesh key={i} position={pos} scale={[0.55 + i * 0.1, 0.12, 0.45 + i * 0.08]} castShadow>
+          <sphereGeometry args={[0.5, 8, 5]} />
+          <meshStandardMaterial color="#f0f4f8" roughness={0.6} />
+        </mesh>
+      ))}
+      <RiggedAnimal file="fox.glb" animationMatch="idle_2" position={[1.0, heightFn(1.0, 0.4) + 0.22, 0.4]} scale={0.22} rotationY={-1.2} />
+      <RiggedAnimal file="fox.glb" animationMatch="idle_2" position={[-0.8, heightFn(-0.8, -0.6) + 0.22, -0.6]} scale={0.20} rotationY={2.8} />
+      <RiggedAnimal file="rabbit.glb" animationMatch="sitting_idle" position={[0.3, heightFn(0.3, 1.0) + 0.22, 1.0]} scale={0.17} rotationY={0.5} />
+      <RiggedAnimal file="rabbit.glb" animationMatch="idle" position={[-1.5, heightFn(-1.5, 0.3) + 0.22, 0.3]} scale={0.16} rotationY={3.1} />
+      <ArcticAurora />
+    </group>
+  );
+}
+
+function ReefDecor() {
+  const heightFn = HEIGHT_FN.reef;
+  const corals = useCoralCluster(22, LOCAL_ORIGIN, 2.0);
+
+  const coralHeads = useMemo(() =>
+    scatter(8, LOCAL_ORIGIN, 1.9, heightFn, 15).map((p, i) => ({
+      position: [p.x, p.y + 0.22, p.z] as [number, number, number],
+      scale: 0.6 + p.rand * 0.5,
+      colorIndex: i,
+    })), []);
+
+  const anemones = useMemo(() =>
+    scatter(5, LOCAL_ORIGIN, 1.7, heightFn, 55).map((p) => ({
+      position: [p.x, p.y + 0.14, p.z] as [number, number, number],
+      scale: 0.7 + p.rand * 0.4,
+    })), []);
+
+  const rockFiles = ["rock_smallA.glb", "rock_smallB.glb", "rock_smallC.glb", "rock_smallD.glb"];
+  const rocks = useMemo(() =>
+    scatter(6, LOCAL_ORIGIN, 2.1, heightFn, 0).map((p, i) => ({
+      ...p, file: rockFiles[i % rockFiles.length], scale: 0.35 + p.rand * 0.3, rot: p.rand * Math.PI * 4
+    })), []);
+
+  const kelp = useGrassField(40, LOCAL_ORIGIN, 2.0, heightFn);
+
+  return (
+    <group>
+      <CoralCluster corals={corals} y={0.18} />
+      {coralHeads.map((c, i) => (
+        <group key={i} position={c.position} scale={c.scale}>
+          <CoralHead colorIndex={c.colorIndex} />
+        </group>
+      ))}
+      {anemones.map((a, i) => (
+        <group key={i} position={a.position} scale={a.scale}>
+          <SeaAnemone />
+        </group>
+      ))}
+      {rocks.map((r, i) => (
+        <PhysicsNatureProp key={i} file={r.file} position={[r.x, r.y, r.z]} scale={r.scale} rotationY={r.rot} heightFn={heightFn} />
+      ))}
+      <GrassField blades={kelp.map((k) => ({ ...k, y: k.y + 0.4, scale: k.scale * 1.8 }))} file="grass_large.glb" />
+      <StaticAnimal file="turtle.glb" position={[0.6, 0.22, -0.5]}  scale={0.022} rotationY={1.1} bobAmount={0.06} bobSpeed={0.7} />
+      <StaticAnimal file="turtle.glb" position={[-1.0, 0.18, 0.4]}  scale={0.018} rotationY={-0.5} bobAmount={0.06} bobSpeed={0.6} />
+      <FishSchool center={[0.5, 0.5, 0.5]}   count={12} />
+      <FishSchool center={[-1.2, 0.4, -0.8]} count={9} />
+    </group>
+  );
+}
 
 const DECOR_BY_BIOME: Record<string, () => ReactNode> = {
   jungle: JungleDecor,
