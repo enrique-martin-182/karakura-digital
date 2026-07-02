@@ -151,11 +151,11 @@ function JungleDecor() {
   );
   const grass = useGrassField(70, LOCAL_ORIGIN, 2.2, heightFn);
 
-  const ruins: { pos: [number, number, number]; rotY: number; lean: number }[] = [
-    { pos: [-1.8, heightFn(-1.8, 0.5), 0.5], rotY: 0.4,  lean: 0.08 },
-    { pos: [ 1.5, heightFn( 1.5, 1.1), 1.1], rotY: 1.8,  lean: -0.06 },
-    { pos: [-0.6, heightFn(-0.6, -1.7), -1.7], rotY: 3.1, lean: 0.05 },
-  ];
+  const ruins = useMemo(() => [
+    { pos: [-1.8, heightFn(-1.8, 0.5), 0.5]   as [number,number,number], rotY: 0.4,  lean: 0.08  },
+    { pos: [ 1.5, heightFn( 1.5, 1.1), 1.1]   as [number,number,number], rotY: 1.8,  lean: -0.06 },
+    { pos: [-0.6, heightFn(-0.6, -1.7), -1.7] as [number,number,number], rotY: 3.1,  lean: 0.05  },
+  ], []);
 
   return (
     <group>
@@ -256,7 +256,7 @@ function ArcticDecor() {
   const heightFn = HEIGHT_FN.arctic;
   const icebergs = useMemo(
     () =>
-      scatter(5, LOCAL_ORIGIN, 2.1, heightFn, 0).map((p) => ({
+      scatter(5, LOCAL_ORIGIN, 2.1, heightFn, 5).map((p) => ({
         pos: [p.x, 0.05 + p.rand * 0.1, p.z] as [number, number, number],
         scale: 0.22 + p.rand * 0.20,
         rotY: p.rand * Math.PI * 2,
