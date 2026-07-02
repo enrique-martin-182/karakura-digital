@@ -578,7 +578,7 @@ function TaigaDecor() {
 
   const pineFiles = ["tree_pineTallA.glb", "tree_pineRoundA.glb", "tree_pineRoundB.glb", "tree_pineRoundC.glb", "tree_pineRoundD.glb", "tree_pineSmallA.glb"];
   const pines = useMemo(() =>
-    scatter(14, LOCAL_ORIGIN, 2.2, heightFn, 0).map((p, i) => ({
+    scatter(14, LOCAL_ORIGIN, 2.2, heightFn, 60).map((p, i) => ({
       ...p, file: pineFiles[i % pineFiles.length], scale: 0.45 + p.rand * 0.35, rot: p.rand * Math.PI * 4
     })), []);
 
@@ -645,6 +645,10 @@ function ReefDecor() {
     })), []);
 
   const kelp = useGrassField(40, LOCAL_ORIGIN, 2.0, heightFn);
+  const kelpBlades = useMemo(
+    () => kelp.map((k) => ({ ...k, y: k.y + 0.4, scale: k.scale * 1.8 })),
+    [kelp]
+  );
 
   return (
     <group>
@@ -662,7 +666,7 @@ function ReefDecor() {
       {rocks.map((r, i) => (
         <PhysicsNatureProp key={i} file={r.file} position={[r.x, r.y, r.z]} scale={r.scale} rotationY={r.rot} heightFn={heightFn} />
       ))}
-      <GrassField blades={kelp.map((k) => ({ ...k, y: k.y + 0.4, scale: k.scale * 1.8 }))} file="grass_large.glb" />
+      <GrassField blades={kelpBlades} file="grass_large.glb" />
       <StaticAnimal file="turtle.glb" position={[0.6, 0.22, -0.5]}  scale={0.022} rotationY={1.1} bobAmount={0.06} bobSpeed={0.7} />
       <StaticAnimal file="turtle.glb" position={[-1.0, 0.18, 0.4]}  scale={0.018} rotationY={-0.5} bobAmount={0.06} bobSpeed={0.6} />
       <FishSchool center={[0.5, 0.5, 0.5]}   count={12} />

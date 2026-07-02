@@ -520,7 +520,7 @@ const swampMistFrag = /* glsl */ `
     vec2 uv = vUv * 2.5 + vec2(uTime * 0.04, uTime * 0.03);
     float n = fbm(uv);
     float alpha = (n * 0.12 + 0.05) * (1.0 - length(vPos) / 2.5);
-    gl_FragColor = vec4(0.15, 0.28, 0.10, clamp(alpha, 0.0, 0.18));
+    gl_FragColor = vec4(0.2, 0.3, 0.1, clamp(alpha, 0.0, 0.18));
   }
 `;
 

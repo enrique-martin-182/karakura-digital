@@ -163,11 +163,10 @@ function buildIcebergGeo(): THREE.BufferGeometry {
   return lathe;
 }
 
-const ICEBERG_GEO = buildIcebergGeo();
-
 export function IcebergMesh({ scale = 1 }: { scale?: number }) {
+  const geo = useMemo(() => buildIcebergGeo(), []);
   return (
-    <mesh geometry={ICEBERG_GEO} scale={scale} castShadow>
+    <mesh geometry={geo} scale={scale} castShadow>
       <meshPhysicalMaterial
         color="#ddeeff"
         transmission={0.5}
