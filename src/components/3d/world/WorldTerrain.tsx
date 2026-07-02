@@ -13,11 +13,11 @@ import { BirdFlock, VolcanoSmoke, AshParticles, JungleMist, DesertHeatHaze, Arct
 import { AcaciaTree, MangroveTree, CoralHead, SeaAnemone, IcebergMesh, RuinPillar, RuinWall } from "./BiomeProcedural";
 import { VolcanoCone, CraterLavaPool, VolcanoGlow, CharredStump } from "./VolcanoCone";
 
-import {
-  PhysicsNatureProp,
-  PhysicsNatureTree,
-  BiomeTerrainCollider,
-} from "./PhysicsWorld";
+// Physics removed for performance — heightFn is accepted but ignored (was used for collider placement)
+type WithHeightFn<T> = T & { heightFn?: (x: number, z: number) => number };
+function PhysicsNatureProp({ heightFn: _h, ...props }: WithHeightFn<React.ComponentProps<typeof NatureProp>>) { return <NatureProp {...props} />; }
+function PhysicsNatureTree({ heightFn: _h, ...props }: WithHeightFn<React.ComponentProps<typeof NatureTree>>) { return <NatureTree {...props} />; }
+function BiomeTerrainCollider(_: { biomeId: string }) { return null; }
 
 // Terrain height functions — mirror BiomeRegion's vertex displacement so real props sit on the
 // ground instead of floating or clipping into the hills. All coordinates are LOCAL to the biome

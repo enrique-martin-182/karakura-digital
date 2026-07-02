@@ -14,8 +14,6 @@ import { BiomeInfoPanel } from "./BiomeInfoPanel";
 import { WorldOcean } from "./WorldOcean";
 import { WorldStarfield } from "./WorldStarfield";
 import { WorldAtmosphere } from "./WorldAtmosphere";
-import { Physics } from "@react-three/rapier";
-import { SphericalGravity, PhysicsInteraction } from "./PhysicsWorld";
 
 function WorldScene({
   viewState,
@@ -31,12 +29,7 @@ function WorldScene({
   controlsRef: React.RefObject<OrbitControlsImpl | null>;
 }) {
   return (
-    // Physics must wrap all RigidBody consumers. gravity=[0,0,0] disables the default
-    // downward pull; SphericalGravity replaces it with per-body force toward planet center.
-    <Physics gravity={[0, 0, 0]} timeStep="vary">
-      <SphericalGravity />
-      <PhysicsInteraction enabled={viewState === "map"} />
-
+    <>
       <CameraController
         viewState={viewState}
         activeBiome={activeBiome}
@@ -66,7 +59,7 @@ function WorldScene({
         intensity={1.9}
         color="#fff6e0"
         castShadow
-        shadow-mapSize={[1024, 1024]}
+        shadow-mapSize={[512, 512]}
         shadow-camera-left={-14}
         shadow-camera-right={14}
         shadow-camera-top={14}
@@ -93,14 +86,14 @@ function WorldScene({
       <WorldTerrain />
       <BiomeMarkers onSelect={onSelectBiome} viewState={viewState} />
       <WorldOcean />
-    </Physics>
+    </>
   );
 }
 
 export function WorldDiorama() {
   const [viewState, setViewState] = useState<ViewState>("map");
   const [activeBiome, setActiveBiome] = useState<BiomeData | null>(null);
-  const [dpr, setDpr] = useState(1.5);
+  const [dpr, setDpr] = useState(1);
   const controlsRef = useRef<OrbitControlsImpl | null>(null);
 
   const handleSelectBiome = useCallback((biome: BiomeData) => {
@@ -132,10 +125,10 @@ export function WorldDiorama() {
       >
         <color attach="background" args={["#02040a"]} />
         <PerformanceMonitor
-          onIncline={() => setDpr(2)}
-          onDecline={() => setDpr(1)}
+          onIncline={() => setDpr(Math.min(window.devicePixelRatio, 1.5))}
+          onDecline={() => setDpr(0.85)}
           flipflops={3}
-          onFallback={() => setDpr(0.85)}
+          onFallback={() => setDpr(0.7)}
         />
         <Suspense fallback={null}>
           <WorldScene
