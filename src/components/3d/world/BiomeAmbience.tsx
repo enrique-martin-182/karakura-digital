@@ -399,3 +399,97 @@ export function ArcticAurora() {
     </mesh>
   );
 }
+
+// ─── CraterSparks ────────────────────────────────────────────────────────────
+// 40 ballistic ember particles launched from crater rim.
+// All motion is computed in the vertex shader — zero JS per frame.
+
+const SPARKS_COUNT = 40;
+
+const sparksVert = /* glsl */ `
+  uniform float uTime;
+  attribute float aV0;
+  attribute float aVx;
+  attribute float aVz;
+  attribute float aOffset;
+  attribute float aLifetime;
+
+  void main() {
+    float t = mod(uTime * 0.9 + aOffset * aLifetime, aLifetime);
+    float g = 2.8;
+    float x = aVx * t;
+    float y = aV0 * t - 0.5 * g * t * t;
+    float z = aVz * t;
+    // Kill particle when y drops below 0
+    float alive = step(0.0, y);
+    vec3 pos = vec3(x, y + 2.3, z) * alive;
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+    float age = t / aLifetime;
+    gl_PointSize = max(0.0, (1.0 - age) * 5.0) * alive;
+  }
+`;
+
+const sparksFrag = /* glsl */ `
+  void main() {
+    // Circular point sprite
+    float d = length(gl_PointCoord - vec2(0.5));
+    if (d > 0.5) discard;
+    gl_FragColor = vec4(1.0, 0.65, 0.12, 1.0 - d * 1.8);
+  }
+`;
+
+export function CraterSparks() {
+  const matRef = useRef<THREE.ShaderMaterial>(null);
+
+  const buffers = useMemo(() => {
+    const aV0       = new Float32Array(SPARKS_COUNT);
+    const aVx       = new Float32Array(SPARKS_COUNT);
+    const aVz       = new Float32Array(SPARKS_COUNT);
+    const aOffset   = new Float32Array(SPARKS_COUNT);
+    const aLifetime = new Float32Array(SPARKS_COUNT);
+
+    for (let i = 0; i < SPARKS_COUNT; i++) {
+      // Deterministic pseudo-random values
+      const s1 = Math.sin(i * 127.1 + 1.3) * 43758.5453; const r1 = s1 - Math.floor(s1);
+      const s2 = Math.sin(i * 311.7 + 2.7) * 43758.5453; const r2 = s2 - Math.floor(s2);
+      const s3 = Math.sin(i * 74.9  + 3.1) * 43758.5453; const r3 = s3 - Math.floor(s3);
+      const s4 = Math.sin(i * 191.3 + 4.5) * 43758.5453; const r4 = s4 - Math.floor(s4);
+      const s5 = Math.sin(i * 53.2  + 5.9) * 43758.5453; const r5 = s5 - Math.floor(s5);
+
+      aV0[i]       = 0.8 + r1 * 1.2;         // upward speed 0.8–2.0
+      aVx[i]       = (r2 - 0.5) * 0.8;       // lateral X
+      aVz[i]       = (r3 - 0.5) * 0.8;       // lateral Z
+      aOffset[i]   = r4;                       // phase offset 0–1
+      aLifetime[i] = 1.4 + r5 * 1.2;         // cycle duration 1.4–2.6s
+    }
+    return { aV0, aVx, aVz, aOffset, aLifetime };
+  }, []);
+
+  useFrame((s) => {
+    if (matRef.current) matRef.current.uniforms.uTime.value = s.clock.elapsedTime;
+  });
+
+  return (
+    <points>
+      <bufferGeometry>
+        <bufferAttribute attach="attributes-position"
+          array={new Float32Array(SPARKS_COUNT * 3)}
+          count={SPARKS_COUNT} itemSize={3} />
+        <bufferAttribute attach="attributes-aV0"       array={buffers.aV0}       count={SPARKS_COUNT} itemSize={1} />
+        <bufferAttribute attach="attributes-aVx"       array={buffers.aVx}       count={SPARKS_COUNT} itemSize={1} />
+        <bufferAttribute attach="attributes-aVz"       array={buffers.aVz}       count={SPARKS_COUNT} itemSize={1} />
+        <bufferAttribute attach="attributes-aOffset"   array={buffers.aOffset}   count={SPARKS_COUNT} itemSize={1} />
+        <bufferAttribute attach="attributes-aLifetime" array={buffers.aLifetime} count={SPARKS_COUNT} itemSize={1} />
+      </bufferGeometry>
+      <shaderMaterial
+        ref={matRef}
+        vertexShader={sparksVert}
+        fragmentShader={sparksFrag}
+        uniforms={{ uTime: { value: 0 } }}
+        transparent
+        depthWrite={false}
+        blending={THREE.AdditiveBlending}
+      />
+    </points>
+  );
+}

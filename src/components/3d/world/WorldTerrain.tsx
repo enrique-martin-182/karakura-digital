@@ -9,7 +9,7 @@ import { LavaMaterial } from "./LavaMaterial";
 import { RiggedAnimal, StaticAnimal } from "./GLTFAnimal";
 import { NatureTree, NatureProp, GrassField, useGrassField } from "./NatureProp";
 import { IslandBase } from "./IslandBase";
-import { BirdFlock, VolcanoSmoke, AshParticles, JungleMist, DesertHeatHaze, ArcticAurora } from "./BiomeAmbience";
+import { BirdFlock, VolcanoSmoke, AshParticles, JungleMist, DesertHeatHaze, ArcticAurora, CraterSparks } from "./BiomeAmbience";
 
 import {
   PhysicsNatureProp,
@@ -456,6 +456,7 @@ function VolcanicDecor() {
       <Crab position={[2.2, 0.04, 1.1]} />
       <VolcanoSmoke />
       <AshParticles />
+      <CraterSparks />
     </group>
   );
 }
