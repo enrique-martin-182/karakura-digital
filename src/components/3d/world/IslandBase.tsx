@@ -38,7 +38,7 @@ function buildIslandBaseGeometry(
   for (let i = 0; i < totalPoints; i++) {
     const angle = (i / totalPoints) * Math.PI * 2;
     // Subtle organic jitter so it doesn't read as a perfect machine circle
-    const r = circleRadius + Math.sin(i * 2.3 + seed * 1.7) * 0.18;
+    const r = circleRadius + Math.sin(i * 2.3 + seed * 1.7) * 0.45;
     boundary.push([Math.cos(angle) * r, Math.sin(angle) * r]);
   }
 
@@ -57,7 +57,7 @@ function buildIslandBaseGeometry(
 
   // Ring 1: overhang — pulled in 8-14%, jagged, ~0.5-0.9 below the boundary
   boundary.forEach(([x, z], i) => {
-    const pull = 0.88 - rand(i, 1) * 0.06;
+    const pull = 0.88 - rand(i, 1) * 0.15;
     const y = heightFn(x, z) - (0.5 + rand(i, 2) * 0.4);
     positions.push(x * pull, y, z * pull);
     const c = dirt.clone().lerp(rockFleck, rand(i, 3) * 0.3);

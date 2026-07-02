@@ -75,18 +75,44 @@ function BiomeRegion({ color, id }: { color: string; id: string }) {
     canvas.height = size;
     const ctx = canvas.getContext("2d")!;
     const cx = size / 2;
-    const grad = ctx.createRadialGradient(cx, cx, 0, cx, cx, cx);
-    grad.addColorStop(0.0,  "rgba(255,255,255,1)");
-    grad.addColorStop(0.60, "rgba(255,255,255,1)");
-    grad.addColorStop(0.80, "rgba(255,255,255,0.5)");
-    grad.addColorStop(1.0,  "rgba(0,0,0,0)");
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, size, size);
+
+    // Per-biome deterministic seed for shape variation
+    let blobSeed = 0;
+    for (let k = 0; k < id.length; k++) blobSeed += id.charCodeAt(k) * (k + 1);
+
+    // Build irregular radial profile: r(angle) = base + harmonics
+    const imageData = ctx.createImageData(size, size);
+    for (let py = 0; py < size; py++) {
+      for (let px = 0; px < size; px++) {
+        const nx = (px - cx) / cx;  // -1..1
+        const ny = (py - cx) / cx;  // -1..1
+        const angle = Math.atan2(ny, nx);
+        const dist = Math.sqrt(nx * nx + ny * ny);
+
+        // Organic radius at this angle — 4 harmonics with biome-specific phases
+        const h1 = Math.sin(angle * 3 + blobSeed * 0.7) * 0.10;
+        const h2 = Math.sin(angle * 5 + blobSeed * 1.3) * 0.07;
+        const h3 = Math.sin(angle * 7 + blobSeed * 0.4) * 0.04;
+        const h4 = Math.sin(angle * 2 + blobSeed * 2.1) * 0.06;
+        const blobRadius = 0.78 + h1 + h2 + h3 + h4;
+
+        // Smooth falloff outside the blob edge
+        const t = (dist - blobRadius) / 0.22;
+        const alpha = t < 0 ? 255 : t > 1 ? 0 : Math.round(255 * (1 - t * t * (3 - 2 * t)));
+
+        const idx = (py * size + px) * 4;
+        imageData.data[idx]     = 255;
+        imageData.data[idx + 1] = 255;
+        imageData.data[idx + 2] = 255;
+        imageData.data[idx + 3] = alpha;
+      }
+    }
+    ctx.putImageData(imageData, 0, 0);
     return new THREE.CanvasTexture(canvas);
-  }, []);
+  }, [id]);
 
   const geometry = useMemo(() => {
-    const geo = new THREE.PlaneGeometry(5, 5, 48, 48);
+    const geo = new THREE.PlaneGeometry(7, 7, 48, 48);
     const pos = geo.attributes.position;
     const col = new Float32Array(pos.count * 3);
     const base = new THREE.Color(color);
@@ -134,24 +160,24 @@ function JungleDecor() {
 
   const treeFiles = ["tree_detailed.glb", "tree_oak.glb", "tree_default.glb", "tree_fat.glb", "tree_cone.glb"];
   const trees = useMemo(
-    () => scatter(22, LOCAL_ORIGIN, 2.2, heightFn, 0).map((p, i) => ({ ...p, file: treeFiles[i % treeFiles.length], scale: 0.5 + p.rand * 0.35, rot: p.rand * Math.PI * 4 })),
+    () => scatter(22, LOCAL_ORIGIN, 3.08, heightFn, 0).map((p, i) => ({ ...p, file: treeFiles[i % treeFiles.length], scale: 0.5 + p.rand * 0.35, rot: p.rand * Math.PI * 4 })),
     []
   );
   const rockFiles = ["rock_smallA.glb", "rock_smallB.glb", "rock_smallC.glb", "rock_smallD.glb", "rock_largeA.glb", "rock_largeB.glb"];
   const rocks = useMemo(
-    () => scatter(10, LOCAL_ORIGIN, 2.2, heightFn, 50).map((p, i) => ({ ...p, file: rockFiles[i % rockFiles.length], scale: 0.45 + p.rand * 0.4, rot: p.rand * Math.PI * 4 })),
+    () => scatter(10, LOCAL_ORIGIN, 3.08, heightFn, 50).map((p, i) => ({ ...p, file: rockFiles[i % rockFiles.length], scale: 0.45 + p.rand * 0.4, rot: p.rand * Math.PI * 4 })),
     []
   );
   const flowerFiles = ["flower_yellowA.glb", "flower_redA.glb", "flower_purpleA.glb", "flower_purpleB.glb", "flower_redB.glb"];
   const flowers = useMemo(
-    () => scatter(16, LOCAL_ORIGIN, 2.0, heightFn, 100).map((p, i) => ({ ...p, file: flowerFiles[i % flowerFiles.length] })),
+    () => scatter(16, LOCAL_ORIGIN, 2.80, heightFn, 100).map((p, i) => ({ ...p, file: flowerFiles[i % flowerFiles.length] })),
     []
   );
   const bushes = useMemo(
-    () => scatter(8, LOCAL_ORIGIN, 2.1, heightFn, 150).map((p, i) => ({ ...p, file: i % 2 === 0 ? "plant_bush.glb" : "plant_bushLarge.glb" })),
+    () => scatter(8, LOCAL_ORIGIN, 2.94, heightFn, 150).map((p, i) => ({ ...p, file: i % 2 === 0 ? "plant_bush.glb" : "plant_bushLarge.glb" })),
     []
   );
-  const grass = useGrassField(70, LOCAL_ORIGIN, 2.2, heightFn);
+  const grass = useGrassField(70, LOCAL_ORIGIN, 3.08, heightFn);
 
   const ruins = useMemo(() => [
     { pos: [-1.8, heightFn(-1.8, 0.5), 0.5]   as [number,number,number], rotY: 0.4,  lean: 0.08  },
@@ -180,7 +206,7 @@ function JungleDecor() {
       ))}
       <RuinWall position={[1.8, heightFn(1.8, 0.4), 0.4]} rotY={0.7} />
       <NatureProp file="plant_bush.glb" position={[1.4, heightFn(1.4, 0.6) + 0.05, 0.6]} scale={0.35} rotationY={1.1} />
-      <NatureProp file="plant_bush.glb" position={[2.1, heightFn(2.1, 0.2) + 0.05, 0.2]} scale={0.30} rotationY={2.4} />
+      <NatureProp file="plant_bush.glb" position={[2.94, heightFn(2.94, 0.28) + 0.05, 0.28]} scale={0.30} rotationY={2.4} />
       <NatureProp file="path_stone.glb" position={[-0.5, heightFn(-0.5, 1) + 0.01, 1]} scale={0.7} rotationY={0.5} />
       <NatureProp file="path_stoneCorner.glb" position={[0.2, heightFn(0.2, 0.4) + 0.01, 0.4]} scale={0.7} rotationY={1.2} />
       <StaticAnimal file="toucan.glb" position={[1.0, 1.0, -0.4]} scale={0.5} rotationY={0.6} bobSpeed={1.6} />
@@ -201,11 +227,11 @@ function DesertDecor() {
 
   const rockFiles = ["rock_tallA.glb", "stone_largeA.glb", "stone_largeB.glb", "cliff_rock.glb", "cliff_large_rock.glb"];
   const rocks = useMemo(
-    () => scatter(11, LOCAL_ORIGIN, 2.2, heightFn, 0).map((p, i) => ({ ...p, file: rockFiles[i % rockFiles.length], scale: 0.45 + p.rand * 0.45, rot: p.rand * Math.PI * 4 })),
+    () => scatter(11, LOCAL_ORIGIN, 3.08, heightFn, 0).map((p, i) => ({ ...p, file: rockFiles[i % rockFiles.length], scale: 0.45 + p.rand * 0.45, rot: p.rand * Math.PI * 4 })),
     []
   );
   const cacti = useMemo(
-    () => scatter(6, LOCAL_ORIGIN, 2.0, heightFn, 60).map((p, i) => ({ ...p, file: i % 2 === 0 ? "cactus_tall.glb" : "cactus_short.glb", scale: 0.5 + p.rand * 0.3, rot: p.rand * Math.PI * 4 })),
+    () => scatter(6, LOCAL_ORIGIN, 2.80, heightFn, 60).map((p, i) => ({ ...p, file: i % 2 === 0 ? "cactus_tall.glb" : "cactus_short.glb", scale: 0.5 + p.rand * 0.3, rot: p.rand * Math.PI * 4 })),
     []
   );
 
@@ -258,7 +284,7 @@ function ArcticDecor() {
   const heightFn = HEIGHT_FN.arctic;
   const icebergs = useMemo(
     () =>
-      scatter(5, LOCAL_ORIGIN, 2.1, heightFn, 5).map((p) => ({
+      scatter(5, LOCAL_ORIGIN, 2.94, heightFn, 5).map((p) => ({
         pos: [p.x, 0.05 + p.rand * 0.1, p.z] as [number, number, number],
         scale: 0.22 + p.rand * 0.20,
         rotY: p.rand * Math.PI * 2,
@@ -267,7 +293,7 @@ function ArcticDecor() {
   );
   const rockFiles = ["rock_smallC.glb", "rock_smallD.glb", "stone_smallA.glb", "stone_smallB.glb", "stone_smallC.glb"];
   const rocks = useMemo(
-    () => scatter(9, LOCAL_ORIGIN, 2.2, heightFn, 80).map((p, i) => ({ ...p, file: rockFiles[i % rockFiles.length], rot: p.rand * Math.PI * 4 })),
+    () => scatter(9, LOCAL_ORIGIN, 3.08, heightFn, 80).map((p, i) => ({ ...p, file: rockFiles[i % rockFiles.length], rot: p.rand * Math.PI * 4 })),
     []
   );
 
@@ -319,13 +345,13 @@ function ArcticDecor() {
 
 function OceanDecor() {
   const heightFn = HEIGHT_FN.ocean;
-  const corals = useCoralCluster(28, LOCAL_ORIGIN, 2.1);
+  const corals = useCoralCluster(28, LOCAL_ORIGIN, 2.94);
   const rockFiles = ["rock_largeA.glb", "rock_largeB.glb", "rock_largeC.glb", "rock_largeD.glb"];
   const reefRocks = useMemo(
-    () => scatter(8, LOCAL_ORIGIN, 2.0, heightFn, 0).map((p, i) => ({ ...p, file: rockFiles[i % rockFiles.length], rot: p.rand * Math.PI * 4 })),
+    () => scatter(8, LOCAL_ORIGIN, 2.80, heightFn, 0).map((p, i) => ({ ...p, file: rockFiles[i % rockFiles.length], rot: p.rand * Math.PI * 4 })),
     []
   );
-  const kelp = useGrassField(50, LOCAL_ORIGIN, 2.1, heightFn);
+  const kelp = useGrassField(50, LOCAL_ORIGIN, 2.94, heightFn);
 
   return (
     <group>
@@ -360,19 +386,19 @@ function ForestDecor() {
 
   const treeFiles = ["tree_oak.glb", "tree_fat.glb", "tree_detailed.glb", "tree_default.glb", "tree_oak.glb", "tree_fat.glb"];
   const trees = useMemo(
-    () => scatter(22, LOCAL_ORIGIN, 2.2, heightFn, 0).map((p, i) => ({ ...p, file: treeFiles[i % treeFiles.length], scale: 0.5 + p.rand * 0.35, rot: p.rand * Math.PI * 4 })),
+    () => scatter(22, LOCAL_ORIGIN, 3.08, heightFn, 0).map((p, i) => ({ ...p, file: treeFiles[i % treeFiles.length], scale: 0.5 + p.rand * 0.35, rot: p.rand * Math.PI * 4 })),
     []
   );
   const clutterFiles = ["mushroom_redGroup.glb", "stump_round.glb", "stump_old.glb", "mushroom_tan.glb", "mushroom_red.glb", "log.glb"];
   const clutter = useMemo(
-    () => scatter(12, LOCAL_ORIGIN, 2.0, heightFn, 100).map((p, i) => ({ ...p, file: clutterFiles[i % clutterFiles.length], rot: p.rand * Math.PI * 4 })),
+    () => scatter(12, LOCAL_ORIGIN, 2.80, heightFn, 100).map((p, i) => ({ ...p, file: clutterFiles[i % clutterFiles.length], rot: p.rand * Math.PI * 4 })),
     []
   );
   const bushes = useMemo(
-    () => scatter(7, LOCAL_ORIGIN, 2.1, heightFn, 200).map((p, i) => ({ ...p, file: i % 2 === 0 ? "plant_bushSmall.glb" : "plant_bushTriangle.glb" })),
+    () => scatter(7, LOCAL_ORIGIN, 2.94, heightFn, 200).map((p, i) => ({ ...p, file: i % 2 === 0 ? "plant_bushSmall.glb" : "plant_bushTriangle.glb" })),
     []
   );
-  const grass = useGrassField(70, LOCAL_ORIGIN, 2.2, heightFn);
+  const grass = useGrassField(70, LOCAL_ORIGIN, 3.08, heightFn);
 
   return (
     <group>
@@ -415,7 +441,7 @@ function VolcanicDecor() {
   const heightFn = HEIGHT_FN.volcanic;
   const rockFiles = ["rock_tallA.glb", "cliff_large_rock.glb", "stone_largeA.glb", "stone_largeB.glb", "cliff_rock.glb"];
   const rocks = useMemo(
-    () => scatter(14, LOCAL_ORIGIN, 2.1, heightFn, 0).map((p, i) => ({
+    () => scatter(14, LOCAL_ORIGIN, 2.94, heightFn, 0).map((p, i) => ({
       ...p, file: rockFiles[i % rockFiles.length],
       scale: 0.4 + p.rand * 0.35, rot: p.rand * Math.PI * 4
     })),
@@ -481,7 +507,7 @@ function SavannaDecor() {
   const heightFn = HEIGHT_FN.savanna;
 
   const acacias = useMemo(() =>
-    scatter(8, LOCAL_ORIGIN, 2.1, heightFn, 10).map((p) => ({
+    scatter(8, LOCAL_ORIGIN, 2.94, heightFn, 10).map((p) => ({
       position: [p.x, p.y, p.z] as [number, number, number],
       scale: 0.7 + p.rand * 0.5,
       rotY: p.rand * Math.PI * 2,
@@ -489,11 +515,11 @@ function SavannaDecor() {
 
   const rockFiles = ["rock_largeA.glb", "rock_largeB.glb", "rock_largeC.glb", "rock_largeD.glb"];
   const rocks = useMemo(() =>
-    scatter(6, LOCAL_ORIGIN, 2.2, heightFn, 30).map((p, i) => ({
+    scatter(6, LOCAL_ORIGIN, 3.08, heightFn, 30).map((p, i) => ({
       ...p, file: rockFiles[i % rockFiles.length], scale: 0.3 + p.rand * 0.25, rot: p.rand * Math.PI * 4
     })), []);
 
-  const grass = useGrassField(60, LOCAL_ORIGIN, 2.2, heightFn);
+  const grass = useGrassField(60, LOCAL_ORIGIN, 3.08, heightFn);
 
   // 2 termite mounds deterministas
   const mounds: [number, number, number][] = [
@@ -540,7 +566,7 @@ function SwampDecor() {
   const heightFn = HEIGHT_FN.swamp;
 
   const mangroves = useMemo(() =>
-    scatter(6, LOCAL_ORIGIN, 1.9, heightFn, 20).map((p) => ({
+    scatter(6, LOCAL_ORIGIN, 2.66, heightFn, 20).map((p) => ({
       position: [p.x, p.y, p.z] as [number, number, number],
       scale: 0.65 + p.rand * 0.45,
       rotY: p.rand * Math.PI * 2,
@@ -548,7 +574,7 @@ function SwampDecor() {
 
   const clutterFiles = ["mushroom_red.glb", "mushroom_tan.glb", "mushroom_redGroup.glb", "stump_old.glb", "log.glb", "log_large.glb"];
   const clutter = useMemo(() =>
-    scatter(10, LOCAL_ORIGIN, 2.0, heightFn, 40).map((p, i) => ({
+    scatter(10, LOCAL_ORIGIN, 2.80, heightFn, 40).map((p, i) => ({
       ...p, file: clutterFiles[i % clutterFiles.length], scale: 0.4 + p.rand * 0.3, rot: p.rand * Math.PI * 4
     })), []);
 
@@ -580,13 +606,13 @@ function TaigaDecor() {
 
   const pineFiles = ["tree_pineTallA.glb", "tree_pineRoundA.glb", "tree_pineRoundB.glb", "tree_pineRoundC.glb", "tree_pineRoundD.glb", "tree_pineSmallA.glb"];
   const pines = useMemo(() =>
-    scatter(14, LOCAL_ORIGIN, 2.2, heightFn, 60).map((p, i) => ({
+    scatter(14, LOCAL_ORIGIN, 3.08, heightFn, 60).map((p, i) => ({
       ...p, file: pineFiles[i % pineFiles.length], scale: 0.45 + p.rand * 0.35, rot: p.rand * Math.PI * 4
     })), []);
 
   const rockFiles = ["rock_smallA.glb", "rock_smallB.glb", "stone_smallA.glb", "stone_smallB.glb"];
   const rocks = useMemo(() =>
-    scatter(5, LOCAL_ORIGIN, 2.0, heightFn, 80).map((p, i) => ({
+    scatter(5, LOCAL_ORIGIN, 2.80, heightFn, 80).map((p, i) => ({
       ...p, file: rockFiles[i % rockFiles.length], scale: 0.3 + p.rand * 0.2, rot: p.rand * Math.PI * 4
     })), []);
 
@@ -625,28 +651,28 @@ function TaigaDecor() {
 
 function ReefDecor() {
   const heightFn = HEIGHT_FN.reef;
-  const corals = useCoralCluster(22, LOCAL_ORIGIN, 2.0);
+  const corals = useCoralCluster(22, LOCAL_ORIGIN, 2.80);
 
   const coralHeads = useMemo(() =>
-    scatter(8, LOCAL_ORIGIN, 1.9, heightFn, 15).map((p, i) => ({
+    scatter(8, LOCAL_ORIGIN, 2.66, heightFn, 15).map((p, i) => ({
       position: [p.x, p.y + 0.22, p.z] as [number, number, number],
       scale: 0.6 + p.rand * 0.5,
       colorIndex: i,
     })), []);
 
   const anemones = useMemo(() =>
-    scatter(5, LOCAL_ORIGIN, 1.7, heightFn, 55).map((p) => ({
+    scatter(5, LOCAL_ORIGIN, 2.38, heightFn, 55).map((p) => ({
       position: [p.x, p.y + 0.14, p.z] as [number, number, number],
       scale: 0.7 + p.rand * 0.4,
     })), []);
 
   const rockFiles = ["rock_smallA.glb", "rock_smallB.glb", "rock_smallC.glb", "rock_smallD.glb"];
   const rocks = useMemo(() =>
-    scatter(6, LOCAL_ORIGIN, 2.1, heightFn, 0).map((p, i) => ({
+    scatter(6, LOCAL_ORIGIN, 2.94, heightFn, 0).map((p, i) => ({
       ...p, file: rockFiles[i % rockFiles.length], scale: 0.35 + p.rand * 0.3, rot: p.rand * Math.PI * 4
     })), []);
 
-  const kelp = useGrassField(40, LOCAL_ORIGIN, 2.0, heightFn);
+  const kelp = useGrassField(40, LOCAL_ORIGIN, 2.80, heightFn);
   const kelpBlades = useMemo(
     () => kelp.map((k) => ({ ...k, y: k.y + 0.4, scale: k.scale * 1.8 })),
     [kelp]
@@ -736,7 +762,7 @@ export function WorldTerrain() {
               <IslandBase
                 position={[0, 0, 0]}
                 heightFn={heightFn}
-                size={5}
+                size={7}
                 depth={4.0}
                 seed={i}
               />
@@ -745,7 +771,7 @@ export function WorldTerrain() {
               <>
                 {/* Beach/shoreline ring at island edge */}
                 <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.08, 0]}>
-                  <torusGeometry args={[2.4, 0.12, 8, 32]} />
+                  <torusGeometry args={[3.3, 0.12, 8, 48]} />
                   <meshStandardMaterial color="#d4b483" roughness={0.9} metalness={0} />
                 </mesh>
               </>
