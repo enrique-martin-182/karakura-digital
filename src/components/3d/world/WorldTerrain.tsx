@@ -10,7 +10,7 @@ import { RiggedAnimal, StaticAnimal } from "./GLTFAnimal";
 import { NatureTree, NatureProp, GrassField, useGrassField } from "./NatureProp";
 import { IslandBase } from "./IslandBase";
 import { BirdFlock, VolcanoSmoke, AshParticles, JungleMist, DesertHeatHaze, ArcticAurora, CraterSparks, SwampMist } from "./BiomeAmbience";
-import { AcaciaTree, MangroveTree, CoralHead, SeaAnemone } from "./BiomeProcedural";
+import { AcaciaTree, MangroveTree, CoralHead, SeaAnemone, IcebergMesh, RuinPillar, RuinWall } from "./BiomeProcedural";
 import { VolcanoCone, CraterLavaPool, VolcanoGlow, CharredStump } from "./VolcanoCone";
 
 import {
@@ -151,6 +151,12 @@ function JungleDecor() {
   );
   const grass = useGrassField(70, LOCAL_ORIGIN, 2.2, heightFn);
 
+  const ruins: { pos: [number, number, number]; rotY: number; lean: number }[] = [
+    { pos: [-1.8, heightFn(-1.8, 0.5), 0.5], rotY: 0.4,  lean: 0.08 },
+    { pos: [ 1.5, heightFn( 1.5, 1.1), 1.1], rotY: 1.8,  lean: -0.06 },
+    { pos: [-0.6, heightFn(-0.6, -1.7), -1.7], rotY: 3.1, lean: 0.05 },
+  ];
+
   return (
     <group>
       {trees.map((t, i) => (
@@ -166,6 +172,13 @@ function JungleDecor() {
         <PhysicsNatureProp key={i} file={b.file} position={[b.x, b.y, b.z]} scale={0.6 + b.rand * 0.3} rotationY={b.rand * Math.PI * 4} heightFn={heightFn} />
       ))}
       <GrassField blades={grass} />
+      {/* Ruinas ancestrales */}
+      {ruins.map((r, i) => (
+        <RuinPillar key={i} position={r.pos} rotY={r.rotY} lean={r.lean} />
+      ))}
+      <RuinWall position={[1.8, heightFn(1.8, 0.4), 0.4]} rotY={0.7} />
+      <NatureProp file="plant_bush.glb" position={[1.4, heightFn(1.4, 0.6) + 0.05, 0.6]} scale={0.35} rotationY={1.1} />
+      <NatureProp file="plant_bush.glb" position={[2.1, heightFn(2.1, 0.2) + 0.05, 0.2]} scale={0.30} rotationY={2.4} />
       <NatureProp file="path_stone.glb" position={[-0.5, heightFn(-0.5, 1) + 0.01, 1]} scale={0.7} rotationY={0.5} />
       <NatureProp file="path_stoneCorner.glb" position={[0.2, heightFn(0.2, 0.4) + 0.01, 0.4]} scale={0.7} rotationY={1.2} />
       <StaticAnimal file="toucan.glb" position={[1.0, 1.0, -0.4]} scale={0.5} rotationY={0.6} bobSpeed={1.6} />
@@ -243,9 +256,10 @@ function ArcticDecor() {
   const heightFn = HEIGHT_FN.arctic;
   const icebergs = useMemo(
     () =>
-      scatter(8, LOCAL_ORIGIN, 2.1, heightFn, 0).map((p) => ({
-        pos: [p.x, 0.1 + p.rand * 0.2, p.z] as [number, number, number],
-        scale: 0.18 + p.rand * 0.17,
+      scatter(5, LOCAL_ORIGIN, 2.1, heightFn, 0).map((p) => ({
+        pos: [p.x, 0.05 + p.rand * 0.1, p.z] as [number, number, number],
+        scale: 0.22 + p.rand * 0.20,
+        rotY: p.rand * Math.PI * 2,
       })),
     []
   );
@@ -261,18 +275,9 @@ function ArcticDecor() {
         <PhysicsNatureProp key={i} file={r.file} position={[r.x, r.y, r.z]} scale={0.35 + r.rand * 0.25} rotationY={r.rot} heightFn={heightFn} />
       ))}
       {icebergs.map((ice, i) => (
-        <mesh key={i} position={ice.pos} castShadow>
-          <dodecahedronGeometry args={[ice.scale, 1]} />
-          <meshPhysicalMaterial
-            color="#dff4fb"
-            transmission={0.55}
-            thickness={0.8}
-            roughness={0.1}
-            ior={1.31}
-            clearcoat={0.4}
-            envMapIntensity={1.2}
-          />
-        </mesh>
+        <group key={i} position={ice.pos} rotation={[0, ice.rotY, 0]}>
+          <IcebergMesh scale={ice.scale} />
+        </group>
       ))}
       <group position={[1, 0.4, 1]}>
         <mesh castShadow>
@@ -351,7 +356,7 @@ function OceanDecor() {
 function ForestDecor() {
   const heightFn = HEIGHT_FN.forest;
 
-  const treeFiles = ["tree_pineRoundA.glb", "tree_pineRoundB.glb", "tree_pineRoundC.glb", "tree_pineRoundD.glb", "tree_pineTallA.glb", "tree_pineSmallA.glb"];
+  const treeFiles = ["tree_oak.glb", "tree_fat.glb", "tree_detailed.glb", "tree_default.glb", "tree_oak.glb", "tree_fat.glb"];
   const trees = useMemo(
     () => scatter(22, LOCAL_ORIGIN, 2.2, heightFn, 0).map((p, i) => ({ ...p, file: treeFiles[i % treeFiles.length], scale: 0.5 + p.rand * 0.35, rot: p.rand * Math.PI * 4 })),
     []
