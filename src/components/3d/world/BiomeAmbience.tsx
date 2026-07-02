@@ -327,3 +327,71 @@ export function DesertHeatHaze() {
     </mesh>
   );
 }
+
+// ─── ArcticAurora ────────────────────────────────────────────────────────────
+// Curved ribbon mesh (arc) with UV-scrolling aurora color shader.
+// Geometry: a PlaneGeometry bent into a horizontal arc at Y=3.5.
+
+const auroraVert = /* glsl */ `
+  uniform float uTime;
+  varying vec2 vUv;
+  void main() {
+    vUv = uv;
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+  }
+`;
+
+const auroraFrag = /* glsl */ `
+  uniform float uTime;
+  varying vec2 vUv;
+
+  void main() {
+    float scroll = vUv.x * 2.0 - uTime * 0.18;
+    float band1 = sin(scroll * 3.14159 + 0.0) * 0.5 + 0.5;
+    float band2 = sin(scroll * 3.14159 + 2.1) * 0.5 + 0.5;
+    float band3 = sin(scroll * 3.14159 + 4.2) * 0.5 + 0.5;
+    vec3 col = vec3(band1 * 0.0 + band2 * 0.0 + band3 * 0.2,
+                    band1 * 0.9 + band2 * 0.2,
+                    band1 * 0.2 + band2 * 0.8 + band3 * 0.5);
+    float alpha = smoothstep(0.0, 0.15, vUv.y) * smoothstep(1.0, 0.85, vUv.y);
+    alpha *= 0.55 + sin(uTime * 0.5 + vUv.x * 6.28) * 0.2;
+    gl_FragColor = vec4(col, alpha * 0.65);
+  }
+`;
+
+export function ArcticAurora() {
+  const matRef = useRef<THREE.ShaderMaterial>(null);
+
+  const geo = useMemo(() => {
+    const g = new THREE.PlaneGeometry(6, 1.5, 32, 4);
+    const pos = g.attributes.position as THREE.BufferAttribute;
+    // Bend into arc: each vertex gets X/Z from circle, Y from original Y
+    for (let i = 0; i < pos.count; i++) {
+      const u = (pos.getX(i) / 6 + 0.5); // 0..1
+      const angle = (u - 0.5) * Math.PI; // -PI/2..PI/2
+      const radius = 3.0;
+      const vY = pos.getY(i); // height variation along ribbon
+      pos.setXYZ(i, Math.cos(angle) * radius, vY, Math.sin(angle) * radius * 0.4);
+    }
+    pos.needsUpdate = true;
+    g.computeVertexNormals();
+    return g;
+  }, []);
+
+  useFrame((s) => { if (matRef.current) matRef.current.uniforms.uTime.value = s.clock.elapsedTime; });
+
+  return (
+    <mesh geometry={geo} position={[0, 3.5, 0]}>
+      <shaderMaterial
+        ref={matRef}
+        vertexShader={auroraVert}
+        fragmentShader={auroraFrag}
+        uniforms={{ uTime: { value: 0 } }}
+        transparent
+        depthWrite={false}
+        blending={THREE.AdditiveBlending}
+        side={THREE.DoubleSide}
+      />
+    </mesh>
+  );
+}

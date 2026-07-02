@@ -9,7 +9,7 @@ import { LavaMaterial } from "./LavaMaterial";
 import { RiggedAnimal, StaticAnimal } from "./GLTFAnimal";
 import { NatureTree, NatureProp, GrassField, useGrassField } from "./NatureProp";
 import { IslandBase } from "./IslandBase";
-import { BirdFlock, VolcanoSmoke, AshParticles, JungleMist, DesertHeatHaze } from "./BiomeAmbience";
+import { BirdFlock, VolcanoSmoke, AshParticles, JungleMist, DesertHeatHaze, ArcticAurora } from "./BiomeAmbience";
 
 import {
   PhysicsNatureProp,
@@ -293,6 +293,7 @@ function ArcticDecor() {
           bobAmount={0.025}
         />
       ))}
+      <ArcticAurora />
     </group>
   );
 }
