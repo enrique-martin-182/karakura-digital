@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useRef } from "react";
+import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { LavaMaterial } from "./LavaMaterial";
 
@@ -135,6 +136,113 @@ export function CharredStump({
         castShadow
       >
         <cylinderGeometry args={[0.020, 0.030, 0.22, 5]} />
+      </mesh>
+    </group>
+  );
+}
+
+// ─── CraterLavaPool ───────────────────────────────────────────────────────────
+
+const poolVert = /* glsl */ `
+  varying vec2 vUv;
+  void main() {
+    vUv = uv;
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+  }
+`;
+
+const poolFrag = /* glsl */ `
+  uniform float uTime;
+  varying vec2 vUv;
+
+  float hash(vec2 p) { return fract(sin(dot(p, vec2(12.9898,78.233))) * 43758.5453); }
+  float noise(vec2 p) {
+    vec2 i = floor(p); vec2 f = fract(p);
+    float a = hash(i); float b = hash(i+vec2(1,0));
+    float c = hash(i+vec2(0,1)); float d = hash(i+vec2(1,1));
+    vec2 u = f*f*(3.0-2.0*f);
+    return mix(a,b,u.x)+(c-a)*u.y*(1.0-u.x)+(d-b)*u.x*u.y;
+  }
+  float fbm(vec2 p) {
+    float v=0.0; float a=0.5;
+    for(int i=0;i<4;i++){v+=noise(p)*a;p*=2.1;a*=0.5;}
+    return v;
+  }
+
+  void main() {
+    vec2 uv = vUv * 3.5 + vec2(uTime * 0.12, uTime * 0.08);
+    float n = fbm(uv);
+    float pulse = 0.82 + sin(uTime * 1.8) * 0.18;
+    vec3 hot  = vec3(1.0, 0.85, 0.05);
+    vec3 mid  = vec3(1.0, 0.30, 0.02);
+    vec3 cool = vec3(0.55, 0.05, 0.01);
+    vec3 col = n > 0.6 ? mix(mid, hot, (n-0.6)/0.4)
+                       : mix(cool, mid, n/0.6);
+    col *= pulse;
+    gl_FragColor = vec4(col, 1.0);
+  }
+`;
+
+export function CraterLavaPool() {
+  const matRef = useRef<THREE.ShaderMaterial>(null);
+  useFrame((s) => {
+    if (matRef.current) matRef.current.uniforms.uTime.value = s.clock.elapsedTime;
+  });
+  return (
+    <mesh position={[0, 2.28, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+      <circleGeometry args={[0.45, 24]} />
+      <shaderMaterial
+        ref={matRef}
+        vertexShader={poolVert}
+        fragmentShader={poolFrag}
+        uniforms={{ uTime: { value: 0 } }}
+        toneMapped={false}
+      />
+    </mesh>
+  );
+}
+
+// ─── VolcanoGlow ──────────────────────────────────────────────────────────────
+// Orange point light + additive glow sphere radiating from crater.
+
+const glowVert = /* glsl */ `
+  varying vec3 vPos;
+  void main() {
+    vPos = position;
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+  }
+`;
+
+const glowFrag = /* glsl */ `
+  varying vec3 vPos;
+  void main() {
+    float d = length(vPos) / 3.5;
+    float alpha = (1.0 - d) * (1.0 - d) * 0.10;
+    gl_FragColor = vec4(1.0, 0.28, 0.02, alpha);
+  }
+`;
+
+export function VolcanoGlow() {
+  return (
+    <group>
+      <pointLight
+        position={[0, 3.2, 0]}
+        intensity={4}
+        color="#ff5500"
+        distance={14}
+        decay={2}
+        castShadow={false}
+      />
+      <mesh>
+        <sphereGeometry args={[3.5, 16, 16]} />
+        <shaderMaterial
+          vertexShader={glowVert}
+          fragmentShader={glowFrag}
+          transparent
+          depthWrite={false}
+          blending={THREE.AdditiveBlending}
+          side={THREE.BackSide}
+        />
       </mesh>
     </group>
   );
