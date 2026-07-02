@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useCallback, useRef, Suspense } from "react";
+import { useState, useCallback, useRef, useEffect, Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { PerformanceMonitor, Environment, Lightformer, OrbitControls } from "@react-three/drei";
-import { EffectComposer, Bloom, Vignette, N8AO } from "@react-three/postprocessing";
+import { EffectComposer, Bloom, Vignette } from "@react-three/postprocessing";
 import { motion, AnimatePresence } from "framer-motion";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 import type { BiomeData, ViewState } from "./types";
@@ -36,9 +36,6 @@ function WorldScene({
         onTransitionEnd={onTransitionEnd}
         controlsRef={controlsRef}
       />
-      {/* Lets visitors drag to orbit the diorama. Disabled mid-flight ("transitioning") so user
-          input can't fight the cinematic camera move; CameraController hands control back here
-          once it settles at the map or biome-detail framing. */}
       <OrbitControls
         ref={controlsRef}
         enabled={viewState !== "transitioning"}
@@ -53,29 +50,13 @@ function WorldScene({
         autoRotateSpeed={0.35}
       />
 
-      <ambientLight intensity={0.65} color="#dff0ff" />
-      <directionalLight
-        position={[18, 26, 14]}
-        intensity={1.9}
-        color="#fff6e0"
-        castShadow
-        shadow-mapSize={[512, 512]}
-        shadow-camera-left={-14}
-        shadow-camera-right={14}
-        shadow-camera-top={14}
-        shadow-camera-bottom={-14}
-        shadow-camera-near={20}
-        shadow-camera-far={65}
-        shadow-bias={-0.0003}
-      />
+      <ambientLight intensity={0.8} color="#dff0ff" />
+      {/* No castShadow — shadows disabled for performance */}
+      <directionalLight position={[18, 26, 14]} intensity={1.9} color="#fff6e0" />
       <directionalLight position={[-14, 12, -10]} intensity={0.45} color="#b8d8ff" />
       <hemisphereLight color="#bfe3ff" groundColor="#4a7a3a" intensity={0.5} />
 
-      {/* Procedural IBL built from Lightformers — no external HDR fetch (preset="..." downloads
-          from a CDN and hard-crashes the scene if that request fails, which it did in testing; a
-          synthetic sky offline is more reliable in production anyway). Gives PBR/physical
-          materials (ice, water, rocks) a believable ambient reflection instead of flat-lit. */}
-      <Environment resolution={64} background={false} environmentIntensity={0.6}>
+      <Environment resolution={32} background={false} environmentIntensity={0.5}>
         <Lightformer form="rect" intensity={2} color="#fff6e0" position={[8, 10, 4]} scale={[10, 6, 1]} />
         <Lightformer form="rect" intensity={1} color="#bfe3ff" position={[-8, 6, -4]} scale={[8, 5, 1]} />
         <Lightformer form="circle" intensity={1.5} color="#dff0ff" position={[0, 12, 0]} scale={6} />
@@ -94,7 +75,22 @@ export function WorldDiorama() {
   const [viewState, setViewState] = useState<ViewState>("map");
   const [activeBiome, setActiveBiome] = useState<BiomeData | null>(null);
   const [dpr, setDpr] = useState(1);
+  // Only mount the Canvas when the section is visible — stops the render loop
+  // from running while the user reads other sections of the page.
+  const [visible, setVisible] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
   const controlsRef = useRef<OrbitControlsImpl | null>(null);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setVisible(entry.isIntersecting),
+      { rootMargin: "200px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const handleSelectBiome = useCallback((biome: BiomeData) => {
     if (viewState !== "map") return;
@@ -113,48 +109,45 @@ export function WorldDiorama() {
 
   return (
     <div
+      ref={containerRef}
       className="relative w-full h-[700px] rounded-2xl overflow-hidden border border-white/[0.06]"
       style={{ background: "#02040a" }}
     >
-      <Canvas
-        camera={{ position: [0, 32, 44], fov: 50, near: 0.1, far: 250 }}
-        gl={{ antialias: true, alpha: false, powerPreference: "high-performance" }}
-        dpr={dpr}
-        shadows
-        performance={{ min: 0.5 }}
-      >
-        <color attach="background" args={["#02040a"]} />
-        <PerformanceMonitor
-          onIncline={() => setDpr(Math.min(window.devicePixelRatio, 1.5))}
-          onDecline={() => setDpr(0.85)}
-          flipflops={3}
-          onFallback={() => setDpr(0.7)}
-        />
-        <Suspense fallback={null}>
-          <WorldScene
-            viewState={viewState}
-            activeBiome={activeBiome}
-            onSelectBiome={handleSelectBiome}
-            onTransitionEnd={handleTransitionEnd}
-            controlsRef={controlsRef}
+      {visible && (
+        <Canvas
+          camera={{ position: [0, 32, 44], fov: 50, near: 0.1, far: 250 }}
+          gl={{ antialias: false, alpha: false, powerPreference: "high-performance" }}
+          dpr={dpr}
+          shadows={false}
+          performance={{ min: 0.5 }}
+        >
+          <color attach="background" args={["#02040a"]} />
+          <PerformanceMonitor
+            onIncline={() => setDpr(Math.min(window.devicePixelRatio, 1.5))}
+            onDecline={() => setDpr(0.85)}
+            flipflops={3}
+            onFallback={() => setDpr(0.7)}
           />
-          {dpr > 1 && (
+          <Suspense fallback={null}>
+            <WorldScene
+              viewState={viewState}
+              activeBiome={activeBiome}
+              onSelectBiome={handleSelectBiome}
+              onTransitionEnd={handleTransitionEnd}
+              controlsRef={controlsRef}
+            />
             <EffectComposer multisampling={0}>
-              {/* Real screen-space AO: darkens contact creases between every tree/rock/prop and the
-                  ground automatically, on top of the per-island baked ContactShadows blobs. This is
-                  the single biggest "looks professionally rendered" lever left at this asset tier. */}
-              <N8AO aoRadius={0.9} intensity={2.2} distanceFalloff={1} color="#0a1f14" />
               <Bloom
-                luminanceThreshold={0.7}
-                luminanceSmoothing={0.3}
-                intensity={0.6}
+                luminanceThreshold={0.8}
+                luminanceSmoothing={0.4}
+                intensity={0.5}
                 mipmapBlur
               />
               <Vignette eskil={false} offset={0.15} darkness={0.5} />
             </EffectComposer>
-          )}
-        </Suspense>
-      </Canvas>
+          </Suspense>
+        </Canvas>
+      )}
 
       <BiomeInfoPanel
         biome={activeBiome}
@@ -162,7 +155,6 @@ export function WorldDiorama() {
         onBack={handleBack}
       />
 
-      {/* Map hint — glass-panel pattern, not a translucent label, so it reads on the bright sky background */}
       <AnimatePresence>
         {viewState === "map" && (
           <motion.div

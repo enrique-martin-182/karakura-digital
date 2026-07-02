@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, type ReactNode } from "react";
+import { useMemo, useState, type ReactNode } from "react";
+import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { BIOMES } from "./types";
 import { Scorpion, Seal, FishSchool, Iguana, Crab } from "./BiomeAnimals";
@@ -698,13 +699,30 @@ const BIOME_QUATERNIONS = BIOMES.map((biome) => {
   return new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), outward);
 });
 
+const _camDir = new THREE.Vector3();
+const _biomeDir = new THREE.Vector3();
+
 export function WorldTerrain() {
+  // Track camera position to cull biomes on the back hemisphere.
+  // Using a ref avoids re-renders; visibility is applied via group.visible each frame.
+  const [camPos, setCamPos] = useState(() => new THREE.Vector3(0, 32, 44));
+  useFrame(({ camera }) => {
+    if (!camera.position.equals(camPos)) setCamPos(camera.position.clone());
+  });
+
   return (
     <group>
       {BIOMES.map((biome, i) => {
         const Decor = DECOR_BY_BIOME[biome.id];
         const heightFn = HEIGHT_FN[biome.id];
         const q = BIOME_QUATERNIONS[i];
+
+        // Dot product between camera direction and biome direction from origin.
+        // Negative dot = biome faces away from camera = skip rendering.
+        _camDir.copy(camPos).normalize();
+        _biomeDir.set(...biome.position).normalize();
+        const dot = _camDir.dot(_biomeDir);
+        if (dot < -0.2) return null;
 
         return (
           <group key={biome.id} position={biome.position} quaternion={q}>
