@@ -2,13 +2,14 @@
 
 import { useMemo } from "react";
 import * as THREE from "three";
+import { blobSeedFor, blobRadiusNorm, ISLAND_HALF } from "./blobUtils";
 
 /**
  * Procedurally modeled floating-island underside: a tapered, jagged dirt/rock body hanging below
  * the grass plane, built entirely from BufferGeometry (no external model) — the cross-section look
  * from the reference garden diorama, where the island reads as a chunk of earth, not a flat tile.
  *
- * Three rings, walked around the same 8x8 square footprint as BiomeRegion's top plane:
+ * Three rings, walked around the blob footprint matching BiomeRegion's top plane:
  *   1. boundary ring  — sits exactly at the grass plane's edge (same heightFn), zero seam
  *   2. overhang ring  — pulled in slightly and jagged, so the grass visually overhangs the dirt
  *   3. root ring      — pulled in further and ragged, closing to a broken-earth point cluster
@@ -17,7 +18,8 @@ function buildIslandBaseGeometry(
   heightFn: (x: number, z: number) => number,
   size: number,
   depth: number,
-  seed: number
+  seed: number,
+  biomeId?: string
 ) {
   const half = size / 2;
   const perSide = 9; // boundary points per edge — coarse on purpose, the skirt reads as rock, not lawn
@@ -30,15 +32,13 @@ function buildIslandBaseGeometry(
     return v - Math.floor(v);
   };
 
-  // Walk a circular perimeter so the dirt underside matches the rounded terrain top.
-  // Radius matches the alphaMap full-opacity zone (~88% of half-size).
+  // Walk the blob perimeter matching the alpha map and beach ring shapes.
   const boundary: [number, number][] = [];
   const totalPoints = perSide * 4;
-  const circleRadius = half * 0.88;
+  const blobSeed = biomeId ? blobSeedFor(biomeId) : seed * 17;
   for (let i = 0; i < totalPoints; i++) {
     const angle = (i / totalPoints) * Math.PI * 2;
-    // Subtle organic jitter so it doesn't read as a perfect machine circle
-    const r = circleRadius + Math.sin(i * 2.3 + seed * 1.7) * 0.45;
+    const r = blobRadiusNorm(angle, blobSeed) * half;
     boundary.push([Math.cos(angle) * r, Math.sin(angle) * r]);
   }
 
@@ -116,17 +116,22 @@ function buildIslandBaseGeometry(
 export function IslandBase({
   position,
   heightFn,
-  size = 8,
+  size = 6,
   depth = 3,
   seed = 0,
+  biomeId,
 }: {
   position: [number, number, number];
   heightFn: (x: number, z: number) => number;
   size?: number;
   depth?: number;
   seed?: number;
+  biomeId?: string;
 }) {
-  const geometry = useMemo(() => buildIslandBaseGeometry(heightFn, size, depth, seed), [heightFn, size, depth, seed]);
+  const geometry = useMemo(
+    () => buildIslandBaseGeometry(heightFn, size, depth, seed, biomeId),
+    [heightFn, size, depth, seed, biomeId]
+  );
 
   return (
     <mesh geometry={geometry} position={position} castShadow receiveShadow>
