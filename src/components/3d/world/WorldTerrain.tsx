@@ -3,7 +3,7 @@
 import { useMemo, useState, type ReactNode } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
-import { BIOMES } from "./types";
+import { BIOMES, type BiomeData, type ViewState } from "./types";
 import { Scorpion, Seal, FishSchool, Iguana, Crab } from "./BiomeAnimals";
 import { CoralCluster, useCoralCluster } from "./InstancedDecor";
 import { LavaMaterial } from "./LavaMaterial";
@@ -728,9 +728,20 @@ const BIOME_QUATERNIONS = BIOMES.map((biome) => {
 const _camDir = new THREE.Vector3();
 const _biomeDir = new THREE.Vector3();
 
-export function WorldTerrain() {
+const PLANET_RADIUS = 10.0;
+// Surface positions: all biomes normalised to exactly PLANET_RADIUS so none float or sink.
+const BIOME_SURFACE_POS = BIOMES.map((biome) =>
+  new THREE.Vector3(...biome.position).normalize().multiplyScalar(PLANET_RADIUS)
+);
+
+export function WorldTerrain({
+  onSelect,
+  viewState,
+}: {
+  onSelect?: (b: BiomeData) => void;
+  viewState?: ViewState;
+}) {
   // Track camera position to cull biomes on the back hemisphere.
-  // Using a ref avoids re-renders; visibility is applied via group.visible each frame.
   const [camPos, setCamPos] = useState(() => new THREE.Vector3(0, 32, 44));
   useFrame(({ camera }) => {
     if (!camera.position.equals(camPos)) setCamPos(camera.position.clone());
@@ -742,6 +753,7 @@ export function WorldTerrain() {
         const Decor = DECOR_BY_BIOME[biome.id];
         const heightFn = HEIGHT_FN[biome.id];
         const q = BIOME_QUATERNIONS[i];
+        const surfacePos = BIOME_SURFACE_POS[i];
 
         // Dot product between camera direction and biome direction from origin.
         // Negative dot = biome faces away from camera = skip rendering.
@@ -750,8 +762,17 @@ export function WorldTerrain() {
         const dot = _camDir.dot(_biomeDir);
         if (dot < -0.2) return null;
 
+        const clickable = viewState === "map" && onSelect;
+
         return (
-          <group key={biome.id} position={biome.position} quaternion={q}>
+          <group
+            key={biome.id}
+            position={surfacePos.toArray()}
+            quaternion={q}
+            onClick={clickable ? (e) => { e.stopPropagation(); onSelect(biome); } : undefined}
+            onPointerEnter={clickable ? () => { document.body.style.cursor = "pointer"; } : undefined}
+            onPointerLeave={clickable ? () => { document.body.style.cursor = "auto"; } : undefined}
+          >
             {/* Ocean biome has no terrain tile — the planet's ocean sphere already covers it.
                 We only render its surface decorations (reef, coral, turtles). */}
             {biome.id !== "ocean" && <BiomeRegion color={biome.color} id={biome.id} />}

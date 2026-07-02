@@ -64,7 +64,7 @@ function WorldScene({
 
       <WorldStarfield />
       <WorldAtmosphere radius={13} />
-      <WorldTerrain />
+      <WorldTerrain onSelect={onSelectBiome} viewState={viewState} />
       <BiomeMarkers onSelect={onSelectBiome} viewState={viewState} />
       <WorldOcean />
     </>
@@ -112,6 +112,7 @@ export function WorldDiorama() {
       ref={containerRef}
       className="relative w-full h-[700px] rounded-2xl overflow-hidden border border-white/[0.06]"
       style={{ background: "#02040a" }}
+      onContextMenu={(e) => { e.preventDefault(); handleBack(); }}
     >
       {visible && (
         <Canvas
