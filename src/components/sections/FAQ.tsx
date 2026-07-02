@@ -122,7 +122,7 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="py-section relative">
+    <section className="py-section relative" aria-label="Preguntas frecuentes">
       <div className="max-w-[800px] mx-auto px-4 md:px-gutter relative z-10">
         <ScrollReveal>
           <SectionHeader headline="Preguntas que ya te estás haciendo" />

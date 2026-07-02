@@ -31,7 +31,7 @@ export function Hero() {
   };
 
   return (
-    <section className="relative min-h-[95vh] flex items-center overflow-hidden">
+    <section className="relative min-h-[95vh] flex items-center overflow-hidden" aria-label="Inicio">
       {/* Remotion-generated circuit animation background */}
       <video
         autoPlay
@@ -87,7 +87,7 @@ export function Hero() {
 
           <motion.div variants={itemVariants}>
             <h1 className="text-headline-mobile md:text-headline-xl text-gradient mb-8 leading-[1.1] tracking-tight">
-              Transformamos negocios con tecnología que <span className="text-primary-container inline-block">escala sin fronteras</span>.
+              Desarrollo web y software a medida que <span className="text-primary-container inline-block">escala sin fronteras</span>.
             </h1>
           </motion.div>
 

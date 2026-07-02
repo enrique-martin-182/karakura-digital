@@ -69,7 +69,7 @@ const services = [
 
 export function Services() {
   return (
-    <section className="py-section relative overflow-hidden" id="services">
+    <section className="py-section relative overflow-hidden" id="services" aria-label="Servicios">
       <VideoBackground src="services-bg" overlay="bg-background/40" />
       <div className="absolute inset-0 bg-gradient-to-t from-surface-container-highest/50 to-transparent" />
       <div className="max-w-[1280px] mx-auto px-4 md:px-gutter relative z-10">

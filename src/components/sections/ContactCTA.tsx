@@ -21,7 +21,7 @@ function WhatsAppIcon() {
 
 export function ContactCTA() {
   return (
-    <section className="py-section bg-surface-container-highest relative overflow-hidden" id="contact">
+    <section className="py-section bg-surface-container-highest relative overflow-hidden" id="contact" aria-label="Contacto">
       <VideoBackground src="contact-bg" overlay="bg-surface-container-highest/50" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,122,0,0.1),#001711_50%,#001711)]" />
       <div className="max-w-4xl mx-auto px-4 md:px-gutter relative z-10 text-center">
