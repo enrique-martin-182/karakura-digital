@@ -133,9 +133,12 @@ const smokeVert = /* glsl */ `
     float scale = 0.3 + age * 1.6;
     float y = age * 2.2;
     vec3 pos = position * scale + vec3(0.0, y, 0.0);
-    // Always face camera (billboard): rotate in world space
-    vec4 worldPos = modelMatrix * vec4(pos, 1.0);
-    gl_Position = projectionMatrix * viewMatrix * worldPos;
+    // Billboard: zero rotation columns of model-view so quad always faces camera
+    mat4 mv = viewMatrix * modelMatrix;
+    mv[0][0] = 1.0; mv[0][1] = 0.0; mv[0][2] = 0.0;
+    mv[1][0] = 0.0; mv[1][1] = 1.0; mv[1][2] = 0.0;
+    mv[2][0] = 0.0; mv[2][1] = 0.0; mv[2][2] = 1.0;
+    gl_Position = projectionMatrix * mv * vec4(pos, 1.0);
   }
 `;
 
@@ -221,7 +224,8 @@ export function AshParticles() {
     for (let i = 0; i < ASH_COUNT; i++) {
       let y = pos.getY(i) - 0.008;
       if (y < 0) y = 3.5 + ashOffsets[i] * 1.5;
-      const x = pos.getX(i) + Math.sin(t * 0.4 + i) * 0.005;
+      const restX = positions[i * 3];
+      const x = restX + Math.sin(t * 0.4 + i) * 0.05;
       pos.setXY(i, x, y);
     }
     pos.needsUpdate = true;
