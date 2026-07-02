@@ -106,8 +106,10 @@ function BiomeRegion({ color, id }: { color: string; id: string }) {
     const col = new Float32Array(pos.count * 3);
     const base = new THREE.Color(color);
     const dark = new THREE.Color(color).multiplyScalar(0.72);
+    const sand = new THREE.Color("#c8aa6e");
     const temp = new THREE.Color();
     const heightFn = HEIGHT_FN[id];
+    const blobSeed = blobSeedFor(id);
 
     for (let i = 0; i < pos.count; i++) {
       const x = pos.getX(i);
@@ -120,6 +122,14 @@ function BiomeRegion({ color, id }: { color: string; id: string }) {
       const noise = Math.sin(x * 3.1 + z * 2.7) * 0.5 + 0.5;
       temp.lerpColors(dark, base, noise * 0.6 + 0.45);
       if (height > 1.5) temp.lerp(new THREE.Color("#ffffff"), (height - 1.5) * 0.22);
+
+      // Sandy shore: blend toward sand color near the blob edge
+      const dist = Math.sqrt(x * x + z * z);
+      const angle = Math.atan2(z, x);
+      const edgeR = blobRadiusNorm(angle, blobSeed) * ISLAND_HALF;
+      const beachT = Math.max(0, 1 - Math.abs(dist - edgeR) / 0.55);
+      if (beachT > 0) temp.lerp(sand, beachT * 0.85);
+
       col[i * 3] = temp.r;
       col[i * 3 + 1] = temp.g;
       col[i * 3 + 2] = temp.b;
@@ -144,25 +154,6 @@ function BiomeRegion({ color, id }: { color: string; id: string }) {
   );
 }
 
-function BeachRing({ biomeId }: { biomeId: string }) {
-  const geo = useMemo(() => {
-    const seed = blobSeedFor(biomeId);
-    const N = 64;
-    const pts = Array.from({ length: N }, (_, i) => {
-      const angle = (i / N) * Math.PI * 2;
-      const r = blobRadiusNorm(angle, seed) * ISLAND_HALF * 0.97;
-      return new THREE.Vector3(Math.cos(angle) * r, 0, Math.sin(angle) * r);
-    });
-    const curve = new THREE.CatmullRomCurve3(pts, true);
-    return new THREE.TubeGeometry(curve, N, 0.10, 6, true);
-  }, [biomeId]);
-
-  return (
-    <mesh geometry={geo} position={[0, -0.06, 0]}>
-      <meshStandardMaterial color="#d4b483" roughness={0.9} metalness={0} />
-    </mesh>
-  );
-}
 
 function JungleDecor() {
   const heightFn = HEIGHT_FN.jungle;
@@ -777,7 +768,6 @@ export function WorldTerrain() {
                 biomeId={biome.id}
               />
             )}
-            {biome.id !== "ocean" && <BeachRing biomeId={biome.id} />}
             {/* Ambient bird flock — per-biome color and orbit */}
             {biome.id === "jungle"   && <BirdFlock count={7} orbitRadius={2.5} orbitHeight={2.5} speed={0.65} color="#e05530" />}
             {biome.id === "forest"   && <BirdFlock count={6} orbitRadius={2.2} orbitHeight={2.2} speed={0.55} color="#5a3a1a" />}
