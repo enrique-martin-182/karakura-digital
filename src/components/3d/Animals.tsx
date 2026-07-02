@@ -140,6 +140,16 @@ function Fox({ position }: { position: [number, number, number] }) {
   );
 }
 
+// Pre-computed bird pool — generated once at module level to avoid Math.random() in render
+const MAX_BIRDS = 8;
+const BIRD_POOL: Array<{ radius: number; speed: number; height: number; wingPhase: number }> =
+  Array.from({ length: MAX_BIRDS }, () => ({
+    radius: 3 + Math.random() * 2,
+    speed: 0.3 + Math.random() * 0.2,
+    height: Math.random() * 2,
+    wingPhase: Math.random() * Math.PI * 2,
+  }));
+
 // Birds flying in circles
 function Birds({ center, count = 5 }: { center: [number, number, number]; count?: number }) {
   const groupRef = useRef<THREE.Group>(null);
@@ -147,10 +157,7 @@ function Birds({ center, count = 5 }: { center: [number, number, number]; count?
   const birdData = useMemo(() => {
     return Array.from({ length: count }).map((_, i) => ({
       offset: (i / count) * Math.PI * 2,
-      radius: 3 + Math.random() * 2,
-      speed: 0.3 + Math.random() * 0.2,
-      height: Math.random() * 2,
-      wingPhase: Math.random() * Math.PI * 2,
+      ...BIRD_POOL[i % MAX_BIRDS],
     }));
   }, [count]);
 
@@ -214,19 +221,22 @@ function BirdInstance({
   );
 }
 
+// Pre-computed static bush geometry data (avoids calling Math.random() / new THREE.Color() during render)
+const BUSH_SPHERE_DATA: Array<{ pos: [number, number, number]; radius: number; color: string }> = [
+  { pos: [0, 0.2, 0],         radius: 0.38, color: "#1a3318" },
+  { pos: [0.3, 0.15, 0.2],    radius: 0.42, color: "#1c3a1a" },
+  { pos: [-0.2, 0.18, -0.15], radius: 0.35, color: "#183016" },
+];
+
 // Bush clusters (to hide animals naturally)
 function Bush({ position, scale = 1 }: { position: [number, number, number]; scale?: number }) {
   return (
     <group position={position} scale={scale}>
-      {[
-        [0, 0.2, 0],
-        [0.3, 0.15, 0.2],
-        [-0.2, 0.18, -0.15],
-      ].map((pos, i) => (
-        <mesh key={i} position={pos as [number, number, number]} castShadow>
-          <dodecahedronGeometry args={[0.3 + Math.random() * 0.15, 0]} />
+      {BUSH_SPHERE_DATA.map((sphere, i) => (
+        <mesh key={i} position={sphere.pos} castShadow>
+          <dodecahedronGeometry args={[sphere.radius, 0]} />
           <meshStandardMaterial
-            color={new THREE.Color().setHSL(0.3 + Math.random() * 0.05, 0.6, 0.12 + Math.random() * 0.06)}
+            color={sphere.color}
             roughness={0.9}
             flatShading
           />

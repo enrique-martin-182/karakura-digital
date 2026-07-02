@@ -107,7 +107,7 @@ function RuneMarker({
     }
   });
 
-  const color = new THREE.Color(project.accentColor);
+  const color = useMemo(() => new THREE.Color(project.accentColor), [project.accentColor]);
 
   return (
     <group

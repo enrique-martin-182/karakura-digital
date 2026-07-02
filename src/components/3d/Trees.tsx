@@ -57,7 +57,10 @@ function ProceduralTree({ data }: { data: TreeData }) {
   const crownColor = useMemo(() => {
     const hue = 0.28 + (Math.sin(data.position[0] * 0.5) * 0.05);
     const sat = 0.5 + Math.cos(data.position[2] * 0.3) * 0.2;
-    return new THREE.Color().setHSL(hue, sat, 0.15 + Math.random() * 0.08);
+    // Use deterministic pseudo-random based on position to avoid Math.random() in render
+    const pseudoRand = (Math.sin(data.position[0] * 127.1 + data.position[2] * 311.7) * 43758.5453) % 1;
+    const lightness = 0.15 + Math.abs(pseudoRand) * 0.08;
+    return new THREE.Color().setHSL(hue, sat, lightness);
   }, [data.position]);
 
   return (

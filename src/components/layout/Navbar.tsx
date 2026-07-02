@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 
@@ -33,10 +34,10 @@ export function Navbar() {
       }`}
     >
       <div className="flex justify-between items-center px-4 md:px-gutter max-w-[1280px] mx-auto h-20">
-        <a href="/" className="flex items-center gap-3">
+        <Link href="/" className="flex items-center gap-3">
           <Image src="/KD LOGO 3.png" alt="Karakura Digital logo" width={40} height={40} className="rounded-full" />
           <Image src="/assets/logo-kd.png" alt="Karakura Digital" width={180} height={40} className="hidden sm:block object-contain" />
-        </a>
+        </Link>
 
         <div className="hidden md:flex items-center space-x-8">
           {links.map((link) => (

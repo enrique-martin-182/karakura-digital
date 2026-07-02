@@ -4,22 +4,48 @@ import { useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
+// Module-level helpers — called once, outside any render path
+function buildFireflyData(count: number): [Float32Array, Float32Array] {
+  const pos = new Float32Array(count * 3);
+  const ph = new Float32Array(count);
+  for (let i = 0; i < count; i++) {
+    pos[i * 3]     = (Math.random() - 0.5) * 40;
+    pos[i * 3 + 1] = 0.5 + Math.random() * 5;
+    pos[i * 3 + 2] = (Math.random() - 0.5) * 40;
+    ph[i]          = Math.random() * Math.PI * 2;
+  }
+  return [pos, ph];
+}
+
+const DEFAULT_FIREFLY_COUNT = 80;
+const [FIREFLY_POSITIONS, FIREFLY_PHASES] = buildFireflyData(DEFAULT_FIREFLY_COUNT);
+
+// Pre-computed god-ray and fog data — avoids Math.random() in render/useMemo
+const RAY_DATA = Array.from({ length: 8 }, (_, i) => ({
+  position: [-10 + i * 3 + Math.random() * 2, 8, -5 + Math.random() * 10] as [number, number, number],
+  rotation: [0, 0, (Math.random() - 0.5) * 0.3] as [number, number, number],
+  scale: [0.3 + Math.random() * 0.4, 15, 1] as [number, number, number],
+}));
+
+const FOG_PARTICLE_COUNT = 300;
+const FOG_POSITIONS = (() => {
+  const pos = new Float32Array(FOG_PARTICLE_COUNT * 3);
+  for (let i = 0; i < FOG_PARTICLE_COUNT; i++) {
+    pos[i * 3]     = (Math.random() - 0.5) * 50;
+    pos[i * 3 + 1] = Math.random() * 1.5;
+    pos[i * 3 + 2] = (Math.random() - 0.5) * 50;
+  }
+  return pos;
+})();
+
 // Fireflies / glowing particles
 function Fireflies({ count = 80 }: { count?: number }) {
   const ref = useRef<THREE.Points>(null);
 
   const [positions, phases] = useMemo(() => {
-    const pos = new Float32Array(count * 3);
-    const ph = new Float32Array(count);
-
-    for (let i = 0; i < count; i++) {
-      pos[i * 3] = (Math.random() - 0.5) * 40;
-      pos[i * 3 + 1] = 0.5 + Math.random() * 5;
-      pos[i * 3 + 2] = (Math.random() - 0.5) * 40;
-      ph[i] = Math.random() * Math.PI * 2;
-    }
-
-    return [pos, ph];
+    // Reuse pre-built arrays when count matches the default; rebuild otherwise
+    if (count === DEFAULT_FIREFLY_COUNT) return [FIREFLY_POSITIONS, FIREFLY_PHASES];
+    return buildFireflyData(count);
   }, [count]);
 
   useFrame((state) => {
@@ -75,17 +101,7 @@ function GodRays() {
     });
   });
 
-  const rays = useMemo(() => {
-    return Array.from({ length: 8 }).map((_, i) => ({
-      position: [
-        -10 + i * 3 + Math.random() * 2,
-        8,
-        -5 + Math.random() * 10,
-      ] as [number, number, number],
-      rotation: [0, 0, (Math.random() - 0.5) * 0.3] as [number, number, number],
-      scale: [0.3 + Math.random() * 0.4, 15, 1] as [number, number, number],
-    }));
-  }, []);
+  const rays = useMemo(() => RAY_DATA, []);
 
   return (
     <group ref={ref}>
@@ -114,24 +130,15 @@ function GodRays() {
 // Ground fog
 function Fog() {
   const ref = useRef<THREE.Points>(null);
-  const count = 300;
 
-  const positions = useMemo(() => {
-    const pos = new Float32Array(count * 3);
-    for (let i = 0; i < count; i++) {
-      pos[i * 3] = (Math.random() - 0.5) * 50;
-      pos[i * 3 + 1] = Math.random() * 1.5;
-      pos[i * 3 + 2] = (Math.random() - 0.5) * 50;
-    }
-    return pos;
-  }, []);
+  const positions = useMemo(() => FOG_POSITIONS, []);
 
   useFrame((state) => {
     if (!ref.current) return;
     const arr = ref.current.geometry.attributes.position.array as Float32Array;
     const t = state.clock.elapsedTime;
 
-    for (let i = 0; i < count; i++) {
+    for (let i = 0; i < FOG_PARTICLE_COUNT; i++) {
       arr[i * 3] += Math.sin(t * 0.1 + i * 0.1) * 0.008;
       arr[i * 3 + 2] += Math.cos(t * 0.08 + i * 0.15) * 0.006;
     }

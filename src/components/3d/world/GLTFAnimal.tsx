@@ -7,6 +7,12 @@ import * as THREE from "three";
 
 const MODEL_BASE = "/assets/models/animals/";
 
+let _seedCounter = 0;
+function nextSeed(): number {
+  _seedCounter = (_seedCounter + 1.6180339887) % 10;
+  return _seedCounter;
+}
+
 /** Rigged, animated character (fox/rabbit/monkey) — real game-quality models from Quaternius (CC0). */
 export function RiggedAnimal({
   file,
@@ -61,7 +67,7 @@ export function StaticAnimal({
 }) {
   const ref = useRef<THREE.Group>(null);
   const { scene } = useGLTF(MODEL_BASE + file);
-  const seed = useMemo(() => Math.random() * 10, []);
+  const seed = useMemo(() => nextSeed(), []);
 
   useFrame((state) => {
     if (!ref.current) return;

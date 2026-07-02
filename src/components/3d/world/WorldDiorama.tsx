@@ -1,34 +1,63 @@
 "use client";
 
-import { useState, useCallback, Suspense } from "react";
+import { useState, useCallback, useRef, Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
-import { PerformanceMonitor } from "@react-three/drei";
-import { EffectComposer, Bloom, Vignette } from "@react-three/postprocessing";
+import { PerformanceMonitor, Environment, Lightformer, OrbitControls } from "@react-three/drei";
+import { EffectComposer, Bloom, Vignette, N8AO } from "@react-three/postprocessing";
 import { motion, AnimatePresence } from "framer-motion";
+import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 import type { BiomeData, ViewState } from "./types";
 import { WorldTerrain } from "./WorldTerrain";
 import { BiomeMarkers } from "./BiomeMarkers";
 import { CameraController } from "./CameraController";
 import { BiomeInfoPanel } from "./BiomeInfoPanel";
 import { WorldOcean } from "./WorldOcean";
+import { WorldStarfield } from "./WorldStarfield";
+import { WorldAtmosphere } from "./WorldAtmosphere";
+import { Physics } from "@react-three/rapier";
+import { SphericalGravity, PhysicsInteraction } from "./PhysicsWorld";
 
 function WorldScene({
   viewState,
   activeBiome,
   onSelectBiome,
   onTransitionEnd,
+  controlsRef,
 }: {
   viewState: ViewState;
   activeBiome: BiomeData | null;
   onSelectBiome: (b: BiomeData) => void;
   onTransitionEnd: () => void;
+  controlsRef: React.RefObject<OrbitControlsImpl | null>;
 }) {
   return (
-    <>
+    // Physics must wrap all RigidBody consumers. gravity=[0,0,0] disables the default
+    // downward pull; SphericalGravity replaces it with per-body force toward planet center.
+    <Physics gravity={[0, 0, 0]} timeStep="vary">
+      <SphericalGravity />
+      <PhysicsInteraction enabled={viewState === "map"} />
+
       <CameraController
         viewState={viewState}
         activeBiome={activeBiome}
         onTransitionEnd={onTransitionEnd}
+        controlsRef={controlsRef}
+      />
+      {/* Lets visitors drag to orbit the diorama. Disabled mid-flight ("transitioning") so user
+          input can't fight the cinematic camera move; CameraController hands control back here
+          once it settles at the map or biome-detail framing. */}
+      <OrbitControls
+        ref={controlsRef}
+        enabled={viewState !== "transitioning"}
+        enablePan={false}
+        enableDamping
+        dampingFactor={0.08}
+        minDistance={30}
+        maxDistance={80}
+        minPolarAngle={Math.PI / 8}
+        maxPolarAngle={Math.PI * 0.72}
+        autoRotate={viewState === "map"}
+        autoRotateSpeed={0.35}
       />
 
       <ambientLight intensity={0.65} color="#dff0ff" />
@@ -38,23 +67,33 @@ function WorldScene({
         color="#fff6e0"
         castShadow
         shadow-mapSize={[1024, 1024]}
-        shadow-camera-left={-25}
-        shadow-camera-right={25}
-        shadow-camera-top={25}
-        shadow-camera-bottom={-25}
-        shadow-camera-near={1}
-        shadow-camera-far={50}
+        shadow-camera-left={-14}
+        shadow-camera-right={14}
+        shadow-camera-top={14}
+        shadow-camera-bottom={-14}
+        shadow-camera-near={20}
+        shadow-camera-far={65}
         shadow-bias={-0.0003}
       />
       <directionalLight position={[-14, 12, -10]} intensity={0.45} color="#b8d8ff" />
       <hemisphereLight color="#bfe3ff" groundColor="#4a7a3a" intensity={0.5} />
 
-      <fog attach="fog" args={["#bfe3ff", 45, 95]} />
+      {/* Procedural IBL built from Lightformers — no external HDR fetch (preset="..." downloads
+          from a CDN and hard-crashes the scene if that request fails, which it did in testing; a
+          synthetic sky offline is more reliable in production anyway). Gives PBR/physical
+          materials (ice, water, rocks) a believable ambient reflection instead of flat-lit. */}
+      <Environment resolution={64} background={false} environmentIntensity={0.6}>
+        <Lightformer form="rect" intensity={2} color="#fff6e0" position={[8, 10, 4]} scale={[10, 6, 1]} />
+        <Lightformer form="rect" intensity={1} color="#bfe3ff" position={[-8, 6, -4]} scale={[8, 5, 1]} />
+        <Lightformer form="circle" intensity={1.5} color="#dff0ff" position={[0, 12, 0]} scale={6} />
+      </Environment>
 
+      <WorldStarfield />
+      <WorldAtmosphere radius={13} />
       <WorldTerrain />
       <BiomeMarkers onSelect={onSelectBiome} viewState={viewState} />
       <WorldOcean />
-    </>
+    </Physics>
   );
 }
 
@@ -62,6 +101,7 @@ export function WorldDiorama() {
   const [viewState, setViewState] = useState<ViewState>("map");
   const [activeBiome, setActiveBiome] = useState<BiomeData | null>(null);
   const [dpr, setDpr] = useState(1.5);
+  const controlsRef = useRef<OrbitControlsImpl | null>(null);
 
   const handleSelectBiome = useCallback((biome: BiomeData) => {
     if (viewState !== "map") return;
@@ -81,16 +121,16 @@ export function WorldDiorama() {
   return (
     <div
       className="relative w-full h-[700px] rounded-2xl overflow-hidden border border-white/[0.06]"
-      style={{ background: "linear-gradient(180deg, #5ec8f0 0%, #bfe3ff 55%, #e8f6ff 100%)" }}
+      style={{ background: "#02040a" }}
     >
       <Canvas
-        camera={{ position: [0, 25, 30], fov: 50, near: 0.1, far: 200 }}
+        camera={{ position: [0, 32, 44], fov: 50, near: 0.1, far: 250 }}
         gl={{ antialias: true, alpha: false, powerPreference: "high-performance" }}
         dpr={dpr}
         shadows
         performance={{ min: 0.5 }}
       >
-        <color attach="background" args={["#7cd0f0"]} />
+        <color attach="background" args={["#02040a"]} />
         <PerformanceMonitor
           onIncline={() => setDpr(2)}
           onDecline={() => setDpr(1)}
@@ -103,9 +143,14 @@ export function WorldDiorama() {
             activeBiome={activeBiome}
             onSelectBiome={handleSelectBiome}
             onTransitionEnd={handleTransitionEnd}
+            controlsRef={controlsRef}
           />
           {dpr > 1 && (
             <EffectComposer multisampling={0}>
+              {/* Real screen-space AO: darkens contact creases between every tree/rock/prop and the
+                  ground automatically, on top of the per-island baked ContactShadows blobs. This is
+                  the single biggest "looks professionally rendered" lever left at this asset tier. */}
+              <N8AO aoRadius={0.9} intensity={2.2} distanceFalloff={1} color="#0a1f14" />
               <Bloom
                 luminanceThreshold={0.7}
                 luminanceSmoothing={0.3}

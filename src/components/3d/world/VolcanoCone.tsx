@@ -62,7 +62,7 @@ function buildVolcanoGeometry(): THREE.BufferGeometry {
 }
 
 export function VolcanoCone() {
-  const geo = useMemo(buildVolcanoGeometry, []);
+  const geo = useMemo(() => buildVolcanoGeometry(), []);
 
   // 3 lava rivers at 120° intervals going down the slope
   const rivers = useMemo(() =>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
 import { Html } from "@react-three/drei";
 import * as THREE from "three";
@@ -30,21 +30,39 @@ function BiomeMarker({
   const clickStart = useRef(-1);
   const pendingClick = useRef(false);
 
-  const markerY = biome.id === "ocean" ? 1 : 3;
+  // Unit vector pointing outward from sphere center through this biome's surface point.
+  // Markers float along this direction (not global Y) so they appear above the correct
+  // face of the planet regardless of which hemisphere the biome is on.
+  const outward = useMemo(
+    () => new THREE.Vector3(biome.position[0], biome.position[1], biome.position[2]).normalize(),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [biome.position[0], biome.position[1], biome.position[2]]
+  );
+
+  // Align marker group's local +Y with the sphere outward normal so the vertical beam
+  // and label both point in the right direction for any hemisphere.
+  const quaternion = useMemo(
+    () => new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), outward),
+    [outward]
+  );
+
+  const baseRadius = biome.id === "ocean" ? 11.8 : 13.5;
+  const beamLength = biome.id === "ocean" ? 1.8 : 3.5;
+  const biomeIndex = BIOMES.indexOf(biome);
 
   useFrame((state) => {
     if (!groupRef.current || viewState !== "map") return;
     const t = state.clock.elapsedTime;
 
-    groupRef.current.position.y =
-      biome.position[1] + markerY + Math.sin(t * 1.5 + BIOMES.indexOf(biome)) * 0.15;
+    const floatRadius = baseRadius + Math.sin(t * 1.5 + biomeIndex) * 0.15;
+    groupRef.current.position.copy(outward).multiplyScalar(floatRadius);
+    groupRef.current.quaternion.copy(quaternion);
 
     if (ringRef.current) {
       ringRef.current.rotation.y = t * 0.8;
       ringRef.current.rotation.z = Math.sin(t * 0.4) * 0.15;
     }
 
-    // Click response: punch-out then settle (0.3s, outBack) — confirms the tap before the camera cuts away
     if (pendingClick.current) {
       pendingClick.current = false;
       clickStart.current = t;
@@ -67,7 +85,7 @@ function BiomeMarker({
   return (
     <group
       ref={groupRef}
-      position={[biome.position[0], biome.position[1] + markerY, biome.position[2]]}
+      position={[biome.position[0], biome.position[1] + 3, biome.position[2]]}
       onClick={(e) => {
         e.stopPropagation();
         pendingClick.current = true;
@@ -84,21 +102,19 @@ function BiomeMarker({
       }}
     >
       <group ref={coreRef}>
-      {/* Core sphere */}
-      <mesh>
-        <sphereGeometry args={[0.2, 10, 10]} />
-        <meshStandardMaterial
-          color={color}
-          emissive={color}
-          emissiveIntensity={hovered ? 2.5 : 1.2}
-          toneMapped={false}
-        />
-      </mesh>
+        <mesh>
+          <sphereGeometry args={[0.35, 12, 12]} />
+          <meshStandardMaterial
+            color={color}
+            emissive={color}
+            emissiveIntensity={hovered ? 2.5 : 1.4}
+            toneMapped={false}
+          />
+        </mesh>
       </group>
 
-      {/* Ring */}
       <mesh ref={ringRef}>
-        <torusGeometry args={[0.5, 0.025, 8, 32]} />
+        <torusGeometry args={[0.7, 0.035, 8, 32]} />
         <meshStandardMaterial
           color={color}
           emissive={color}
@@ -109,9 +125,8 @@ function BiomeMarker({
         />
       </mesh>
 
-      {/* Second ring */}
       <mesh rotation={[Math.PI / 3, 0, 0]}>
-        <torusGeometry args={[0.4, 0.015, 6, 24]} />
+        <torusGeometry args={[0.55, 0.018, 6, 24]} />
         <meshStandardMaterial
           color={color}
           transparent
@@ -122,21 +137,26 @@ function BiomeMarker({
         />
       </mesh>
 
-      {/* Glow */}
       <mesh>
-        <sphereGeometry args={[0.6, 12, 12]} />
+        <sphereGeometry args={[0.85, 12, 12]} />
         <meshBasicMaterial
           color={color}
           transparent
-          opacity={hovered ? 0.15 : 0.06}
+          opacity={hovered ? 0.18 : 0.08}
           depthWrite={false}
           blending={THREE.AdditiveBlending}
         />
       </mesh>
 
-      {/* Vertical beam */}
-      <mesh position={[0, -markerY / 2, 0]}>
-        <cylinderGeometry args={[0.008, 0.008, markerY, 4]} />
+      {/* Invisible hitbox — larger than the visible aura so the marker is easy to click */}
+      <mesh>
+        <sphereGeometry args={[1.2, 8, 8]} />
+        <meshBasicMaterial visible={false} />
+      </mesh>
+
+      {/* Beam pointing inward toward sphere surface (local -Y = toward planet center) */}
+      <mesh position={[0, -beamLength / 2, 0]}>
+        <cylinderGeometry args={[0.008, 0.008, beamLength, 4]} />
         <meshBasicMaterial
           color={color}
           transparent
@@ -146,8 +166,6 @@ function BiomeMarker({
         />
       </mesh>
 
-      {/* Label — solid background, no backdrop-filter: this moves with the marker every
-          frame while hovered, and animated blur is a CLAUDE.md performance constraint */}
       {hovered && (
         <Html position={[0, 1, 0]} center distanceFactor={12} style={{ pointerEvents: "none" }}>
           <div

@@ -103,14 +103,15 @@ function WaterfallStream() {
   const [positions, velocities] = useMemo(() => {
     const pos = new Float32Array(count * 3);
     const vel = new Float32Array(count * 3);
+    const rng = (seed: number) => Math.abs(Math.sin(seed * 127.1 + 311.7) * 43758.5453) % 1;
 
     for (let i = 0; i < count; i++) {
-      pos[i * 3] = -5 + Math.random() * 2.5;
-      pos[i * 3 + 1] = 3 + Math.random() * 4;
-      pos[i * 3 + 2] = -8 + Math.random() * 1;
-      vel[i * 3] = (Math.random() - 0.5) * 0.02;
-      vel[i * 3 + 1] = -0.03 - Math.random() * 0.05;
-      vel[i * 3 + 2] = (Math.random() - 0.5) * 0.02;
+      pos[i * 3] = -5 + rng(i * 6) * 2.5;
+      pos[i * 3 + 1] = 3 + rng(i * 6 + 1) * 4;
+      pos[i * 3 + 2] = -8 + rng(i * 6 + 2) * 1;
+      vel[i * 3] = (rng(i * 6 + 3) - 0.5) * 0.02;
+      vel[i * 3 + 1] = -0.03 - rng(i * 6 + 4) * 0.05;
+      vel[i * 3 + 2] = (rng(i * 6 + 5) - 0.5) * 0.02;
     }
 
     return [pos, vel];
@@ -160,21 +161,25 @@ function WaterfallStream() {
 // Waterfall cliff rocks
 function WaterfallRocks() {
   const rocks = useMemo(() => {
-    const r: { pos: [number, number, number]; scale: [number, number, number]; rot: number }[] = [];
+    const r: { pos: [number, number, number]; scale: [number, number, number]; rot: number; tiltX: number; tiltZ: number }[] = [];
     for (let i = 0; i < 15; i++) {
       const angle = (i / 15) * Math.PI * 0.8 - Math.PI * 0.2;
+      // Seeded pseudo-random per rock index
+      const rng = (offset: number) => Math.abs((Math.sin(i * 127.1 + offset) * 43758.5453) % 1);
       r.push({
         pos: [
-          -5 + Math.cos(angle) * (2 + Math.random()),
-          1.5 + Math.random() * 3,
-          -8 + Math.sin(angle) * (1 + Math.random()),
+          -5 + Math.cos(angle) * (2 + rng(1)),
+          1.5 + rng(2) * 3,
+          -8 + Math.sin(angle) * (1 + rng(3)),
         ],
         scale: [
-          0.5 + Math.random() * 1,
-          0.5 + Math.random() * 1.5,
-          0.5 + Math.random() * 0.8,
+          0.5 + rng(4) * 1,
+          0.5 + rng(5) * 1.5,
+          0.5 + rng(6) * 0.8,
         ],
-        rot: Math.random() * Math.PI,
+        rot: rng(7) * Math.PI,
+        tiltX: rng(8) * 0.3,
+        tiltZ: rng(9) * 0.2,
       });
     }
     return r;
@@ -187,7 +192,7 @@ function WaterfallRocks() {
           key={i}
           position={rock.pos}
           scale={rock.scale}
-          rotation={[Math.random() * 0.3, rock.rot, Math.random() * 0.2]}
+          rotation={[rock.tiltX, rock.rot, rock.tiltZ]}
           castShadow
         >
           <dodecahedronGeometry args={[0.6, 0]} />
@@ -209,10 +214,11 @@ function WaterfallMist() {
 
   const positions = useMemo(() => {
     const pos = new Float32Array(count * 3);
+    const rng = (seed: number) => Math.abs(Math.sin(seed * 127.1 + 311.7) * 43758.5453) % 1;
     for (let i = 0; i < count; i++) {
-      pos[i * 3] = -5 + (Math.random() - 0.5) * 4;
-      pos[i * 3 + 1] = Math.random() * 1.5;
-      pos[i * 3 + 2] = -8 + (Math.random() - 0.5) * 3;
+      pos[i * 3] = -5 + (rng(i * 3) - 0.5) * 4;
+      pos[i * 3 + 1] = rng(i * 3 + 1) * 1.5;
+      pos[i * 3 + 2] = -8 + (rng(i * 3 + 2) - 0.5) * 3;
     }
     return pos;
   }, []);

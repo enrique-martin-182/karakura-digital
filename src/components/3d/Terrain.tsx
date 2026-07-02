@@ -38,7 +38,7 @@ export function Terrain() {
     return geo;
   }, []);
 
-  const colors = useMemo(() => {
+  useMemo(() => {
     const pos = geometry.attributes.position;
     const colorsArr = new Float32Array(pos.count * 3);
     const baseGreen = new THREE.Color(0x1a3a1a);
@@ -70,10 +70,8 @@ export function Terrain() {
       colorsArr[i * 3 + 2] = temp.b;
     }
 
-    return new THREE.BufferAttribute(colorsArr, 3);
+    geometry.setAttribute("color", new THREE.BufferAttribute(colorsArr, 3));
   }, [geometry]);
-
-  geometry.setAttribute("color", colors);
 
   return (
     <mesh

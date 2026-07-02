@@ -6,6 +6,14 @@ import * as THREE from "three";
 
 // Shared geometries — created once, reused across every animal instance (perf rule: share geometry/material)
 const sphereGeo = new THREE.SphereGeometry(1, 12, 10);
+
+// Deterministic seed generator — avoids Math.random() in render (react-compiler purity rule).
+// Uses a golden-ratio LCG so each component instance gets a stable, unique offset.
+let _seedCounter = 0;
+function nextSeed(): number {
+  _seedCounter = (_seedCounter + 1.6180339887) % 10;
+  return _seedCounter;
+}
 const sphereGeoLow = new THREE.SphereGeometry(1, 8, 6);
 const capsuleGeo = new THREE.CapsuleGeometry(1, 1, 4, 8);
 const coneGeo = new THREE.ConeGeometry(1, 1, 8);
@@ -27,7 +35,7 @@ function Eyes({ scale = 0.05, offset = 0.18 }: { scale?: number; offset?: number
 
 export function Scorpion({ position }: { position: [number, number, number] }) {
   const tail = useRef<THREE.Group>(null);
-  const seed = useMemo(() => Math.random() * 10, []);
+  const seed = useMemo(() => nextSeed(), []);
 
   useFrame((state) => {
     const t = state.clock.elapsedTime + seed;
@@ -59,7 +67,7 @@ export function Scorpion({ position }: { position: [number, number, number] }) {
 
 export function Seal({ position }: { position: [number, number, number] }) {
   const ref = useRef<THREE.Group>(null);
-  const seed = useMemo(() => Math.random() * 10, []);
+  const seed = useMemo(() => nextSeed(), []);
 
   useFrame((state) => {
     const t = state.clock.elapsedTime + seed;
@@ -67,7 +75,7 @@ export function Seal({ position }: { position: [number, number, number] }) {
   });
 
   return (
-    <group ref={ref} position={position} rotation={[0, Math.random() * Math.PI, 0]}>
+    <group ref={ref} position={position} rotation={[0, seed * (Math.PI / 10), 0]}>
       <mesh geometry={capsuleGeo} scale={[0.17, 0.4, 0.17]} position={[0, 0.16, 0]} rotation={[Math.PI / 2, 0, 0]} castShadow>
         <meshStandardMaterial color="#8a8a8a" roughness={0.7} />
       </mesh>
@@ -83,17 +91,14 @@ export function Seal({ position }: { position: [number, number, number] }) {
 
 export function FishSchool({ center, count = 8 }: { center: [number, number, number]; count?: number }) {
   const ref = useRef<THREE.Group>(null);
-  const fish = useMemo(
-    () =>
-      Array.from({ length: count }).map((_, i) => ({
-        radius: 0.4 + Math.random() * 0.5,
-        speed: 0.6 + Math.random() * 0.4,
-        phase: (i / count) * Math.PI * 2,
-        height: Math.random() * 0.4,
-        color: i % 2 === 0 ? "#ffb830" : "#ff7a3a",
-      })),
-    [count]
-  );
+  const fish = useMemo(() => Array.from({ length: count }).map((_, i) => ({
+    // Deterministic pseudo-random values derived from index — avoids Math.random() in render.
+    radius: 0.4 + ((i * 0.6180339887) % 1) * 0.5,
+    speed: 0.6 + ((i * 0.7548776662) % 1) * 0.4,
+    phase: (i / count) * Math.PI * 2,
+    height: ((i * 0.5698402910) % 1) * 0.4,
+    color: i % 2 === 0 ? "#ffb830" : "#ff7a3a",
+  })), [count]);
 
   useFrame((state) => {
     if (!ref.current) return;
@@ -125,7 +130,7 @@ export function FishSchool({ center, count = 8 }: { center: [number, number, num
 
 export function Iguana({ position }: { position: [number, number, number] }) {
   const tail = useRef<THREE.Mesh>(null);
-  const seed = useMemo(() => Math.random() * 10, []);
+  const seed = useMemo(() => nextSeed(), []);
 
   useFrame((state) => {
     const t = state.clock.elapsedTime + seed;
@@ -162,7 +167,7 @@ export function Iguana({ position }: { position: [number, number, number] }) {
 export function Crab({ position }: { position: [number, number, number] }) {
   const ref = useRef<THREE.Group>(null);
   const claws = useRef<THREE.Group>(null);
-  const seed = useMemo(() => Math.random() * 10, []);
+  const seed = useMemo(() => nextSeed(), []);
 
   useFrame((state) => {
     const t = state.clock.elapsedTime + seed;

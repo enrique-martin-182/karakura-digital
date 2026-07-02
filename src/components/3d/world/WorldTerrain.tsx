@@ -96,7 +96,8 @@ function BiomeRegion({ color, id }: { color: string; id: string }) {
     for (let i = 0; i < pos.count; i++) {
       const x = pos.getX(i);
       const z = pos.getY(i);
-      const height = heightFn(x, z) + (id === "arctic" ? Math.random() * 0.15 : 0);
+      const arcticNoise = (Math.sin(i * 127.1 + x * 311.7 + z * 74.7) * 43758.5453) % 1;
+      const height = heightFn(x, z) + (id === "arctic" ? Math.abs(arcticNoise) * 0.15 : 0);
 
       pos.setZ(i, height);
 
