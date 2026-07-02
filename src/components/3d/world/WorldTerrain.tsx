@@ -9,6 +9,7 @@ import { LavaMaterial } from "./LavaMaterial";
 import { RiggedAnimal, StaticAnimal } from "./GLTFAnimal";
 import { NatureTree, NatureProp, GrassField, useGrassField } from "./NatureProp";
 import { IslandBase } from "./IslandBase";
+import { BirdFlock } from "./BiomeAmbience";
 
 import {
   PhysicsNatureProp,
@@ -493,6 +494,13 @@ export function WorldTerrain() {
                 </mesh>
               </>
             )}
+            {/* Ambient bird flock — per-biome color and orbit */}
+            {biome.id === "jungle"   && <BirdFlock count={7} orbitRadius={2.5} orbitHeight={2.5} speed={0.65} color="#e05530" />}
+            {biome.id === "forest"   && <BirdFlock count={6} orbitRadius={2.2} orbitHeight={2.2} speed={0.55} color="#5a3a1a" />}
+            {biome.id === "desert"   && <BirdFlock count={5} orbitRadius={2.8} orbitHeight={3.0} speed={0.5}  color="#c8a84b" />}
+            {biome.id === "arctic"   && <BirdFlock count={6} orbitRadius={2.5} orbitHeight={2.5} speed={0.7}  color="#ddeeff" />}
+            {biome.id === "volcanic" && <BirdFlock count={4} orbitRadius={2.0} orbitHeight={4.2} speed={0.45} color="#222222" />}
+            {biome.id === "ocean"    && <BirdFlock count={8} orbitRadius={3.0} orbitHeight={2.0} speed={0.8}  color="#ffffff" />}
             {Decor && <Decor />}
           </group>
         );
