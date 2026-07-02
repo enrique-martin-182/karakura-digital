@@ -13,20 +13,6 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { ScrollReveal } from "@/components/effects/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/effects/Stagger";
 
-const ForestScene = dynamic(
-  () => import("@/components/3d/ForestScene").then((m) => ({ default: m.ForestScene })),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="w-full h-[700px] rounded-2xl bg-surface-container-lowest/50 border border-white/[0.06] flex items-center justify-center">
-        <div className="flex flex-col items-center gap-3 text-white/40">
-          <div className="w-8 h-8 border-2 border-secondary/40 border-t-secondary rounded-full animate-spin" />
-          <span className="text-sm">Cargando escena 3D...</span>
-        </div>
-      </div>
-    ),
-  }
-);
 
 const WorldDiorama = dynamic(
   () => import("@/components/3d/world/WorldDiorama").then((m) => ({ default: m.WorldDiorama })),
@@ -415,15 +401,8 @@ export function Portfolio() {
           </ScrollReveal>
 
           <ScrollReveal>
-            <ForestScene />
+            <WorldDiorama />
           </ScrollReveal>
-
-          <div className="mt-12">
-            <ScrollReveal>
-              <h4 className="text-lg font-semibold text-white/80 mb-4">Mapa Mundial Interactivo</h4>
-              <WorldDiorama />
-            </ScrollReveal>
-          </div>
         </div>
 
         {/* Bottom CTA */}
