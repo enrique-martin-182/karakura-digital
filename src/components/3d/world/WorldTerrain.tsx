@@ -31,6 +31,10 @@ export const HEIGHT_FN: Record<string, (x: number, z: number) => number> = {
   ocean: (x, z) => Math.sin(x * 0.6 + z * 0.5) * 0.1,
   forest: (x, z) => Math.sin(x * 0.5) * Math.cos(z * 0.7) * 0.45 + Math.sin(x * 1.2) * 0.14,
   volcanic: (x, z) => Math.max(0, 1.5 - Math.sqrt(x * x + z * z) * 0.6) + Math.sin(x * 0.8) * 0.14,
+  savanna: (x, z) => 0.05 + Math.sin(x * 2.1) * 0.06 + Math.sin(z * 1.8) * 0.05,
+  swamp:   (x, z) => 0.12 + Math.sin(x * 3.1 + 0.5) * 0.08 + Math.cos(z * 2.7) * 0.06,
+  taiga:   (x, z) => 0.10 + Math.abs(Math.sin(x * 2.3)) * 0.12 + Math.abs(Math.cos(z * 2.1)) * 0.10,
+  reef:    (x, z) => 0.04 + Math.sin(x * 3.0) * 0.05 + Math.cos(z * 2.5) * 0.04,
 };
 
 // LOCAL_ORIGIN used as the scatter center in all decor functions. scatter() offsets from this
@@ -465,6 +469,11 @@ function VolcanicDecor() {
   );
 }
 
+function SavannaDecor() { return <group />; }
+function SwampDecor()   { return <group />; }
+function TaigaDecor()   { return <group />; }
+function ReefDecor()    { return <group />; }
+
 const DECOR_BY_BIOME: Record<string, () => ReactNode> = {
   jungle: JungleDecor,
   desert: DesertDecor,
@@ -472,6 +481,10 @@ const DECOR_BY_BIOME: Record<string, () => ReactNode> = {
   ocean: OceanDecor,
   forest: ForestDecor,
   volcanic: VolcanicDecor,
+  savanna:  SavannaDecor,
+  swamp:    SwampDecor,
+  taiga:    TaigaDecor,
+  reef:     ReefDecor,
 };
 
 // Per-biome quaternions: align local +Y (the terrain normal in flat tile space) with the
@@ -524,6 +537,10 @@ export function WorldTerrain() {
             {biome.id === "arctic"   && <BirdFlock count={6} orbitRadius={2.5} orbitHeight={2.5} speed={0.7}  color="#ddeeff" />}
             {biome.id === "volcanic" && <BirdFlock count={4} orbitRadius={2.0} orbitHeight={4.2} speed={0.45} color="#222222" />}
             {biome.id === "ocean"    && <BirdFlock count={8} orbitRadius={3.0} orbitHeight={2.0} speed={0.8}  color="#ffffff" />}
+            {biome.id === "savanna" && <BirdFlock count={6} orbitRadius={2.5} orbitHeight={3.0} speed={0.5}  color="#c8a020" />}
+            {biome.id === "swamp"   && <BirdFlock count={4} orbitRadius={2.0} orbitHeight={1.8} speed={0.45} color="#1a3a1a" />}
+            {biome.id === "taiga"   && <BirdFlock count={5} orbitRadius={2.0} orbitHeight={2.5} speed={0.6}  color="#ccddee" />}
+            {biome.id === "reef"    && <BirdFlock count={7} orbitRadius={3.0} orbitHeight={1.8} speed={0.8}  color="#ffffff" />}
             {Decor && <Decor />}
           </group>
         );
