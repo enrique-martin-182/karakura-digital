@@ -99,6 +99,15 @@ html {
   scroll-behavior: smooth;
 }
 
+/* ── Volt Mode (Easter egg /pikachu) ─────────────────────────────────────── */
+/* Overrides primary accent tokens to electric yellow while active.          */
+html.volt-mode {
+  --color-primary-container: #fde047;
+  --color-primary:           #fbbf24;
+  --color-primary-fixed:     #fef08a;
+  --color-on-primary:        #1a1200;
+}
+
 body {
   background: var(--color-background);
   color: var(--color-on-surface);

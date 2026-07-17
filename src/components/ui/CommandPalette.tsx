@@ -4,6 +4,7 @@ import { useEffect, useState, useRef, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Search, Code2, Zap, MessageSquare, ArrowRight, Layers } from "lucide-react";
 import Link from "next/link";
+import { useSecretStore, SECRET_COMMANDS } from "@/store/useSecretStore";
 
 const MotionLink = motion(Link);
 
@@ -31,9 +32,25 @@ export function CommandPalette() {
   const [activeIdx, setActiveIdx] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const { activateZelda, toggleVolt, toggleBlast } = useSecretStore();
+
+  // Map command id → action
+  const secretActions: Record<string, () => void> = {
+    zelda:   activateZelda,
+    pikachu: toggleVolt,
+    sonic:   toggleBlast,
+  };
+
   const filtered = actions.filter((a) =>
     a.label.toLowerCase().includes(query.toLowerCase())
   );
+
+  // Secret commands visible only when query starts with "/"
+  const filteredSecrets = query.startsWith("/")
+    ? SECRET_COMMANDS.filter((s) =>
+        s.command.startsWith(query.toLowerCase())
+      )
+    : [];
 
   const close = useCallback(() => {
     setOpen(false);
@@ -52,9 +69,18 @@ export function CommandPalette() {
       if (e.key === "Escape") { close(); return; }
       if (e.key === "ArrowDown") { e.preventDefault(); setActiveIdx((i) => Math.min(i + 1, filtered.length - 1)); }
       if (e.key === "ArrowUp") { e.preventDefault(); setActiveIdx((i) => Math.max(i - 1, 0)); }
-      if (e.key === "Enter" && filtered[activeIdx]) {
-        window.location.href = filtered[activeIdx].href;
-        close();
+      if (e.key === "Enter") {
+        // Secret command takes priority when visible
+        if (filteredSecrets.length > 0 && filtered.length === 0) {
+          const secret = filteredSecrets[0];
+          secretActions[secret.id]?.();
+          close();
+          return;
+        }
+        if (filtered[activeIdx]) {
+          window.location.href = filtered[activeIdx].href;
+          close();
+        }
       }
     };
     window.addEventListener("keydown", handler);
@@ -123,42 +149,71 @@ export function CommandPalette() {
                 animate="show"
                 key={query}
               >
-                {filtered.length === 0 ? (
+                {/* Secret slash-commands */}
+                {filteredSecrets.length > 0 && (
+                  <div className="mb-1">
+                    <p className="px-3 py-1 text-[10px] font-mono tracking-widest text-on-surface-variant/30 uppercase">
+                      Easter eggs
+                    </p>
+                    {filteredSecrets.map((secret) => (
+                      <motion.button
+                        key={secret.id}
+                        variants={itemVariants}
+                        onClick={() => { secretActions[secret.id]?.(); close(); }}
+                        className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-white/6 transition-colors text-left group"
+                      >
+                        <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-yellow-400/10 text-base shrink-0">
+                          {secret.emoji}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <span className="block text-sm text-white">{secret.label}</span>
+                          <span className="block text-[10px] text-on-surface-variant/40 truncate">{secret.hint}</span>
+                        </div>
+                        <kbd className="px-1.5 py-0.5 rounded border border-outline-variant/20 font-mono text-[10px] text-on-surface-variant/30">
+                          {secret.command}
+                        </kbd>
+                      </motion.button>
+                    ))}
+                    {filtered.length > 0 && <div className="h-px bg-outline-variant/10 mx-3 my-1" />}
+                  </div>
+                )}
+
+                {filtered.length === 0 && filteredSecrets.length === 0 && (
                   <p className="text-center text-xs text-on-surface-variant/35 py-6">
                     Sin resultados para &ldquo;{query}&rdquo;
                   </p>
-                ) : (
-                  filtered.map((action, i) => (
-                    <MotionLink
-                      key={action.id}
-                      href={action.href}
-                      onClick={close}
-                      variants={itemVariants}
-                      onMouseEnter={() => setActiveIdx(i)}
-                      className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors cursor-pointer group ${
-                        activeIdx === i ? "bg-white/6" : "hover:bg-white/4"
-                      }`}
-                    >
-                      <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${
-                        activeIdx === i
-                          ? "bg-primary-container/20 text-primary-container"
-                          : "bg-surface-variant/40 text-on-surface-variant"
-                      }`}>
-                        <action.icon className="w-4 h-4" />
-                      </div>
-                      <span className={`flex-1 text-sm transition-colors ${
-                        activeIdx === i ? "text-white" : "text-on-surface-variant"
-                      }`}>
-                        {action.label}
-                      </span>
-                      <kbd className={`px-1.5 py-0.5 rounded border border-outline-variant/20 font-mono text-[10px] transition-opacity ${
-                        activeIdx === i ? "opacity-60" : "opacity-0"
-                      }`}>
-                        {action.shortcut}
-                      </kbd>
-                    </MotionLink>
-                  ))
                 )}
+
+                {filtered.length > 0 && filtered.map((action, i) => (
+                  <MotionLink
+                    key={action.id}
+                    href={action.href}
+                    onClick={close}
+                    variants={itemVariants}
+                    onMouseEnter={() => setActiveIdx(i)}
+                    className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors cursor-pointer group ${
+                      activeIdx === i ? "bg-white/6" : "hover:bg-white/4"
+                    }`}
+                  >
+                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${
+                      activeIdx === i
+                        ? "bg-primary-container/20 text-primary-container"
+                        : "bg-surface-variant/40 text-on-surface-variant"
+                    }`}>
+                      <action.icon className="w-4 h-4" />
+                    </div>
+                    <span className={`flex-1 text-sm transition-colors ${
+                      activeIdx === i ? "text-white" : "text-on-surface-variant"
+                    }`}>
+                      {action.label}
+                    </span>
+                    <kbd className={`px-1.5 py-0.5 rounded border border-outline-variant/20 font-mono text-[10px] transition-opacity ${
+                      activeIdx === i ? "opacity-60" : "opacity-0"
+                    }`}>
+                      {action.shortcut}
+                    </kbd>
+                  </MotionLink>
+                ))}
               </motion.div>
 
               {/* Footer */}

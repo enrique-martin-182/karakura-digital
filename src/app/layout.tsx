@@ -4,6 +4,9 @@ import { ScrollProgress } from "@/components/effects/ScrollProgress";
 import { CommandPalette } from "@/components/ui/CommandPalette";
 import { SmoothScrollProvider } from "@/components/effects/SmoothScrollProvider";
 import { CustomCursor } from "@/components/ui/CustomCursor";
+import { ZeldaCat } from "@/components/effects/ZeldaCat";
+import { ClickSparks } from "@/components/effects/ClickSparks";
+import { BlastOverlay } from "@/components/effects/BlastOverlay";
 import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -223,6 +226,10 @@ export default function RootLayout({
         <ScrollProgress />
         <CommandPalette />
         <CustomCursor />
+        {/* Easter egg overlays — zero cost when inactive */}
+        <ZeldaCat />
+        <ClickSparks />
+        <BlastOverlay />
         <SmoothScrollProvider>
           {children}
         </SmoothScrollProvider>
