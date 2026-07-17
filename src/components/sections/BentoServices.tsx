@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, type MotionProps } from "framer-motion";
 import { Globe, Code2, Zap, Bot, BarChart3, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { MagneticCard } from "@/components/ui/MagneticCard";
@@ -45,11 +45,11 @@ const stats = [
   { val: "<4w",  label: "ROI visible" },
 ];
 
-const fadeUp = (delay = 0) => ({
+const fadeUp = (delay = 0): MotionProps => ({
   initial: { opacity: 0, y: 22 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, margin: "-60px" },
-  transition: { duration: 0.45, ease: "easeOut", delay },
+  transition: { duration: 0.45, ease: "easeOut" as const, delay },
 });
 
 export function BentoServices() {
