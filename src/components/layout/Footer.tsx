@@ -20,15 +20,32 @@ export function Footer() {
             <span className="text-label-sm text-on-surface-variant/60 uppercase tracking-widest">
               Navegación
             </span>
-            <a href="#iniciativa" className="text-body-md text-on-surface-variant hover:text-white transition-colors">
+            <Link href="/#iniciativa" className="text-body-md text-on-surface-variant hover:text-white transition-colors">
               Iniciativa
-            </a>
-            <a href="#services" className="text-body-md text-on-surface-variant hover:text-white transition-colors">
+            </Link>
+            <Link href="/#services" className="text-body-md text-on-surface-variant hover:text-white transition-colors">
               Servicios
-            </a>
-            <a href="#portfolio" className="text-body-md text-on-surface-variant hover:text-white transition-colors">
+            </Link>
+            <Link href="/#portfolio" className="text-body-md text-on-surface-variant hover:text-white transition-colors">
               Portfolio
-            </a>
+            </Link>
+            <Link href="/sobre" className="text-body-md text-on-surface-variant hover:text-white transition-colors">
+              Sobre nosotros
+            </Link>
+          </nav>
+          <nav aria-label="Servicios" className="flex flex-col space-y-4">
+            <span className="text-label-sm text-on-surface-variant/60 uppercase tracking-widest">
+              Servicios
+            </span>
+            <Link href="/servicios/desarrollo-web" className="text-body-md text-on-surface-variant hover:text-white transition-colors">
+              Desarrollo Web
+            </Link>
+            <Link href="/servicios/software-a-medida" className="text-body-md text-on-surface-variant hover:text-white transition-colors">
+              Software a Medida
+            </Link>
+            <Link href="/servicios/automatizacion-ia" className="text-body-md text-on-surface-variant hover:text-white transition-colors">
+              Automatización & IA
+            </Link>
           </nav>
           <div className="flex flex-col space-y-4">
             <span className="text-label-sm text-on-surface-variant/60 uppercase tracking-widest">

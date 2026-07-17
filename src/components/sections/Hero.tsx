@@ -3,6 +3,7 @@
 import { motion, Variants, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { GradientBlob } from "@/components/effects/GradientBlob";
+import { AnimatedGrid } from "@/components/effects/AnimatedGrid";
 
 export function Hero() {
   const { scrollY } = useScroll();
@@ -38,6 +39,7 @@ export function Hero() {
         loop
         muted
         playsInline
+        preload="none"
         poster="/assets/hero-poster.jpg"
         className="absolute inset-0 w-full h-full object-cover"
         aria-hidden="true"
@@ -54,6 +56,8 @@ export function Hero() {
 
       {/* Overlay to ensure text readability */}
       <div className="absolute inset-0 bg-background/50" />
+
+      <AnimatedGrid />
 
       <GradientBlob
         color="orange"

@@ -26,6 +26,16 @@ export function ContactCTA() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,122,0,0.1),#001711_50%,#001711)]" />
       <div className="max-w-4xl mx-auto px-4 md:px-gutter relative z-10 text-center">
         <ScrollReveal>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/10 border border-secondary/20 text-secondary text-sm font-semibold mb-6">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
+            </span>
+            Disponible · Córdoba, España · L-V 9:00–18:00 (UTC+2)
+          </div>
+        </ScrollReveal>
+
+        <ScrollReveal>
           <h2 className="text-headline-mobile md:text-headline-xl text-gradient mb-6 drop-shadow-lg">
             ¿Hablamos sobre tu proyecto?
           </h2>

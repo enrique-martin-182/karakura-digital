@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 
@@ -11,6 +12,9 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+  const prefix = isHome ? "" : "/";
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -19,11 +23,11 @@ export function Navbar() {
   }, []);
 
   const links = [
-    { href: "#iniciativa", label: "Iniciativa" },
-    { href: "#services", label: "Servicios" },
-    { href: "#process", label: "Proceso" },
-    { href: "#results", label: "Resultados" },
-    { href: "#portfolio", label: "Portfolio" },
+    { href: `${prefix}#iniciativa`, label: "Iniciativa" },
+    { href: `${prefix}#services`, label: "Servicios" },
+    { href: `${prefix}#process`, label: "Proceso" },
+    { href: `${prefix}#results`, label: "Resultados" },
+    { href: `${prefix}#portfolio`, label: "Portfolio" },
   ];
 
   return (
