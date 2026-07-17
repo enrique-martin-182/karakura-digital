@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { ScrollProgress } from "@/components/effects/ScrollProgress";
 import { CommandPalette } from "@/components/ui/CommandPalette";
+import { SmoothScrollProvider } from "@/components/effects/SmoothScrollProvider";
+import { CustomCursor } from "@/components/ui/CustomCursor";
 import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -220,7 +222,10 @@ export default function RootLayout({
         </a>
         <ScrollProgress />
         <CommandPalette />
-        {children}
+        <CustomCursor />
+        <SmoothScrollProvider>
+          {children}
+        </SmoothScrollProvider>
       </body>
     </html>
   );

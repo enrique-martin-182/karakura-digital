@@ -32,7 +32,7 @@ export function Hero() {
   };
 
   return (
-    <section className="relative min-h-[95vh] flex items-center overflow-hidden" aria-label="Inicio">
+    <section className="relative min-h-[95vh] flex items-center overflow-hidden" aria-label="Inicio" data-xray-target>
       {/* Remotion-generated circuit animation background */}
       <video
         autoPlay

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -8,6 +8,69 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
+
+function openCommandPalette() {
+  window.dispatchEvent(
+    new KeyboardEvent("keydown", { key: "k", metaKey: true, bubbles: true })
+  );
+}
+
+function CommandPaletteAffordance() {
+  const [isMac, setIsMac] = useState(false);
+  const [pulse, setPulse] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  useEffect(() => {
+    setIsMac(/Mac|iPhone|iPad|iPod/.test(navigator.platform));
+  }, []);
+
+  // Every 10 s: trigger a subtle badge lift to attract attention
+  useEffect(() => {
+    timerRef.current = setInterval(() => {
+      setPulse(true);
+      setTimeout(() => setPulse(false), 600);
+    }, 10_000);
+    return () => { if (timerRef.current) clearInterval(timerRef.current); };
+  }, []);
+
+  return (
+    <button
+      onClick={openCommandPalette}
+      aria-label="Abrir paleta de comandos"
+      className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-lg
+                 border border-outline-variant/20 bg-surface-variant/10
+                 hover:bg-surface-variant/20 hover:border-outline-variant/40
+                 transition-all duration-200 text-on-surface-variant hover:text-on-surface
+                 group"
+    >
+      <svg
+        aria-hidden="true"
+        className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 transition-opacity"
+        fill="none" stroke="currentColor" strokeWidth={2}
+        viewBox="0 0 24 24"
+      >
+        <circle cx={11} cy={11} r={8} />
+        <path d="m21 21-4.35-4.35" />
+      </svg>
+      <span className="text-xs font-medium tracking-wide">Búsqueda</span>
+      <motion.kbd
+        aria-hidden="true"
+        animate={pulse
+          ? { y: -3, boxShadow: "0 4px 0 0 rgba(0,0,0,0.5)", opacity: 1 }
+          : { y: 0,  boxShadow: "0 2px 0 0 rgba(0,0,0,0.4)", opacity: 0.75 }
+        }
+        transition={{ type: "spring", stiffness: 500, damping: 22, mass: 0.4 }}
+        className="flex items-center gap-0.5 px-1.5 py-0.5 rounded-md text-[10px]
+                   font-mono font-medium leading-none
+                   bg-surface-variant/30 border border-outline-variant/25
+                   text-on-surface-variant/70 select-none"
+        style={{ boxShadow: "0 2px 0 0 rgba(0,0,0,0.4)" }}
+      >
+        {isMac ? "⌘" : "Ctrl"} K
+      </motion.kbd>
+    </button>
+  );
+}
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -55,9 +118,12 @@ export function Navbar() {
           ))}
         </div>
 
-        <Button href="#contact" className="hidden md:inline-flex px-6 py-2.5 text-sm">
-          Contáctanos
-        </Button>
+        <div className="hidden md:flex items-center gap-3">
+          <CommandPaletteAffordance />
+          <Button href="#contact" className="px-6 py-2.5 text-sm">
+            Contáctanos
+          </Button>
+        </div>
 
         <button
           onClick={() => setMobileOpen(!mobileOpen)}

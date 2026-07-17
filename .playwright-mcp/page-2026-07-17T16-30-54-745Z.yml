@@ -1,0 +1,80 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e3]:
+      - button "Abrir menú" [ref=e5]
+      - link "AURUM STUDIO" [ref=e7] [cursor=pointer]:
+        - /url: "#"
+      - generic [ref=e8]:
+        - button "Bolsa de compras" [ref=e9]
+        - button "Cuenta" [ref=e13]
+    - generic [ref=e18]:
+      - link "Colecciones" [ref=e19] [cursor=pointer]:
+        - /url: "#"
+      - link "Personalizador 3D" [ref=e20] [cursor=pointer]:
+        - /url: "#"
+      - link "El Estudio" [ref=e21] [cursor=pointer]:
+        - /url: "#"
+      - link "Contacto" [ref=e22] [cursor=pointer]:
+        - /url: "#"
+  - main [ref=e23]:
+    - generic [ref=e24]:
+      - generic [ref=e25]:
+        - generic:
+          - generic: ↻
+          - generic: Arrastrar para rotar
+      - generic [ref=e29]:
+        - generic [ref=e30]:
+          - generic [ref=e31]:
+            - heading "Anillo Solitario Personalizado" [level=1] [ref=e32]
+            - paragraph [ref=e33]: Diseña la pieza perfecta. Comienza seleccionando los materiales base.
+          - generic [ref=e34]:
+            - group "Selecciona el metal base" [ref=e35]:
+              - generic [ref=e36]: 1. Metal Base
+              - generic [ref=e37]:
+                - button "Oro Amarillo 18k" [pressed] [ref=e38]
+                - button "Oro Blanco 18k" [ref=e40]
+                - button "Oro Rosa 18k" [ref=e42]
+                - button "Platino" [ref=e44]
+              - paragraph [ref=e46]: Oro Amarillo 18k
+            - generic [ref=e47]:
+              - generic [ref=e48]: 2. Corte del Diamante
+              - combobox "2. Corte del Diamante" [ref=e49] [cursor=pointer]:
+                - option "Brillante (Redondo)" [selected]
+                - option "Princesa"
+                - option "Esmeralda"
+                - option "Ovalado"
+            - generic [ref=e50]:
+              - generic [ref=e51]:
+                - generic [ref=e52]: 3. Quilates (Carat)
+                - generic [ref=e53]: 1.50 ct
+              - slider "3. Quilates (Carat)" [ref=e55]: "1.5"
+              - generic [ref=e56]:
+                - generic [ref=e57]: "0.5"
+                - generic [ref=e58]: 3.0+
+        - generic [ref=e59]:
+          - generic [ref=e60]:
+            - generic [ref=e61]: Precio Estimado
+            - generic [ref=e62]: 3300 €
+          - button "Añadir a la bolsa" [ref=e63]
+          - paragraph [ref=e64]: Impuestos incluidos. Envío gratuito.
+    - generic [ref=e67]:
+      - generic [ref=e68]:
+        - heading "Materiales Éticos" [level=3] [ref=e73]
+        - paragraph [ref=e74]: Trabajamos exclusivamente con oro reciclado y diamantes libres de conflicto, certificados bajo los más altos estándares.
+      - generic [ref=e75]:
+        - heading "Diseño a Medida" [level=3] [ref=e80]
+        - paragraph [ref=e81]: Cada pieza es forjada artesanalmente en nuestro estudio, garantizando que tu joya sea tan única como tu historia.
+      - generic [ref=e82]:
+        - heading "Envíos Asegurados" [level=3] [ref=e89]
+        - paragraph [ref=e90]: Entregas discretas y completamente aseguradas a nivel mundial, presentadas en nuestro empaque de lujo característico.
+  - contentinfo [ref=e91]:
+    - generic [ref=e92]:
+      - generic [ref=e93]: AURUM STUDIO
+      - generic [ref=e94]:
+        - link "Política de Privacidad" [ref=e95] [cursor=pointer]:
+          - /url: "#"
+        - link "Términos de Servicio" [ref=e96] [cursor=pointer]:
+          - /url: "#"
+        - link "Envíos y Devoluciones" [ref=e97] [cursor=pointer]:
+          - /url: "#"
+      - generic [ref=e98]: © 2026 AURUM STUDIO. TODOS LOS DERECHOS RESERVADOS.
