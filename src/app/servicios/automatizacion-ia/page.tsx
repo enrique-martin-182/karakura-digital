@@ -150,7 +150,6 @@ export default function AutomatizacionIAPage() {
             <SectionHeader
               overline="Qué automatizamos"
               headline="Del proceso manual al flujo inteligente"
-              id="incluye-heading"
             />
           </ScrollReveal>
 
