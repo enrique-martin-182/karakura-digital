@@ -150,7 +150,6 @@ export default function DesarrolloWebPage() {
             <SectionHeader
               overline="Qué incluye"
               headline="Todo lo que necesita una web profesional"
-              id="incluye-heading"
             />
           </ScrollReveal>
 

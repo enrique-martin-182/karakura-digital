@@ -150,7 +150,6 @@ export default function SoftwareAMedidaPage() {
             <SectionHeader
               overline="Qué construimos"
               headline="Software que resuelve tu problema concreto"
-              id="incluye-heading"
             />
           </ScrollReveal>
 
