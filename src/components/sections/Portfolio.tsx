@@ -132,6 +132,16 @@ const webProjects: Project[] = [
     accentColor: "rgba(34, 197, 94, 0.8)",
     glowColor: "rgba(34, 197, 94, 0.2)",
   },
+  {
+    title: "Aurum Studio",
+    description:
+      "Joyería de lujo con personalizador 3D interactivo en tiempo real. Selección de metal, corte y quilates del diamante con precio dinámico. Materiales éticos y envíos asegurados.",
+    url: "https://joyeria-3-d.vercel.app/",
+    image: "/assets/portfolio-joyeria.png",
+    tags: ["Lujo", "3D Interactivo", "E-commerce"],
+    accentColor: "rgba(202, 160, 80, 0.8)",
+    glowColor: "rgba(202, 160, 80, 0.2)",
+  },
 ];
 
 const appProjects: Project[] = [
