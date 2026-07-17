@@ -162,8 +162,8 @@ export function TerminalDemo() {
         {running && (
           <motion.span
             className="inline-block w-[7px] h-[13px] bg-secondary/70 align-middle"
-            animate={{ opacity: [1, 0] }}
-            transition={{ duration: 0.55, repeat: Infinity, ease: "steps(1)" }}
+            animate={{ opacity: [1, 1, 0, 0] }}
+            transition={{ duration: 0.55, repeat: Infinity, ease: "linear", times: [0, 0.49, 0.5, 1] }}
           />
         )}
       </div>
