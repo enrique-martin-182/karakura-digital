@@ -224,7 +224,7 @@ export default function RootLayout({
         </a>
         <ScrollProgress />
         <CommandPalette />
-        <CustomCursor />
+        {/* <CustomCursor /> */}
         {/* Easter egg overlays — zero cost when inactive */}
         <ZeldaCat />
         <ClickSparks />
