@@ -10,14 +10,6 @@ import { MapPin, Users, Zap, Globe, Sparkles } from "lucide-react";
 
 const impactStats = [
   {
-    icon: <Users className="w-6 h-6" />,
-    label: "Comercios Apoyados",
-    value: "+50",
-    color: "text-primary-container",
-    bgColor: "bg-primary-container/10",
-    borderColor: "border-primary-container/20",
-  },
-  {
     icon: <Zap className="w-6 h-6" />,
     label: "Eficiencia Operativa",
     value: "+40%",
