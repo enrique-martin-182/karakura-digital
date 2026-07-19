@@ -3,7 +3,6 @@ import { Plus_Jakarta_Sans } from "next/font/google";
 import { ScrollProgress } from "@/components/effects/ScrollProgress";
 import { CommandPalette } from "@/components/ui/CommandPalette";
 import { SmoothScrollProvider } from "@/components/effects/SmoothScrollProvider";
-import { CustomCursor } from "@/components/ui/CustomCursor";
 import { ZeldaCat } from "@/components/effects/ZeldaCat";
 import { ClickSparks } from "@/components/effects/ClickSparks";
 import { BlastOverlay } from "@/components/effects/BlastOverlay";
@@ -202,8 +201,8 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://prod.spline.design" crossOrigin="anonymous" />
-        {/* Preload hero poster as the LCP image — create /public/assets/hero-poster.jpg (1920×1080) */}
-        <link rel="preload" as="image" href="/assets/hero-poster.jpg" fetchPriority="high" />
+        {/* Preload above-fold logo — LCP candidate */}
+        <link rel="preload" as="image" href="/KD%20LOGO%203.png" fetchPriority="high" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/assets/logo.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/assets/logo-kd.png" />

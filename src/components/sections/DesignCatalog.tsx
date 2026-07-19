@@ -1647,8 +1647,7 @@ export default function DesignCatalog() {
 
         {/* ── Grid selector — all 25 styles visible at once ── */}
         <div
-          className="grid gap-1.5 mb-8"
-          style={{ gridTemplateColumns: "repeat(5, 1fr)" }}
+          className="grid grid-cols-4 md:grid-cols-5 gap-1.5 mb-8"
         >
           {STYLES.map((s) => {
             const isActive = s.id === activeId;

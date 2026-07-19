@@ -248,6 +248,7 @@ function ProjectCard({ project }: { project: Project }) {
           width={640}
           height={360}
           loading="lazy"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
         />
         {/* Overlay gradient */}

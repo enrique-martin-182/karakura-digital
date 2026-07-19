@@ -81,7 +81,7 @@ export function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -103,7 +103,7 @@ export function Navbar() {
     >
       <div className="flex justify-between items-center px-4 md:px-gutter max-w-[1280px] mx-auto h-20">
         <Link href="/" className="flex items-center gap-3">
-          <Image src="/KD LOGO 3.png" alt="Karakura Digital logo" width={40} height={40} className="rounded-full" />
+          <Image src="/KD LOGO 3.png" alt="Karakura Digital logo" width={40} height={40} className="rounded-full" priority />
           <Image src="/assets/logo-kd.png" alt="Karakura Digital" width={180} height={40} className="hidden sm:block object-contain" />
         </Link>
 
