@@ -22,6 +22,7 @@ const Results = dynamic(() => import("@/components/sections/Results").then(m => 
 const Portfolio = dynamic(() => import("@/components/sections/Portfolio").then(m => ({ default: m.Portfolio })), { loading: () => <SectionSkeleton minHeight="600px" /> });
 const FAQ = dynamic(() => import("@/components/sections/FAQ").then(m => ({ default: m.FAQ })), { loading: () => <SectionSkeleton /> });
 const ContactCTA = dynamic(() => import("@/components/sections/ContactCTA").then(m => ({ default: m.ContactCTA })), { loading: () => <SectionSkeleton /> });
+const DesignCatalog = dynamic(() => import("@/components/sections/DesignCatalog"), { loading: () => <SectionSkeleton minHeight="600px" /> });
 
 export default function Home() {
   return (
@@ -61,6 +62,7 @@ export default function Home() {
         <Process />
         <Results />
         <Portfolio />
+        <DesignCatalog />
         <FAQ />
         <ContactCTA />
       </main>
