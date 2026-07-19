@@ -1017,6 +1017,318 @@ function FrutigerAeroDemo() {
   );
 }
 
+function Glassmorphism2Demo() {
+  const bars = [30, 45, 38, 60, 52, 70, 65, 80, 72, 90, 85, 100];
+  return (
+    <div
+      className="h-full flex items-center justify-center p-4 relative overflow-hidden"
+      style={{ background: "linear-gradient(145deg,#0f0c29,#302b63,#24243e)" }}
+    >
+      {/* Noise */}
+      <div className="absolute inset-0" style={{ opacity: 0.04, backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")", backgroundSize: "160px" }} />
+      {/* Orbs */}
+      <div className="absolute rounded-full pointer-events-none" style={{ width: 180, height: 180, top: -50, right: 20, background: "radial-gradient(circle,rgba(139,92,246,.18),transparent 70%)" }} />
+      <div className="absolute rounded-full pointer-events-none" style={{ width: 140, height: 140, bottom: -30, left: 30, background: "radial-gradient(circle,rgba(59,130,246,.14),transparent 70%)" }} />
+      {/* Layout */}
+      <div className="relative z-10 flex gap-2" style={{ width: 280 }}>
+        {/* Sidebar */}
+        <div className="flex flex-col items-center gap-2 py-2.5 px-0 rounded-[18px]" style={{ width: 52, background: "rgba(255,255,255,.05)", border: ".5px solid rgba(255,255,255,.1)", backdropFilter: "blur(20px)" }}>
+          {[["📊", true], ["🗂️", false], ["🔔", false]].map(([icon, active], i) => (
+            <div key={i} className="w-8 h-8 rounded-[10px] flex items-center justify-center text-sm" style={active ? { background: "rgba(139,92,246,.25)", border: ".5px solid rgba(139,92,246,.4)" } : {}}>{icon}</div>
+          ))}
+          <div className="flex-1" />
+          <div className="w-8 h-8 rounded-[10px] flex items-center justify-center text-sm">⚙️</div>
+        </div>
+        {/* Main */}
+        <div className="flex-1 rounded-[18px] p-3.5" style={{ background: "rgba(255,255,255,.04)", border: ".5px solid rgba(255,255,255,.1)", backdropFilter: "blur(20px)" }}>
+          <div className="flex items-center justify-between mb-3">
+            <span style={{ fontSize: 9, color: "rgba(255,255,255,.3)", letterSpacing: ".12em", textTransform: "uppercase" }}>Analytics / Q4</span>
+            <div className="w-[22px] h-[22px] rounded-full flex items-center justify-center text-[9px] font-bold text-white" style={{ background: "linear-gradient(135deg,#8b5cf6,#3b82f6)" }}>KD</div>
+          </div>
+          <div className="grid grid-cols-2 gap-1.5 mb-2.5">
+            {[["€12.4k", "MRR", "+18%"], ["2,841", "Usuarios", "+6%"]].map(([v, l, d]) => (
+              <div key={l} className="rounded-[10px] p-2" style={{ background: "rgba(255,255,255,.04)", border: ".5px solid rgba(255,255,255,.07)" }}>
+                <div className="text-base font-bold text-white" style={{ fontVariantNumeric: "tabular-nums" }}>{v}</div>
+                <div style={{ fontSize: 8, color: "rgba(255,255,255,.3)", textTransform: "uppercase", letterSpacing: ".1em" }}>{l}</div>
+                <div style={{ fontSize: 8, fontWeight: 600, color: "#4ade80" }}>{d}</div>
+              </div>
+            ))}
+          </div>
+          <div className="flex items-end gap-[3px] mb-2" style={{ height: 32 }}>
+            {bars.map((h, i) => (
+              <div key={i} className="flex-1 rounded-sm" style={{ height: `${h}%`, background: i === 11 ? "rgba(139,92,246,.8)" : "rgba(139,92,246,.35)" }} />
+            ))}
+          </div>
+          <div className="flex gap-1">
+            {["Sem actual", "+18.3%", "Live"].map((t, i) => (
+              <span key={t} className="px-2 py-0.5 rounded-[6px] text-[9px]" style={{ background: "rgba(255,255,255,.05)", border: ".5px solid rgba(255,255,255,.08)", color: i === 2 ? "rgba(139,92,246,.7)" : "rgba(255,255,255,.4)" }}>{t}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function AceternityDemo() {
+  return (
+    <div className="h-full flex items-center justify-center p-4 relative overflow-hidden" style={{ background: "#000" }}>
+      {/* Grid */}
+      <div className="absolute inset-0" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px)", backgroundSize: "32px 32px" }} />
+      {/* Beams */}
+      <div className="absolute pointer-events-none" style={{ width: 1, height: "100%", top: 0, left: "30%", background: "linear-gradient(180deg,transparent,rgba(139,92,246,.4),transparent)", boxShadow: "0 0 8px rgba(139,92,246,.3)" }} />
+      <div className="absolute pointer-events-none" style={{ width: 1, height: "100%", top: 0, right: "25%", background: "linear-gradient(180deg,transparent,rgba(59,130,246,.3),transparent)" }} />
+      {/* Card */}
+      <div className="relative z-10 rounded-2xl p-5" style={{ width: 250, border: "1px solid rgba(255,255,255,.1)", background: "rgba(10,10,10,.8)", backdropFilter: "blur(8px)" }}>
+        <div className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full mb-3.5 text-[10px]" style={{ background: "rgba(139,92,246,.12)", border: ".5px solid rgba(139,92,246,.3)", color: "rgba(139,92,246,.9)", letterSpacing: ".06em" }}>
+          <div className="w-1.5 h-1.5 rounded-full" style={{ background: "#8b5cf6", boxShadow: "0 0 6px #8b5cf6" }} />
+          Nuevo — IA Generativa
+        </div>
+        <div className="text-[22px] font-bold text-white leading-tight tracking-tight mb-2">
+          <span style={{ background: "linear-gradient(90deg,#fff 0%,rgba(255,255,255,.4) 40%,#fff 80%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", backgroundSize: "200% 100%" }}>Karakura</span>
+          <br />Intelligence
+        </div>
+        <p className="text-[11px] mb-4 leading-relaxed" style={{ color: "rgba(255,255,255,.35)" }}>Automatización avanzada para equipos que construyen el futuro.</p>
+        <button className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold text-white" style={{ background: "linear-gradient(135deg,#8b5cf6,#3b82f6)", boxShadow: "0 0 20px rgba(139,92,246,.35)" }}>
+          Empezar gratis →
+        </button>
+        <div className="flex gap-1.5 mt-3">
+          {["Next.js", "OpenAI", "Edge"].map(t => (
+            <span key={t} className="px-2 py-0.5 rounded-[6px] text-[10px]" style={{ background: "rgba(255,255,255,.05)", border: ".5px solid rgba(255,255,255,.08)", color: "rgba(255,255,255,.45)" }}>{t}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CorporateMemphisDemo() {
+  return (
+    <div className="h-full flex items-center justify-center p-4 relative overflow-hidden" style={{ background: "#fff" }}>
+      <div className="absolute rounded-full" style={{ width: 180, height: 180, top: -60, right: -50, background: "#fef08a", opacity: .9 }} />
+      <div className="absolute rounded-full" style={{ width: 100, height: 100, bottom: -30, left: -20, background: "#bbf7d0", opacity: .9 }} />
+      <div className="relative z-10" style={{ width: 250 }}>
+        <p style={{ fontSize: 9, fontWeight: 700, letterSpacing: ".22em", textTransform: "uppercase", color: "#f97316", marginBottom: 8 }}>Karakura Digital</p>
+        <p style={{ fontSize: 20, fontWeight: 800, color: "#1a1a2e", lineHeight: 1.25, marginBottom: 10 }}>Tu equipo digital,<br />sin complicaciones</p>
+        <div className="w-full rounded-2xl flex items-center justify-center gap-3 mb-3" style={{ height: 80, background: "#fef3c7" }}>
+          <span style={{ fontSize: 32 }}>🧑‍💻</span>
+          <div className="flex flex-col gap-1.5">
+            {[["56px", "#f97316"], ["40px", "#8b5cf6"], ["48px", "#06b6d4"]].map(([w, c], i) => (
+              <div key={i} className="rounded" style={{ width: w, height: 8, background: c, opacity: .8 }} />
+            ))}
+          </div>
+          <span style={{ fontSize: 28 }}>🚀</span>
+        </div>
+        <div className="flex gap-2.5">
+          {[["28+", "Proyectos", "#f97316"], ["100%", "Satisfacción", "#8b5cf6"], ["5⭐", "Rating", "#06b6d4"]].map(([v, l, c]) => (
+            <div key={l} className="text-center flex-1">
+              <div style={{ fontSize: 18, fontWeight: 800, color: c }}>{v}</div>
+              <div style={{ fontSize: 9, color: "#6b7280", fontWeight: 500 }}>{l}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function EditorialDemo() {
+  return (
+    <div className="h-full flex items-center justify-center p-4 relative overflow-hidden" style={{ background: "#f5f3ee" }}>
+      <div style={{ width: 280 }}>
+        {/* Masthead */}
+        <div className="flex items-center justify-between pb-2 mb-2.5" style={{ borderBottom: "3px solid #1a1a1a" }}>
+          <span style={{ fontSize: 13, fontWeight: 900, letterSpacing: "-.02em", color: "#1a1a1a", textTransform: "uppercase" }}>Karakura Review</span>
+          <div className="text-right">
+            <div style={{ fontSize: 8, color: "#999", letterSpacing: ".14em", textTransform: "uppercase" }}>Vol. 03 · Nº 12</div>
+            <div style={{ fontSize: 8, color: "#999" }}>Julio 2025</div>
+          </div>
+        </div>
+        {/* Hero grid */}
+        <div className="grid gap-0 mb-0" style={{ gridTemplateColumns: "1fr 1.4fr" }}>
+          <div className="relative overflow-hidden" style={{ aspectRatio: "3/4", background: "linear-gradient(145deg,#1a1a1a,#2a2a2a,#383838)" }}>
+            <div className="absolute inset-0 flex items-center justify-center text-4xl font-black" style={{ color: "rgba(255,255,255,.1)" }}>K</div>
+            <div className="absolute bottom-0 left-0 right-0 px-1.5 py-1" style={{ fontSize: 7, letterSpacing: ".12em", textTransform: "uppercase", color: "rgba(255,255,255,.4)", background: "linear-gradient(0deg,rgba(0,0,0,.7),transparent)" }}>Córdoba, 2025</div>
+          </div>
+          <div className="pl-3 py-2.5 flex flex-col justify-between">
+            <div>
+              <div style={{ fontSize: 8, fontWeight: 700, letterSpacing: ".24em", textTransform: "uppercase", color: "#999", marginBottom: 6 }}>Diseño Digital</div>
+              <div style={{ fontSize: 22, fontWeight: 900, color: "#1a1a1a", lineHeight: 1, letterSpacing: "-.025em", textTransform: "uppercase", marginBottom: 8 }}>El<br />arte<br /><em style={{ fontStyle: "italic", fontWeight: 300 }}>de</em><br />menos</div>
+            </div>
+            <div>
+              <div style={{ fontSize: 8, color: "#aaa", textTransform: "uppercase", letterSpacing: ".14em", marginBottom: 8 }}>por Karakura Digital</div>
+              <div style={{ fontSize: 9, color: "#555", lineHeight: 1.65 }}>Cuando cada elemento tiene un propósito, el silencio se convierte en el mejor diseñador.</div>
+            </div>
+          </div>
+        </div>
+        <div className="flex justify-between items-center mt-2 pt-1.5" style={{ borderTop: "1px solid #d5d0c8" }}>
+          <span className="px-1.5" style={{ fontSize: 8, fontWeight: 700, letterSpacing: ".2em", textTransform: "uppercase", color: "#1a1a1a", background: "#f0d060" }}>Estrategia</span>
+          <span style={{ fontSize: 8, color: "#bbb", fontVariantNumeric: "tabular-nums" }}>08 — 09</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function DatavizDemo() {
+  const barHeights = [40, 55, 38, 70, 62, 85, 100];
+  const channels: [string, string, string][] = [["Orgánico", "72%", "#06b6d4"], ["Directo", "18%", "#8b5cf6"], ["Referral", "10%", "#f97316"]];
+  return (
+    <div className="h-full flex items-center justify-center p-4" style={{ background: "#0d0d14" }}>
+      <div className="grid gap-2" style={{ gridTemplateColumns: "repeat(3,1fr)", width: 270 }}>
+        {[["€12.4k", "Ingresos", "+18.3%", true], ["2,841", "Usuarios", "+6.1%", true], ["1.2%", "Churn", "+0.3%", false]].map(([v, l, d, pos]) => (
+          <div key={l as string} className="rounded-[10px] p-2.5" style={{ background: "rgba(255,255,255,.04)", border: ".5px solid rgba(255,255,255,.07)" }}>
+            <div style={{ fontSize: 9, color: "rgba(255,255,255,.35)", letterSpacing: ".1em", textTransform: "uppercase", marginBottom: 4 }}>{l}</div>
+            <div style={{ fontSize: 16, fontWeight: 700, color: "#fff", fontVariantNumeric: "tabular-nums" }}>{v}</div>
+            <div style={{ fontSize: 9, fontWeight: 600, marginTop: 2, color: pos ? "#4ade80" : "#f87171" }}>{d}</div>
+          </div>
+        ))}
+        <div className="rounded-[10px] p-2.5" style={{ gridColumn: "1/4", background: "rgba(255,255,255,.04)", border: ".5px solid rgba(255,255,255,.07)" }}>
+          <div style={{ fontSize: 9, color: "rgba(255,255,255,.35)", letterSpacing: ".1em", textTransform: "uppercase", marginBottom: 6 }}>Tráfico — últimas 7 semanas</div>
+          <div className="flex items-end gap-[3px]" style={{ height: 42 }}>
+            {barHeights.map((h, i) => (
+              <div key={i} className="flex-1 rounded-[2px_2px_0_0]" style={{ height: `${h}%`, background: i === 6 ? "#06b6d4" : "rgba(6,182,212,.3)" }} />
+            ))}
+          </div>
+        </div>
+        <div className="rounded-[10px] p-2.5" style={{ gridColumn: "1/3", background: "rgba(255,255,255,.04)", border: ".5px solid rgba(255,255,255,.07)" }}>
+          <div style={{ fontSize: 9, color: "rgba(255,255,255,.35)", letterSpacing: ".1em", textTransform: "uppercase", marginBottom: 4 }}>Conversión por canal</div>
+          <div className="flex flex-col gap-1.5 mt-1">
+            {channels.map(([l, v, c]) => (
+              <div key={l} className="flex items-center gap-2">
+                <span style={{ fontSize: 9, color: "rgba(255,255,255,.35)", width: 50 }}>{l}</span>
+                <div className="flex-1 rounded-full" style={{ height: 4, background: "rgba(255,255,255,.07)" }}>
+                  <div style={{ width: v, height: "100%", borderRadius: 2, background: c }} />
+                </div>
+                <span style={{ fontSize: 9, fontWeight: 600, color: "rgba(255,255,255,.6)", width: 28, textAlign: "right" }}>{v}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="rounded-[10px] p-2.5" style={{ background: "rgba(255,255,255,.04)", border: ".5px solid rgba(255,255,255,.07)" }}>
+          <div style={{ fontSize: 9, color: "rgba(255,255,255,.35)", letterSpacing: ".1em", textTransform: "uppercase", marginBottom: 4 }}>NPS</div>
+          <div style={{ fontSize: 18, fontWeight: 700, color: "#fff" }}>87</div>
+          <div style={{ fontSize: 9, fontWeight: 600, marginTop: 2, color: "#4ade80" }}>Excelente</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function VaporwaveDemo() {
+  return (
+    <div className="h-full flex items-center justify-center p-4 relative overflow-hidden" style={{ background: "linear-gradient(180deg,#1a0533 0%,#2d0a5e 50%,#0d1a5c 100%)" }}>
+      {/* Sun */}
+      <div className="absolute pointer-events-none overflow-hidden" style={{ width: 120, height: 60, borderRadius: "60px 60px 0 0", background: "linear-gradient(180deg,#ff6ec7,#ff9a00)", bottom: "44%", left: "50%", transform: "translateX(-50%)" }}>
+        {[40, 52, 64, 76, 88].map(y => (
+          <div key={y} className="absolute left-0 right-0" style={{ top: `${y}%`, height: "6%", background: "rgba(26,5,51,.7)" }} />
+        ))}
+      </div>
+      {/* Grid lines */}
+      <div className="absolute bottom-0 left-0 right-0 pointer-events-none overflow-hidden" style={{ height: "55%" }}>
+        <svg width="100%" height="100%" viewBox="0 0 300 150" preserveAspectRatio="none">
+          {[0, 1, 2, 3, 4, 5].map(i => (
+            <line key={i} x1="150" y1="0" x2={i * 60} y2="150" stroke="rgba(255,113,206,.35)" strokeWidth=".8" />
+          ))}
+          {[0, 25, 50, 75, 100].map(y => (
+            <line key={y} x1="0" y1={y * 1.5} x2="300" y2={y * 1.5} stroke="rgba(255,113,206,.25)" strokeWidth=".6" />
+          ))}
+        </svg>
+      </div>
+      {/* Card */}
+      <div className="relative z-10 text-center" style={{ width: 240 }}>
+        <div style={{ fontSize: 28, fontWeight: 900, letterSpacing: ".08em", textTransform: "uppercase", marginBottom: 4, lineHeight: 1 }}>
+          <span className="block" style={{ background: "linear-gradient(90deg,#ff71ce,#b967ff)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>KARAKURA</span>
+          <span className="block" style={{ background: "linear-gradient(90deg,#01cdfe,#05ffa1)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>DIGITAL</span>
+        </div>
+        <div style={{ fontSize: 9, letterSpacing: ".3em", textTransform: "uppercase", color: "rgba(255,200,255,.55)", marginBottom: 14 }}>A E S T H E T I C S · 2 0 2 5</div>
+        <div className="mx-auto mb-3.5" style={{ height: 1, background: "linear-gradient(90deg,transparent,rgba(255,100,255,.6),transparent)" }} />
+        <div className="flex justify-center gap-2">
+          {[["✦ WEB", "#ff71ce", "rgba(255,113,206,.4)"], ["✦ DESIGN", "#01cdfe", "rgba(1,205,254,.4)"], ["✦ AI", "#05ffa1", "rgba(5,255,161,.4)"]].map(([t, c, bc]) => (
+            <span key={t} className="px-2.5 py-1 rounded-sm font-bold" style={{ fontSize: 9, letterSpacing: ".15em", textTransform: "uppercase", color: c, border: `1px solid ${bc}` }}>{t}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SwissDemo() {
+  return (
+    <div className="h-full flex items-center justify-center p-4 relative overflow-hidden" style={{ background: "#fff" }}>
+      {/* Red bar */}
+      <div className="absolute top-0 left-0 right-0" style={{ height: 4, background: "#e63329" }} />
+      <div style={{ width: 260, paddingTop: 8 }}>
+        <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: ".28em", textTransform: "uppercase", color: "#e63329", marginBottom: 10 }}>Karakura Digital — Córdoba, España</div>
+        <div style={{ height: 1, background: "#1a1a1a", marginBottom: 10 }} />
+        <div style={{ fontSize: 30, fontWeight: 900, color: "#1a1a1a", lineHeight: 1, letterSpacing: "-.03em", textTransform: "uppercase", marginBottom: 10 }}>DISEÑO<br />SIN<br />RUIDO.</div>
+        <div className="grid mb-2.5" style={{ gridTemplateColumns: "1fr 2px 1fr", gap: 0 }}>
+          <div className="pr-2.5">
+            <div style={{ fontSize: 28, fontWeight: 900, color: "#e63329", lineHeight: 1, letterSpacing: "-.02em", marginBottom: 2 }}>28</div>
+            <div style={{ fontSize: 9, fontWeight: 700, textTransform: "uppercase", letterSpacing: ".16em", color: "#999" }}>Proyectos</div>
+            <div className="mt-2">
+              <div style={{ fontSize: 20, fontWeight: 900, color: "#e63329", lineHeight: 1 }}>100%</div>
+              <div style={{ fontSize: 9, fontWeight: 700, textTransform: "uppercase", letterSpacing: ".16em", color: "#999" }}>Satisfacción</div>
+            </div>
+          </div>
+          <div style={{ background: "#1a1a1a", height: "100%" }} />
+          <div className="px-2.5">
+            <p style={{ fontSize: 10, color: "#333", lineHeight: 1.65 }}>Desarrollo web, CRM y automatización con IA. Sin promesas vagas, sin agencias creativas. Solo trabajo medible.</p>
+            <div className="flex gap-1 mt-2">
+              {[["#e63329", ""], ["#1a1a1a", ""], ["#e5e5e5", "1px solid #ccc"]].map(([bg, border], i) => (
+                <div key={i} className="rounded-full" style={{ width: 10, height: 10, background: bg, border }} />
+              ))}
+            </div>
+          </div>
+        </div>
+        <div style={{ height: 1, background: "#1a1a1a", marginBottom: 8 }} />
+        <div className="flex items-center justify-between">
+          <span style={{ fontSize: 10, fontWeight: 900, textTransform: "uppercase", letterSpacing: ".12em", color: "#1a1a1a" }}>Karakura</span>
+          <div className="flex items-center gap-1">
+            <div className="rounded-full" style={{ width: 10, height: 10, background: "#e63329" }} />
+            <span style={{ fontSize: 8, fontWeight: 700, letterSpacing: ".14em", textTransform: "uppercase", color: "#e63329" }}>ES</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ClaymorphismDarkDemo() {
+  const tasks = [
+    { name: "Revisar propuesta cliente", tag: "Completado", tagColor: "rgba(167,139,250,.6)", bg: "linear-gradient(135deg,rgba(124,58,237,.25),rgba(79,70,229,.2))", checkBg: "linear-gradient(135deg,#7c3aed,#4f46e5)", checkContent: "✓", done: true, dotColor: "#7c3aed" },
+    { name: "Diseñar landing page", tag: "En progreso", tagColor: "rgba(251,146,60,.7)", bg: "linear-gradient(135deg,rgba(236,72,153,.2),rgba(251,146,60,.15))", checkBg: "rgba(255,255,255,.08)", checkBorder: "1.5px solid rgba(236,72,153,.4)", done: false, dotColor: "#ec4899" },
+    { name: "Deploy a producción", tag: "Pendiente", tagColor: "rgba(6,182,212,.6)", bg: "linear-gradient(135deg,rgba(6,182,212,.18),rgba(59,130,246,.12))", checkBg: "rgba(255,255,255,.06)", checkBorder: "1.5px solid rgba(6,182,212,.3)", done: false, dotColor: "#06b6d4" },
+  ];
+  return (
+    <div className="h-full flex items-center justify-center p-4 relative overflow-hidden" style={{ background: "#120820" }}>
+      {/* Blobs — static, filter allowed */}
+      <div className="absolute rounded-full pointer-events-none" style={{ width: 200, height: 200, top: -60, left: -40, background: "#7c3aed", opacity: .4, filter: "blur(50px)" }} />
+      <div className="absolute rounded-full pointer-events-none" style={{ width: 160, height: 160, bottom: -40, right: -30, background: "#4f46e5", opacity: .35, filter: "blur(50px)" }} />
+      <div className="absolute rounded-full pointer-events-none" style={{ width: 120, height: 120, top: "40%", right: -20, background: "#ec4899", opacity: .2, filter: "blur(50px)" }} />
+      {/* Widget */}
+      <div className="relative z-10" style={{ width: 236 }}>
+        <div className="flex items-center justify-between mb-2.5">
+          <span className="text-sm font-bold text-white">Mis tareas</span>
+          <button className="w-[26px] h-[26px] rounded-[10px] flex items-center justify-center text-sm text-white font-bold" style={{ background: "linear-gradient(135deg,#7c3aed,#4f46e5)", boxShadow: "0 4px 12px rgba(124,58,237,.5),inset 0 1px 0 rgba(255,255,255,.2)" }}>+</button>
+        </div>
+        <div className="flex flex-col gap-1.5">
+          {tasks.map(t => (
+            <div key={t.name} className="rounded-2xl px-3 py-2.5 flex items-center gap-2.5" style={{ background: t.bg, boxShadow: "0 6px 20px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.12)" }}>
+              <div className="rounded-[8px] shrink-0 flex items-center justify-center text-[11px]" style={{ width: 20, height: 20, background: t.checkBg, border: (t as { checkBorder?: string }).checkBorder, boxShadow: "0 3px 8px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.2)" }}>{t.done ? "✓" : ""}</div>
+              <div className="flex-1 min-w-0">
+                <div className="text-xs font-semibold text-white truncate" style={t.done ? { textDecoration: "line-through", opacity: .5 } : {}}>{t.name}</div>
+                <div style={{ fontSize: 9, fontWeight: 600, letterSpacing: ".08em", marginTop: 1, color: t.tagColor }}>{t.tag}</div>
+              </div>
+              <div className="rounded-full shrink-0" style={{ width: 6, height: 6, background: t.dotColor }} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ── Data ──────────────────────────────────────────────────────────────────────
 
 interface StyleDef {
@@ -1217,6 +1529,94 @@ const STYLES: StyleDef[] = [
     accent: "#4ab8e8",
     Demo: FrutigerAeroDemo,
   },
+  {
+    id: "glass2",
+    name: "Glassmorphism 2.0",
+    tagline: "Cristal ultra oscuro, blur dramático",
+    description:
+      "Evolución del glassmorphism clásico: fondos casi negros, blur más profundo (20-30px), bordes casi invisibles y sin gradientes de fondo saturados. Apple, Figma y Linear lideran esta versión más madura y sofisticada.",
+    ideal:
+      "Aplicaciones SaaS de alto nivel, herramientas de productividad, dashboards premium y cualquier producto que quiera proyectar seriedad técnica con elegancia visual.",
+    accent: "#8b5cf6",
+    Demo: Glassmorphism2Demo,
+  },
+  {
+    id: "aceternity",
+    name: "Aceternity / Magic UI",
+    tagline: "Partículas, grids y shimmers brillantes",
+    description:
+      "Fondos negros con grids de líneas finas, beams de luz de colores, texto con efecto shimmer metálico y microanimaciones de partículas. Tendencia dominante en SaaS tech 2024-2025 popularizada por Aceternity UI y Magic UI.",
+    ideal:
+      "Startups de IA, herramientas para desarrolladores, plataformas de infraestructura cloud y cualquier producto tech que quiera comunicar innovación de vanguardia.",
+    accent: "#8b5cf6",
+    Demo: AceternityDemo,
+  },
+  {
+    id: "memphis",
+    name: "Corporate Memphis",
+    tagline: "Ilustraciones planas con personas orgánicas",
+    description:
+      "Figuras humanas con formas orgánicas redondeadas, colores saturados sin sombras, composiciones simples y tipografía bold. Airbnb, Slack y Notion lo popularizaron. Muy demandado por startups y apps B2C.",
+    ideal:
+      "Apps de consumo, plataformas educativas, marketplaces, startups de HR y cualquier producto que quiera proyectar calidez, diversidad e inclusión.",
+    accent: "#f97316",
+    Demo: CorporateMemphisDemo,
+  },
+  {
+    id: "editorial",
+    name: "Editorial / Magazine",
+    tagline: "Tipografía masiva, columnas, blanco y negro",
+    description:
+      "Herencia del diseño editorial impreso: tipografías display en negrita extrema, grids de columnas asimétricas, blanco y negro como base con un acento de color opcional. Comunicación de autoridad y sofisticación cultural.",
+    ideal:
+      "Agencias creativas, estudios de diseño, publicaciones digitales, portfolios de fotografía y marcas de lujo que hablan a audiencias con cultura visual elevada.",
+    accent: "#1a1a1a",
+    Demo: EditorialDemo,
+  },
+  {
+    id: "dataviz",
+    name: "Dataviz / Dashboard",
+    tagline: "Métricas, gráficas, tema oscuro B2B",
+    description:
+      "Diseño orientado a datos: tema oscuro profundo, tarjetas de métricas con deltas, gráficas sparkline, tipografía tabular y densidad de información alta. Vercel Analytics, Grafana y Linear definen el estándar.",
+    ideal:
+      "SaaS B2B, herramientas de análisis, plataformas de monitorización, dashboards internos y cualquier producto donde los datos son el producto.",
+    accent: "#06b6d4",
+    Demo: DatavizDemo,
+  },
+  {
+    id: "vaporwave",
+    name: "Vaporwave",
+    tagline: "Síntesis 80s, neón y nostalgia digital",
+    description:
+      "Degradados entre púrpura oscuro y azul marino, sol retrowave con líneas horizontales, tipografía bold cromada en magenta y cyan, cuadrícula de perspectiva 3D. Estética synthwave/retrowave con ironía posmoderna.",
+    ideal:
+      "Marcas de entretenimiento, música electrónica, eventos nocturnos, juegos indie y cualquier proyecto creativo que quiera un tono irónico y culturalmente específico.",
+    accent: "#ff71ce",
+    Demo: VaporwaveDemo,
+  },
+  {
+    id: "swiss",
+    name: "Swiss / International",
+    tagline: "Helvetica, grid estricto, rojo suizo",
+    description:
+      "Tipografía sans-serif pesada en negro, grid rígido con columnas bien definidas, barra roja como único acento de color y espaciado milimétrico. Diseño gráfico suizo de los 50s-70s aplicado a pantallas. Máxima legibilidad y autoridad.",
+    ideal:
+      "Marcas corporativas europeas, museos y instituciones culturales, consultorias de alto nivel, editoriales y productos que quieren comunicar rigor y atemporalidad.",
+    accent: "#e63329",
+    Demo: SwissDemo,
+  },
+  {
+    id: "clay2",
+    name: "Claymorphism Oscuro",
+    tagline: "Arcilla 3D sobre fondos nocturnos",
+    description:
+      "Versión nocturna del claymorphism: fondos púrpura oscuro o negro, sombras profundas que exageran el volumen 3D, colores pasteles saturados en las piezas clay y brillo interno con inset shadows. Notion AI y Linear lo han adoptado.",
+    ideal:
+      "Apps de productividad con dark mode, herramientas creativas, plataformas de IA y cualquier producto tech que quiera diferenciarse del glassmorphism estándar con más personalidad.",
+    accent: "#7c3aed",
+    Demo: ClaymorphismDarkDemo,
+  },
 ];
 
 // ── Component ─────────────────────────────────────────────────────────────────
@@ -1243,7 +1643,7 @@ export default function DesignCatalog() {
             className="max-w-xl mx-auto text-sm leading-relaxed"
             style={{ color: "rgba(224,192,175,0.55)" }}
           >
-            12 corrientes de diseño web. Cada estilo es una decisión
+            25 corrientes de diseño web. Cada estilo es una decisión
             estratégica sobre cómo percibe tu cliente tu marca. Explóralos y
             encuentra el que encaja con tu propuesta de valor.
           </p>
