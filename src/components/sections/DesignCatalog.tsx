@@ -687,6 +687,336 @@ function BentoGridDemo() {
   );
 }
 
+function AuroraMeshDemo() {
+  return (
+    <div className="h-full relative overflow-hidden" style={{ background: "#04040f" }}>
+      {/* Mesh — static radial-gradients, no animation per CLAUDE.md constraint */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 65% 55% at 18% 28%, rgba(124,58,237,0.55), transparent), " +
+            "radial-gradient(ellipse 55% 45% at 78% 18%, rgba(6,182,212,0.45), transparent), " +
+            "radial-gradient(ellipse 60% 50% at 62% 72%, rgba(236,72,153,0.4), transparent), " +
+            "radial-gradient(ellipse 50% 55% at 8% 82%, rgba(16,185,129,0.35), transparent)",
+        }}
+      />
+      {/* Frosted card over mesh */}
+      <div className="absolute inset-0 flex items-center justify-center p-6">
+        <div
+          className="relative rounded-2xl p-6 w-full max-w-xs backdrop-blur-xl"
+          style={{
+            background: "rgba(255,255,255,0.04)",
+            border: "1px solid rgba(255,255,255,0.1)",
+          }}
+        >
+          <div className="flex items-center gap-2 mb-4">
+            <div
+              className="w-2 h-2 rounded-full"
+              style={{ background: "linear-gradient(135deg,#7c3aed,#06b6d4)" }}
+            />
+            <span className="text-white/45 text-[10px] tracking-[0.18em] uppercase">
+              Aurora Studio
+            </span>
+          </div>
+          <p className="text-white text-lg font-semibold mb-1">Karakura Digital</p>
+          <p className="text-white/45 text-xs mb-5">Diseño en movimiento</p>
+          <div className="flex gap-1.5 mb-4">
+            {["#7c3aed", "#06b6d4", "#ec4899", "#10b981", "#f59e0b"].map((c, i) => (
+              <div
+                key={i}
+                className="flex-1 h-1.5 rounded-full"
+                style={{ background: c, opacity: 0.75 }}
+              />
+            ))}
+          </div>
+          <div className="flex gap-2">
+            {["Branding", "Web", "Motion"].map((t) => (
+              <div
+                key={t}
+                className="flex-1 rounded-xl py-1.5 text-center text-[10px] text-white/55"
+                style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}
+              >
+                {t}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function TerminalDemo() {
+  return (
+    <div className="h-full flex items-center justify-center p-6" style={{ background: "#0a0a0a" }}>
+      <div className="w-full max-w-sm rounded-xl overflow-hidden" style={{ border: "1px solid #1a1a1a" }}>
+        {/* Chrome */}
+        <div
+          className="flex items-center gap-2 px-4 py-2.5"
+          style={{ background: "#141414", borderBottom: "1px solid #1a1a1a" }}
+        >
+          <div className="w-3 h-3 rounded-full bg-red-500/80" />
+          <div className="w-3 h-3 rounded-full bg-yellow-400/80" />
+          <div className="w-3 h-3 rounded-full bg-green-500/80" />
+          <span className="flex-1 text-center text-[10px] font-mono text-white/20">
+            karakura — zsh
+          </span>
+        </div>
+        {/* Body */}
+        <div className="p-4 font-mono text-[11px] leading-relaxed" style={{ background: "#0a0a0a" }}>
+          <p style={{ color: "#4ade80" }}>
+            <span style={{ color: "#22c55e" }}>karakura</span>
+            <span style={{ color: "#60a5fa" }}>@</span>
+            <span style={{ color: "#34d399" }}>studio</span>
+            <span style={{ color: "#ffffff88" }}> ~</span>
+            <span style={{ color: "#ffffff44" }}> $</span>
+            <span style={{ color: "#f0f0f0" }}> npm run deploy</span>
+          </p>
+          <p className="mt-1" style={{ color: "#4ade8088" }}>▶ Building for production...</p>
+          <p style={{ color: "#4ade8066" }}>✓ Routes compiled (0.8s)</p>
+          <p style={{ color: "#4ade8066" }}>✓ Assets optimized</p>
+          <p style={{ color: "#4ade8066" }}>✓ Static export complete</p>
+          <p className="mt-1" style={{ color: "#34d399" }}>
+            🚀 Deployed → karakuradigital.es
+          </p>
+          <p className="mt-2" style={{ color: "#4ade80" }}>
+            <span style={{ color: "#22c55e" }}>karakura</span>
+            <span style={{ color: "#60a5fa" }}>@</span>
+            <span style={{ color: "#34d399" }}>studio</span>
+            <span style={{ color: "#ffffff88" }}> ~</span>
+            <span style={{ color: "#ffffff44" }}> $</span>
+            <span className="ml-1 inline-block w-2 h-3.5 align-middle" style={{ background: "#4ade80", animation: "none" }}>
+              &nbsp;
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function DarkLuxuryDemo() {
+  return (
+    <div className="h-full flex items-center justify-center p-8" style={{ background: "#080808" }}>
+      <div className="w-full max-w-xs">
+        <div className="text-center mb-6">
+          <p
+            className="text-[9px] tracking-[0.35em] uppercase mb-6"
+            style={{ color: "rgba(201,169,110,0.6)", fontFamily: "Georgia, serif" }}
+          >
+            Desde 2024
+          </p>
+          <div style={{ borderTop: "1px solid rgba(201,169,110,0.2)" }} className="mb-6" />
+          <h2
+            className="text-4xl leading-tight mb-4"
+            style={{ color: "#f5f0e8", fontFamily: "Georgia, 'Times New Roman', serif", fontWeight: 300, letterSpacing: "-0.01em" }}
+          >
+            Sin<br />
+            <em>compromiso.</em>
+          </h2>
+          <div style={{ borderBottom: "1px solid rgba(201,169,110,0.2)" }} className="mb-6" />
+          <p
+            className="text-xs leading-relaxed mb-8"
+            style={{ color: "rgba(245,240,232,0.35)", letterSpacing: "0.06em" }}
+          >
+            Desarrollo web de alto nivel para marcas que no aceptan mediocridad.
+          </p>
+        </div>
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="text-[9px] tracking-[0.2em] uppercase" style={{ color: "rgba(201,169,110,0.5)" }}>
+              Córdoba
+            </p>
+            <p className="text-xs" style={{ color: "rgba(245,240,232,0.4)" }}>
+              karakuradigital.es
+            </p>
+          </div>
+          <button
+            className="text-[10px] tracking-[0.15em] uppercase py-2.5 px-5"
+            style={{
+              border: "1px solid rgba(201,169,110,0.4)",
+              color: "rgba(201,169,110,0.8)",
+              background: "transparent",
+            }}
+          >
+            Contactar
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Y2KDemo() {
+  return (
+    <div
+      className="h-full flex items-center justify-center p-5 relative overflow-hidden"
+      style={{
+        background: "linear-gradient(135deg, #e8e0f8 0%, #c8e8f8 50%, #e8c8f8 100%)",
+      }}
+    >
+      {/* Star decorations */}
+      {["top-4 left-8", "top-6 right-12", "bottom-8 left-16", "bottom-4 right-6"].map((pos, i) => (
+        <div key={i} className={`absolute ${pos} text-white/60 text-xs select-none`} style={{ textShadow: "0 0 6px rgba(180,120,255,0.8)" }}>
+          ✦
+        </div>
+      ))}
+      <div className="flex flex-col items-center gap-4 w-full max-w-xs">
+        {/* Metallic card */}
+        <div
+          className="w-full rounded-2xl p-5 text-center relative overflow-hidden"
+          style={{
+            background: "linear-gradient(145deg, rgba(255,255,255,0.9) 0%, rgba(200,220,240,0.7) 40%, rgba(220,200,240,0.8) 100%)",
+            border: "1px solid rgba(255,255,255,0.95)",
+            boxShadow: "0 4px 24px rgba(160,100,255,0.2), inset 0 1px 0 rgba(255,255,255,0.9), inset 0 -1px 0 rgba(180,150,220,0.3)",
+          }}
+        >
+          {/* Glossy sheen */}
+          <div
+            className="absolute inset-x-0 top-0 h-1/2 rounded-t-2xl"
+            style={{ background: "linear-gradient(180deg, rgba(255,255,255,0.7), transparent)" }}
+          />
+          <p
+            className="relative text-xl font-black mb-1"
+            style={{
+              background: "linear-gradient(180deg, #9060d0, #5080e0, #30c0e8)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              letterSpacing: "-0.02em",
+            }}
+          >
+            KARAKURA
+          </p>
+          <p className="relative text-[10px] font-bold tracking-[0.3em] uppercase" style={{ color: "#8060b0" }}>
+            Digital Studio ✧ 2026
+          </p>
+        </div>
+        {/* Chrome pill buttons */}
+        <div className="flex gap-3">
+          {["Proyectos", "Contacto"].map((t, i) => (
+            <button
+              key={t}
+              className="px-4 py-2 rounded-full text-xs font-bold relative overflow-hidden"
+              style={
+                i === 0
+                  ? {
+                      background: "linear-gradient(180deg, #a078e0, #6050c0)",
+                      color: "#fff",
+                      border: "1px solid rgba(255,255,255,0.4)",
+                      boxShadow: "0 4px 12px rgba(100,80,200,0.4), inset 0 1px 0 rgba(255,255,255,0.4)",
+                    }
+                  : {
+                      background: "linear-gradient(180deg, rgba(255,255,255,0.85), rgba(200,220,240,0.8))",
+                      color: "#7060b0",
+                      border: "1px solid rgba(255,255,255,0.9)",
+                      boxShadow: "0 2px 8px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.9)",
+                    }
+              }
+            >
+              {t}
+            </button>
+          ))}
+        </div>
+        <p className="text-[10px] font-bold tracking-widest" style={{ color: "#9060c0", textShadow: "0 0 8px rgba(160,100,255,0.4)" }}>
+          ★ Bienvenido al futuro ★
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function FrutigerAeroDemo() {
+  return (
+    <div
+      className="h-full flex items-center justify-center p-6 relative overflow-hidden"
+      style={{
+        background: "linear-gradient(180deg, #a8d8f0 0%, #6ec6e8 40%, #c8eed8 100%)",
+      }}
+    >
+      {/* Sun glow */}
+      <div
+        className="absolute -top-8 -right-8 w-32 h-32 rounded-full"
+        style={{ background: "radial-gradient(circle, rgba(255,240,180,0.7), transparent 70%)" }}
+      />
+      {/* Bottom grass strip */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-12 rounded-b-none"
+        style={{
+          background: "linear-gradient(180deg, rgba(80,180,100,0.6), rgba(50,140,70,0.8))",
+        }}
+      />
+      {/* Main glass panel */}
+      <div
+        className="relative w-full max-w-xs rounded-3xl p-5 backdrop-blur-md"
+        style={{
+          background: "rgba(255,255,255,0.55)",
+          border: "1.5px solid rgba(255,255,255,0.85)",
+          boxShadow: "0 8px 32px rgba(80,160,200,0.25), inset 0 1px 0 rgba(255,255,255,0.9)",
+        }}
+      >
+        {/* Gloss sheen */}
+        <div
+          className="absolute inset-x-3 top-2 h-8 rounded-2xl"
+          style={{ background: "linear-gradient(180deg, rgba(255,255,255,0.65), transparent)" }}
+        />
+        <div className="flex items-center gap-3 mb-4 relative">
+          {/* Leaf icon via CSS */}
+          <div
+            className="w-10 h-10 rounded-2xl flex items-center justify-center text-lg shrink-0"
+            style={{
+              background: "linear-gradient(135deg, #6ecf7a, #3aab5a)",
+              boxShadow: "0 3px 10px rgba(60,160,80,0.4), inset 0 1px 0 rgba(255,255,255,0.5)",
+            }}
+          >
+            🌿
+          </div>
+          <div>
+            <p className="text-sm font-bold" style={{ color: "#1a5c3a" }}>
+              Karakura Digital
+            </p>
+            <p className="text-[10px]" style={{ color: "#3a8c5c" }}>
+              Tecnología y naturaleza
+            </p>
+          </div>
+        </div>
+        {/* Stats */}
+        <div className="grid grid-cols-3 gap-2 mb-4 relative">
+          {[["28", "Proyectos"], ["5★", "Rating"], ["100%", "Eco"]].map(([v, l]) => (
+            <div
+              key={l}
+              className="rounded-2xl p-2 text-center"
+              style={{
+                background: "rgba(255,255,255,0.6)",
+                border: "1px solid rgba(255,255,255,0.8)",
+                boxShadow: "inset 0 1px 0 rgba(255,255,255,0.9)",
+              }}
+            >
+              <p className="font-bold text-sm" style={{ color: "#1a5c3a" }}>{v}</p>
+              <p className="text-[9px]" style={{ color: "#3a8c5c" }}>{l}</p>
+            </div>
+          ))}
+        </div>
+        {/* Aqua button */}
+        <button
+          className="relative w-full rounded-2xl py-2.5 font-bold text-xs text-white overflow-hidden"
+          style={{
+            background: "linear-gradient(180deg, #4ab8e8 0%, #1a88c8 50%, #0a68a8 100%)",
+            boxShadow: "0 4px 16px rgba(20,120,200,0.4), inset 0 1px 0 rgba(255,255,255,0.5), inset 0 -1px 0 rgba(0,0,0,0.1)",
+          }}
+        >
+          <div
+            className="absolute inset-x-4 top-1 h-3 rounded-full"
+            style={{ background: "rgba(255,255,255,0.4)" }}
+          />
+          Contactar ahora
+        </button>
+      </div>
+    </div>
+  );
+}
+
 // ── Data ──────────────────────────────────────────────────────────────────────
 
 interface StyleDef {
@@ -831,6 +1161,61 @@ const STYLES: StyleDef[] = [
       "Páginas de marketing, dashboards y secciones de features donde hay que mostrar mucha información de forma elegante y scannable.",
     accent: "#6366f1",
     Demo: BentoGridDemo,
+  },
+  {
+    id: "aurora-mesh",
+    name: "Aurora Mesh",
+    tagline: "Gradientes orgánicos como luz del norte",
+    description:
+      "Mallas de color fluidas generadas por múltiples radial-gradients superpuestos. Stripe, Linear y Vercel popularizaron este lenguaje: profundidad sin bordes, ambiente sin estructura.",
+    ideal:
+      "SaaS, startups tech, herramientas de productividad y cualquier producto que quiera transmitir modernidad y energía sin caer en clichés corporativos.",
+    accent: "#7c3aed",
+    Demo: AuroraMeshDemo,
+  },
+  {
+    id: "terminal",
+    name: "Terminal / Hacker",
+    tagline: "La pantalla que los devs llaman hogar",
+    description:
+      "Fondo negro absoluto, tipografía monoespaciada, salidas de CLI y cursores parpadeantes. La estética de la productividad técnica elevada a lenguaje visual de marca.",
+    ideal:
+      "Herramientas developer, plataformas de ciberseguridad, APIs, CLIs y marcas B2B tech que hablan directamente a ingenieros.",
+    accent: "#22c55e",
+    Demo: TerminalDemo,
+  },
+  {
+    id: "dark-luxury",
+    name: "Dark Luxury",
+    tagline: "Opulencia sin ruido",
+    description:
+      "Fondo casi negro, tipografía serif de peso ligero, detalles en oro y abundante espacio. El silencio visual como señal de precio. Nada compite con nada.",
+    ideal:
+      "Moda de lujo, inmobiliaria premium, joyería, relojes, servicios de consultoría de alto valor y cualquier marca donde el cliente espera exclusividad.",
+    accent: "#c9a96e",
+    Demo: DarkLuxuryDemo,
+  },
+  {
+    id: "y2k",
+    name: "Y2K / Retro-web",
+    tagline: "El futuro que imaginamos en el año 2000",
+    description:
+      "Plásticos translúcidos, gradientes cromados, botones con brillo especular y tipografía en 3D. La estética de Windows XP, iPod mini y Winamp revive como movimiento cultural.",
+    ideal:
+      "Moda, música, streetwear, marcas de consumo dirigidas a Gen Z y millennials nostálgicos que reconocen la referencia y la valoran.",
+    accent: "#a078e0",
+    Demo: Y2KDemo,
+  },
+  {
+    id: "frutiger-aero",
+    name: "Frutiger Aero",
+    tagline: "Naturaleza + tecnología, era Vista/7",
+    description:
+      "La estética 2004-2013: cielo azul, césped verde, cristal traslúcido con brillo interno, iconos 3D fotorrealistas y una sensación de optimismo tecnológico que nunca llegó.",
+    ideal:
+      "Marcas eco-tech, wellness, apps de salud, productos B2C con valores de sostenibilidad y cualquier proyecto que quiera evocar calidez humana en lo digital.",
+    accent: "#4ab8e8",
+    Demo: FrutigerAeroDemo,
   },
 ];
 

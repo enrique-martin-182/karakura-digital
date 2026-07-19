@@ -91,6 +91,7 @@ export function Navbar() {
     { href: `${prefix}#process`, label: "Proceso" },
     { href: `${prefix}#results`, label: "Resultados" },
     { href: `${prefix}#portfolio`, label: "Portfolio" },
+    { href: "/estilos", label: "Catálogo" },
   ];
 
   return (

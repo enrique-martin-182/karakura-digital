@@ -13,8 +13,6 @@ const Interactive3D = dynamic(() => import("@/components/sections/Interactive3D"
 const GapComparison = dynamic(() => import("@/components/sections/GapComparison").then(m => ({ default: m.GapComparison })), { loading: () => <SectionSkeleton /> });
 const Services = dynamic(() => import("@/components/sections/Services").then(m => ({ default: m.Services })), { loading: () => <SectionSkeleton minHeight="500px" /> });
 const TechStack = dynamic(() => import("@/components/sections/TechStack").then(m => ({ default: m.TechStack })), { loading: () => <SectionSkeleton minHeight="120px" /> });
-const TechStackPhysics = dynamic(() => import("@/components/sections/TechStackPhysics").then(m => ({ default: m.TechStackPhysics })), { loading: () => <SectionSkeleton minHeight="320px" /> });
-const BentoServices = dynamic(() => import("@/components/sections/BentoServices").then(m => ({ default: m.BentoServices })), { loading: () => <SectionSkeleton minHeight="500px" /> });
 const InteractiveDataBackground = dynamic(() => import("@/components/effects/InteractiveDataBackground").then(m => ({ default: m.InteractiveDataBackground })), { loading: () => null });
 const B2BTerminalPreview = dynamic(() => import("@/components/sections/B2BTerminalPreview").then(m => ({ default: m.B2BTerminalPreview })), { loading: () => <SectionSkeleton minHeight="400px" /> });
 const Process = dynamic(() => import("@/components/sections/Process").then(m => ({ default: m.Process })), { loading: () => <SectionSkeleton /> });
@@ -22,7 +20,6 @@ const Results = dynamic(() => import("@/components/sections/Results").then(m => 
 const Portfolio = dynamic(() => import("@/components/sections/Portfolio").then(m => ({ default: m.Portfolio })), { loading: () => <SectionSkeleton minHeight="600px" /> });
 const FAQ = dynamic(() => import("@/components/sections/FAQ").then(m => ({ default: m.FAQ })), { loading: () => <SectionSkeleton /> });
 const ContactCTA = dynamic(() => import("@/components/sections/ContactCTA").then(m => ({ default: m.ContactCTA })), { loading: () => <SectionSkeleton /> });
-const DesignCatalog = dynamic(() => import("@/components/sections/DesignCatalog"), { loading: () => <SectionSkeleton minHeight="600px" /> });
 
 export default function Home() {
   return (
@@ -35,7 +32,6 @@ export default function Home() {
         <LocalImpact />
         <GapComparison />
         <Services />
-        <BentoServices />
 
         {/* Data topology demo section */}
         <section className="relative py-32 overflow-hidden">
@@ -57,12 +53,10 @@ export default function Home() {
           </div>
         </section>
 
-        <TechStackPhysics />
         <TechStack />
         <Process />
         <Results />
         <Portfolio />
-        <DesignCatalog />
         <FAQ />
         <ContactCTA />
       </main>

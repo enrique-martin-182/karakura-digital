@@ -201,10 +201,9 @@ export default function RootLayout({
         <meta name="ICBM" content="37.8882, -4.7794" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://prod.spline.design" />
+        <link rel="preconnect" href="https://prod.spline.design" crossOrigin="anonymous" />
         {/* Preload hero poster as the LCP image — create /public/assets/hero-poster.jpg (1920×1080) */}
         <link rel="preload" as="image" href="/assets/hero-poster.jpg" fetchPriority="high" />
-        <link rel="preload" as="video" href="/hero-bg.webm" type="video/webm" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/assets/logo.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/assets/logo-kd.png" />
