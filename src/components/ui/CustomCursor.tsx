@@ -217,7 +217,7 @@ export function CustomCursor() {
         animate={sonarControls}
       />
 
-      {/* ── Main invert ring — pulses gently when near a target ── */}
+      {/* ── Main ring — pulses gently when near a target ── */}
       <motion.div
         aria-hidden="true"
         className="fixed pointer-events-none z-[9990] rounded-full"
@@ -228,10 +228,9 @@ export function CustomCursor() {
           y:        cy,
           translateX: "-50%",
           translateY: "-50%",
-          backdropFilter: "invert(1)",
-          WebkitBackdropFilter: "invert(1)",
           willChange: "transform",
-          boxShadow: "0 0 0 1px rgba(255,255,255,0.15)",
+          border: "1px solid rgba(255,255,255,0.22)",
+          boxShadow: "0 0 0 0.5px rgba(255,122,0,0.15), inset 0 0 12px rgba(255,122,0,0.04)",
         }}
         initial={{ scale: 1 }}
         animate={ringControls}

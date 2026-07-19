@@ -1624,157 +1624,126 @@ const STYLES: StyleDef[] = [
 export default function DesignCatalog() {
   const [activeId, setActiveId] = useState(STYLES[0].id);
   const active = STYLES.find((s) => s.id === activeId) ?? STYLES[0];
+  const activeIdx = STYLES.findIndex((s) => s.id === activeId);
 
   return (
     <section className="py-20 px-4" style={{ background: "#001711" }}>
       <div className="max-w-6xl mx-auto">
+
         {/* Header */}
-        <div className="mb-12 text-center">
-          <p
-            className="text-xs font-semibold tracking-widest uppercase mb-3"
-            style={{ color: "#ff7a00" }}
-          >
+        <div className="mb-10 text-center">
+          <p className="text-xs font-semibold tracking-widest uppercase mb-3" style={{ color: "#ff7a00" }}>
             Catálogo de estilos de diseño
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             ¿Qué lenguaje visual habla tu marca?
           </h2>
-          <p
-            className="max-w-xl mx-auto text-sm leading-relaxed"
-            style={{ color: "rgba(224,192,175,0.55)" }}
-          >
+          <p className="max-w-xl mx-auto text-sm leading-relaxed" style={{ color: "rgba(224,192,175,0.55)" }}>
             25 corrientes de diseño web. Cada estilo es una decisión
             estratégica sobre cómo percibe tu cliente tu marca. Explóralos y
             encuentra el que encaja con tu propuesta de valor.
           </p>
         </div>
 
-        {/* Mobile pills */}
+        {/* ── Grid selector — all 25 styles visible at once ── */}
         <div
-          className="lg:hidden flex gap-2 overflow-x-auto pb-3 -mx-4 px-4 mb-6"
-          style={{ scrollbarWidth: "none" }}
+          className="grid gap-1.5 mb-8"
+          style={{ gridTemplateColumns: "repeat(5, 1fr)" }}
         >
-          {STYLES.map((s) => (
-            <button
-              key={s.id}
-              onClick={() => setActiveId(s.id)}
-              className="shrink-0 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200"
-              style={
-                activeId === s.id
-                  ? { background: "#ff7a00", color: "#fff" }
-                  : {
-                      background: "rgba(255,255,255,0.05)",
-                      color: "rgba(224,192,175,0.55)",
-                      border: "1px solid rgba(255,255,255,0.08)",
-                    }
-              }
-            >
-              {s.name}
-            </button>
-          ))}
-        </div>
-
-        {/* Desktop: sidebar + content */}
-        <div className="flex gap-6 items-start">
-          {/* Sidebar */}
-          <aside className="hidden lg:flex flex-col gap-0.5 w-52 shrink-0 sticky top-24">
-            {STYLES.map((s) => (
+          {STYLES.map((s) => {
+            const isActive = s.id === activeId;
+            return (
               <button
                 key={s.id}
                 onClick={() => setActiveId(s.id)}
-                className="text-left px-4 py-2.5 rounded-xl text-sm transition-all duration-200"
+                className="flex items-center gap-2 px-3 py-2 rounded-xl text-left transition-all duration-150 text-xs font-medium truncate"
                 style={
-                  activeId === s.id
+                  isActive
                     ? {
-                        background: "rgba(255,122,0,0.12)",
+                        background: "rgba(255,122,0,0.14)",
                         color: "#ff7a00",
-                        fontWeight: 600,
+                        border: "1px solid rgba(255,122,0,0.35)",
                       }
                     : {
-                        color: "rgba(224,192,175,0.45)",
+                        background: "rgba(255,255,255,0.03)",
+                        color: "rgba(224,192,175,0.5)",
+                        border: "1px solid rgba(255,255,255,0.06)",
                       }
                 }
               >
-                {s.name}
+                <span
+                  className="w-2 h-2 rounded-full shrink-0"
+                  style={{ background: s.accent, opacity: isActive ? 1 : 0.55 }}
+                />
+                <span className="truncate">{s.name}</span>
               </button>
-            ))}
-          </aside>
+            );
+          })}
+        </div>
 
-          {/* Content panel */}
-          <div className="flex-1 min-w-0">
-            <div
-              className="rounded-2xl overflow-hidden"
-              style={{
-                background: "rgba(0,23,17,0.6)",
-                border: "1px solid rgba(255,255,255,0.07)",
-              }}
-            >
-              {/* Demo area */}
-              <div className="h-72 md:h-80">
+        {/* ── Content: demo (left) + info (right) ── */}
+        <div
+          className="rounded-2xl overflow-hidden"
+          style={{ background: "rgba(0,23,17,0.6)", border: "1px solid rgba(255,255,255,0.07)" }}
+        >
+          <div className="flex flex-col lg:flex-row">
+
+            {/* Demo — fixed height on desktop, preserves aspect on mobile */}
+            <div className="lg:w-[55%] h-72 md:h-80 lg:h-auto lg:min-h-[380px] shrink-0" style={{ borderRight: "1px solid rgba(255,255,255,0.07)" }}>
+              <div className="h-full">
                 <active.Demo />
               </div>
+            </div>
 
-              {/* Info */}
-              <div
-                className="p-6"
-                style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}
-              >
-                <div className="flex items-start justify-between gap-4 mb-3">
+            {/* Info panel */}
+            <div className="flex-1 p-6 flex flex-col justify-between">
+              <div>
+                <div className="flex items-start justify-between gap-4 mb-4">
                   <div>
-                    <h3 className="text-white text-xl font-bold mb-0.5">
-                      {active.name}
-                    </h3>
-                    <p
-                      className="text-sm"
-                      style={{ color: "rgba(224,192,175,0.45)" }}
-                    >
-                      {active.tagline}
-                    </p>
+                    <h3 className="text-white text-xl font-bold mb-1">{active.name}</h3>
+                    <p className="text-sm" style={{ color: "rgba(224,192,175,0.45)" }}>{active.tagline}</p>
                   </div>
-                  <div
-                    className="w-3 h-3 rounded-full shrink-0 mt-1.5"
-                    style={{ background: active.accent }}
-                  />
+                  <div className="w-3 h-3 rounded-full shrink-0 mt-1.5" style={{ background: active.accent }} />
                 </div>
 
-                <p
-                  className="text-sm leading-relaxed mb-5"
-                  style={{ color: "rgba(224,192,175,0.65)" }}
-                >
+                <p className="text-sm leading-relaxed mb-5" style={{ color: "rgba(224,192,175,0.65)" }}>
                   {active.description}
                 </p>
 
-                <div
-                  className="pl-3"
-                  style={{
-                    borderLeft: "2px solid rgba(255,122,0,0.35)",
-                  }}
-                >
-                  <p
-                    className="text-[10px] uppercase tracking-widest mb-1"
-                    style={{ color: "rgba(255,122,0,0.65)" }}
-                  >
+                <div className="pl-3" style={{ borderLeft: "2px solid rgba(255,122,0,0.35)" }}>
+                  <p className="text-[10px] uppercase tracking-widest mb-1" style={{ color: "rgba(255,122,0,0.65)" }}>
                     Ideal para
                   </p>
-                  <p
-                    className="text-sm leading-relaxed"
-                    style={{ color: "rgba(224,192,175,0.55)" }}
-                  >
+                  <p className="text-sm leading-relaxed" style={{ color: "rgba(224,192,175,0.55)" }}>
                     {active.ideal}
                   </p>
                 </div>
               </div>
-            </div>
 
-            {/* Style counter */}
-            <p
-              className="text-[10px] text-right mt-3 pr-1"
-              style={{ color: "rgba(224,192,175,0.25)" }}
-            >
-              {STYLES.findIndex((s) => s.id === activeId) + 1} / {STYLES.length}
-            </p>
+              {/* Nav arrows + counter */}
+              <div className="flex items-center justify-between mt-6 pt-4" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+                <button
+                  onClick={() => setActiveId(STYLES[(activeIdx - 1 + STYLES.length) % STYLES.length].id)}
+                  className="px-3 py-1.5 rounded-lg text-xs font-medium transition-all"
+                  style={{ background: "rgba(255,255,255,0.05)", color: "rgba(224,192,175,0.5)", border: "1px solid rgba(255,255,255,0.07)" }}
+                >
+                  ← Anterior
+                </button>
+                <span className="text-[11px]" style={{ color: "rgba(224,192,175,0.25)", fontVariantNumeric: "tabular-nums" }}>
+                  {activeIdx + 1} / {STYLES.length}
+                </span>
+                <button
+                  onClick={() => setActiveId(STYLES[(activeIdx + 1) % STYLES.length].id)}
+                  className="px-3 py-1.5 rounded-lg text-xs font-medium transition-all"
+                  style={{ background: "rgba(255,255,255,0.05)", color: "rgba(224,192,175,0.5)", border: "1px solid rgba(255,255,255,0.07)" }}
+                >
+                  Siguiente →
+                </button>
+              </div>
+            </div>
           </div>
         </div>
+
       </div>
     </section>
   );
