@@ -92,7 +92,6 @@ export function Navbar() {
     { href: `${prefix}#results`, label: "Resultados" },
     { href: `${prefix}#portfolio`, label: "Portfolio" },
     { href: "/estilos", label: "Catálogo" },
-    { href: "/secretos", label: "Easter Eggs" },
   ];
 
   return (
@@ -173,6 +172,18 @@ export function Navbar() {
                   {link.label}
                 </a>
               ))}
+              <button
+                onClick={() => {
+                  setMobileOpen(false);
+                  window.dispatchEvent(new KeyboardEvent("keydown", { key: "k", metaKey: true, bubbles: true }));
+                }}
+                className="text-on-surface-variant hover:text-white transition-colors py-2 text-body-lg text-left flex items-center gap-2"
+              >
+                <svg className="w-4 h-4 opacity-50" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx={11} cy={11} r={8} /><path d="m21 21-4.35-4.35" />
+                </svg>
+                Buscar / Easter Eggs
+              </button>
               <a
                 href="#contact"
                 onClick={() => setMobileOpen(false)}

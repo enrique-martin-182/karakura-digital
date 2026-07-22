@@ -32,7 +32,7 @@ export function CommandPalette() {
   const [activeIdx, setActiveIdx] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const { activateZelda, toggleVolt, toggleBlast } = useSecretStore();
+  const { isZeldaActive, isVoltMode, isBlastMode, activateZelda, toggleVolt, toggleBlast } = useSecretStore();
 
   // Map command id → action
   const secretActions: Record<string, () => void> = {
@@ -41,16 +41,25 @@ export function CommandPalette() {
     sonic:   toggleBlast,
   };
 
+  const isActive: Record<string, boolean> = {
+    zelda:   isZeldaActive,
+    pikachu: isVoltMode,
+    sonic:   isBlastMode,
+  };
+
   const filtered = actions.filter((a) =>
     a.label.toLowerCase().includes(query.toLowerCase())
   );
 
-  // Secret commands visible only when query starts with "/"
+  // Easter eggs: always visible; filter by command when query starts with "/"
   const filteredSecrets = query.startsWith("/")
-    ? SECRET_COMMANDS.filter((s) =>
-        s.command.startsWith(query.toLowerCase())
-      )
-    : [];
+    ? SECRET_COMMANDS.filter((s) => s.command.startsWith(query.toLowerCase()))
+    : query === ""
+    ? SECRET_COMMANDS
+    : SECRET_COMMANDS.filter((s) =>
+        s.label.toLowerCase().includes(query.toLowerCase()) ||
+        s.command.includes(query.toLowerCase())
+      );
 
   const close = useCallback(() => {
     setOpen(false);
@@ -155,25 +164,35 @@ export function CommandPalette() {
                     <p className="px-3 py-1 text-[10px] font-mono tracking-widest text-on-surface-variant/30 uppercase">
                       Easter eggs
                     </p>
-                    {filteredSecrets.map((secret) => (
-                      <motion.button
-                        key={secret.id}
-                        variants={itemVariants}
-                        onClick={() => { secretActions[secret.id]?.(); close(); }}
-                        className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-white/6 transition-colors text-left group"
-                      >
-                        <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-yellow-400/10 text-base shrink-0">
-                          {secret.emoji}
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <span className="block text-sm text-white">{secret.label}</span>
-                          <span className="block text-[10px] text-on-surface-variant/40 truncate">{secret.hint}</span>
-                        </div>
-                        <kbd className="px-1.5 py-0.5 rounded border border-outline-variant/20 font-mono text-[10px] text-on-surface-variant/30">
-                          {secret.command}
-                        </kbd>
-                      </motion.button>
-                    ))}
+                    {filteredSecrets.map((secret) => {
+                      const active = isActive[secret.id];
+                      return (
+                        <motion.button
+                          key={secret.id}
+                          variants={itemVariants}
+                          onClick={() => { secretActions[secret.id]?.(); close(); }}
+                          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors text-left group"
+                          style={active ? { background: "rgba(255,122,0,0.08)" } : undefined}
+                        >
+                          <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-base shrink-0 ${active ? "bg-primary-container/20" : "bg-yellow-400/10"}`}>
+                            {secret.emoji}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <span className="block text-sm text-white">{secret.label}</span>
+                            <span className="block text-[10px] text-on-surface-variant/40 truncate">{secret.hint}</span>
+                          </div>
+                          {active ? (
+                            <span className="px-1.5 py-0.5 rounded-full bg-primary-container/20 text-primary-container font-mono text-[10px]">
+                              ON
+                            </span>
+                          ) : (
+                            <kbd className="px-1.5 py-0.5 rounded border border-outline-variant/20 font-mono text-[10px] text-on-surface-variant/30">
+                              {secret.command}
+                            </kbd>
+                          )}
+                        </motion.button>
+                      );
+                    })}
                     {filtered.length > 0 && <div className="h-px bg-outline-variant/10 mx-3 my-1" />}
                   </div>
                 )}
