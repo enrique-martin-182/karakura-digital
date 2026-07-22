@@ -37,7 +37,7 @@ function CommandPaletteAffordance() {
     <button
       onClick={openCommandPalette}
       aria-label="Abrir paleta de comandos"
-      className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-lg
+      className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-lg
                  border border-outline-variant/20 bg-surface-variant/10
                  hover:bg-surface-variant/20 hover:border-outline-variant/40
                  transition-all duration-200 text-on-surface-variant hover:text-on-surface
@@ -104,10 +104,10 @@ export function Navbar() {
       <div className="flex justify-between items-center px-4 md:px-gutter max-w-[1280px] mx-auto h-20">
         <Link href="/" className="flex items-center gap-3">
           <Image src="/KD LOGO 3.png" alt="Karakura Digital logo" width={40} height={40} className="rounded-full" priority />
-          <Image src="/assets/logo-kd.png" alt="Karakura Digital" width={180} height={40} className="hidden sm:block object-contain" />
+          <Image src="/assets/logo-kd.png" alt="Karakura Digital" width={180} height={40} className="hidden lg:block object-contain" />
         </Link>
 
-        <div className="hidden md:flex items-center space-x-8">
+        <div className="hidden md:flex items-center space-x-4 lg:space-x-7">
           {links.map((link) => (
             <a
               key={link.href}

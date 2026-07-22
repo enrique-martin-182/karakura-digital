@@ -76,7 +76,10 @@ export function Footer() {
 
         <div className="col-span-1 md:col-span-4 mt-16 pt-8 border-t border-outline-variant/10 text-center">
           <p className="text-body-md text-on-surface-variant">
-            &copy; 2026 Karakura Digital. Todos los derechos reservados.
+            &copy; 2026 Karakura Digital. Todos los derechos reservados. ·{" "}
+            <Link href="/privacidad" className="hover:text-white transition-colors">
+              Política de Privacidad y Cookies
+            </Link>
           </p>
           <p className="text-label-sm text-on-surface-variant/50 mt-2">
             Modelos 3D del diorama de portfolio: Quaternius (CC0) y Poly by Google vía{" "}
