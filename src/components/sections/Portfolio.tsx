@@ -142,6 +142,16 @@ const webProjects: Project[] = [
     accentColor: "rgba(202, 160, 80, 0.8)",
     glowColor: "rgba(202, 160, 80, 0.2)",
   },
+  {
+    title: "FisioCore",
+    description:
+      "Clínica de fisioterapia avanzada en Córdoba. Diagnóstico preciso desde la primera sesión, terapia manual experta y protocolos de rehabilitación deportiva con resultados medibles.",
+    url: "https://fisioterapia-eight.vercel.app/",
+    image: "/assets/portfolio-fisioterapia.png",
+    tags: ["Salud", "Next.js", "Córdoba"],
+    accentColor: "rgba(14, 165, 233, 0.8)",
+    glowColor: "rgba(14, 165, 233, 0.2)",
+  },
 ];
 
 const appProjects: Project[] = [
