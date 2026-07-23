@@ -3,6 +3,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { LocalImpact } from "@/components/sections/LocalImpact";
+import { LazySection } from "@/components/effects/LazySection";
 
 const SectionSkeleton = ({ minHeight = "400px" }: { minHeight?: string }) => (
   <div style={{ minHeight }} className="w-full" aria-hidden="true" />
@@ -27,36 +28,53 @@ export default function Home() {
       <Navbar />
       <main id="main-content" className="pt-20">
         <Hero />
-        <HeroWebGL />
-        <Interactive3D />
+
+        {/* Three.js shader — gated: only loads when 400px from viewport */}
+        <LazySection rootMargin="400px" minHeight="100vh">
+          <HeroWebGL />
+        </LazySection>
+
+        {/* Spline 3D (~2MB runtime) — gated */}
+        <LazySection rootMargin="300px" minHeight="600px">
+          <Interactive3D />
+        </LazySection>
+
         <LocalImpact />
         <GapComparison />
         <Services />
 
-        {/* Data topology demo section */}
-        <section className="relative py-32 overflow-hidden">
-          <InteractiveDataBackground />
-          {/* Gradient vignette so edges don't look cut off */}
-          <div className="absolute inset-0 pointer-events-none"
-            style={{ background: "radial-gradient(ellipse 90% 80% at 50% 50%, transparent 30%, var(--color-background) 100%)" }}
-          />
-          <div className="relative z-10 flex flex-col items-center gap-12 px-gutter">
-            <div className="text-center space-y-2 max-w-xl">
-              <p className="text-xs font-mono tracking-[0.2em] uppercase" style={{ color: "rgba(78,222,163,0.5)" }}>
-                Automatización B2B en tiempo real
-              </p>
-              <h2 className="text-3xl md:text-4xl font-black tracking-tight text-white">
-                Tu pipeline de datos,<br />corriendo ahora mismo.
-              </h2>
+        {/* Data topology demo section — canvas heavy, gated */}
+        <LazySection rootMargin="200px" minHeight="500px">
+          <section className="relative py-32 overflow-hidden">
+            <InteractiveDataBackground />
+            <div className="absolute inset-0 pointer-events-none"
+              style={{ background: "radial-gradient(ellipse 90% 80% at 50% 50%, transparent 30%, var(--color-background) 100%)" }}
+            />
+            <div className="relative z-10 flex flex-col items-center gap-12 px-gutter">
+              <div className="text-center space-y-2 max-w-xl">
+                <p className="text-xs font-mono tracking-[0.2em] uppercase" style={{ color: "rgba(78,222,163,0.5)" }}>
+                  Automatización B2B en tiempo real
+                </p>
+                <h2 className="text-3xl md:text-4xl font-black tracking-tight text-white">
+                  Tu pipeline de datos,<br />corriendo ahora mismo.
+                </h2>
+              </div>
+              <B2BTerminalPreview />
             </div>
-            <B2BTerminalPreview />
-          </div>
-        </section>
+          </section>
+        </LazySection>
 
         <TechStack />
         <Process />
-        <Results />
-        <Portfolio />
+
+        <LazySection rootMargin="200px" minHeight="400px">
+          <Results />
+        </LazySection>
+
+        <LazySection rootMargin="200px" minHeight="600px">
+          <Portfolio />
+        </LazySection>
+
         <FAQ />
         <ContactCTA />
       </main>

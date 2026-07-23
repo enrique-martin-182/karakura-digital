@@ -19,6 +19,8 @@ const nextConfig: NextConfig = {
       "@splinetool/react-spline",
       "@splinetool/runtime",
       "lenis",
+      "@react-three/fiber",
+      "@react-three/drei",
     ],
   },
 

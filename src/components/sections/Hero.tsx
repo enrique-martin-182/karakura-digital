@@ -40,7 +40,6 @@ export function Hero() {
         muted
         playsInline
         preload="none"
-        poster="/assets/hero-poster.jpg"
         className="absolute inset-0 w-full h-full object-cover"
         aria-hidden="true"
       >
