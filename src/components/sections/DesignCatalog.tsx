@@ -7,63 +7,58 @@ import { useState } from "react";
 function SkeumorphismDemo() {
   return (
     <div
-      className="h-full flex items-center justify-center gap-6 p-6"
+      className="h-full flex items-center justify-center p-6"
       style={{
-        background:
-          "linear-gradient(135deg, #2d1b0a 0%, #4a2f15 50%, #1a0f05 100%)",
+        background: "linear-gradient(135deg, #2d1b0a 0%, #4a2f15 50%, #1a0f05 100%)",
         backgroundImage:
-          "linear-gradient(135deg, #2d1b0a 0%, #4a2f15 50%, #1a0f05 100%), repeating-linear-gradient(45deg, rgba(0,0,0,0.04) 0px, rgba(0,0,0,0.04) 1px, transparent 1px, transparent 8px)",
-        backgroundBlendMode: "normal, overlay",
+          "linear-gradient(135deg, #2d1b0a 0%, #4a2f15 50%, #1a0f05 100%), " +
+          "repeating-linear-gradient(45deg, rgba(0,0,0,0.06) 0px, rgba(0,0,0,0.06) 1px, transparent 1px, transparent 7px), " +
+          "repeating-linear-gradient(-45deg, rgba(0,0,0,0.04) 0px, rgba(0,0,0,0.04) 1px, transparent 1px, transparent 7px)",
+        backgroundBlendMode: "normal, overlay, overlay",
       }}
     >
       <div className="flex flex-col items-center gap-5">
+        {/* Device */}
         <div
-          className="w-52 rounded-2xl p-4 border border-amber-900/60"
+          className="w-52 rounded-2xl p-4 border border-amber-900/50"
           style={{
-            background: "linear-gradient(180deg, #6b3e1a 0%, #4a2810 100%)",
-            boxShadow:
-              "0 12px 40px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,200,100,0.15)",
+            background: "linear-gradient(180deg, #7a4820 0%, #4a2810 100%)",
+            boxShadow: "0 16px 48px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,200,100,0.22), inset 0 -1px 0 rgba(0,0,0,0.4)",
           }}
         >
-          <p className="text-[10px] font-mono text-amber-400/80 mb-3 tracking-widest">
-            KARAKURA OS v2.4
-          </p>
+          <p className="text-[9px] font-mono text-amber-400/80 mb-3 tracking-widest">KARAKURA OS v2.4</p>
+          {/* Screen with stronger inset shadow */}
           <div
             className="rounded-xl p-3 mb-3"
             style={{
-              background:
-                "linear-gradient(180deg, #0d0d0d 0%, #1a1a1a 100%)",
-              boxShadow:
-                "inset 0 3px 10px rgba(0,0,0,0.8), inset 0 -1px 0 rgba(255,255,255,0.03)",
+              background: "linear-gradient(180deg, #080808 0%, #141414 100%)",
+              boxShadow: "inset 0 4px 14px rgba(0,0,0,0.9), inset 0 -1px 0 rgba(255,255,255,0.02), inset 2px 0 6px rgba(0,0,0,0.5), inset -2px 0 6px rgba(0,0,0,0.5)",
             }}
           >
-            <p className="text-green-400 text-[10px] font-mono">
-              $ npm run build
-            </p>
-            <p className="text-green-400/60 text-[10px] font-mono">
-              ✓ compilado en 1.4s
-            </p>
+            <p className="text-green-400 text-[10px] font-mono">$ npm run build</p>
+            <p className="text-green-400/55 text-[10px] font-mono">✓ compilado en 1.4s</p>
           </div>
+          {/* Button with physical press depth */}
           <button
-            className="w-full rounded-xl py-2 text-xs font-bold text-amber-100 border border-amber-900/80"
+            className="w-full rounded-xl py-2 text-xs font-bold text-amber-100 border border-amber-900/70"
             style={{
-              background:
-                "linear-gradient(180deg, #c47c28 0%, #7a4a0a 100%)",
-              boxShadow:
-                "0 4px 0 rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,220,150,0.25)",
+              background: "linear-gradient(180deg, #d4882c 0%, #7a4a0a 100%)",
+              boxShadow: "0 4px 0 rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,220,150,0.32)",
             }}
           >
             EJECUTAR
           </button>
         </div>
+
+        {/* Spheres with strong specular */}
         <div className="flex gap-3">
           {["#ff6b35", "#4ecdc4", "#4edea3"].map((c, i) => (
             <div
               key={i}
               className="w-10 h-10 rounded-full"
               style={{
-                background: `radial-gradient(circle at 35% 30%, ${c}dd, ${c}55)`,
-                boxShadow: `0 4px 12px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.35)`,
+                background: `radial-gradient(circle at 32% 28%, ${c}ff 0%, ${c}bb 45%, ${c}44 100%)`,
+                boxShadow: `0 6px 16px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.45), inset -1px -1px 4px rgba(0,0,0,0.2)`,
               }}
             />
           ))}
@@ -79,59 +74,82 @@ function NeumorphismDemo() {
       className="h-full flex items-center justify-center p-6"
       style={{ background: "#e0e5ec" }}
     >
-      <div className="flex flex-col items-center gap-6 w-full max-w-xs">
+      <div className="flex flex-col items-center gap-5 w-full max-w-xs">
         <div
-          className="rounded-2xl p-6 w-full"
-          style={{
-            background: "#e0e5ec",
-            boxShadow: "8px 8px 16px #b8bec7, -8px -8px 16px #ffffff",
-          }}
+          className="rounded-2xl p-5 w-full"
+          style={{ background: "#e0e5ec", boxShadow: "8px 8px 18px #b8bec7, -8px -8px 18px #ffffff" }}
         >
-          <p className="text-slate-500 text-xs font-medium mb-4 tracking-widest uppercase">
-            Rendimiento
+          <p className="text-slate-500 text-[10px] font-bold mb-4 tracking-[0.18em] uppercase">
+            Métricas · Q4
           </p>
           {[
             { label: "Conversión", w: "75%", color: "#6366f1" },
             { label: "Retención", w: "55%", color: "#06b6d4" },
             { label: "Satisfacción", w: "88%", color: "#10b981" },
           ].map(({ label, w, color }) => (
-            <div key={label} className="mb-3">
-              <div className="flex justify-between text-[10px] text-slate-400 mb-1">
+            <div key={label} className="mb-3 last:mb-0">
+              <div className="flex justify-between text-[10px] text-slate-400 mb-1.5">
                 <span>{label}</span>
-                <span>{w}</span>
+                <span style={{ fontVariantNumeric: "tabular-nums" }}>{w}</span>
               </div>
               <div
-                className="h-2 rounded-full"
-                style={{
-                  background: "#e0e5ec",
-                  boxShadow:
-                    "inset 3px 3px 6px #b8bec7, inset -3px -3px 6px #ffffff",
-                }}
+                className="h-2.5 rounded-full"
+                style={{ background: "#e0e5ec", boxShadow: "inset 3px 3px 6px #b8bec7, inset -3px -3px 6px #ffffff" }}
               >
-                <div
-                  className="h-full rounded-full"
-                  style={{ width: w, background: color }}
-                />
+                <div className="h-full rounded-full" style={{ width: w, background: color }} />
               </div>
             </div>
           ))}
         </div>
-        <div className="flex gap-4">
-          {["◀", "▶", "⏸"].map((icon, i) => (
-            <button
-              key={i}
-              className="w-12 h-12 rounded-full text-slate-500 flex items-center justify-center text-sm"
-              style={{
-                background: "#e0e5ec",
-                boxShadow:
-                  i === 2
-                    ? "inset 4px 4px 8px #b8bec7, inset -4px -4px 8px #ffffff"
-                    : "6px 6px 12px #b8bec7, -6px -6px 12px #ffffff",
-              }}
-            >
-              {icon}
-            </button>
+
+        {/* Neu card with stats */}
+        <div
+          className="rounded-2xl p-4 w-full grid grid-cols-3 gap-3"
+          style={{ background: "#e0e5ec", boxShadow: "6px 6px 14px #b8bec7, -6px -6px 14px #ffffff" }}
+        >
+          {[["28", "Proyectos", "#6366f1"], ["4.9", "Rating", "#10b981"], ["100", "% Sat.", "#06b6d4"]].map(([v, l, c]) => (
+            <div key={l} className="text-center">
+              <p className="font-bold text-slate-700 text-base" style={{ fontVariantNumeric: "tabular-nums" }}>{v}</p>
+              <p className="text-[9px] text-slate-400 font-medium">{l}</p>
+              <div className="w-4 h-0.5 mx-auto mt-1 rounded-full" style={{ background: c }} />
+            </div>
           ))}
+        </div>
+
+        <div className="flex gap-4">
+          {/* Skip back */}
+          <button
+            className="w-12 h-12 rounded-full flex items-center justify-center"
+            style={{ background: "#e0e5ec", boxShadow: "6px 6px 12px #b8bec7, -6px -6px 12px #ffffff" }}
+            aria-label="Anterior"
+          >
+            <div className="flex gap-0.5">
+              <div style={{ width: 0, height: 0, borderTop: "6px solid transparent", borderBottom: "6px solid transparent", borderRight: "8px solid #94a3b8" }} />
+              <div style={{ width: 0, height: 0, borderTop: "6px solid transparent", borderBottom: "6px solid transparent", borderRight: "8px solid #94a3b8" }} />
+            </div>
+          </button>
+          {/* Pause — pressed state */}
+          <button
+            className="w-12 h-12 rounded-full flex items-center justify-center"
+            style={{ background: "#e0e5ec", boxShadow: "inset 4px 4px 8px #b8bec7, inset -4px -4px 8px #ffffff" }}
+            aria-label="Pausar"
+          >
+            <div className="flex gap-1">
+              <div style={{ width: 3, height: 12, background: "#6366f1", borderRadius: 2 }} />
+              <div style={{ width: 3, height: 12, background: "#6366f1", borderRadius: 2 }} />
+            </div>
+          </button>
+          {/* Skip forward */}
+          <button
+            className="w-12 h-12 rounded-full flex items-center justify-center"
+            style={{ background: "#e0e5ec", boxShadow: "6px 6px 12px #b8bec7, -6px -6px 12px #ffffff" }}
+            aria-label="Siguiente"
+          >
+            <div className="flex gap-0.5">
+              <div style={{ width: 0, height: 0, borderTop: "6px solid transparent", borderBottom: "6px solid transparent", borderLeft: "8px solid #94a3b8" }} />
+              <div style={{ width: 0, height: 0, borderTop: "6px solid transparent", borderBottom: "6px solid transparent", borderLeft: "8px solid #94a3b8" }} />
+            </div>
+          </button>
         </div>
       </div>
     </div>
@@ -142,59 +160,51 @@ function GlassmorphismDemo() {
   return (
     <div
       className="h-full flex items-center justify-center p-6 relative overflow-hidden"
-      style={{
-        background:
-          "linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)",
-      }}
+      style={{ background: "linear-gradient(135deg, #4f46e5 0%, #7c3aed 40%, #db2777 100%)" }}
     >
-      <div
-        className="absolute w-44 h-44 rounded-full -top-12 -left-12"
-        style={{ background: "rgba(255,255,255,0.18)" }}
-      />
-      <div
-        className="absolute w-36 h-36 rounded-full -bottom-10 -right-10"
-        style={{ background: "rgba(255,255,255,0.12)" }}
-      />
+      {/* Orb blobs */}
+      <div className="absolute w-52 h-52 rounded-full -top-14 -left-14" style={{ background: "rgba(255,255,255,0.14)" }} />
+      <div className="absolute w-40 h-40 rounded-full -bottom-12 -right-12" style={{ background: "rgba(255,255,255,0.1)" }} />
+      <div className="absolute w-24 h-24 rounded-full top-1/2 right-4" style={{ background: "rgba(255,255,255,0.07)" }} />
+
       <div
         className="relative rounded-2xl p-5 w-full max-w-xs border border-white/20 backdrop-blur-md"
-        style={{
-          background: "rgba(255,255,255,0.1)",
-          boxShadow: "0 8px 32px rgba(0,0,0,0.2)",
-        }}
+        style={{ background: "rgba(255,255,255,0.1)", boxShadow: "0 8px 32px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.2)" }}
       >
+        {/* Top highlight */}
+        <div
+          className="absolute inset-x-6 top-2 h-px"
+          style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)" }}
+        />
         <div className="flex items-center gap-3 mb-4">
           <div className="w-9 h-9 rounded-full bg-white/20 border border-white/30 flex items-center justify-center text-white text-xs font-bold">
             KD
           </div>
           <div>
-            <p className="text-white text-sm font-semibold">
-              Karakura Digital
-            </p>
-            <p className="text-white/60 text-xs">Agencia · Córdoba</p>
+            <p className="text-white text-sm font-semibold">Karakura Digital</p>
+            <p className="text-white/55 text-[11px]">Agencia · Córdoba</p>
           </div>
+          <div className="ml-auto w-2 h-2 rounded-full bg-emerald-400" style={{ boxShadow: "0 0 6px #34d399" }} />
         </div>
-        <div className="space-y-2.5 mb-4">
+        <div className="space-y-3 mb-4">
           {[
             { label: "Conversión", v: 85 },
             { label: "Retención", v: 62 },
             { label: "NPS", v: 91 },
           ].map(({ label, v }) => (
             <div key={label}>
-              <div className="flex justify-between text-white/70 text-[10px] mb-1">
+              <div className="flex justify-between text-white/65 text-[10px] mb-1.5">
                 <span>{label}</span>
-                <span>{v}%</span>
+                <span style={{ fontVariantNumeric: "tabular-nums" }}>{v}%</span>
               </div>
-              <div className="h-1.5 rounded-full bg-white/20">
-                <div
-                  className="h-full rounded-full bg-white/70"
-                  style={{ width: `${v}%` }}
-                />
+              <div className="h-1.5 rounded-full bg-white/15">
+                <div className="h-full rounded-full bg-white/70" style={{ width: `${v}%` }} />
               </div>
             </div>
           ))}
         </div>
-        <button className="w-full py-2 rounded-xl text-white text-xs font-medium border border-white/30 bg-white/15">
-          Ver informe completo
+        <button className="w-full py-2 rounded-xl text-white text-xs font-semibold border border-white/25 bg-white/15">
+          Ver informe →
         </button>
       </div>
     </div>
@@ -202,57 +212,59 @@ function GlassmorphismDemo() {
 }
 
 function ClaymorphismDemo() {
+  const cards = [
+    {
+      color: "#ff6b6b", shadow: "rgba(255,107,107,0.5)", label: "Campañas", value: "+42%",
+      icon: (
+        <div style={{ width: 14, height: 16, background: "rgba(255,255,255,0.65)", clipPath: "polygon(50% 0%,100% 55%,68% 55%,68% 100%,32% 100%,32% 55%,0% 55%)" }} />
+      ),
+    },
+    {
+      color: "#4ecdc4", shadow: "rgba(78,205,196,0.5)", label: "Clientes", value: "1.2k",
+      icon: (
+        <div className="flex items-end gap-1">
+          <div style={{ width: 10, height: 10, borderRadius: "50%", background: "rgba(255,255,255,0.55)" }} />
+          <div style={{ width: 14, height: 14, borderRadius: "50%", background: "rgba(255,255,255,0.7)", marginBottom: -1 }} />
+        </div>
+      ),
+    },
+    {
+      color: "#a855f7", shadow: "rgba(168,85,247,0.5)", label: "Proyectos", value: "28",
+      icon: (
+        <div style={{ width: 14, height: 14, background: "rgba(255,255,255,0.65)", transform: "rotate(45deg)", borderRadius: 3 }} />
+      ),
+    },
+  ];
+
   return (
     <div
       className="h-full flex items-center justify-center p-6"
-      style={{
-        background:
-          "linear-gradient(135deg, #fff1eb 0%, #fde68a 100%)",
-      }}
+      style={{ background: "linear-gradient(145deg, #fff0e8 0%, #fde8b2 50%, #eaf4ff 100%)" }}
     >
       <div className="flex flex-col gap-3 w-full max-w-xs">
-        {[
-          {
-            color: "#ff6b6b",
-            shadow: "rgba(255,107,107,0.45)",
-            label: "Campañas",
-            value: "+42%",
-            icon: "🚀",
-          },
-          {
-            color: "#4ecdc4",
-            shadow: "rgba(78,205,196,0.45)",
-            label: "Clientes",
-            value: "1.2k",
-            icon: "👥",
-          },
-          {
-            color: "#a855f7",
-            shadow: "rgba(168,85,247,0.45)",
-            label: "Proyectos",
-            value: "28",
-            icon: "✨",
-          },
-        ].map((item) => (
+        {cards.map((item) => (
           <div
             key={item.label}
-            className="rounded-[20px] p-4 flex items-center gap-4"
+            className="rounded-[22px] p-4 flex items-center gap-4"
             style={{
-              background: item.color,
-              boxShadow: `6px 6px 0 ${item.shadow}, 0 12px 24px rgba(0,0,0,0.08)`,
+              background: `linear-gradient(145deg, ${item.color}f0, ${item.color}cc)`,
+              boxShadow: `5px 5px 0 ${item.shadow}, inset 0 1px 0 rgba(255,255,255,0.35), 0 12px 24px rgba(0,0,0,0.07)`,
             }}
           >
             <div
-              className="w-12 h-12 rounded-2xl bg-white/25 flex items-center justify-center text-2xl shrink-0"
-              style={{ boxShadow: "inset 0 2px 4px rgba(255,255,255,0.4)" }}
+              className="w-12 h-12 rounded-[16px] flex items-center justify-center shrink-0"
+              style={{
+                background: "rgba(255,255,255,0.28)",
+                boxShadow: "inset 0 3px 6px rgba(255,255,255,0.5), inset 0 -2px 4px rgba(0,0,0,0.06)",
+              }}
             >
               {item.icon}
             </div>
             <div>
-              <p className="text-white/80 text-xs font-medium">
-                {item.label}
+              <p className="text-white/70 text-xs font-semibold">{item.label}</p>
+              <p className="text-white text-2xl font-black" style={{ letterSpacing: "-0.03em", fontVariantNumeric: "tabular-nums" }}>
+                {item.value}
               </p>
-              <p className="text-white text-xl font-bold">{item.value}</p>
             </div>
           </div>
         ))}
@@ -265,27 +277,33 @@ function MinimalismDemo() {
   return (
     <div className="h-full flex items-center justify-center p-8 bg-white">
       <div className="w-full max-w-xs">
-        <div className="text-[10px] tracking-[0.3em] text-stone-400 uppercase mb-6">
+        <div className="text-[9px] tracking-[0.32em] text-stone-400 uppercase mb-7" style={{ letterSpacing: "0.32em" }}>
           Karakura Digital / 2026
         </div>
-        <h2 className="text-3xl font-light text-stone-900 leading-tight mb-6">
+        <h2
+          className="text-3xl font-light text-stone-900 leading-tight mb-6"
+          style={{ textWrap: "balance" } as React.CSSProperties}
+        >
           Diseño
           <br />
           <span className="text-stone-400">que respira.</span>
         </h2>
-        <div className="w-10 h-px bg-stone-900 mb-6" />
-        <p className="text-xs text-stone-400 leading-relaxed mb-8">
+        <div className="w-8 h-px bg-stone-900 mb-6" />
+        <p className="text-[11px] text-stone-400 leading-relaxed mb-8" style={{ lineHeight: "1.8" }}>
           El espacio en blanco no es vacío. Es silencio intencional que hace
           que cada elemento hable por sí solo.
         </p>
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-end">
           <div>
-            <p className="text-[10px] text-stone-400 tracking-widest uppercase">
+            <p className="text-[9px] text-stone-400 tracking-[0.2em] uppercase mb-0.5">
               Contacto
             </p>
-            <p className="text-xs text-stone-600">hola@karakura.es</p>
+            <p className="text-[11px] text-stone-600">hola@karakura.es</p>
           </div>
-          <button className="text-xs border border-stone-900 px-4 py-2">
+          <button
+            className="text-[10px] border border-stone-900 px-4 py-2 text-stone-900 tracking-widest"
+            style={{ transition: "background 150ms ease, color 150ms ease" }}
+          >
             →
           </button>
         </div>
@@ -296,63 +314,64 @@ function MinimalismDemo() {
 
 function MaximalismDemo() {
   return (
-    <div
-      className="h-full relative overflow-hidden flex items-center justify-center"
-      style={{
-        background:
-          "linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)",
-      }}
-    >
+    <div className="h-full relative overflow-hidden" style={{ background: "#0a0a0a" }}>
+      {/* Full-bleed gradient */}
       <div
-        className="absolute top-3 left-3 w-20 h-20 rounded-full opacity-70"
-        style={{ background: "linear-gradient(45deg, #ff6b35, #f7c59f)" }}
+        className="absolute inset-0"
+        style={{ background: "linear-gradient(135deg, #ff006e 0%, #8338ec 33%, #3a86ff 66%, #06d6a0 100%)" }}
       />
+      {/* Dot-grid overlay */}
       <div
-        className="absolute top-8 right-4 w-16 h-16 rotate-45 opacity-60"
-        style={{ background: "linear-gradient(45deg, #4ecdc4, #45b7d1)" }}
+        className="absolute inset-0"
+        style={{
+          backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.18) 1px, transparent 1px)",
+          backgroundSize: "14px 14px",
+        }}
       />
+      {/* Dark wash on upper half */}
       <div
-        className="absolute bottom-4 left-6 w-24 h-8 rounded opacity-50"
-        style={{ background: "#e63946" }}
+        className="absolute top-0 left-0 right-0"
+        style={{ height: "45%", background: "rgba(8,8,8,0.55)" }}
       />
-      <div
-        className="absolute bottom-10 right-2 w-10 h-20 rotate-12 opacity-40"
-        style={{ background: "linear-gradient(180deg, #ffe66d, #ff6b35)" }}
-      />
-      <div className="relative text-center px-4">
-        <div
-          className="text-5xl font-black text-white mb-2"
-          style={{
-            textShadow: "3px 3px 0 #ff6b35, 6px 6px 0 #4ecdc4",
-          }}
-        >
-          KD!
+
+      {/* Competing type composition */}
+      <div className="absolute inset-0 flex flex-col justify-between p-3.5 z-10">
+        <div>
+          <p className="font-black text-white uppercase" style={{ fontSize: 8, letterSpacing: "0.32em", opacity: 0.5 }}>
+            KARAKURA × DIGITAL × 2026
+          </p>
+          <p
+            className="font-black text-white"
+            style={{ fontSize: 52, lineHeight: 0.82, letterSpacing: "-0.04em", textShadow: "4px 4px 0 #ff006e" }}
+          >
+            DIS<span style={{ WebkitTextStroke: "2.5px white", color: "transparent" }}>EÑO</span>
+          </p>
         </div>
-        <div className="grid grid-cols-3 gap-1 mb-3">
-          {[
-            "#ff6b35",
-            "#4ecdc4",
-            "#ffe66d",
-            "#a855f7",
-            "#06d6a0",
-            "#ff006e",
-          ].map((c, i) => (
-            <div
-              key={i}
-              className="h-3 rounded-sm"
-              style={{ background: c }}
-            />
-          ))}
+
+        <div>
+          <p className="font-black uppercase" style={{ fontSize: 44, lineHeight: 0.82, letterSpacing: "-0.03em" }}>
+            <span style={{ color: "#ffe66d" }}>SIN</span>
+            <br />
+            <span style={{ color: "#ff006e" }}>LÍMI</span>
+            <span style={{ color: "#06d6a0" }}>TES</span>
+          </p>
         </div>
-        <p className="text-yellow-300 text-xs font-black tracking-widest uppercase">
-          MÁS ES MÁS
-        </p>
-        <p className="text-pink-400 text-xs mt-1">
-          ✦ Todo. ✦ Ahora. ✦ Aquí. ✦
-        </p>
-        <p className="text-white/40 text-[10px] font-mono mt-3">
-          v∞.∞.∞-ALPHA
-        </p>
+
+        <div>
+          {/* 8-color rule */}
+          <div className="flex mb-1.5" style={{ height: 5 }}>
+            {["#ff006e","#8338ec","#3a86ff","#06d6a0","#ffe66d","#ff6b35","#a855f7","#4ecdc4"].map((c, i) => (
+              <div key={i} className="flex-1" style={{ background: c }} />
+            ))}
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="flex-1 h-px" style={{ background: "rgba(255,255,255,0.28)" }} />
+            <p className="font-black text-white" style={{ fontSize: 9, letterSpacing: "0.2em" }}>
+              ✦ TODO ✦ AHORA ✦
+            </p>
+            <div className="flex-1 h-px" style={{ background: "rgba(255,255,255,0.28)" }} />
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -381,13 +400,13 @@ function BrutalismDemo() {
             <p className="font-mono text-[10px] text-black/40 uppercase">
               Fundada
             </p>
-            <p className="font-mono font-black text-lg">2024</p>
+            <p className="font-mono font-black text-lg" style={{ fontVariantNumeric: "tabular-nums" }}>2024</p>
           </div>
           <div className="p-3 border-b-4 border-black">
             <p className="font-mono text-[10px] text-black/40 uppercase">
               Proyectos
             </p>
-            <p className="font-mono font-black text-lg">28+</p>
+            <p className="font-mono font-black text-lg" style={{ fontVariantNumeric: "tabular-nums" }}>28+</p>
           </div>
         </div>
         <div className="p-3">
@@ -404,70 +423,61 @@ function LiquidGlassDemo() {
   return (
     <div
       className="h-full flex items-center justify-center p-6 relative overflow-hidden"
-      style={{
-        background:
-          "linear-gradient(180deg, #0a0a1a 0%, #1a0a2e 60%, #0a1a2e 100%)",
-      }}
+      style={{ background: "linear-gradient(180deg, #08081a 0%, #180a2e 60%, #0a1828 100%)" }}
     >
-      <div
-        className="absolute w-56 h-56 rounded-full -top-8 -left-8 opacity-25"
-        style={{
-          background: "radial-gradient(circle, #a78bfa, transparent 70%)",
-        }}
-      />
-      <div
-        className="absolute w-48 h-48 rounded-full -bottom-8 -right-8 opacity-20"
-        style={{
-          background: "radial-gradient(circle, #67e8f9, transparent 70%)",
-        }}
-      />
+      {/* Ambient orbs */}
+      <div className="absolute w-64 h-64 rounded-full -top-12 -left-12 opacity-30"
+        style={{ background: "radial-gradient(circle, #a78bfa, transparent 70%)" }} />
+      <div className="absolute w-52 h-52 rounded-full -bottom-10 -right-10 opacity-25"
+        style={{ background: "radial-gradient(circle, #67e8f9, transparent 70%)" }} />
+      <div className="absolute w-36 h-36 rounded-full top-1/3 right-8 opacity-15"
+        style={{ background: "radial-gradient(circle, #f0abfc, transparent 70%)" }} />
+
       <div
         className="relative w-full max-w-xs rounded-3xl p-5 backdrop-blur-2xl"
         style={{
-          background: "rgba(255,255,255,0.06)",
-          border: "0.5px solid rgba(255,255,255,0.14)",
-          boxShadow:
-            "0 0 0 0.5px rgba(255,255,255,0.06) inset, 0 24px 48px rgba(0,0,0,0.45)",
+          background: "rgba(255,255,255,0.055)",
+          border: "0.5px solid rgba(255,255,255,0.15)",
+          boxShadow: "0 0 0 0.5px rgba(255,255,255,0.07) inset, 0 28px 56px rgba(0,0,0,0.5)",
         }}
       >
+        {/* Glass top shimmer */}
         <div
-          className="absolute inset-0 rounded-3xl pointer-events-none"
+          className="absolute rounded-3xl pointer-events-none"
           style={{
-            background:
-              "linear-gradient(135deg, rgba(255,255,255,0.09) 0%, transparent 60%)",
+            inset: 0,
+            background: "linear-gradient(145deg, rgba(255,255,255,0.1) 0%, transparent 55%)",
           }}
         />
-        <div className="flex items-center justify-between mb-5">
+        {/* Specular top edge */}
+        <div
+          className="absolute inset-x-8 top-0 pointer-events-none"
+          style={{ height: 1, background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent)" }}
+        />
+
+        <div className="flex items-center justify-between mb-5 relative">
           <div
             className="w-8 h-8 rounded-full flex items-center justify-center text-white/80 text-xs font-medium"
-            style={{
-              background: "rgba(255,255,255,0.1)",
-              border: "0.5px solid rgba(255,255,255,0.2)",
-            }}
+            style={{ background: "rgba(255,255,255,0.1)", border: "0.5px solid rgba(255,255,255,0.22)" }}
           >
             KD
           </div>
           <div
             className="h-px flex-1 mx-3"
-            style={{
-              background:
-                "linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)",
-            }}
+            style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.14), transparent)" }}
           />
-          <span className="text-white/35 text-[10px]">09:41</span>
+          <span className="text-white/30 text-[10px]" style={{ fontVariantNumeric: "tabular-nums" }}>09:41</span>
         </div>
-        <p className="text-white text-lg font-light mb-1">Buenos días,</p>
-        <p className="text-white/45 text-xs mb-5">
-          3 proyectos activos · 1 reunión hoy
-        </p>
-        <div className="flex gap-2">
-          {["Diseño", "Dev", "Launch"].map((t) => (
+        <p className="text-white text-lg font-light mb-1 relative">Buenos días,</p>
+        <p className="text-white/40 text-xs mb-5 relative">3 proyectos activos · 1 reunión hoy</p>
+        <div className="flex gap-2 relative">
+          {["Diseño", "Dev", "Launch"].map((t, i) => (
             <div
               key={t}
-              className="flex-1 rounded-2xl py-2 text-center text-[10px] text-white/65"
+              className="flex-1 rounded-2xl py-2 text-center text-[10px] text-white/60"
               style={{
-                background: "rgba(255,255,255,0.07)",
-                border: "0.5px solid rgba(255,255,255,0.1)",
+                background: i === 0 ? "rgba(167,139,250,0.15)" : "rgba(255,255,255,0.06)",
+                border: i === 0 ? "0.5px solid rgba(167,139,250,0.3)" : "0.5px solid rgba(255,255,255,0.1)",
               }}
             >
               {t}
@@ -483,46 +493,57 @@ function SpatialUIDemo() {
   return (
     <div
       className="h-full flex items-center justify-center p-6"
-      style={{
-        background: "radial-gradient(ellipse at 50% 40%, #0d1117 0%, #020408 100%)",
-      }}
+      style={{ background: "radial-gradient(ellipse at 50% 30%, #0d1117 0%, #020408 100%)" }}
     >
-      <div className="relative w-full max-w-xs">
+      <div className="relative" style={{ width: 230 }}>
+        {/* Layer 3 — furthest */}
         <div
-          className="absolute inset-0 rounded-2xl opacity-30"
+          className="absolute rounded-xl"
           style={{
-            transform: "translateY(20px) translateX(6px)",
-            background: "rgba(99,102,241,0.25)",
-            border: "1px solid rgba(99,102,241,0.15)",
-            filter: "blur(2px)",
+            inset: 0,
+            transform: "translateY(28px) translateX(14px) scale(0.84)",
+            background: "rgba(99,102,241,0.06)",
+            border: "1px solid rgba(99,102,241,0.1)",
           }}
         />
+        {/* Layer 2 — middle, shows content hint */}
         <div
-          className="absolute inset-0 rounded-2xl opacity-55"
+          className="absolute rounded-xl overflow-hidden"
           style={{
-            transform: "translateY(10px) translateX(3px)",
-            background: "rgba(15,20,40,0.75)",
-            border: "1px solid rgba(99,102,241,0.15)",
+            inset: 0,
+            transform: "translateY(14px) translateX(7px) scale(0.93)",
+            background: "rgba(10,14,30,0.8)",
+            border: "1px solid rgba(99,102,241,0.2)",
           }}
-        />
+        >
+          <div className="p-4 opacity-45">
+            <div className="flex gap-2 mb-2.5">
+              <div className="h-1.5 rounded-full bg-indigo-400/30" style={{ width: "55%" }} />
+              <div className="h-1.5 rounded-full bg-white/10" style={{ width: "30%" }} />
+            </div>
+            <div className="h-1.5 rounded-full bg-white/10 mb-1.5" style={{ width: "80%" }} />
+            <div className="h-1.5 rounded-full bg-white/8" style={{ width: "60%" }} />
+          </div>
+        </div>
+        {/* Layer 1 — front */}
         <div
-          className="relative rounded-2xl p-5"
+          className="relative rounded-xl p-5"
           style={{
-            background: "rgba(15,20,35,0.95)",
-            border: "1px solid rgba(99,102,241,0.3)",
-            boxShadow:
-              "0 0 40px rgba(99,102,241,0.08), 0 20px 40px rgba(0,0,0,0.6)",
+            background: "rgba(13,17,32,0.97)",
+            border: "1px solid rgba(99,102,241,0.38)",
+            boxShadow: "0 0 40px rgba(99,102,241,0.1), 0 28px 56px rgba(0,0,0,0.75)",
           }}
         >
           <div className="flex items-center gap-2 mb-4">
-            <div className="w-2 h-2 rounded-full bg-indigo-500" />
-            <span className="text-indigo-300/60 text-[10px] tracking-widest uppercase">
-              Panel de control
-            </span>
+            <div className="w-2 h-2 rounded-full bg-indigo-500" style={{ boxShadow: "0 0 6px #6366f1" }} />
+            <span className="text-indigo-300/60 text-[10px] tracking-widest uppercase">Panel de control</span>
+            <div className="ml-auto flex items-center gap-1">
+              {["#6366f1","#06b6d4","#8b5cf6"].map((c, i) => (
+                <div key={i} className="w-1.5 h-1.5 rounded-full" style={{ background: c, opacity: 1 - i * 0.3 }} />
+              ))}
+            </div>
           </div>
-          <p className="text-white text-base font-light mb-4">
-            Sistema operativo
-          </p>
+          <p className="text-white text-sm font-light mb-4">Sistema operativo</p>
           <div className="space-y-3">
             {[
               { label: "Núcleo", v: "98%", color: "#6366f1" },
@@ -530,14 +551,14 @@ function SpatialUIDemo() {
               { label: "Memoria", v: "44%", color: "#8b5cf6" },
             ].map(({ label, v, color }) => (
               <div key={label} className="flex items-center gap-3">
-                <span className="text-white/35 text-[10px] w-14">{label}</span>
+                <span className="text-white/35 text-[10px]" style={{ width: 52 }}>{label}</span>
                 <div className="flex-1 h-1 rounded-full bg-white/5">
                   <div
                     className="h-full rounded-full"
-                    style={{ width: v, background: color }}
+                    style={{ width: v, background: color, boxShadow: `0 0 6px ${color}80` }}
                   />
                 </div>
-                <span className="text-white/35 text-[10px] w-8 text-right">
+                <span className="text-white/35 text-[10px] text-right" style={{ width: 28, fontVariantNumeric: "tabular-nums" }}>
                   {v}
                 </span>
               </div>
@@ -553,36 +574,45 @@ function ConstructivismDemo() {
   return (
     <div
       className="h-full flex items-center justify-center relative overflow-hidden"
-      style={{ background: "#f5f0e8" }}
+      style={{ background: "#f0ece0" }}
     >
+      {/* Main diagonal red band */}
       <div
-        className="absolute w-[140%] h-12 bg-red-600"
-        style={{
-          top: "22%",
-          left: "-20%",
-          transform: "rotate(-10deg)",
-        }}
+        className="absolute bg-red-600"
+        style={{ width: "170%", height: 52, top: "20%", left: "-35%", transform: "rotate(-8deg)" }}
       />
-      <div className="absolute bottom-0 left-0 w-full h-1 bg-black" />
+      {/* Thin black rule under red band */}
       <div
-        className="absolute bottom-0 right-0 w-1/3 h-10 bg-red-600"
-        style={{ transform: "skewX(-15deg)", transformOrigin: "right bottom" }}
+        className="absolute bg-black"
+        style={{ width: "170%", height: 4, top: "calc(20% + 50px)", left: "-35%", transform: "rotate(-8deg)" }}
       />
-      <div className="relative text-center px-6 z-10">
-        <p className="text-[9px] font-black tracking-[0.4em] uppercase text-black mb-0.5">
+      {/* Bottom-right black block */}
+      <div className="absolute bottom-0 right-0" style={{ width: "36%", height: 48, background: "#000" }} />
+      <div className="absolute" style={{ bottom: 48, right: 0, width: "22%", height: 5, background: "#dc2626" }} />
+      {/* Bottom-left CSS triangle */}
+      <div
+        className="absolute bottom-0 left-0"
+        style={{ width: 0, height: 0, borderBottom: "72px solid #000", borderRight: "54px solid transparent" }}
+      />
+      {/* Top-right square stack */}
+      <div className="absolute" style={{ top: 12, right: 12, width: 28, height: 28, border: "3px solid #000", zIndex: 1 }} />
+      <div className="absolute" style={{ top: 18, right: 18, width: 28, height: 28, background: "#dc2626" }} />
+
+      <div className="relative z-10 text-center px-4">
+        <p className="font-black text-black uppercase" style={{ fontSize: 9, letterSpacing: "0.44em", marginBottom: 2 }}>
           Agencia
         </p>
-        <p className="text-[56px] font-black leading-none text-black">KA</p>
-        <p className="text-[56px] font-black leading-none text-red-600 -mt-3">
+        <p className="font-black text-black" style={{ fontSize: 64, lineHeight: 0.82, letterSpacing: "-0.04em" }}>
+          KA
+        </p>
+        <p className="font-black text-red-600" style={{ fontSize: 64, lineHeight: 0.82, letterSpacing: "-0.04em", marginTop: -4 }}>
           RA
         </p>
-        <div className="w-full h-1 bg-black mt-1 mb-1.5" />
-        <p className="text-[9px] tracking-[0.18em] font-bold text-black uppercase">
+        <div className="w-full bg-black mb-1.5" style={{ height: 3, marginTop: 6 }} />
+        <p className="font-black text-black uppercase" style={{ fontSize: 8, letterSpacing: "0.22em" }}>
           CÓRDOBA · ESPAÑA · 2024
         </p>
       </div>
-      <div className="absolute top-4 right-4 w-7 h-7 border-[3px] border-black z-10" />
-      <div className="absolute top-6 right-6 w-7 h-7 bg-red-600 z-0" />
     </div>
   );
 }
@@ -611,7 +641,7 @@ function NeobrutalistDemo() {
             <p className="font-black text-[10px] text-black uppercase">
               Proyectos
             </p>
-            <p className="font-black text-3xl text-black">28</p>
+            <p className="font-black text-3xl text-black" style={{ fontVariantNumeric: "tabular-nums" }}>28</p>
           </div>
           <div
             className="border-4 border-black p-3 bg-cyan-400"
@@ -636,51 +666,53 @@ function NeobrutalistDemo() {
 
 function BentoGridDemo() {
   return (
-    <div className="h-full p-4 bg-stone-100 flex items-center justify-center">
+    <div className="h-full p-4 flex items-center justify-center" style={{ background: "#f7f5f2" }}>
       <div
         className="grid gap-2 w-full max-w-xs"
-        style={{
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gridTemplateRows: "repeat(4, 52px)",
-        }}
+        style={{ gridTemplateColumns: "repeat(3, 1fr)", gridTemplateRows: "repeat(4, 52px)" }}
       >
+        {/* Hero tile */}
         <div
-          className="rounded-2xl bg-indigo-600 p-3 flex flex-col justify-between"
-          style={{ gridColumn: "1 / 3", gridRow: "1 / 3" }}
+          className="rounded-2xl p-3 flex flex-col justify-between"
+          style={{ gridColumn: "1 / 3", gridRow: "1 / 3", background: "linear-gradient(135deg, #4f46e5, #7c3aed)" }}
         >
-          <p className="text-white/60 text-[9px] uppercase tracking-widest">
-            Destacado
-          </p>
-          <p className="text-white text-lg font-bold leading-tight">
-            Desarrollo
-            <br />
-            Web
-          </p>
+          <p className="text-white/50 text-[9px] uppercase tracking-widest">Destacado</p>
+          <div>
+            <p className="text-white text-lg font-bold leading-tight">Desarrollo<br />Web</p>
+            <div className="flex gap-1 mt-1.5">
+              {["#a78bfa","#c4b5fd","#ddd6fe"].map((c, i) => (
+                <div key={i} className="h-1 rounded-full" style={{ width: 16 + i * 8, background: c, opacity: 0.7 }} />
+              ))}
+            </div>
+          </div>
         </div>
-        <div className="rounded-2xl bg-orange-400 flex items-center justify-center text-xl">
-          🚀
+        {/* Small tiles */}
+        <div className="rounded-2xl flex flex-col items-center justify-center gap-0.5" style={{ background: "#f97316" }}>
+          <div className="w-3 h-4 rounded-sm" style={{ background: "rgba(255,255,255,0.6)", clipPath: "polygon(50% 0%,100% 55%,65% 55%,65% 100%,35% 100%,35% 55%,0% 55%)" }} />
+          <p className="text-white text-[9px] font-bold">Lanzar</p>
         </div>
-        <div className="rounded-2xl bg-stone-800 flex items-center justify-center">
-          <p className="text-white text-xs font-bold">AI</p>
+        <div className="rounded-2xl flex flex-col items-center justify-center gap-0.5" style={{ background: "#1c1917" }}>
+          <div className="w-4 h-4 rounded-full" style={{ background: "linear-gradient(135deg, #a78bfa, #3b82f6)" }} />
+          <p className="text-white text-[9px] font-bold">IA</p>
         </div>
+        {/* Full-width status */}
         <div
           className="rounded-2xl bg-white border border-stone-200 p-3 flex items-center gap-2"
           style={{ gridColumn: "1 / 4" }}
         >
-          <div className="w-5 h-5 rounded-full bg-green-500 shrink-0" />
-          <p className="text-stone-600 text-[11px]">
-            28 proyectos completados
-          </p>
+          <div className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" style={{ boxShadow: "0 0 5px #10b981" }} />
+          <p className="text-stone-600 text-[11px]" style={{ fontVariantNumeric: "tabular-nums" }}>28 proyectos completados</p>
           <p className="text-stone-400 text-xs ml-auto">→</p>
         </div>
-        <div className="rounded-2xl bg-yellow-300 flex items-center justify-center">
-          <p className="text-yellow-900 font-black text-[11px]">SEO</p>
+        {/* Bottom trio */}
+        <div className="rounded-2xl flex flex-col items-center justify-center" style={{ background: "#fef08a" }}>
+          <p className="text-amber-900 font-black text-[11px]">SEO</p>
         </div>
-        <div className="rounded-2xl bg-pink-500 flex items-center justify-center">
-          <p className="text-white text-xs font-bold">UI</p>
+        <div className="rounded-2xl flex flex-col items-center justify-center" style={{ background: "#fb7185" }}>
+          <p className="text-white text-[11px] font-bold">UI/UX</p>
         </div>
-        <div className="rounded-2xl bg-cyan-500 flex items-center justify-center">
-          <p className="text-white text-xs font-bold">3D</p>
+        <div className="rounded-2xl flex flex-col items-center justify-center" style={{ background: "#22d3ee" }}>
+          <p className="text-cyan-950 text-[11px] font-bold">3D</p>
         </div>
       </div>
     </div>
@@ -689,53 +721,54 @@ function BentoGridDemo() {
 
 function AuroraMeshDemo() {
   return (
-    <div className="h-full relative overflow-hidden" style={{ background: "#04040f" }}>
-      {/* Mesh — static radial-gradients, no animation per CLAUDE.md constraint */}
+    <div className="h-full relative overflow-hidden" style={{ background: "#03030e" }}>
+      {/* Richer mesh — 5 overlapping radial-gradients */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 65% 55% at 18% 28%, rgba(124,58,237,0.55), transparent), " +
-            "radial-gradient(ellipse 55% 45% at 78% 18%, rgba(6,182,212,0.45), transparent), " +
-            "radial-gradient(ellipse 60% 50% at 62% 72%, rgba(236,72,153,0.4), transparent), " +
-            "radial-gradient(ellipse 50% 55% at 8% 82%, rgba(16,185,129,0.35), transparent)",
+            "radial-gradient(ellipse 70% 60% at 15% 25%, rgba(124,58,237,0.65), transparent), " +
+            "radial-gradient(ellipse 60% 50% at 82% 15%, rgba(6,182,212,0.55), transparent), " +
+            "radial-gradient(ellipse 65% 55% at 60% 78%, rgba(236,72,153,0.5), transparent), " +
+            "radial-gradient(ellipse 55% 60% at 5% 85%, rgba(16,185,129,0.45), transparent), " +
+            "radial-gradient(ellipse 45% 45% at 88% 70%, rgba(245,158,11,0.35), transparent)",
         }}
       />
-      {/* Frosted card over mesh */}
       <div className="absolute inset-0 flex items-center justify-center p-6">
         <div
-          className="relative rounded-2xl p-6 w-full max-w-xs backdrop-blur-xl"
+          className="relative rounded-2xl p-5 w-full max-w-xs backdrop-blur-xl"
           style={{
             background: "rgba(255,255,255,0.04)",
-            border: "1px solid rgba(255,255,255,0.1)",
+            border: "1px solid rgba(255,255,255,0.12)",
+            boxShadow: "inset 0 1px 0 rgba(255,255,255,0.08)",
           }}
         >
+          {/* Top specular */}
+          <div
+            className="absolute inset-x-6 top-0 pointer-events-none"
+            style={{ height: "0.5px", background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)" }}
+          />
           <div className="flex items-center gap-2 mb-4">
-            <div
-              className="w-2 h-2 rounded-full"
-              style={{ background: "linear-gradient(135deg,#7c3aed,#06b6d4)" }}
-            />
-            <span className="text-white/45 text-[10px] tracking-[0.18em] uppercase">
-              Aurora Studio
-            </span>
+            <div className="w-2 h-2 rounded-full" style={{ background: "linear-gradient(135deg,#7c3aed,#06b6d4)" }} />
+            <span className="text-white/45 text-[10px] tracking-[0.18em] uppercase">Aurora Studio</span>
           </div>
-          <p className="text-white text-lg font-semibold mb-1">Karakura Digital</p>
-          <p className="text-white/45 text-xs mb-5">Diseño en movimiento</p>
-          <div className="flex gap-1.5 mb-4">
-            {["#7c3aed", "#06b6d4", "#ec4899", "#10b981", "#f59e0b"].map((c, i) => (
-              <div
-                key={i}
-                className="flex-1 h-1.5 rounded-full"
-                style={{ background: c, opacity: 0.75 }}
-              />
+          <p className="text-white text-lg font-semibold mb-0.5">Karakura Digital</p>
+          <p className="text-white/40 text-xs mb-4">Diseño en movimiento</p>
+          {/* Color spectrum bar */}
+          <div className="flex gap-1 mb-4" style={{ height: 3 }}>
+            {["#7c3aed","#06b6d4","#ec4899","#10b981","#f59e0b"].map((c, i) => (
+              <div key={i} className="flex-1 rounded-full" style={{ background: c, opacity: 0.85 }} />
             ))}
           </div>
           <div className="flex gap-2">
-            {["Branding", "Web", "Motion"].map((t) => (
+            {["Branding", "Web", "Motion"].map((t, i) => (
               <div
                 key={t}
                 className="flex-1 rounded-xl py-1.5 text-center text-[10px] text-white/55"
-                style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}
+                style={{
+                  background: i === 0 ? "rgba(124,58,237,0.15)" : "rgba(255,255,255,0.05)",
+                  border: i === 0 ? "1px solid rgba(124,58,237,0.3)" : "1px solid rgba(255,255,255,0.08)",
+                }}
               >
                 {t}
               </div>
@@ -778,7 +811,7 @@ function TerminalDemo() {
           <p style={{ color: "#4ade8066" }}>✓ Assets optimized</p>
           <p style={{ color: "#4ade8066" }}>✓ Static export complete</p>
           <p className="mt-1" style={{ color: "#34d399" }}>
-            🚀 Deployed → karakuradigital.es
+            ✓ Deployed → karakuradigital.es
           </p>
           <p className="mt-2" style={{ color: "#4ade80" }}>
             <span style={{ color: "#22c55e" }}>karakura</span>
@@ -798,31 +831,51 @@ function TerminalDemo() {
 
 function DarkLuxuryDemo() {
   return (
-    <div className="h-full flex items-center justify-center p-8" style={{ background: "#080808" }}>
+    <div className="h-full flex items-center justify-center px-8 py-6" style={{ background: "#080808" }}>
       <div className="w-full max-w-xs">
-        <div className="text-center mb-6">
-          <p
-            className="text-[9px] tracking-[0.35em] uppercase mb-6"
-            style={{ color: "rgba(201,169,110,0.6)", fontFamily: "Georgia, serif" }}
+        {/* Monogram */}
+        <div className="flex items-center gap-3 mb-5">
+          <div
+            className="w-8 h-8 flex items-center justify-center shrink-0"
+            style={{ border: "1px solid rgba(201,169,110,0.35)", color: "rgba(201,169,110,0.7)", fontFamily: "Georgia, serif", fontSize: 13, letterSpacing: "0.04em" }}
           >
-            Desde 2024
-          </p>
-          <div style={{ borderTop: "1px solid rgba(201,169,110,0.2)" }} className="mb-6" />
-          <h2
-            className="text-4xl leading-tight mb-4"
-            style={{ color: "#f5f0e8", fontFamily: "Georgia, 'Times New Roman', serif", fontWeight: 300, letterSpacing: "-0.01em" }}
-          >
-            Sin<br />
-            <em>compromiso.</em>
-          </h2>
-          <div style={{ borderBottom: "1px solid rgba(201,169,110,0.2)" }} className="mb-6" />
-          <p
-            className="text-xs leading-relaxed mb-8"
-            style={{ color: "rgba(245,240,232,0.35)", letterSpacing: "0.06em" }}
-          >
-            Desarrollo web de alto nivel para marcas que no aceptan mediocridad.
+            K
+          </div>
+          <div style={{ flex: 1, height: "1px", background: "linear-gradient(90deg, rgba(201,169,110,0.3), transparent)" }} />
+          <p className="text-[9px] tracking-[0.32em] uppercase" style={{ color: "rgba(201,169,110,0.5)", fontFamily: "Georgia, serif" }}>
+            Est. 2024
           </p>
         </div>
+
+        <h2
+          className="text-4xl leading-tight mb-4"
+          style={{ color: "#f5f0e8", fontFamily: "Georgia, 'Times New Roman', serif", fontWeight: 300, letterSpacing: "-0.01em" }}
+        >
+          Sin<br />
+          <em>compromiso.</em>
+        </h2>
+
+        <div style={{ borderBottom: "1px solid rgba(201,169,110,0.18)" }} className="mb-4" />
+
+        {/* Stats row */}
+        <div className="grid grid-cols-3 mb-4" style={{ gap: "1px", background: "rgba(201,169,110,0.12)" }}>
+          {[["28", "Proyectos"], ["100%", "Satisfacción"], ["4.9", "Rating"]].map(([v, l]) => (
+            <div key={l} className="text-center py-3" style={{ background: "#080808" }}>
+              <p className="text-base font-light" style={{ color: "rgba(201,169,110,0.85)", fontVariantNumeric: "tabular-nums" }}>{v}</p>
+              <p className="text-[8px] tracking-[0.18em] uppercase mt-0.5" style={{ color: "rgba(245,240,232,0.25)" }}>{l}</p>
+            </div>
+          ))}
+        </div>
+
+        <div style={{ borderBottom: "1px solid rgba(201,169,110,0.18)" }} className="mb-4" />
+
+        <p
+          className="text-xs leading-relaxed mb-5"
+          style={{ color: "rgba(245,240,232,0.3)", letterSpacing: "0.05em" }}
+        >
+          Desarrollo web de alto nivel para marcas que no aceptan mediocridad.
+        </p>
+
         <div className="flex items-center justify-between">
           <div>
             <p className="text-[9px] tracking-[0.2em] uppercase" style={{ color: "rgba(201,169,110,0.5)" }}>
@@ -919,6 +972,31 @@ function Y2KDemo() {
             </button>
           ))}
         </div>
+        {/* Y2K loading bar */}
+        <div className="w-full">
+          <div className="flex justify-between mb-1">
+            <p className="text-[9px] font-bold tracking-widest" style={{ color: "#9060c0" }}>Conectando...</p>
+            <p className="text-[9px] font-bold" style={{ color: "#9060c0", fontVariantNumeric: "tabular-nums" }}>99%</p>
+          </div>
+          <div
+            className="w-full rounded-full overflow-hidden"
+            style={{
+              height: 8,
+              background: "linear-gradient(180deg, rgba(180,150,220,0.25), rgba(200,180,240,0.15))",
+              border: "1px solid rgba(255,255,255,0.6)",
+              boxShadow: "inset 0 2px 4px rgba(0,0,0,0.15), 0 1px 0 rgba(255,255,255,0.5)",
+            }}
+          >
+            <div
+              className="h-full rounded-full"
+              style={{
+                width: "99%",
+                background: "linear-gradient(180deg, #c090f0, #9060d0, #6040b0)",
+                boxShadow: "inset 0 1px 0 rgba(255,255,255,0.5)",
+              }}
+            />
+          </div>
+        </div>
         <p className="text-[10px] font-bold tracking-widest" style={{ color: "#9060c0", textShadow: "0 0 8px rgba(160,100,255,0.4)" }}>
           ★ Bienvenido al futuro ★
         </p>
@@ -964,13 +1042,19 @@ function FrutigerAeroDemo() {
         <div className="flex items-center gap-3 mb-4 relative">
           {/* Leaf icon via CSS */}
           <div
-            className="w-10 h-10 rounded-2xl flex items-center justify-center text-lg shrink-0"
+            className="w-10 h-10 rounded-2xl flex items-center justify-center shrink-0"
             style={{
               background: "linear-gradient(135deg, #6ecf7a, #3aab5a)",
               boxShadow: "0 3px 10px rgba(60,160,80,0.4), inset 0 1px 0 rgba(255,255,255,0.5)",
             }}
           >
-            🌿
+            <div style={{
+              width: 18, height: 18,
+              background: "linear-gradient(135deg, #d4f5d8, #a8e8b0)",
+              borderRadius: "50% 0 50% 0",
+              transform: "rotate(-30deg)",
+              boxShadow: "inset 1px 1px 2px rgba(255,255,255,0.6)",
+            }} />
           </div>
           <div>
             <p className="text-sm font-bold" style={{ color: "#1a5c3a" }}>
@@ -983,7 +1067,7 @@ function FrutigerAeroDemo() {
         </div>
         {/* Stats */}
         <div className="grid grid-cols-3 gap-2 mb-4 relative">
-          {[["28", "Proyectos"], ["5★", "Rating"], ["100%", "Eco"]].map(([v, l]) => (
+          {[["28", "Proyectos"], ["4.9", "Rating"], ["100%", "Eco"]].map(([v, l]) => (
             <div
               key={l}
               className="rounded-2xl p-2 text-center"
@@ -993,7 +1077,7 @@ function FrutigerAeroDemo() {
                 boxShadow: "inset 0 1px 0 rgba(255,255,255,0.9)",
               }}
             >
-              <p className="font-bold text-sm" style={{ color: "#1a5c3a" }}>{v}</p>
+              <p className="font-bold text-sm" style={{ color: "#1a5c3a", fontVariantNumeric: "tabular-nums" }}>{v}</p>
               <p className="text-[9px]" style={{ color: "#3a8c5c" }}>{l}</p>
             </div>
           ))}
@@ -1033,11 +1117,35 @@ function Glassmorphism2Demo() {
       <div className="relative z-10 flex gap-2" style={{ width: 280 }}>
         {/* Sidebar */}
         <div className="flex flex-col items-center gap-2 py-2.5 px-0 rounded-[18px]" style={{ width: 52, background: "rgba(255,255,255,.05)", border: ".5px solid rgba(255,255,255,.1)", backdropFilter: "blur(20px)" }}>
-          {[["📊", true], ["🗂️", false], ["🔔", false]].map(([icon, active], i) => (
-            <div key={i} className="w-8 h-8 rounded-[10px] flex items-center justify-center text-sm" style={active ? { background: "rgba(139,92,246,.25)", border: ".5px solid rgba(139,92,246,.4)" } : {}}>{icon}</div>
-          ))}
+          {/* Bar chart icon — active */}
+          <div className="w-8 h-8 rounded-[10px] flex items-end justify-center gap-[2px] pb-1.5" style={{ background: "rgba(139,92,246,.25)", border: ".5px solid rgba(139,92,246,.4)" }}>
+            {[55, 80, 65, 100].map((h, i) => (
+              <div key={i} style={{ width: 3, height: `${h * 0.14}px`, background: i === 3 ? "rgba(167,139,250,.9)" : "rgba(139,92,246,.5)", borderRadius: 1 }} />
+            ))}
+          </div>
+          {/* Folder icon */}
+          <div className="w-8 h-8 rounded-[10px] flex items-center justify-center" style={{}}>
+            <div style={{ position: "relative", width: 16, height: 12 }}>
+              <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 9, borderRadius: "0 2px 2px 2px", background: "rgba(255,255,255,.2)", border: ".5px solid rgba(255,255,255,.15)" }} />
+              <div style={{ position: "absolute", top: 0, left: 0, width: 8, height: 4, borderRadius: "2px 2px 0 0", background: "rgba(255,255,255,.2)", border: ".5px solid rgba(255,255,255,.15)", borderBottom: "none" }} />
+            </div>
+          </div>
+          {/* Bell icon */}
+          <div className="w-8 h-8 rounded-[10px] flex items-center justify-center" style={{}}>
+            <div style={{ position: "relative", width: 12, height: 14 }}>
+              <div style={{ position: "absolute", top: 1, left: 0, right: 0, height: 10, borderRadius: "6px 6px 2px 2px", background: "rgba(255,255,255,.2)", border: ".5px solid rgba(255,255,255,.15)" }} />
+              <div style={{ position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)", width: 5, height: 2, borderRadius: "0 0 3px 3px", background: "rgba(255,255,255,.2)" }} />
+              <div style={{ position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)", width: 3, height: 2, borderRadius: 2, background: "rgba(255,255,255,.2)" }} />
+            </div>
+          </div>
           <div className="flex-1" />
-          <div className="w-8 h-8 rounded-[10px] flex items-center justify-center text-sm">⚙️</div>
+          {/* Gear / settings icon */}
+          <div className="w-8 h-8 rounded-[10px] flex items-center justify-center" style={{}}>
+            <div style={{ position: "relative", width: 14, height: 14 }}>
+              <div style={{ width: 14, height: 14, borderRadius: "50%", border: "2px solid rgba(255,255,255,.2)", boxSizing: "border-box" }} />
+              <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: 4, height: 4, borderRadius: "50%", background: "rgba(255,255,255,.2)" }} />
+            </div>
+          </div>
         </div>
         {/* Main */}
         <div className="flex-1 rounded-[18px] p-3.5" style={{ background: "rgba(255,255,255,.04)", border: ".5px solid rgba(255,255,255,.1)", backdropFilter: "blur(20px)" }}>
@@ -1105,24 +1213,45 @@ function AceternityDemo() {
 function CorporateMemphisDemo() {
   return (
     <div className="h-full flex items-center justify-center p-4 relative overflow-hidden" style={{ background: "#fff" }}>
-      <div className="absolute rounded-full" style={{ width: 180, height: 180, top: -60, right: -50, background: "#fef08a", opacity: .9 }} />
-      <div className="absolute rounded-full" style={{ width: 100, height: 100, bottom: -30, left: -20, background: "#bbf7d0", opacity: .9 }} />
+      <div className="absolute rounded-full" style={{ width: 180, height: 180, top: -60, right: -50, background: "#fef08a" }} />
+      <div className="absolute rounded-full" style={{ width: 100, height: 100, bottom: -30, left: -20, background: "#bbf7d0" }} />
+      <div className="absolute rounded-full" style={{ width: 60, height: 60, bottom: 24, right: 16, background: "#fed7aa", opacity: .85 }} />
+
       <div className="relative z-10" style={{ width: 250 }}>
-        <p style={{ fontSize: 9, fontWeight: 700, letterSpacing: ".22em", textTransform: "uppercase", color: "#f97316", marginBottom: 8 }}>Karakura Digital</p>
-        <p style={{ fontSize: 20, fontWeight: 800, color: "#1a1a2e", lineHeight: 1.25, marginBottom: 10 }}>Tu equipo digital,<br />sin complicaciones</p>
-        <div className="w-full rounded-2xl flex items-center justify-center gap-3 mb-3" style={{ height: 80, background: "#fef3c7" }}>
-          <span style={{ fontSize: 32 }}>🧑‍💻</span>
-          <div className="flex flex-col gap-1.5">
-            {[["56px", "#f97316"], ["40px", "#8b5cf6"], ["48px", "#06b6d4"]].map(([w, c], i) => (
-              <div key={i} className="rounded" style={{ width: w, height: 8, background: c, opacity: .8 }} />
-            ))}
+        <p style={{ fontSize: 9, fontWeight: 700, letterSpacing: ".22em", textTransform: "uppercase", color: "#f97316", marginBottom: 6 }}>
+          Karakura Digital
+        </p>
+        <p style={{ fontSize: 20, fontWeight: 800, color: "#1a1a2e", lineHeight: 1.2, marginBottom: 12 }}>
+          Tu equipo digital,<br />sin complicaciones
+        </p>
+
+        {/* Memphis CSS illustration */}
+        <div className="w-full rounded-2xl mb-3 relative overflow-hidden" style={{ height: 80, background: "#fef3c7" }}>
+          {/* Person 1 — orange */}
+          <div className="absolute flex flex-col items-center" style={{ left: 16, top: 8 }}>
+            <div className="rounded-full" style={{ width: 18, height: 18, background: "#f97316" }} />
+            <div style={{ width: 26, height: 20, background: "#f97316", borderRadius: "12px 12px 0 0", marginTop: 2 }} />
           </div>
-          <span style={{ fontSize: 28 }}>🚀</span>
+          {/* Person 2 — purple, centered, taller */}
+          <div className="absolute flex flex-col items-center" style={{ left: "50%", top: 4, transform: "translateX(-50%)" }}>
+            <div className="rounded-full" style={{ width: 22, height: 22, background: "#8b5cf6" }} />
+            <div style={{ width: 30, height: 24, background: "#8b5cf6", borderRadius: "14px 14px 0 0", marginTop: 2 }} />
+          </div>
+          {/* Person 3 — cyan */}
+          <div className="absolute flex flex-col items-center" style={{ right: 16, top: 8 }}>
+            <div className="rounded-full" style={{ width: 18, height: 18, background: "#06b6d4" }} />
+            <div style={{ width: 26, height: 20, background: "#06b6d4", borderRadius: "12px 12px 0 0", marginTop: 2 }} />
+          </div>
+          {/* Decorative accents */}
+          <div className="absolute" style={{ left: 8, bottom: 8, width: 10, height: 10, background: "#f59e0b", borderRadius: "50%" }} />
+          <div className="absolute" style={{ right: 10, bottom: 10, width: 12, height: 12, background: "#4ade80", transform: "rotate(45deg)" }} />
+          <div className="absolute" style={{ bottom: 14, left: "50%", transform: "translateX(-50%)", width: 20, height: 3, background: "#f97316", borderRadius: 2, opacity: .5 }} />
         </div>
+
         <div className="flex gap-2.5">
-          {[["28+", "Proyectos", "#f97316"], ["100%", "Satisfacción", "#8b5cf6"], ["5⭐", "Rating", "#06b6d4"]].map(([v, l, c]) => (
-            <div key={l} className="text-center flex-1">
-              <div style={{ fontSize: 18, fontWeight: 800, color: c }}>{v}</div>
+          {[["28+", "Proyectos", "#f97316"], ["100%", "Satisfacción", "#8b5cf6"], ["4.9", "Rating", "#06b6d4"]].map(([v, l, c]) => (
+            <div key={l as string} className="text-center flex-1">
+              <div style={{ fontSize: 18, fontWeight: 800, color: c as string, fontVariantNumeric: "tabular-nums" }}>{v}</div>
               <div style={{ fontSize: 9, color: "#6b7280", fontWeight: 500 }}>{l}</div>
             </div>
           ))}
@@ -1140,7 +1269,7 @@ function EditorialDemo() {
         <div className="flex items-center justify-between pb-2 mb-2.5" style={{ borderBottom: "3px solid #1a1a1a" }}>
           <span style={{ fontSize: 13, fontWeight: 900, letterSpacing: "-.02em", color: "#1a1a1a", textTransform: "uppercase" }}>Karakura Review</span>
           <div className="text-right">
-            <div style={{ fontSize: 8, color: "#999", letterSpacing: ".14em", textTransform: "uppercase" }}>Vol. 03 · Nº 12</div>
+            <div style={{ fontSize: 8, color: "#999", letterSpacing: ".14em", textTransform: "uppercase", fontVariantNumeric: "tabular-nums" }}>Vol. 03 · Nº 12</div>
             <div style={{ fontSize: 8, color: "#999" }}>Julio 2025</div>
           </div>
         </div>
@@ -1200,14 +1329,14 @@ function DatavizDemo() {
                 <div className="flex-1 rounded-full" style={{ height: 4, background: "rgba(255,255,255,.07)" }}>
                   <div style={{ width: v, height: "100%", borderRadius: 2, background: c }} />
                 </div>
-                <span style={{ fontSize: 9, fontWeight: 600, color: "rgba(255,255,255,.6)", width: 28, textAlign: "right" }}>{v}</span>
+                <span style={{ fontSize: 9, fontWeight: 600, color: "rgba(255,255,255,.6)", width: 28, textAlign: "right", fontVariantNumeric: "tabular-nums" }}>{v}</span>
               </div>
             ))}
           </div>
         </div>
         <div className="rounded-[10px] p-2.5" style={{ background: "rgba(255,255,255,.04)", border: ".5px solid rgba(255,255,255,.07)" }}>
           <div style={{ fontSize: 9, color: "rgba(255,255,255,.35)", letterSpacing: ".1em", textTransform: "uppercase", marginBottom: 4 }}>NPS</div>
-          <div style={{ fontSize: 18, fontWeight: 700, color: "#fff" }}>87</div>
+          <div style={{ fontSize: 18, fontWeight: 700, color: "#fff", fontVariantNumeric: "tabular-nums" }}>87</div>
           <div style={{ fontSize: 9, fontWeight: 600, marginTop: 2, color: "#4ade80" }}>Excelente</div>
         </div>
       </div>
@@ -1264,10 +1393,10 @@ function SwissDemo() {
         <div style={{ fontSize: 30, fontWeight: 900, color: "#1a1a1a", lineHeight: 1, letterSpacing: "-.03em", textTransform: "uppercase", marginBottom: 10 }}>DISEÑO<br />SIN<br />RUIDO.</div>
         <div className="grid mb-2.5" style={{ gridTemplateColumns: "1fr 2px 1fr", gap: 0 }}>
           <div className="pr-2.5">
-            <div style={{ fontSize: 28, fontWeight: 900, color: "#e63329", lineHeight: 1, letterSpacing: "-.02em", marginBottom: 2 }}>28</div>
+            <div style={{ fontSize: 28, fontWeight: 900, color: "#e63329", lineHeight: 1, letterSpacing: "-.02em", marginBottom: 2, fontVariantNumeric: "tabular-nums" }}>28</div>
             <div style={{ fontSize: 9, fontWeight: 700, textTransform: "uppercase", letterSpacing: ".16em", color: "#999" }}>Proyectos</div>
             <div className="mt-2">
-              <div style={{ fontSize: 20, fontWeight: 900, color: "#e63329", lineHeight: 1 }}>100%</div>
+              <div style={{ fontSize: 20, fontWeight: 900, color: "#e63329", lineHeight: 1, fontVariantNumeric: "tabular-nums" }}>100%</div>
               <div style={{ fontSize: 9, fontWeight: 700, textTransform: "uppercase", letterSpacing: ".16em", color: "#999" }}>Satisfacción</div>
             </div>
           </div>
@@ -1315,7 +1444,11 @@ function ClaymorphismDarkDemo() {
         <div className="flex flex-col gap-1.5">
           {tasks.map(t => (
             <div key={t.name} className="rounded-2xl px-3 py-2.5 flex items-center gap-2.5" style={{ background: t.bg, boxShadow: "0 6px 20px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.12)" }}>
-              <div className="rounded-[8px] shrink-0 flex items-center justify-center text-[11px]" style={{ width: 20, height: 20, background: t.checkBg, border: (t as { checkBorder?: string }).checkBorder, boxShadow: "0 3px 8px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.2)" }}>{t.done ? "✓" : ""}</div>
+              <div className="rounded-[8px] shrink-0 flex items-center justify-center" style={{ width: 20, height: 20, background: t.checkBg, border: (t as { checkBorder?: string }).checkBorder, boxShadow: "0 3px 8px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.2)" }}>
+                {t.done && (
+                  <div style={{ width: 5, height: 9, borderRight: "2px solid rgba(255,255,255,0.9)", borderBottom: "2px solid rgba(255,255,255,0.9)", transform: "rotate(40deg) translateY(-1px)" }} />
+                )}
+              </div>
               <div className="flex-1 min-w-0">
                 <div className="text-xs font-semibold text-white truncate" style={t.done ? { textDecoration: "line-through", opacity: .5 } : {}}>{t.name}</div>
                 <div style={{ fontSize: 9, fontWeight: 600, letterSpacing: ".08em", marginTop: 1, color: t.tagColor }}>{t.tag}</div>
@@ -1619,131 +1752,239 @@ const STYLES: StyleDef[] = [
   },
 ];
 
+// ── Helpers ───────────────────────────────────────────────────────────────────
+
+function accentRgb(hex: string): string {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return `${r},${g},${b}`;
+}
+
+function visibleAccent(hex: string): string {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return (r * 299 + g * 587 + b * 114) / 1000 < 60 ? "#a0a0a0" : hex;
+}
+
 // ── Component ─────────────────────────────────────────────────────────────────
 
 export default function DesignCatalog() {
   const [activeId, setActiveId] = useState(STYLES[0].id);
   const active = STYLES.find((s) => s.id === activeId) ?? STYLES[0];
   const activeIdx = STYLES.findIndex((s) => s.id === activeId);
+  const prevIdx = (activeIdx - 1 + STYLES.length) % STYLES.length;
+  const nextIdx = (activeIdx + 1) % STYLES.length;
+  const accent = visibleAccent(active.accent);
 
   return (
-    <section className="py-20 px-4" style={{ background: "#001711" }}>
-      <div className="max-w-6xl mx-auto">
+    <>
+      <style>{`
+        @keyframes catalogEnter {
+          from { opacity: 0; transform: translateY(8px); }
+          to   { opacity: 1; transform: translateY(0);   }
+        }
+        .catalog-enter {
+          animation: catalogEnter 200ms ease forwards;
+          will-change: transform, opacity;
+        }
+      `}</style>
+      <section className="py-20 px-4" style={{ background: "#001711" }}>
+        <div className="max-w-6xl mx-auto">
 
-        {/* Header */}
-        <div className="mb-10 text-center">
-          <p className="text-xs font-semibold tracking-widest uppercase mb-3" style={{ color: "#ff7a00" }}>
-            Catálogo de estilos de diseño
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            ¿Qué lenguaje visual habla tu marca?
-          </h2>
-          <p className="max-w-xl mx-auto text-sm leading-relaxed" style={{ color: "rgba(224,192,175,0.55)" }}>
-            25 corrientes de diseño web. Cada estilo es una decisión
-            estratégica sobre cómo percibe tu cliente tu marca. Explóralos y
-            encuentra el que encaja con tu propuesta de valor.
-          </p>
-        </div>
-
-        {/* ── Grid selector — all 25 styles visible at once ── */}
-        <div
-          className="grid grid-cols-4 md:grid-cols-5 gap-1.5 mb-8"
-        >
-          {STYLES.map((s) => {
-            const isActive = s.id === activeId;
-            return (
-              <button
-                key={s.id}
-                onClick={() => setActiveId(s.id)}
-                className="flex items-center gap-2 px-3 py-2 rounded-xl text-left transition-all duration-150 text-xs font-medium truncate"
-                style={
-                  isActive
-                    ? {
-                        background: "rgba(255,122,0,0.14)",
-                        color: "#ff7a00",
-                        border: "1px solid rgba(255,122,0,0.35)",
-                      }
-                    : {
-                        background: "rgba(255,255,255,0.03)",
-                        color: "rgba(224,192,175,0.5)",
-                        border: "1px solid rgba(255,255,255,0.06)",
-                      }
-                }
-              >
-                <span
-                  className="w-2 h-2 rounded-full shrink-0"
-                  style={{ background: s.accent, opacity: isActive ? 1 : 0.55 }}
-                />
-                <span className="truncate">{s.name}</span>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* ── Content: demo (left) + info (right) ── */}
-        <div
-          className="rounded-2xl overflow-hidden"
-          style={{ background: "rgba(0,23,17,0.6)", border: "1px solid rgba(255,255,255,0.07)" }}
-        >
-          <div className="flex flex-col lg:flex-row">
-
-            {/* Demo — fixed height on desktop, preserves aspect on mobile */}
-            <div className="lg:w-[55%] h-72 md:h-80 lg:h-auto lg:min-h-[380px] shrink-0" style={{ borderRight: "1px solid rgba(255,255,255,0.07)" }}>
-              <div className="h-full">
-                <active.Demo />
-              </div>
+          {/* Header */}
+          <div className="mb-12 text-center">
+            <div
+              className="inline-flex items-center gap-2 mb-5 px-3 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase"
+              style={{ color: "#ff7a00", background: "rgba(255,122,0,0.08)", border: "1px solid rgba(255,122,0,0.2)" }}
+            >
+              <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "#ff7a00" }} />
+              Catálogo de estilos · 25
             </div>
+            <h2
+              className="text-3xl md:text-5xl font-bold text-white mb-4"
+              style={{ letterSpacing: "-0.025em", lineHeight: 1.1 }}
+            >
+              ¿Qué lenguaje visual
+              <br className="hidden md:block" />
+              {" "}habla tu marca?
+            </h2>
+            <p className="max-w-lg mx-auto text-sm leading-relaxed" style={{ color: "rgba(224,192,175,0.5)" }}>
+              Cada estilo es una decisión estratégica sobre cómo percibe tu cliente tu marca.
+              Explóralos y encuentra el que encaja.
+            </p>
+          </div>
 
-            {/* Info panel */}
-            <div className="flex-1 p-6 flex flex-col justify-between">
-              <div>
-                <div className="flex items-start justify-between gap-4 mb-4">
-                  <div>
-                    <h3 className="text-white text-xl font-bold mb-1">{active.name}</h3>
-                    <p className="text-sm" style={{ color: "rgba(224,192,175,0.45)" }}>{active.tagline}</p>
-                  </div>
-                  <div className="w-3 h-3 rounded-full shrink-0 mt-1.5" style={{ background: active.accent }} />
-                </div>
+          {/* ── Grid selector ── */}
+          <div className="grid grid-cols-3 md:grid-cols-5 gap-1.5 mb-6">
+            {STYLES.map((s) => {
+              const isActive = s.id === activeId;
+              const va = visibleAccent(s.accent);
+              const rgb = accentRgb(va);
+              return (
+                <button
+                  key={s.id}
+                  onClick={() => setActiveId(s.id)}
+                  className="flex items-center gap-2 px-2.5 py-2.5 rounded-xl text-left text-xs font-medium truncate transition-all duration-150 hover:opacity-75"
+                  style={
+                    isActive
+                      ? {
+                          background: `rgba(${rgb},0.12)`,
+                          color: va,
+                          border: `1px solid rgba(${rgb},0.4)`,
+                        }
+                      : {
+                          background: "rgba(255,255,255,0.03)",
+                          color: "rgba(224,192,175,0.45)",
+                          border: "1px solid rgba(255,255,255,0.06)",
+                        }
+                  }
+                >
+                  <span
+                    className="w-2 h-2 rounded-full shrink-0"
+                    style={{
+                      background: va,
+                      boxShadow: isActive ? `0 0 6px rgba(${rgb},0.7)` : "none",
+                    }}
+                  />
+                  <span className="truncate">{s.name}</span>
+                </button>
+              );
+            })}
+          </div>
 
-                <p className="text-sm leading-relaxed mb-5" style={{ color: "rgba(224,192,175,0.65)" }}>
-                  {active.description}
-                </p>
+          {/* ── Detail panel ── */}
+          <div
+            className="rounded-2xl overflow-hidden"
+            style={{ background: "rgba(0,23,17,0.6)", border: "1px solid rgba(255,255,255,0.07)" }}
+          >
+            <div className="flex flex-col lg:flex-row">
 
-                <div className="pl-3" style={{ borderLeft: "2px solid rgba(255,122,0,0.35)" }}>
-                  <p className="text-[10px] uppercase tracking-widest mb-1" style={{ color: "rgba(255,122,0,0.65)" }}>
-                    Ideal para
-                  </p>
-                  <p className="text-sm leading-relaxed" style={{ color: "rgba(224,192,175,0.55)" }}>
-                    {active.ideal}
-                  </p>
+              {/* Demo */}
+              <div
+                className="lg:w-[55%] h-[280px] md:h-[320px] lg:h-auto lg:min-h-[420px] shrink-0"
+                style={{
+                  borderBottom: "1px solid rgba(255,255,255,0.07)",
+                  borderRight: "1px solid rgba(255,255,255,0.07)",
+                }}
+              >
+                <div key={activeId} className="h-full catalog-enter">
+                  <active.Demo />
                 </div>
               </div>
 
-              {/* Nav arrows + counter */}
-              <div className="flex items-center justify-between mt-6 pt-4" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-                <button
-                  onClick={() => setActiveId(STYLES[(activeIdx - 1 + STYLES.length) % STYLES.length].id)}
-                  className="px-3 py-1.5 rounded-lg text-xs font-medium transition-all"
-                  style={{ background: "rgba(255,255,255,0.05)", color: "rgba(224,192,175,0.5)", border: "1px solid rgba(255,255,255,0.07)" }}
-                >
-                  ← Anterior
-                </button>
-                <span className="text-[11px]" style={{ color: "rgba(224,192,175,0.25)", fontVariantNumeric: "tabular-nums" }}>
-                  {activeIdx + 1} / {STYLES.length}
-                </span>
-                <button
-                  onClick={() => setActiveId(STYLES[(activeIdx + 1) % STYLES.length].id)}
-                  className="px-3 py-1.5 rounded-lg text-xs font-medium transition-all"
-                  style={{ background: "rgba(255,255,255,0.05)", color: "rgba(224,192,175,0.5)", border: "1px solid rgba(255,255,255,0.07)" }}
-                >
-                  Siguiente →
-                </button>
+              {/* Info */}
+              <div className="flex-1 p-6 md:p-8">
+                <div key={activeId} className="catalog-enter flex flex-col justify-between h-full">
+                  <div>
+                    {/* Title block */}
+                    <div className="flex items-start gap-3 mb-5">
+                      <div
+                        className="w-2.5 h-2.5 rounded-full shrink-0 mt-2"
+                        style={{
+                          background: accent,
+                          boxShadow: `0 0 10px rgba(${accentRgb(accent)},0.6)`,
+                        }}
+                      />
+                      <div>
+                        <p
+                          className="text-[10px] uppercase tracking-widest mb-1.5"
+                          style={{ color: "rgba(224,192,175,0.35)" }}
+                        >
+                          Estilo {activeIdx + 1} de {STYLES.length}
+                        </p>
+                        <h3
+                          className="text-white text-2xl font-bold mb-1"
+                          style={{ letterSpacing: "-0.02em" }}
+                        >
+                          {active.name}
+                        </h3>
+                        <p className="text-sm font-medium" style={{ color: accent }}>
+                          {active.tagline}
+                        </p>
+                      </div>
+                    </div>
+
+                    <p
+                      className="text-sm mb-5"
+                      style={{ color: "rgba(224,192,175,0.65)", lineHeight: "1.8" }}
+                    >
+                      {active.description}
+                    </p>
+
+                    <div
+                      className="rounded-xl p-4"
+                      style={{
+                        background: "rgba(255,122,0,0.05)",
+                        border: "1px solid rgba(255,122,0,0.15)",
+                      }}
+                    >
+                      <p
+                        className="text-[10px] uppercase tracking-widest mb-2"
+                        style={{ color: "rgba(255,122,0,0.6)" }}
+                      >
+                        Ideal para
+                      </p>
+                      <p
+                        className="text-xs"
+                        style={{ color: "rgba(224,192,175,0.6)", lineHeight: "1.7" }}
+                      >
+                        {active.ideal}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Nav + CTA */}
+                  <div
+                    className="mt-6 pt-5"
+                    style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
+                  >
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => setActiveId(STYLES[prevIdx].id)}
+                        className="px-3 py-2 rounded-lg text-sm transition-opacity hover:opacity-70"
+                        style={{
+                          background: "rgba(255,255,255,0.04)",
+                          color: "rgba(224,192,175,0.4)",
+                          border: "1px solid rgba(255,255,255,0.07)",
+                        }}
+                        aria-label="Estilo anterior"
+                      >
+                        ←
+                      </button>
+                      <a
+                        href="/#contact"
+                        className="flex-1 py-2 rounded-xl text-xs font-semibold text-center transition-opacity hover:opacity-80"
+                        style={{
+                          background: "rgba(255,122,0,0.12)",
+                          color: "#ff7a00",
+                          border: "1px solid rgba(255,122,0,0.25)",
+                        }}
+                      >
+                        Pedir este estilo →
+                      </a>
+                      <button
+                        onClick={() => setActiveId(STYLES[nextIdx].id)}
+                        className="px-3 py-2 rounded-lg text-sm transition-opacity hover:opacity-70"
+                        style={{
+                          background: "rgba(255,255,255,0.04)",
+                          color: "rgba(224,192,175,0.4)",
+                          border: "1px solid rgba(255,255,255,0.07)",
+                        }}
+                        aria-label="Siguiente estilo"
+                      >
+                        →
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-      </div>
-    </section>
+        </div>
+      </section>
+    </>
   );
 }
