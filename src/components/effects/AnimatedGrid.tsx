@@ -14,6 +14,7 @@ export function AnimatedGrid() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouseRef = useRef({ x: -9999, y: -9999 });
   const rafRef = useRef<number>(0);
+  const visibleRef = useRef(false);
   const shouldReduce = useReducedMotion();
 
   useEffect(() => {
@@ -41,37 +42,42 @@ export function AnimatedGrid() {
     };
 
     const draw = () => {
-      ctx.clearRect(0, 0, width, height);
-      const { x: mx, y: my } = mouseRef.current;
-      const cols = Math.ceil(width / SPACING) + 1;
-      const rows = Math.ceil(height / SPACING) + 1;
+      if (visibleRef.current) {
+        ctx.clearRect(0, 0, width, height);
+        const { x: mx, y: my } = mouseRef.current;
+        const cols = Math.ceil(width / SPACING) + 1;
+        const rows = Math.ceil(height / SPACING) + 1;
 
-      for (let r = 0; r < rows; r++) {
-        for (let c = 0; c < cols; c++) {
-          const px = c * SPACING;
-          const py = r * SPACING;
-          const dist = Math.hypot(px - mx, py - my);
-          const t = Math.max(0, 1 - dist / INFLUENCE);
-          const t2 = t * t;
+        for (let r = 0; r < rows; r++) {
+          for (let c = 0; c < cols; c++) {
+            const px = c * SPACING;
+            const py = r * SPACING;
+            const dist = Math.hypot(px - mx, py - my);
+            const t = Math.max(0, 1 - dist / INFLUENCE);
+            const t2 = t * t;
 
-          const radius = DOT_MIN + t2 * (DOT_MAX - DOT_MIN);
-          const alpha = BASE_ALPHA + t2 * (LIT_ALPHA - BASE_ALPHA);
+            const radius = DOT_MIN + t2 * (DOT_MAX - DOT_MIN);
+            const alpha = BASE_ALPHA + t2 * (LIT_ALPHA - BASE_ALPHA);
 
-          ctx.beginPath();
-          ctx.arc(px, py, radius, 0, Math.PI * 2);
-
-          if (t > 0.08) {
-            // orange glow near cursor
-            ctx.fillStyle = `rgba(255,122,0,${alpha})`;
-          } else {
-            ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+            ctx.beginPath();
+            ctx.arc(px, py, radius, 0, Math.PI * 2);
+            ctx.fillStyle = t > 0.08
+              ? `rgba(255,122,0,${alpha})`
+              : `rgba(255,255,255,${alpha})`;
+            ctx.fill();
           }
-          ctx.fill();
         }
       }
 
       rafRef.current = requestAnimationFrame(draw);
     };
+
+    // Pause draw loop when canvas scrolls off-screen
+    const obs = new IntersectionObserver(
+      ([entry]) => { visibleRef.current = entry.isIntersecting; },
+      { rootMargin: "100px" }
+    );
+    obs.observe(canvas);
 
     resize();
     window.addEventListener("resize", resize, { passive: true });
@@ -82,6 +88,7 @@ export function AnimatedGrid() {
       window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", onMouseMove);
       cancelAnimationFrame(rafRef.current);
+      obs.disconnect();
     };
   }, [shouldReduce]);
 

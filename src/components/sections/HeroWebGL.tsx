@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useEffect } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import { useReducedMotion } from "framer-motion";
@@ -82,10 +82,20 @@ function buildTexture(): THREE.CanvasTexture {
 
 // ─── Warp mesh ───────────────────────────────────────────────────────────────
 
-function WarpMesh() {
+interface WarpMeshProps {
+  shouldRenderRef: React.MutableRefObject<boolean>;
+  invalidateRef: React.MutableRefObject<(() => void) | null>;
+}
+
+function WarpMesh({ shouldRenderRef, invalidateRef }: WarpMeshProps) {
   const matRef    = useRef<THREE.ShaderMaterial>(null);
   const mouseSmooth = useRef(new THREE.Vector2());
-  const { pointer, viewport } = useThree();
+  const { pointer, viewport, invalidate } = useThree();
+
+  // Expose invalidate so the IntersectionObserver can restart the loop
+  useEffect(() => {
+    invalidateRef.current = invalidate;
+  }, [invalidate, invalidateRef]);
 
   const texture = useMemo(() => {
     if (typeof window === "undefined") return new THREE.Texture();
@@ -102,21 +112,21 @@ function WarpMesh() {
   );
 
   useFrame(({ clock }) => {
-    if (!matRef.current) return;
+    if (!shouldRenderRef.current || !matRef.current) return;
     mouseSmooth.current.lerp(pointer, 0.04);
     matRef.current.uniforms.uTime.value  = clock.getElapsedTime();
     matRef.current.uniforms.uMouse.value.copy(mouseSmooth.current);
+    invalidate(); // self-perpetuate only when visible
   });
 
-  // Keep aspect ratio of canvas texture: 2048/560 ≈ 3.657
   const ASPECT = 2048 / 560;
   const w = Math.min(viewport.width * 0.92, 11);
   const h = w / ASPECT;
 
   return (
     <mesh>
-      {/* High subdivision = smooth vertex displacement */}
-      <planeGeometry args={[w, h, 160, 48]} />
+      {/* Reduced geometry: 80×32 vertices (was 160×48) — same visual, 66% fewer vertex invocations */}
+      <planeGeometry args={[w, h, 80, 32]} />
       <shaderMaterial
         ref={matRef}
         vertexShader={VERTEX}
@@ -132,31 +142,52 @@ function WarpMesh() {
 
 // ─── Scene ───────────────────────────────────────────────────────────────────
 
-function Scene() {
-  return (
-    <>
-      <WarpMesh />
-    </>
-  );
+interface SceneProps {
+  shouldRenderRef: React.MutableRefObject<boolean>;
+  invalidateRef: React.MutableRefObject<(() => void) | null>;
+}
+
+function Scene({ shouldRenderRef, invalidateRef }: SceneProps) {
+  return <WarpMesh shouldRenderRef={shouldRenderRef} invalidateRef={invalidateRef} />;
 }
 
 // ─── Public component ─────────────────────────────────────────────────────────
 
 interface HeroWebGLProps {
-  /** Content rendered on top of the canvas (buttons, copy, etc.) */
   children?: React.ReactNode;
   className?: string;
 }
 
 export function HeroWebGL({ children, className = "" }: HeroWebGLProps) {
   const shouldReduceMotion = useReducedMotion();
+  const containerRef   = useRef<HTMLDivElement>(null);
+  const shouldRenderRef = useRef(true); // start true — hero is above fold
+  const invalidateRef  = useRef<(() => void) | null>(null);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        shouldRenderRef.current = entry.isIntersecting;
+        // Kick-start the demand loop when scrolling back into view
+        if (entry.isIntersecting && invalidateRef.current) {
+          invalidateRef.current();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
 
   return (
     <div
+      ref={containerRef}
       className={`relative w-full flex items-center justify-center overflow-hidden ${className}`}
       style={{ minHeight: "100vh" }}
     >
-      {/* WebGL canvas — always behind content */}
+      {/* WebGL canvas — pauses rendering when off-screen */}
       {!shouldReduceMotion && (
         <Canvas
           style={{
@@ -164,17 +195,16 @@ export function HeroWebGL({ children, className = "" }: HeroWebGLProps) {
             inset: 0,
             width: "100%",
             height: "100%",
-            // Isolated GPU layer — no paint-triggering
             willChange: "transform",
             contain: "strict",
           }}
           camera={{ position: [0, 0, 5], fov: 45, near: 0.1, far: 50 }}
-          gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
-          dpr={[1, 1.5]}
-          frameloop="always"
+          gl={{ antialias: false, alpha: true, powerPreference: "high-performance" }}
+          dpr={[1, 1]}
+          frameloop="demand"
           aria-hidden="true"
         >
-          <Scene />
+          <Scene shouldRenderRef={shouldRenderRef} invalidateRef={invalidateRef} />
         </Canvas>
       )}
 

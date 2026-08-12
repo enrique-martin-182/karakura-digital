@@ -58,8 +58,17 @@ const _hide     = new THREE.Vector3(0, 0, 0);
 
 interface Pulse { edge: number; t: number }
 
-function DataNetwork() {
-  const { viewport } = useThree();
+interface DataNetworkProps {
+  shouldRenderRef: React.MutableRefObject<boolean>;
+  invalidateRef: React.MutableRefObject<(() => void) | null>;
+}
+
+function DataNetwork({ shouldRenderRef, invalidateRef }: DataNetworkProps) {
+  const { viewport, invalidate } = useThree();
+
+  useEffect(() => {
+    invalidateRef.current = invalidate;
+  }, [invalidate, invalidateRef]);
 
   const nodesMesh  = useRef<THREE.InstancedMesh>(null);
   const pulsesMesh = useRef<THREE.InstancedMesh>(null);
@@ -124,6 +133,7 @@ function DataNetwork() {
 
   // ── Main loop ─────────────────────────────────────────────────────────────
   useFrame(({ clock }, delta) => {
+    if (!shouldRenderRef.current) return;
     const nodes  = nodesMesh.current;
     const pulseM = pulsesMesh.current;
     const lineCols = lineColRef.current;
@@ -192,6 +202,7 @@ function DataNetwork() {
     for (let i = next.length; i < MAX_PULSES; i++) pulseM.setMatrixAt(i, _tmpMat);
     pulses.current = next;
     pulseM.instanceMatrix.needsUpdate = true;
+    invalidate(); // self-perpetuate only when visible
   });
 
   return (
@@ -249,37 +260,60 @@ interface Props {
 
 export function InteractiveDataBackground({ className = "", style }: Props) {
   const reduceMotion = useReducedMotion();
+  const containerRef   = useRef<HTMLDivElement>(null);
+  const shouldRenderRef = useRef(false); // start false — section is below fold
+  const invalidateRef  = useRef<(() => void) | null>(null);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        shouldRenderRef.current = entry.isIntersecting;
+        if (entry.isIntersecting && invalidateRef.current) {
+          invalidateRef.current();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
 
   if (reduceMotion) return <Fallback />;
 
   return (
-    <Canvas
+    <div
+      ref={containerRef}
       className={className}
-      style={{
-        position: "absolute",
-        inset: 0,
-        width: "100%",
-        height: "100%",
-        pointerEvents: "none",
-        willChange: "transform",
-        contain: "strict",
-        ...style,
-      }}
-      camera={{ position: [0, 0, 18], fov: 50, near: 0.1, far: 100 }}
-      gl={{
-        antialias: false,
-        alpha: true,
-        powerPreference: "high-performance",
-        stencil: false,
-        depth: false,
-      }}
-      dpr={[1, 1]}
-      frameloop="always"
-      aria-hidden="true"
+      style={{ position: "absolute", inset: 0, ...style }}
     >
-      <Suspense fallback={null}>
-        <DataNetwork />
-      </Suspense>
-    </Canvas>
+      <Canvas
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          pointerEvents: "none",
+          willChange: "transform",
+          contain: "strict",
+        }}
+        camera={{ position: [0, 0, 18], fov: 50, near: 0.1, far: 100 }}
+        gl={{
+          antialias: false,
+          alpha: true,
+          powerPreference: "high-performance",
+          stencil: false,
+          depth: false,
+        }}
+        dpr={[1, 1]}
+        frameloop="demand"
+        aria-hidden="true"
+      >
+        <Suspense fallback={null}>
+          <DataNetwork shouldRenderRef={shouldRenderRef} invalidateRef={invalidateRef} />
+        </Suspense>
+      </Canvas>
+    </div>
   );
 }

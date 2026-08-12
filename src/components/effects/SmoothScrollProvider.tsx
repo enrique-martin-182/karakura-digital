@@ -6,8 +6,7 @@ import type { LenisOptions } from "lenis";
 import { useSecretStore } from "@/store/useSecretStore";
 
 const BASE_OPTIONS: LenisOptions = {
-  lerp:             0.08,
-  duration:         1.4,
+  duration:         0.9,
   easing:           (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
   orientation:      "vertical",
   gestureOrientation: "vertical",
