@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo, useEffect } from "react";
+import { useRef, useMemo, useEffect, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import { useReducedMotion } from "framer-motion";
@@ -57,7 +57,7 @@ const FRAGMENT = /* glsl */ `
 // ─── Canvas texture ──────────────────────────────────────────────────────────
 
 function buildTexture(): THREE.CanvasTexture {
-  const W = 2048, H = 560;
+  const W = 1024, H = 280;
   const canvas = document.createElement("canvas");
   canvas.width  = W;
   canvas.height = H;
@@ -161,8 +161,15 @@ interface HeroWebGLProps {
 export function HeroWebGL({ children, className = "" }: HeroWebGLProps) {
   const shouldReduceMotion = useReducedMotion();
   const containerRef   = useRef<HTMLDivElement>(null);
-  const shouldRenderRef = useRef(true); // start true — hero is above fold
+  const shouldRenderRef = useRef(true);
   const invalidateRef  = useRef<(() => void) | null>(null);
+  const [canvasReady, setCanvasReady] = useState(false);
+
+  // Delay Canvas mount so first paint completes before WebGL context + shader compilation
+  useEffect(() => {
+    const id = setTimeout(() => setCanvasReady(true), 800);
+    return () => clearTimeout(id);
+  }, []);
 
   useEffect(() => {
     const el = containerRef.current;
@@ -187,8 +194,8 @@ export function HeroWebGL({ children, className = "" }: HeroWebGLProps) {
       className={`relative w-full flex items-center justify-center overflow-hidden ${className}`}
       style={{ minHeight: "100vh" }}
     >
-      {/* WebGL canvas — pauses rendering when off-screen */}
-      {!shouldReduceMotion && (
+      {/* WebGL canvas — delayed mount so first paint isn't blocked by shader compilation */}
+      {!shouldReduceMotion && canvasReady && (
         <Canvas
           style={{
             position: "absolute",

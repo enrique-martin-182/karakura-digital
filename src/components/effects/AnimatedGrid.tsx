@@ -42,39 +42,45 @@ export function AnimatedGrid() {
     };
 
     const draw = () => {
-      if (visibleRef.current) {
-        ctx.clearRect(0, 0, width, height);
-        const { x: mx, y: my } = mouseRef.current;
-        const cols = Math.ceil(width / SPACING) + 1;
-        const rows = Math.ceil(height / SPACING) + 1;
+      ctx.clearRect(0, 0, width, height);
+      const { x: mx, y: my } = mouseRef.current;
+      const cols = Math.ceil(width / SPACING) + 1;
+      const rows = Math.ceil(height / SPACING) + 1;
 
-        for (let r = 0; r < rows; r++) {
-          for (let c = 0; c < cols; c++) {
-            const px = c * SPACING;
-            const py = r * SPACING;
-            const dist = Math.hypot(px - mx, py - my);
-            const t = Math.max(0, 1 - dist / INFLUENCE);
-            const t2 = t * t;
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          const px = c * SPACING;
+          const py = r * SPACING;
+          const dist = Math.hypot(px - mx, py - my);
+          const t = Math.max(0, 1 - dist / INFLUENCE);
+          const t2 = t * t;
 
-            const radius = DOT_MIN + t2 * (DOT_MAX - DOT_MIN);
-            const alpha = BASE_ALPHA + t2 * (LIT_ALPHA - BASE_ALPHA);
+          const radius = DOT_MIN + t2 * (DOT_MAX - DOT_MIN);
+          const alpha = BASE_ALPHA + t2 * (LIT_ALPHA - BASE_ALPHA);
 
-            ctx.beginPath();
-            ctx.arc(px, py, radius, 0, Math.PI * 2);
-            ctx.fillStyle = t > 0.08
-              ? `rgba(255,122,0,${alpha})`
-              : `rgba(255,255,255,${alpha})`;
-            ctx.fill();
-          }
+          ctx.beginPath();
+          ctx.arc(px, py, radius, 0, Math.PI * 2);
+          ctx.fillStyle = t > 0.08
+            ? `rgba(255,122,0,${alpha})`
+            : `rgba(255,255,255,${alpha})`;
+          ctx.fill();
         }
       }
 
       rafRef.current = requestAnimationFrame(draw);
     };
 
-    // Pause draw loop when canvas scrolls off-screen
+    // Fully stop/start the RAF loop based on visibility
     const obs = new IntersectionObserver(
-      ([entry]) => { visibleRef.current = entry.isIntersecting; },
+      ([entry]) => {
+        visibleRef.current = entry.isIntersecting;
+        if (entry.isIntersecting) {
+          if (!rafRef.current) draw();
+        } else {
+          cancelAnimationFrame(rafRef.current);
+          rafRef.current = 0;
+        }
+      },
       { rootMargin: "100px" }
     );
     obs.observe(canvas);

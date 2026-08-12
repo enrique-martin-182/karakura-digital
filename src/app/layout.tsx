@@ -3,9 +3,7 @@ import { Plus_Jakarta_Sans } from "next/font/google";
 import { ScrollProgress } from "@/components/effects/ScrollProgress";
 import { CommandPalette } from "@/components/ui/CommandPalette";
 import { SmoothScrollProvider } from "@/components/effects/SmoothScrollProvider";
-import { ZeldaCat } from "@/components/effects/ZeldaCat";
-import { ClickSparks } from "@/components/effects/ClickSparks";
-import { BlastOverlay } from "@/components/effects/BlastOverlay";
+import { EasterEggs } from "@/components/effects/EasterEggs";
 import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -198,11 +196,7 @@ export default function RootLayout({
         <meta name="geo.placename" content="Córdoba, Andalucía, España" />
         <meta name="geo.position" content="37.8882;-4.7794" />
         <meta name="ICBM" content="37.8882, -4.7794" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://prod.spline.design" crossOrigin="anonymous" />
-        {/* Preload above-fold logo — LCP candidate */}
-        <link rel="preload" as="image" href="/KD%20LOGO%203.png" fetchPriority="high" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/assets/logo.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/assets/logo-kd.png" />
@@ -224,10 +218,7 @@ export default function RootLayout({
         <ScrollProgress />
         <CommandPalette />
         {/* <CustomCursor /> */}
-        {/* Easter egg overlays — zero cost when inactive */}
-        <ZeldaCat />
-        <ClickSparks />
-        <BlastOverlay />
+        <EasterEggs />
         <SmoothScrollProvider>
           {children}
         </SmoothScrollProvider>
