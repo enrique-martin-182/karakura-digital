@@ -41,21 +41,12 @@ export const metadata: Metadata = {
     siteName: "Karakura Digital",
     type: "website",
     locale: "es_ES",
-    images: [
-      {
-        url: "https://karakuradigital.es/assets/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Karakura Digital — Desarrollo Web, Software e IA desde Córdoba",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Karakura Digital | Desarrollo Web y Software a Medida",
     description:
       "Agencia de desarrollo web, software a medida y automatización con IA desde Córdoba. Consultoría gratuita.",
-    images: ["https://karakuradigital.es/assets/og-image.png"],
   },
   alternates: {
     canonical: "https://karakuradigital.es/",

@@ -104,7 +104,7 @@ export function Hero() {
           <motion.div variants={itemVariants}>
             <div className="flex flex-col sm:flex-row gap-4 md:gap-6">
               <Button href="#contact" className="group">
-                Unirse a la Iniciativa
+                Hablemos de tu proyecto
                 <motion.svg
                   className="w-5 h-5"
                   fill="none"
