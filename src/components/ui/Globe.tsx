@@ -15,7 +15,7 @@ const DEFAULTS = {
     net: "#26FF00",
     density: 20,
     spin: 20,
-    spinDir: "right",
+    spinDir: "right" as const,
     hoverOn: true,
     sizePercent: 100,
 
