@@ -1462,6 +1462,204 @@ function ClaymorphismDarkDemo() {
   );
 }
 
+function MaterialDesign3Demo() {
+  return (
+    <div className="h-full flex items-center justify-center p-5" style={{ background: "#FFFBFE" }}>
+      <div style={{ width: 252 }}>
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <p style={{ fontSize: 9, letterSpacing: ".16em", color: "#6750A4", textTransform: "uppercase", fontWeight: 600 }}>Karakura Digital</p>
+            <p style={{ fontSize: 22, fontWeight: 400, color: "#1C1B1F", lineHeight: 1.2 }}>Proyectos</p>
+          </div>
+          <div className="w-9 h-9 rounded-full flex items-center justify-center" style={{ background: "#EADDFF" }}>
+            <span style={{ fontSize: 13, fontWeight: 600, color: "#6750A4" }}>KD</span>
+          </div>
+        </div>
+        <div className="flex flex-col gap-2 mb-4">
+          {[["Web Corporativa", "En progreso", 80], ["CRM Personalizado", "Revisión", 58]].map(([title, status, pct]) => (
+            <div key={title as string} className="rounded-3xl p-4" style={{ background: "#F3EDF7" }}>
+              <div className="flex items-start justify-between mb-2">
+                <div>
+                  <p style={{ fontSize: 13, fontWeight: 500, color: "#1C1B1F" }}>{title as string}</p>
+                  <p style={{ fontSize: 11, color: "#49454F", marginTop: 1 }}>{status as string}</p>
+                </div>
+                <span style={{ fontSize: 12, fontWeight: 600, color: "#6750A4", fontVariantNumeric: "tabular-nums" }}>{pct}%</span>
+              </div>
+              <div className="rounded-full" style={{ height: 4, background: "#D0BCFF" }}>
+                <div style={{ width: `${pct}%`, height: "100%", background: "#6750A4", borderRadius: 99 }} />
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="flex gap-2 mb-4">
+          <button className="flex-1 py-2.5 rounded-full text-xs font-semibold" style={{ background: "#6750A4", color: "#fff" }}>Nuevo proyecto</button>
+          <button className="flex-1 py-2.5 rounded-full text-xs font-semibold" style={{ background: "#ECE6F0", color: "#6750A4" }}>Ver todos</button>
+        </div>
+        <div className="rounded-[28px] px-2 py-2 flex" style={{ background: "#ECE6F0" }}>
+          {[["Inicio", true], ["Tareas", false], ["Equipo", false]].map(([label, active]) => (
+            <div key={label as string} className="flex-1 flex justify-center">
+              <div className="rounded-full px-3 py-1" style={{ background: (active as boolean) ? "#6750A4" : "transparent" }}>
+                <span style={{ fontSize: 9, fontWeight: 600, letterSpacing: ".06em", textTransform: "uppercase", color: (active as boolean) ? "#fff" : "#49454F" }}>{label as string}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function NeonCyberpunkDemo() {
+  return (
+    <div className="h-full flex items-center justify-center p-5 relative overflow-hidden" style={{ background: "#050812" }}>
+      <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "linear-gradient(rgba(0,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,255,.04) 1px,transparent 1px)", backgroundSize: "28px 28px" }} />
+      <div className="absolute rounded-full pointer-events-none" style={{ width: 200, height: 200, top: -60, left: -40, background: "radial-gradient(circle,rgba(0,255,255,.08),transparent 70%)" }} />
+      <div className="absolute rounded-full pointer-events-none" style={{ width: 200, height: 200, bottom: -60, right: -40, background: "radial-gradient(circle,rgba(255,0,110,.08),transparent 70%)" }} />
+      <div className="relative z-10" style={{ width: 256 }}>
+        <div className="flex items-center gap-2 mb-3">
+          <div style={{ width: 6, height: 6, background: "#00FFFF", boxShadow: "0 0 8px #00FFFF" }} />
+          <span style={{ fontSize: 9, letterSpacing: ".32em", textTransform: "uppercase", color: "rgba(0,255,255,.6)", fontFamily: "monospace" }}>SYS://KARAKURA.ES</span>
+          <div className="flex-1 h-px" style={{ background: "rgba(0,255,255,.15)" }} />
+        </div>
+        <div className="mb-3 rounded p-4 relative" style={{ border: "1px solid rgba(0,255,255,.2)", background: "rgba(0,255,255,.03)" }}>
+          <div className="absolute top-0 left-0 w-3 h-3" style={{ borderTop: "1.5px solid #00FFFF", borderLeft: "1.5px solid #00FFFF" }} />
+          <div className="absolute top-0 right-0 w-3 h-3" style={{ borderTop: "1.5px solid #00FFFF", borderRight: "1.5px solid #00FFFF" }} />
+          <div className="absolute bottom-0 left-0 w-3 h-3" style={{ borderBottom: "1.5px solid #00FFFF", borderLeft: "1.5px solid #00FFFF" }} />
+          <div className="absolute bottom-0 right-0 w-3 h-3" style={{ borderBottom: "1.5px solid #00FFFF", borderRight: "1.5px solid #00FFFF" }} />
+          <p style={{ fontSize: 9, color: "rgba(0,255,255,.4)", letterSpacing: ".2em", textTransform: "uppercase", fontFamily: "monospace", marginBottom: 4 }}>RENDIMIENTO SISTEMA</p>
+          <p style={{ fontSize: 36, fontWeight: 900, color: "#00FFFF", textShadow: "0 0 20px #00FFFF, 0 0 60px rgba(0,255,255,.4)", letterSpacing: "-.02em", fontVariantNumeric: "tabular-nums" }}>98.7%</p>
+          <p style={{ fontSize: 9, color: "rgba(0,255,255,.5)", fontFamily: "monospace" }}>ONLINE · LATENCIA 2ms</p>
+        </div>
+        <div className="grid grid-cols-2 gap-2 mb-3">
+          {[["Proyectos", "28", "#00FFFF"], ["Uptime", "99.9%", "#FF006E"]].map(([label, value, color]) => (
+            <div key={label as string} className="rounded p-3" style={{ border: `1px solid ${color as string}30`, background: `${color as string}08` }}>
+              <p style={{ fontSize: 8, letterSpacing: ".18em", textTransform: "uppercase", color: `${color as string}60`, fontFamily: "monospace" }}>{label as string}</p>
+              <p style={{ fontSize: 22, fontWeight: 900, color: color as string, textShadow: `0 0 12px ${color}`, fontVariantNumeric: "tabular-nums" }}>{value as string}</p>
+            </div>
+          ))}
+        </div>
+        <button className="w-full rounded py-2.5 text-xs font-black uppercase tracking-widest" style={{ background: "rgba(0,255,255,.08)", color: "#00FFFF", border: "1px solid rgba(0,255,255,.35)", textShadow: "0 0 8px #00FFFF", boxShadow: "inset 0 0 20px rgba(0,255,255,.05)" }}>
+          ▶ INICIAR MISIÓN
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function RetroVintageDemo() {
+  return (
+    <div className="h-full flex items-center justify-center p-6 relative overflow-hidden" style={{ background: "#f0e6cc" }}>
+      <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E\")", backgroundSize: "150px" }} />
+      <div className="relative z-10 text-center" style={{ width: 260 }}>
+        <div className="flex items-center justify-center gap-2 mb-4">
+          <div className="flex-1 h-px" style={{ background: "#8b5e3c" }} />
+          <div className="w-2 h-2 rounded-full" style={{ background: "#8b5e3c" }} />
+          <div className="flex-1 h-px" style={{ background: "#8b5e3c" }} />
+        </div>
+        <div className="rounded-sm p-5 mb-4 relative" style={{ border: "2px solid #8b5e3c", background: "#faf0d8" }}>
+          <div className="absolute" style={{ inset: 4, border: "1px solid rgba(139,94,60,.3)", borderRadius: 2, pointerEvents: "none" }} />
+          <p style={{ fontSize: 9, letterSpacing: ".32em", textTransform: "uppercase", color: "#8b5e3c", marginBottom: 6, fontFamily: "Georgia, serif" }}>ESTABLECIDA</p>
+          <p style={{ fontSize: 10, letterSpacing: ".28em", textTransform: "uppercase", color: "#c8860a", marginBottom: 2, fontFamily: "Georgia, serif" }}>✦ ANNO MMXXIV ✦</p>
+          <div className="my-3 flex items-center justify-center gap-2">
+            <div style={{ flex: 1, height: 1, background: "#8b5e3c" }} />
+            <span style={{ fontSize: 26, fontWeight: 900, color: "#3a1a0a", letterSpacing: "-.02em", fontFamily: "Georgia, serif" }}>Karakura</span>
+            <div style={{ flex: 1, height: 1, background: "#8b5e3c" }} />
+          </div>
+          <p style={{ fontSize: 14, color: "#6b3a2a", letterSpacing: ".14em", fontFamily: "Georgia, serif", fontStyle: "italic" }}>Digital Studio</p>
+          <div className="mt-3 flex items-center gap-1 justify-center">
+            <div style={{ flex: 1, height: 1, background: "rgba(139,94,60,.3)" }} />
+            <span style={{ fontSize: 8, color: "#8b5e3c", letterSpacing: ".28em", textTransform: "uppercase", fontFamily: "Georgia, serif" }}>Córdoba · España</span>
+            <div style={{ flex: 1, height: 1, background: "rgba(139,94,60,.3)" }} />
+          </div>
+        </div>
+        <div className="flex justify-center gap-8">
+          {[["28+", "Proyectos"], ["100%", "Calidad"], ["4.9★", "Rating"]].map(([v, l]) => (
+            <div key={l} className="text-center">
+              <p style={{ fontSize: 16, fontWeight: 700, color: "#3a1a0a", fontFamily: "Georgia, serif", fontVariantNumeric: "tabular-nums" }}>{v}</p>
+              <p style={{ fontSize: 8, letterSpacing: ".18em", textTransform: "uppercase", color: "#8b5e3c", marginTop: 1 }}>{l}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function PastelSoftDemo() {
+  return (
+    <div className="h-full flex items-center justify-center p-5" style={{ background: "linear-gradient(145deg, #fdf4ff 0%, #f0f9ff 100%)" }}>
+      <div style={{ width: 256 }}>
+        <div className="flex items-center gap-2 mb-4">
+          <div className="rounded-full px-3 py-1 text-xs font-semibold" style={{ background: "#e9d5ff", color: "#7c3aed" }}>Karakura Digital</div>
+          <div className="rounded-full px-3 py-1 text-xs font-semibold" style={{ background: "#d1fae5", color: "#059669" }}>✓ Activo</div>
+        </div>
+        <div className="rounded-3xl p-5 mb-3" style={{ background: "#fff", boxShadow: "0 4px 24px rgba(139,92,246,.08)" }}>
+          <p style={{ fontSize: 9, letterSpacing: ".16em", textTransform: "uppercase", color: "#a78bfa", marginBottom: 6, fontWeight: 600 }}>Tu espacio digital</p>
+          <p style={{ fontSize: 20, fontWeight: 700, color: "#1e1b4b", lineHeight: 1.2, letterSpacing: "-.02em", marginBottom: 8 }}>Webs que enamoran desde el primer segundo</p>
+          <button className="rounded-full px-4 py-2 text-xs font-semibold" style={{ background: "#ede9fe", color: "#7c3aed" }}>Explorar proyectos →</button>
+        </div>
+        <div className="flex flex-wrap gap-2 mb-3">
+          {[["Diseño Web", "#fce7f3", "#be185d"], ["IA & CRM", "#d1fae5", "#059669"], ["3D & Motion", "#e0f2fe", "#0369a1"], ["Branding", "#fef3c7", "#b45309"]].map(([label, bg, color]) => (
+            <div key={label as string} className="rounded-full px-3 py-1.5 text-xs font-semibold" style={{ background: bg as string, color: color as string }}>{label as string}</div>
+          ))}
+        </div>
+        <div className="grid grid-cols-3 gap-2">
+          {[["28+", "Proyectos", "#ede9fe"], ["4.9", "Rating", "#d1fae5"], ["100%", "Sat.", "#fce7f3"]].map(([v, l, bg]) => (
+            <div key={l as string} className="rounded-2xl p-3 text-center" style={{ background: bg as string }}>
+              <p style={{ fontSize: 18, fontWeight: 800, color: "#1e1b4b", fontVariantNumeric: "tabular-nums" }}>{v as string}</p>
+              <p style={{ fontSize: 9, color: "#6b7280", marginTop: 2 }}>{l as string}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function DoodleDemo() {
+  return (
+    <div className="h-full flex items-center justify-center p-5 relative overflow-hidden" style={{ background: "#fafaf5" }}>
+      <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "repeating-linear-gradient(transparent, transparent 27px, #e0e0d4 27px, #e0e0d4 28px)", backgroundPosition: "0 16px" }} />
+      <div className="absolute top-0 bottom-0 pointer-events-none" style={{ left: 40, width: 1, background: "#ffb3b3", opacity: .6 }} />
+      <div className="relative z-10" style={{ width: 256 }}>
+        <div className="mb-4" style={{ transform: "rotate(-1deg)" }}>
+          <p style={{ fontSize: 20, fontWeight: 900, color: "#1a1a1a", fontFamily: "'Courier New', monospace", letterSpacing: "-.01em" }}>Karakura Digital</p>
+          <svg width="160" height="8" viewBox="0 0 160 8" fill="none" className="mt-0.5">
+            <path d="M2 5 Q20 1 40 5 Q60 9 80 5 Q100 1 120 5 Q140 9 158 5" stroke="#2563EB" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+          </svg>
+        </div>
+        <div className="flex gap-3 mb-4">
+          {[["Diseño UI", "#fef08a", 1.5], ["Dev Web", "#bbf7d0", -1]].map(([label, bg, rot]) => (
+            <div key={label as string} className="flex-1 rounded-sm p-3 relative" style={{ background: bg as string, transform: `rotate(${rot}deg)`, boxShadow: "2px 3px 8px rgba(0,0,0,.12)" }}>
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1" style={{ width: 20, height: 4, background: "rgba(0,0,0,.15)", borderRadius: 1 }} />
+              <p style={{ fontSize: 12, fontWeight: 700, color: "#1a1a1a", fontFamily: "'Courier New', monospace" }}>{label as string}</p>
+              <p style={{ fontSize: 9, color: "#555", marginTop: 4, fontFamily: "'Courier New', monospace" }}>✓ En proceso</p>
+            </div>
+          ))}
+        </div>
+        <div className="rounded-sm p-3 mb-4" style={{ border: "2px solid #1a1a1a", background: "rgba(255,255,255,.7)", transform: "rotate(0.5deg)" }}>
+          <p style={{ fontSize: 10, fontWeight: 700, color: "#2563EB", fontFamily: "'Courier New', monospace", marginBottom: 6, letterSpacing: ".06em", textTransform: "uppercase" }}>TODO</p>
+          {[["Diseñar landing", true], ["Conectar CRM", true], ["Deploy prod", false]].map(([task, done]) => (
+            <div key={task as string} className="flex items-center gap-2 mb-1.5">
+              <div className="w-4 h-4 rounded-sm shrink-0 flex items-center justify-center" style={{ border: "2px solid #1a1a1a", background: (done as boolean) ? "#2563EB" : "transparent" }}>
+                {(done as boolean) && <span style={{ fontSize: 8, color: "#fff", fontWeight: 700 }}>✓</span>}
+              </div>
+              <span style={{ fontSize: 11, color: "#1a1a1a", fontFamily: "'Courier New', monospace", textDecoration: (done as boolean) ? "line-through" : "none", opacity: (done as boolean) ? .5 : 1 }}>{task as string}</span>
+            </div>
+          ))}
+        </div>
+        <div className="flex items-center gap-3">
+          <button className="rounded-sm px-4 py-2 font-bold text-xs text-white" style={{ background: "#2563EB", border: "2px solid #1e40af", boxShadow: "3px 3px 0 #1e40af", fontFamily: "'Courier New', monospace", textTransform: "uppercase", letterSpacing: ".06em" }}>¡Hablemos!</button>
+          <svg width="40" height="20" viewBox="0 0 40 20" fill="none">
+            <path d="M2 10 C10 5, 20 15, 34 10" stroke="#1a1a1a" strokeWidth="2" strokeLinecap="round" fill="none" />
+            <path d="M30 6 L36 10 L30 14" stroke="#1a1a1a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ── Data ──────────────────────────────────────────────────────────────────────
 
 interface StyleDef {
@@ -1750,6 +1948,61 @@ const STYLES: StyleDef[] = [
     accent: "#7c3aed",
     Demo: ClaymorphismDarkDemo,
   },
+  {
+    id: "material-design-3",
+    name: "Material Design 3",
+    tagline: "Google's dynamic color system",
+    description:
+      "El sistema de diseño de Google en su versión más madura: colores tonales dinámicos que se adaptan al contenido, formas redondeadas en tres variantes (filled, outlined, tonal) y jerarquía tipográfica estricta. Domina el ecosistema Android, Flutter y apps web de consumo.",
+    ideal:
+      "Apps móviles y web de consumo, plataformas educativas, herramientas de productividad y cualquier producto que necesite inclusividad, accesibilidad y un lenguaje visual familiar para miles de millones de usuarios.",
+    accent: "#6750A4",
+    Demo: MaterialDesign3Demo,
+  },
+  {
+    id: "neon-cyberpunk",
+    name: "Neon / Cyberpunk",
+    tagline: "Neón sobre oscuridad total",
+    description:
+      "Fondos casi negros, colores neón saturados en cyan, magenta y verde chartreuse, glows con text-shadow y box-shadow multicapa, HUD corners decorativos y tipografía monoespaciada. Más radical que el vaporwave: sin gradientes de cielo, solo circuitos y neón.",
+    ideal:
+      "Gaming, plataformas crypto y DeFi, ciberseguridad, eventos nocturnos, marcas de esports y herramientas para developers que quieran proyectar poder tecnológico extremo.",
+    accent: "#00FFFF",
+    Demo: NeonCyberpunkDemo,
+  },
+  {
+    id: "retro-vintage",
+    name: "Retro / Vintage",
+    tagline: "Artesanía atemporal, papel envejecido",
+    description:
+      "Paleta sepia y mostaza sobre papel envejecido, tipografía serif con peso editorial, ornamentos de división, bordes dobles y composición centrada de escudo. La antítesis del look digital genérico: comunica historia y autenticidad.",
+    ideal:
+      "Restaurantes y bodegas premium, marcas de café y cerveza artesanal, estudios de tatuaje, marcas de ropa heritage, portfolios de fotografía analógica y cualquier proyecto que venda autenticidad.",
+    accent: "#8b5e3c",
+    Demo: RetroVintageDemo,
+  },
+  {
+    id: "pastel-soft",
+    name: "Pastel Soft",
+    tagline: "Píldoras de color, redondez extrema",
+    description:
+      "Fondos en gradiente pastel suave, tarjetas blancas con sombra difusa de color, píldoras de colores distintos para categorías y métricas, y un lenguaje visual amable que no intimida. Lemon Squeezy, Framer y Superhuman lideran este estilo.",
+    ideal:
+      "SaaS B2C, marketplaces, herramientas creativas, plataformas de e-learning, apps de salud y bienestar y cualquier producto que quiera eliminar la fricción visual y hacer que el onboarding se sienta cercano.",
+    accent: "#c084fc",
+    Demo: PastelSoftDemo,
+  },
+  {
+    id: "doodle",
+    name: "Doodle / Mano alzada",
+    tagline: "Cuaderno, rotulador, post-its",
+    description:
+      "Fondo de papel rayado, trazos SVG dibujados a mano, post-its con rotación leve, tipografía monoespaciada tipo Courier, checkboxes cuadrados y flechas orgánicas. Excalidraw, Whimsical y Linear popularizaron esta estética de whiteboard digital.",
+    ideal:
+      "Herramientas de colaboración y brainstorming, startups early-stage que quieren proyectar agilidad y humanidad, agencias creativas y portfolios que rechazan el look corporativo pulido.",
+    accent: "#2563eb",
+    Demo: DoodleDemo,
+  },
 ];
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -1800,7 +2053,7 @@ export default function DesignCatalog() {
               style={{ color: "#ff7a00", background: "rgba(255,122,0,0.08)", border: "1px solid rgba(255,122,0,0.2)" }}
             >
               <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "#ff7a00" }} />
-              Catálogo de estilos · 25
+              Catálogo de estilos · 30
             </div>
             <h2
               className="text-3xl md:text-5xl font-bold text-white mb-4"
