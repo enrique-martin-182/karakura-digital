@@ -10,7 +10,6 @@ const SectionSkeleton = ({ minHeight = "400px" }: { minHeight?: string }) => (
 );
 
 const HeroWebGL   = dynamic(() => import("@/components/sections/HeroWebGL").then(m => ({ default: m.HeroWebGL })), { loading: () => <SectionSkeleton minHeight="100vh" /> });
-const Interactive3D = dynamic(() => import("@/components/sections/Interactive3D").then(m => ({ default: m.Interactive3D })), { loading: () => <SectionSkeleton minHeight="600px" /> });
 const GapComparison = dynamic(() => import("@/components/sections/GapComparison").then(m => ({ default: m.GapComparison })), { loading: () => <SectionSkeleton /> });
 const Services = dynamic(() => import("@/components/sections/Services").then(m => ({ default: m.Services })), { loading: () => <SectionSkeleton minHeight="500px" /> });
 const TechStack = dynamic(() => import("@/components/sections/TechStack").then(m => ({ default: m.TechStack })), { loading: () => <SectionSkeleton minHeight="120px" /> });
@@ -32,11 +31,6 @@ export default function Home() {
         {/* Three.js shader — gated: only loads when 400px from viewport */}
         <LazySection rootMargin="400px" minHeight="100vh">
           <HeroWebGL />
-        </LazySection>
-
-        {/* Spline 3D (~2MB runtime) — gated */}
-        <LazySection rootMargin="300px" minHeight="600px">
-          <Interactive3D />
         </LazySection>
 
         <LocalImpact />
