@@ -1,41 +1,22 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 
 interface SplineSceneProps {
   scene: string;
   className?: string;
 }
 
-// Convert prod.spline.design/[id]/scene.splinecode → my.spline.design/[id]/
-// my.spline.design is cross-origin: Chrome isolates it in a separate renderer process,
-// keeping its JS parse and WebGL context off the main page's thread and GPU scheduler.
-function getEmbedUrl(scene: string): string {
-  const match = scene.match(/spline\.design\/([^/]+)\/scene\.splinecode/)
-  if (match) return `https://my.spline.design/${match[1]}/`
-  return scene
-}
+const Spline = dynamic(() => import("@splinetool/react-spline"), { ssr: false });
 
 export function SplineScene({ scene, className }: SplineSceneProps) {
   const [loaded, setLoaded] = useState(false);
-  const embedUrl = getEmbedUrl(scene);
 
   if (loaded) {
     return (
       <div className={className} style={{ position: "relative", width: "100%", height: "100%" }}>
-        <iframe
-          src={embedUrl}
-          title="Escena 3D interactiva"
-          allow="autoplay"
-          style={{
-            position: "absolute",
-            inset: 0,
-            width: "100%",
-            height: "100%",
-            border: "none",
-            background: "transparent",
-          }}
-        />
+        <Spline scene={scene} style={{ width: "100%", height: "100%" }} />
       </div>
     );
   }

@@ -103,24 +103,24 @@ export function Navbar() {
       }`}
     >
       <div className="flex justify-between items-center px-4 md:px-gutter max-w-[1280px] mx-auto h-20">
-        <Link href="/" className="flex items-center gap-3">
+        <Link href="/" className="flex items-center gap-3 shrink-0">
           <Image src="/KD LOGO 3.png" alt="Karakura Digital logo" width={40} height={40} className="rounded-full" priority />
-          <Image src="/assets/logo-kd.png" alt="Karakura Digital" width={180} height={40} className="hidden lg:block object-contain" />
+          <Image src="/assets/logo-kd.png" alt="Karakura Digital" width={180} height={40} className="hidden xl:block object-contain" />
         </Link>
 
-        <div className="hidden md:flex items-center space-x-4 lg:space-x-7">
+        <div className="hidden md:flex flex-1 justify-center items-center gap-4 lg:gap-6 px-4">
           {links.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-on-surface-variant hover:text-white transition-all text-body-md"
+              className="text-on-surface-variant hover:text-white transition-all text-body-md whitespace-nowrap"
             >
               {link.label}
             </a>
           ))}
         </div>
 
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden md:flex items-center gap-3 shrink-0">
           <CommandPaletteAffordance />
           <Button href="#contact" className="px-6 py-2.5 text-sm">
             Contáctanos
