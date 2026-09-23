@@ -5,6 +5,8 @@ import { CommandPalette } from "@/components/ui/CommandPalette";
 import { SmoothScrollProvider } from "@/components/effects/SmoothScrollProvider";
 import { EasterEggs } from "@/components/effects/EasterEggs";
 import { CookieConsent } from "@/components/ui/CookieConsent";
+import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
+import { StickyCtaBar } from "@/components/ui/StickyCtaBar";
 import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -211,6 +213,8 @@ export default function RootLayout({
         <CommandPalette />
         {/* <CustomCursor /> */}
         <EasterEggs />
+        <StickyCtaBar />
+        <WhatsAppButton />
         <CookieConsent />
         <SmoothScrollProvider>
           {children}
