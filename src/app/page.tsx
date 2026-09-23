@@ -4,6 +4,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { LocalImpact } from "@/components/sections/LocalImpact";
 import { LazySection } from "@/components/effects/LazySection";
+import { FAQChatWidget } from "@/components/ui/FAQChatWidget";
 
 const SectionSkeleton = ({ minHeight = "400px" }: { minHeight?: string }) => (
   <div style={{ minHeight }} className="w-full" aria-hidden="true" />
@@ -73,6 +74,7 @@ export default function Home() {
         <ContactCTA />
       </main>
       <Footer />
+      <FAQChatWidget />
     </>
   );
 }

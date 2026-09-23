@@ -491,76 +491,82 @@ function LiquidGlassDemo() {
 
 function SpatialUIDemo() {
   return (
-    <div
-      className="h-full flex items-center justify-center p-6"
-      style={{ background: "radial-gradient(ellipse at 50% 30%, #0d1117 0%, #020408 100%)" }}
-    >
-      <div className="relative" style={{ width: 230 }}>
-        {/* Layer 3 — furthest */}
-        <div
-          className="absolute rounded-xl"
-          style={{
-            inset: 0,
-            transform: "translateY(28px) translateX(14px) scale(0.84)",
-            background: "rgba(99,102,241,0.06)",
-            border: "1px solid rgba(99,102,241,0.1)",
-          }}
-        />
-        {/* Layer 2 — middle, shows content hint */}
-        <div
-          className="absolute rounded-xl overflow-hidden"
-          style={{
-            inset: 0,
-            transform: "translateY(14px) translateX(7px) scale(0.93)",
-            background: "rgba(10,14,30,0.8)",
-            border: "1px solid rgba(99,102,241,0.2)",
-          }}
-        >
-          <div className="p-4 opacity-45">
-            <div className="flex gap-2 mb-2.5">
-              <div className="h-1.5 rounded-full bg-indigo-400/30" style={{ width: "55%" }} />
-              <div className="h-1.5 rounded-full bg-white/10" style={{ width: "30%" }} />
-            </div>
-            <div className="h-1.5 rounded-full bg-white/10 mb-1.5" style={{ width: "80%" }} />
-            <div className="h-1.5 rounded-full bg-white/8" style={{ width: "60%" }} />
+    <div className="h-full relative overflow-hidden flex items-center justify-center"
+      style={{ background: "radial-gradient(ellipse 80% 100% at 50% 110%, #08091a 0%, #010204 100%)" }}>
+      {/* Floor ambient — visionOS characteristic underlighting */}
+      <div className="absolute bottom-0 left-0 right-0 pointer-events-none"
+        style={{ height: "28%", background: "radial-gradient(ellipse 50% 100% at 50% 100%, rgba(99,102,241,.13), transparent)" }} />
+
+      <div className="relative" style={{ width: 250, height: 210 }}>
+        {/* Back panel — analytics chart, small and dim */}
+        <div style={{
+          position: "absolute", width: 178, top: 4, right: 6,
+          background: "rgba(6,10,30,.65)",
+          border: ".5px solid rgba(99,102,241,.14)",
+          borderRadius: 13, padding: "9px 11px",
+          opacity: 0.52, boxShadow: "0 4px 20px rgba(0,0,0,.45)",
+        }}>
+          <div style={{ fontSize: 7, letterSpacing: ".16em", textTransform: "uppercase", color: "rgba(99,102,241,.4)", marginBottom: 7 }}>Tráfico semanal</div>
+          <div style={{ display: "flex", alignItems: "flex-end", gap: 3, height: 34 }}>
+            {[28, 44, 35, 58, 50, 72, 65, 84, 78, 100].map((h, i) => (
+              <div key={i} style={{ flex: 1, height: `${h}%`, background: i >= 8 ? "rgba(99,102,241,.75)" : "rgba(99,102,241,.28)", borderRadius: "1px 1px 0 0" }} />
+            ))}
+          </div>
+          <div style={{ display: "flex", justifyContent: "space-between", marginTop: 5 }}>
+            <span style={{ fontSize: 7, color: "rgba(255,255,255,.18)", fontVariantNumeric: "tabular-nums" }}>Lun</span>
+            <span style={{ fontSize: 7, color: "rgba(255,255,255,.18)", fontVariantNumeric: "tabular-nums" }}>Dom</span>
           </div>
         </div>
-        {/* Layer 1 — front */}
-        <div
-          className="relative rounded-xl p-5"
-          style={{
-            background: "rgba(13,17,32,0.97)",
-            border: "1px solid rgba(99,102,241,0.38)",
-            boxShadow: "0 0 40px rgba(99,102,241,0.1), 0 28px 56px rgba(0,0,0,0.75)",
-          }}
-        >
-          <div className="flex items-center gap-2 mb-4">
-            <div className="w-2 h-2 rounded-full bg-indigo-500" style={{ boxShadow: "0 0 6px #6366f1" }} />
-            <span className="text-indigo-300/60 text-[10px] tracking-widest uppercase">Panel de control</span>
-            <div className="ml-auto flex items-center gap-1">
-              {["#6366f1","#06b6d4","#8b5cf6"].map((c, i) => (
-                <div key={i} className="w-1.5 h-1.5 rounded-full" style={{ background: c, opacity: 1 - i * 0.3 }} />
-              ))}
+
+        {/* Mid panel — widget stats grid */}
+        <div style={{
+          position: "absolute", width: 204, top: 42, left: 4,
+          background: "rgba(10,14,36,.85)",
+          border: ".5px solid rgba(99,102,241,.22)",
+          borderRadius: 16, padding: "11px 13px",
+          opacity: 0.74,
+          backdropFilter: "blur(14px)",
+          boxShadow: "0 10px 36px rgba(0,0,0,.55)",
+        }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 9 }}>
+            <div style={{ width: 5, height: 5, borderRadius: "50%", background: "#6366f1", boxShadow: "0 0 5px #6366f1" }} />
+            <span style={{ fontSize: 8, letterSpacing: ".15em", textTransform: "uppercase", color: "rgba(99,102,241,.45)" }}>Widgets activos</span>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 5 }}>
+            {[["28", "Proyectos", "#6366f1"], ["4.9", "Rating", "#10b981"], ["€12k", "MRR", "#06b6d4"]].map(([v, l, c]) => (
+              <div key={l as string} style={{ borderRadius: 8, padding: "5px 6px", background: "rgba(255,255,255,.04)", border: ".5px solid rgba(255,255,255,.06)" }}>
+                <div style={{ fontSize: 12, fontWeight: 700, color: c as string, fontVariantNumeric: "tabular-nums" }}>{v as string}</div>
+                <div style={{ fontSize: 7, color: "rgba(255,255,255,.28)" }}>{l as string}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Front panel — main control, fully opaque */}
+        <div style={{
+          position: "absolute", width: 244, bottom: 0, left: "50%", transform: "translateX(-50%)",
+          background: "rgba(8,12,30,.98)",
+          border: "1px solid rgba(99,102,241,.38)",
+          borderRadius: 20, padding: "14px 17px",
+          boxShadow: "0 0 0 .5px rgba(99,102,241,.1), 0 30px 60px rgba(0,0,0,.9), 0 0 55px rgba(99,102,241,.07)",
+        }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
+            <div>
+              <div style={{ fontSize: 8, letterSpacing: ".16em", textTransform: "uppercase", color: "rgba(99,102,241,.52)", marginBottom: 2 }}>Panel activo</div>
+              <div style={{ fontSize: 14, fontWeight: 600, color: "#fff" }}>Sistema activo</div>
+            </div>
+            <div style={{ width: 28, height: 28, borderRadius: 9, background: "rgba(99,102,241,.18)", border: "1px solid rgba(99,102,241,.32)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#6366f1", boxShadow: "0 0 8px #6366f1" }} />
             </div>
           </div>
-          <p className="text-white text-sm font-light mb-4">Sistema operativo</p>
-          <div className="space-y-3">
-            {[
-              { label: "Núcleo", v: "98%", color: "#6366f1" },
-              { label: "Red", v: "71%", color: "#06b6d4" },
-              { label: "Memoria", v: "44%", color: "#8b5cf6" },
-            ].map(({ label, v, color }) => (
-              <div key={label} className="flex items-center gap-3">
-                <span className="text-white/35 text-[10px]" style={{ width: 52 }}>{label}</span>
-                <div className="flex-1 h-1 rounded-full bg-white/5">
-                  <div
-                    className="h-full rounded-full"
-                    style={{ width: v, background: color, boxShadow: `0 0 6px ${color}80` }}
-                  />
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            {[["Núcleo", "98%", "#6366f1"], ["Red", "71%", "#06b6d4"], ["Memoria", "44%", "#8b5cf6"]].map(([l, v, c]) => (
+              <div key={l as string} style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <span style={{ width: 46, fontSize: 9, color: "rgba(255,255,255,.3)" }}>{l as string}</span>
+                <div style={{ flex: 1, height: 3, borderRadius: 2, background: "rgba(255,255,255,.05)" }}>
+                  <div style={{ width: v as string, height: "100%", borderRadius: 2, background: c as string, boxShadow: `0 0 6px ${c as string}70` }} />
                 </div>
-                <span className="text-white/35 text-[10px] text-right" style={{ width: 28, fontVariantNumeric: "tabular-nums" }}>
-                  {v}
-                </span>
+                <span style={{ width: 26, fontSize: 9, textAlign: "right", color: "rgba(255,255,255,.38)", fontVariantNumeric: "tabular-nums" }}>{v as string}</span>
               </div>
             ))}
           </div>
