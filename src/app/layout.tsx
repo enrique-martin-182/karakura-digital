@@ -4,6 +4,7 @@ import { ScrollProgress } from "@/components/effects/ScrollProgress";
 import { CommandPalette } from "@/components/ui/CommandPalette";
 import { SmoothScrollProvider } from "@/components/effects/SmoothScrollProvider";
 import { EasterEggs } from "@/components/effects/EasterEggs";
+import { CookieConsent } from "@/components/ui/CookieConsent";
 import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -210,6 +211,7 @@ export default function RootLayout({
         <CommandPalette />
         {/* <CustomCursor /> */}
         <EasterEggs />
+        <CookieConsent />
         <SmoothScrollProvider>
           {children}
         </SmoothScrollProvider>
