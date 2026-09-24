@@ -55,6 +55,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://karakuradigital.es/",
+    languages: {
+      "es": "https://karakuradigital.es/",
+      "en": "https://karakuradigital.es/en/",
+      "x-default": "https://karakuradigital.es/",
+    },
   },
   robots: { index: true, follow: true },
 };
@@ -122,7 +127,7 @@ export default async function RootLayout({
       "url": "https://karakuradigital.es/",
       "name": "Karakura Digital",
       "publisher": { "@id": "https://karakuradigital.es/#business" },
-      "inLanguage": "es-ES",
+      "inLanguage": ["es-ES", "en"],
     },
     {
       "@context": "https://schema.org",
