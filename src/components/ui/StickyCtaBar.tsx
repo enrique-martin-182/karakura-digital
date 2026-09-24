@@ -2,11 +2,13 @@
 
 import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 const SESSION_KEY = "kd_cta_dismissed";
 
 export function StickyCtaBar() {
+  const t = useTranslations("stickyBar");
   const [visible, setVisible] = useState(false);
   const [dismissed, setDismissed] = useState(false);
 
@@ -51,9 +53,9 @@ export function StickyCtaBar() {
           aria-label="Llamada a la acción"
         >
           <p className="text-sm text-center">
-            <span className="text-white font-semibold">¿Listo para escalar tu negocio?</span>
+            <span className="text-white font-semibold">{t("text")}</span>
             <span className="text-on-surface-variant hidden sm:inline">
-              {" "}Consultoría gratuita de 30 minutos, sin compromiso.
+              {" "}{t("subtitle")}
             </span>
           </p>
 
@@ -63,7 +65,7 @@ export function StickyCtaBar() {
                        text-on-secondary bg-secondary hover:opacity-90 transition-opacity
                        whitespace-nowrap"
           >
-            Hablar ahora →
+            {t("cta")}
           </a>
 
           <button
@@ -71,7 +73,7 @@ export function StickyCtaBar() {
             className="absolute right-3 top-1/2 -translate-y-1/2 w-7 h-7 flex items-center
                        justify-center rounded-lg text-on-surface-variant hover:text-white
                        hover:bg-white/10 transition-all"
-            aria-label="Cerrar barra"
+            aria-label={t("close")}
           >
             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

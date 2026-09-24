@@ -685,9 +685,17 @@ function BentoGridDemo() {
           <p className="text-white/50 text-[9px] uppercase tracking-widest">Destacado</p>
           <div>
             <p className="text-white text-lg font-bold leading-tight">Desarrollo<br />Web</p>
-            <div className="flex gap-1 mt-1.5">
-              {["#a78bfa","#c4b5fd","#ddd6fe"].map((c, i) => (
-                <div key={i} className="h-1 rounded-full" style={{ width: 16 + i * 8, background: c, opacity: 0.7 }} />
+            {/* Sparkline bar chart */}
+            <div className="flex gap-0.5 mt-2 items-end" style={{ height: 14 }}>
+              {[4, 6, 5, 8, 6, 10, 7, 12, 9, 14].map((h, i) => (
+                <div
+                  key={i}
+                  className="flex-1 rounded-sm"
+                  style={{
+                    height: `${(h / 14) * 100}%`,
+                    background: i === 9 ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.32)",
+                  }}
+                />
               ))}
             </div>
           </div>
@@ -707,8 +715,22 @@ function BentoGridDemo() {
           style={{ gridColumn: "1 / 4" }}
         >
           <div className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" style={{ boxShadow: "0 0 5px #10b981" }} />
-          <p className="text-stone-600 text-[11px]" style={{ fontVariantNumeric: "tabular-nums" }}>28 proyectos completados</p>
-          <p className="text-stone-400 text-xs ml-auto">→</p>
+          <p className="text-stone-600 text-[11px]" style={{ fontVariantNumeric: "tabular-nums" }}>28 proyectos</p>
+          {/* Avatar cluster */}
+          <div className="ml-auto flex items-center gap-1">
+            <div className="flex -space-x-1.5">
+              {["#7c3aed", "#06b6d4", "#ec4899", "#10b981"].map((c, i) => (
+                <div
+                  key={i}
+                  className="w-4 h-4 rounded-full border border-white flex items-center justify-center text-[6px] font-bold text-white"
+                  style={{ background: c, zIndex: 4 - i, position: "relative" }}
+                >
+                  {["A", "B", "C", "D"][i]}
+                </div>
+              ))}
+            </div>
+            <span className="text-stone-400 text-[9px] ml-0.5">+5</span>
+          </div>
         </div>
         {/* Bottom trio */}
         <div className="rounded-2xl flex flex-col items-center justify-center" style={{ background: "#fef08a" }}>
@@ -728,58 +750,78 @@ function BentoGridDemo() {
 function AuroraMeshDemo() {
   return (
     <div className="h-full relative overflow-hidden" style={{ background: "#03030e" }}>
-      {/* Richer mesh — 5 overlapping radial-gradients */}
+      {/* Mesh gradient IS the hero — no card, gradient bleeds full */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 70% 60% at 15% 25%, rgba(124,58,237,0.65), transparent), " +
-            "radial-gradient(ellipse 60% 50% at 82% 15%, rgba(6,182,212,0.55), transparent), " +
-            "radial-gradient(ellipse 65% 55% at 60% 78%, rgba(236,72,153,0.5), transparent), " +
-            "radial-gradient(ellipse 55% 60% at 5% 85%, rgba(16,185,129,0.45), transparent), " +
-            "radial-gradient(ellipse 45% 45% at 88% 70%, rgba(245,158,11,0.35), transparent)",
+            "radial-gradient(ellipse 90% 75% at 18% 28%, rgba(124,58,237,0.72), transparent), " +
+            "radial-gradient(ellipse 70% 60% at 85% 12%, rgba(6,182,212,0.62), transparent), " +
+            "radial-gradient(ellipse 75% 65% at 58% 88%, rgba(236,72,153,0.58), transparent), " +
+            "radial-gradient(ellipse 65% 70% at 3% 82%, rgba(16,185,129,0.48), transparent), " +
+            "radial-gradient(ellipse 55% 55% at 92% 68%, rgba(245,158,11,0.38), transparent)",
         }}
       />
-      <div className="absolute inset-0 flex items-center justify-center p-6">
-        <div
-          className="relative rounded-2xl p-5 w-full max-w-xs backdrop-blur-xl"
-          style={{
-            background: "rgba(255,255,255,0.04)",
-            border: "1px solid rgba(255,255,255,0.12)",
-            boxShadow: "inset 0 1px 0 rgba(255,255,255,0.08)",
-          }}
-        >
-          {/* Top specular */}
-          <div
-            className="absolute inset-x-6 top-0 pointer-events-none"
-            style={{ height: "0.5px", background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)" }}
-          />
-          <div className="flex items-center gap-2 mb-4">
-            <div className="w-2 h-2 rounded-full" style={{ background: "linear-gradient(135deg,#7c3aed,#06b6d4)" }} />
-            <span className="text-white/45 text-[10px] tracking-[0.18em] uppercase">Aurora Studio</span>
-          </div>
-          <p className="text-white text-lg font-semibold mb-0.5">Karakura Digital</p>
-          <p className="text-white/40 text-xs mb-4">Diseño en movimiento</p>
-          {/* Color spectrum bar */}
-          <div className="flex gap-1 mb-4" style={{ height: 3 }}>
-            {["#7c3aed","#06b6d4","#ec4899","#10b981","#f59e0b"].map((c, i) => (
-              <div key={i} className="flex-1 rounded-full" style={{ background: c, opacity: 0.85 }} />
+      {/* Subtle noise texture for depth */}
+      <div
+        className="absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
+          backgroundSize: "256px 256px",
+        }}
+      />
+
+      {/* Typography directly on the gradient */}
+      <div className="absolute inset-0 flex flex-col justify-between p-5">
+        {/* Top: label */}
+        <div className="flex items-center justify-between">
+          <span className="text-white/55 text-[9px] tracking-[0.22em] uppercase font-bold">
+            Aurora Mesh
+          </span>
+          <div className="flex gap-1">
+            {["#7c3aed", "#06b6d4", "#ec4899"].map((c) => (
+              <div key={c} className="w-1.5 h-1.5 rounded-full" style={{ background: c }} />
             ))}
           </div>
-          <div className="flex gap-2">
-            {["Branding", "Web", "Motion"].map((t, i) => (
-              <div
-                key={t}
-                className="flex-1 rounded-xl py-1.5 text-center text-[10px] text-white/55"
-                style={{
-                  background: i === 0 ? "rgba(124,58,237,0.15)" : "rgba(255,255,255,0.05)",
-                  border: i === 0 ? "1px solid rgba(124,58,237,0.3)" : "1px solid rgba(255,255,255,0.08)",
-                }}
-              >
-                {t}
-              </div>
-            ))}
-          </div>
+        </div>
+
+        {/* Center: bold editorial type */}
+        <div>
+          <p className="text-white/30 text-[8px] uppercase tracking-[0.24em] mb-2 font-semibold">
+            Design System
+          </p>
+          <p
+            className="text-white font-black leading-none tracking-tighter"
+            style={{ fontSize: "clamp(28px, 6vw, 38px)" }}
+          >
+            Karakura
+          </p>
+          <p
+            className="font-black leading-none tracking-tighter"
+            style={{
+              fontSize: "clamp(28px, 6vw, 38px)",
+              WebkitTextStroke: "1px rgba(255,255,255,0.5)",
+              color: "transparent",
+            }}
+          >
+            Digital
+          </p>
+        </div>
+
+        {/* Bottom: tags */}
+        <div className="flex gap-1.5 flex-wrap">
+          {["Brand", "Web", "Motion", "3D"].map((tag) => (
+            <div
+              key={tag}
+              className="text-[9px] text-white/70 px-2 py-0.5 rounded-full"
+              style={{
+                background: "rgba(255,255,255,0.09)",
+                border: "1px solid rgba(255,255,255,0.14)",
+              }}
+            >
+              {tag}
+            </div>
+          ))}
         </div>
       </div>
     </div>

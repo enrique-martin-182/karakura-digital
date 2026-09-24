@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
+import { getLocale, getMessages } from "next-intl/server";
+import { NextIntlClientProvider } from "next-intl";
 import { ScrollProgress } from "@/components/effects/ScrollProgress";
 import { CommandPalette } from "@/components/ui/CommandPalette";
 import { SmoothScrollProvider } from "@/components/effects/SmoothScrollProvider";
@@ -57,11 +59,13 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [locale, messages] = await Promise.all([getLocale(), getMessages()]);
+
   const jsonLd = [
     {
       "@context": "https://schema.org",
@@ -183,7 +187,7 @@ export default function RootLayout({
   ];
 
   return (
-    <html lang="es" className={`${jakarta.variable} dark`}>
+    <html lang={locale} className={`${jakarta.variable} dark`}>
       <head>
         <meta name="theme-color" content="#02040a" />
         <meta name="geo.region" content="ES-CO" />
@@ -203,22 +207,24 @@ export default function RootLayout({
         ))}
       </head>
       <body className="min-h-screen font-sans antialiased overflow-x-hidden">
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary-container focus:text-white focus:rounded-lg focus:font-bold"
-        >
-          Saltar al contenido
-        </a>
-        <ScrollProgress />
-        <CommandPalette />
-        {/* <CustomCursor /> */}
-        <EasterEggs />
-        <StickyCtaBar />
-        <WhatsAppButton />
-        <CookieConsent />
-        <SmoothScrollProvider>
-          {children}
-        </SmoothScrollProvider>
+        <NextIntlClientProvider messages={messages} locale={locale}>
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary-container focus:text-white focus:rounded-lg focus:font-bold"
+          >
+            Saltar al contenido
+          </a>
+          <ScrollProgress />
+          <CommandPalette />
+          {/* <CustomCursor /> */}
+          <EasterEggs />
+          <StickyCtaBar />
+          <WhatsAppButton />
+          <CookieConsent />
+          <SmoothScrollProvider>
+            {children}
+          </SmoothScrollProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

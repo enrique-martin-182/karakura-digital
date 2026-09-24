@@ -1,11 +1,16 @@
 "use client";
 
+import { useState } from "react";
 import { motion, Variants, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/Button";
 import { GradientBlob } from "@/components/effects/GradientBlob";
 import { AnimatedGrid } from "@/components/effects/AnimatedGrid";
+import { BudgetCalculator } from "@/components/ui/BudgetCalculator";
 
 export function Hero() {
+  const t = useTranslations("hero");
+  const [calcOpen, setCalcOpen] = useState(false);
   const { scrollY } = useScroll();
   const shouldReduceMotion = useReducedMotion();
   const yOrange = useTransform(scrollY, [0, 800], [0, 160]);
@@ -83,28 +88,27 @@ export function Hero() {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
               </span>
               <span className="text-label-sm uppercase tracking-widest text-on-surface-variant font-extrabold">
-                Desde Córdoba al mundo
+                {t("overline")}
               </span>
             </div>
           </motion.div>
 
           <motion.div variants={itemVariants}>
             <h1 className="text-headline-mobile md:text-headline-xl text-gradient mb-8 leading-[1.1] tracking-tight">
-              Desarrollo web y software a medida que <span className="text-primary-container inline-block">escala sin fronteras</span>.
+              {t("title")}
             </h1>
           </motion.div>
 
           <motion.div variants={itemVariants}>
             <p className="text-body-lg text-on-surface-variant/90 mb-12 max-w-2xl md:text-xl leading-relaxed font-medium">
-              Desde Córdoba, creamos software, automatización e IA
-              que simplifican operaciones y multiplican tu alcance digital. Sin fronteras.
+              {t("subtitle")}
             </p>
           </motion.div>
 
           <motion.div variants={itemVariants}>
             <div className="flex flex-col sm:flex-row gap-4 md:gap-6">
               <Button href="#contact" className="group">
-                Hablemos de tu proyecto
+                {t("ctaPrimary")}
                 <motion.svg
                   className="w-5 h-5"
                   fill="none"
@@ -116,19 +120,32 @@ export function Hero() {
                 </motion.svg>
               </Button>
               <Button variant="secondary" href="#services">
-                Nuestros Servicios
+                {t("ctaSecondary")}
               </Button>
             </div>
+            <motion.div
+              className="mt-4 flex items-center gap-2"
+              variants={itemVariants}
+            >
+              <button
+                onClick={() => setCalcOpen(true)}
+                className="text-sm text-on-surface-variant/60 hover:text-secondary transition-colors underline underline-offset-4 decoration-dotted"
+              >
+                {t("budgetCta")}
+              </button>
+            </motion.div>
             <motion.p
-              className="text-sm text-on-surface-variant/60 mt-6 flex items-center gap-2"
+              className="text-sm text-on-surface-variant/60 mt-4 flex items-center gap-2"
               variants={itemVariants}
             >
               <svg className="w-4 h-4 text-secondary" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
               </svg>
-              Impulso local · Sin cuotas ocultas · Tecnología de vanguardia
+              {t("tagline")}
             </motion.p>
           </motion.div>
+
+          <BudgetCalculator open={calcOpen} onClose={() => setCalcOpen(false)} />
         </motion.div>
       </div>
     </section>

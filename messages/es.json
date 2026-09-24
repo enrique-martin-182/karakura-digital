@@ -1,0 +1,197 @@
+{
+  "nav": {
+    "iniciativa": "Iniciativa",
+    "servicios": "Servicios",
+    "proceso": "Proceso",
+    "resultados": "Resultados",
+    "portfolio": "Portfolio",
+    "catalogo": "Catálogo",
+    "componentes": "Componentes",
+    "contactar": "Contáctanos",
+    "buscar": "Búsqueda",
+    "buscarEasterEggs": "Buscar / Easter Eggs",
+    "abrirMenu": "Abrir menú",
+    "cerrarMenu": "Cerrar menú",
+    "abrirPaleta": "Abrir paleta de comandos"
+  },
+  "hero": {
+    "overline": "Desde Córdoba al mundo",
+    "title": "Desarrollo web y software a medida que escala sin fronteras.",
+    "subtitle": "Desde Córdoba, creamos software, automatización e IA que simplifican operaciones y multiplican tu alcance digital. Sin fronteras.",
+    "ctaPrimary": "Hablemos de tu proyecto",
+    "ctaSecondary": "Nuestros Servicios",
+    "budgetCta": "¿Cuánto costará tu proyecto? Calcula aquí",
+    "tagline": "Impulso local · Sin cuotas ocultas · Tecnología de vanguardia"
+  },
+  "services": {
+    "overline": "Capacidades",
+    "headline": "Tres pilares para tu transformación",
+    "web": {
+      "tag": "Desarrollo Web",
+      "title": "Webs que trabajan por ti",
+      "desc": "Sitios que no solo se ven bien — convierten. Arquitecturas Jamstack con carga sub-2 segundos, SEO técnico integrado y diseño que elimina la fricción entre tu visitante y su próxima acción.",
+      "b1": "Velocidad extrema (Core Web Vitals optimizados)",
+      "b2": "Diseño responsive pixel-perfect",
+      "b3": "CMS headless para independencia de tu equipo"
+    },
+    "software": {
+      "tag": "Software a Medida",
+      "title": "Tu proceso, tu software",
+      "desc": "Dejamos de forzar tu negocio en herramientas genéricas. Construimos exactamente lo que necesitas: sistemas de gestión de clientes y citas (CRM), asistentes virtuales inteligentes y software personalizado adaptado a las necesidades de cada negocio.",
+      "b1": "CRMs y gestión de clientes y citas a medida",
+      "b2": "Asistentes virtuales con IA para atención al cliente",
+      "b3": "Software personalizado según tus necesidades"
+    },
+    "ia": {
+      "tag": "Automatización & IA",
+      "title": "Tu equipo de 50, en un flujo",
+      "desc": "Conectamos n8n, Python y modelos de IA para que los procesos que hoy devoran horas se ejecuten solos. Facturación, reportes, atención al cliente — automatizado y perfecto.",
+      "b1": "Integraciones con +200 herramientas",
+      "b2": "Modelos de IA entrenados en tus datos",
+      "b3": "ROI visible en las primeras 4 semanas"
+    }
+  },
+  "process": {
+    "overline": "Metodología",
+    "headline": "De la idea al resultado en 4 fases",
+    "s1": {
+      "title": "Descubrimiento",
+      "desc": "Mapeamos tu operación actual. Encontramos los 3-5 puntos donde estás quemando tiempo y dinero sin saberlo."
+    },
+    "s2": {
+      "title": "Arquitectura",
+      "desc": "Diseñamos la solución técnica óptima. Sin sobreingeniería, sin tecnología innecesaria — solo lo que mueve la aguja."
+    },
+    "s3": {
+      "title": "Implementación",
+      "desc": "Sprints de 2 semanas. Ves avance real desde la semana 1. Sin proyectos de 6 meses que nunca terminan."
+    },
+    "s4": {
+      "title": "Optimización",
+      "desc": "Medimos, iteramos, mejoramos. Tu sistema se vuelve más inteligente con cada dato que procesa."
+    }
+  },
+  "results": {
+    "overline": "Resultados",
+    "headline": "Números que hablan",
+    "m1": "Reducción de tareas manuales repetitivas",
+    "m2": "Velocidad de procesamiento de datos",
+    "m3": "Uptime garantizado en producción",
+    "m4": "Tiempo hasta primer resultado tangible"
+  },
+  "faq": {
+    "overline": "FAQ",
+    "headline": "Preguntas frecuentes",
+    "q1": "¿Cuánto tiempo toma ver resultados?",
+    "a1": "Para una web o un producto sencillo, podemos ir mostrándote partes del proceso desde la primera semana, dependiendo del volumen de trabajo que tenga nuestro equipo de desarrollo. En proyectos más largos se ven resultados en las primeras 2-4 semanas, y los de mayor envergadura entre 6-8 semanas.",
+    "q2": "¿Necesito cambiar mis herramientas actuales?",
+    "a2": "No. Nos integramos con lo que ya usas (Excel, SAP, HubSpot, Notion, lo que sea). Sin migración traumática. Conectamos, no reemplazamos.",
+    "q3": "¿Qué pasa si mi equipo no es técnico?",
+    "a3": "Todo lo que construimos viene con interfaz simple y capacitación incluida. Si pueden usar WhatsApp, pueden usar nuestro software.",
+    "q4": "¿Cuánto cuesta?",
+    "a4": "Depende del alcance. La consultoría inicial es gratuita y te damos un presupuesto cerrado antes de empezar. Sin sorpresas, sin costes ocultos.",
+    "q5": "¿Qué pasa después de la entrega?",
+    "a5": "Soporte continuo + optimización. No desaparecemos tras el deploy. Monitorizamos, iteramos y escalamos contigo."
+  },
+  "contact": {
+    "available": "Disponible · Córdoba, España · L-V 9:00–18:00 (UTC+2)",
+    "headline": "¿Hablamos sobre tu proyecto?",
+    "subtitle": "Cuéntanos tu idea o necesidad y te respondemos en menos de 24 horas. Sin compromiso, sin letra pequeña.",
+    "emailMain": "Correo principal",
+    "emailCoord": "Coordinación"
+  },
+  "footer": {
+    "tagline": "Tecnología a medida para empresas que buscan liderar el mañana.",
+    "navLabel": "Navegación",
+    "servicesLabel": "Servicios",
+    "contactLabel": "Contacto",
+    "iniciativa": "Iniciativa",
+    "servicios": "Servicios",
+    "portfolio": "Portfolio",
+    "sobre": "Sobre nosotros",
+    "webDev": "Desarrollo Web",
+    "softwareMedida": "Software a Medida",
+    "automatizacion": "Automatización & IA",
+    "copyright": "© 2026 Karakura Digital. Todos los derechos reservados.",
+    "privacyLink": "Política de Privacidad y Cookies",
+    "attribution": "Modelos 3D del diorama de portfolio: Quaternius (CC0) y Poly by Google vía"
+  },
+  "stickyBar": {
+    "text": "¿Listo para escalar tu negocio?",
+    "subtitle": "Consultoría gratuita de 30 minutos, sin compromiso.",
+    "cta": "Hablar ahora →",
+    "close": "Cerrar barra"
+  },
+  "cookies": {
+    "text": "Usamos cookies propias para el funcionamiento del sitio y de terceros para analizar el tráfico. Puedes aceptar todas o continuar solo con las necesarias.",
+    "policyLink": "Política de cookies",
+    "acceptAll": "Aceptar todo",
+    "onlyNecessary": "Solo necesarias"
+  },
+  "faqWidget": {
+    "trigger": "¿Tienes dudas?",
+    "close": "Cerrar",
+    "greeting": "Hola 👋 Soy el asistente de **Karakura Digital**. ¿En qué puedo ayudarte?",
+    "chips": {
+      "tiempo": "¿Cuánto tarda?",
+      "coste": "¿Cuánto cuesta?",
+      "herramientas": "¿Cambio mis herramientas?",
+      "equipo": "¿Y si no somos técnicos?",
+      "postventa": "¿Qué pasa tras la entrega?",
+      "inicio": "¿Cómo empezamos?"
+    },
+    "answers": {
+      "tiempo": "Para proyectos sencillos mostramos avances **desde la semana 1**. En proyectos medianos, resultados en 2-4 semanas. Para proyectos grandes, entre 6-8 semanas.",
+      "coste": "Depende del alcance. La **consultoría inicial es gratuita** y el presupuesto es cerrado — sin sorpresas. Puedes usar la calculadora aquí abajo para tener una orientación.",
+      "herramientas": "**No**. Nos integramos con lo que ya usas — Excel, SAP, HubSpot, Notion, lo que sea. Sin migración traumática.",
+      "equipo": "Todo lo que construimos viene con **interfaz simple y capacitación incluida**. Si pueden usar WhatsApp, pueden usar nuestro software.",
+      "postventa": "**Soporte continuo + optimización**. No desaparecemos tras el deploy. Monitorizamos, iteramos y escalamos contigo.",
+      "inicio": "¡Perfecto! Reserva una llamada gratuita de 30 minutos y cuéntanos tu proyecto."
+    },
+    "ctaButton": "Reservar llamada gratuita →",
+    "online": "En línea",
+    "faqLabel": "Preguntas frecuentes:",
+    "moreQuestions": "¿Más dudas? Cuéntanoslo directamente.",
+    "goContact": "Ir al contacto →",
+    "closeAssistant": "Cerrar asistente",
+    "openAssistant": "Abrir asistente virtual"
+  },
+  "calculator": {
+    "title": "Calculadora de presupuesto",
+    "overline": "Estimación",
+    "close": "Cerrar",
+    "step0": "¿Qué tipo de proyecto necesitas?",
+    "step1": "¿Qué nivel de complejidad necesitas?",
+    "step2": "¿Necesitas algún extra? (opcional)",
+    "types": {
+      "web": { "label": "Desarrollo Web", "desc": "Landing, e-commerce, plataforma" },
+      "software": { "label": "Software a Medida", "desc": "App interna, SaaS, herramienta" },
+      "crm": { "label": "CRM / ERP", "desc": "Gestión de clientes y operaciones" },
+      "ia": { "label": "Automatización IA", "desc": "Flujos, bots, procesos inteligentes" }
+    },
+    "complexity": {
+      "basico": { "label": "Básico", "desc": "Funcionalidades esenciales, entrega rápida" },
+      "estandar": { "label": "Estándar", "desc": "Funciones completas con integraciones" },
+      "avanzado": { "label": "Avanzado", "desc": "Solución enterprise con escalabilidad" }
+    },
+    "addons": {
+      "seo": "SEO Técnico",
+      "analytics": "Dashboard Analytics",
+      "maint": "Mantenimiento mensual",
+      "integrations": "Integraciones API"
+    },
+    "steps": { "tipo": "Tipo", "complejidad": "Complejidad", "extras": "Extras", "resultado": "Resultado" },
+    "back": "← Atrás",
+    "changeType": "← Cambiar tipo",
+    "seeEstimate": "Ver estimación →",
+    "resultTitle": "Estimación orientativa para tu proyecto",
+    "resultDisclaimer": "Esta estimación es orientativa. El presupuesto final se define tras la consultoría gratuita, sin sorpresas ni costes ocultos.",
+    "ctaConsult": "Solicitar consultoría gratuita",
+    "ctaNew": "Nueva estimación"
+  },
+  "localeSwitcher": {
+    "es": "ES",
+    "en": "EN",
+    "label": "Cambiar idioma"
+  }
+}

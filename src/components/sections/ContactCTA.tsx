@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { ScrollReveal } from "@/components/effects/ScrollReveal";
 import { VideoBackground } from "@/components/effects/VideoBackground";
 
@@ -20,6 +21,8 @@ function WhatsAppIcon() {
 }
 
 export function ContactCTA() {
+  const t = useTranslations("contact");
+
   return (
     <section className="py-section bg-surface-container-highest relative overflow-hidden" id="contact" aria-label="Contacto">
       <VideoBackground src="contact-bg" overlay="bg-surface-container-highest/50" />
@@ -31,20 +34,19 @@ export function ContactCTA() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
             </span>
-            Disponible · Córdoba, España · L-V 9:00–18:00 (UTC+2)
+            {t("available")}
           </div>
         </ScrollReveal>
 
         <ScrollReveal>
           <h2 className="text-headline-mobile md:text-headline-xl text-gradient mb-6 drop-shadow-lg">
-            ¿Hablamos sobre tu proyecto?
+            {t("headline")}
           </h2>
         </ScrollReveal>
 
         <ScrollReveal delay={100}>
           <p className="text-body-lg text-on-surface-variant mb-12">
-            Cuéntanos tu idea o necesidad y te respondemos en menos de 24 horas.
-            Sin compromiso, sin letra pequeña.
+            {t("subtitle")}
           </p>
         </ScrollReveal>
 
@@ -59,7 +61,7 @@ export function ContactCTA() {
                   <MailIcon />
                 </div>
                 <div className="text-left">
-                  <p className="text-label-md text-on-surface-variant mb-1">Correo principal</p>
+                  <p className="text-label-md text-on-surface-variant mb-1">{t("emailMain")}</p>
                   <p className="text-white font-medium text-sm break-all">enrique.karakuradigital@gmail.com</p>
                 </div>
               </a>
@@ -72,7 +74,7 @@ export function ContactCTA() {
                   <MailIcon />
                 </div>
                 <div className="text-left">
-                  <p className="text-label-md text-on-surface-variant mb-1">Coordinación</p>
+                  <p className="text-label-md text-on-surface-variant mb-1">{t("emailCoord")}</p>
                   <p className="text-white font-medium text-sm break-all">coordinacion.karakura@gmail.com</p>
                 </div>
               </a>

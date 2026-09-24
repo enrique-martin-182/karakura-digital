@@ -1,80 +1,68 @@
+import { getTranslations } from "next-intl/server";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { ScrollReveal } from "@/components/effects/ScrollReveal";
 import { StaggerContainer, StaggerItem } from "@/components/effects/Stagger";
 import { VideoBackground } from "@/components/effects/VideoBackground";
 
-const services = [
-  {
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-      </svg>
-    ),
-    title: "Webs que trabajan por ti",
-    description:
-      "Sitios que no solo se ven bien — convierten. Arquitecturas Jamstack con carga sub-2 segundos, SEO técnico integrado y diseño que elimina la fricción entre tu visitante y su próxima acción.",
-    bullets: [
-      "Velocidad extrema (Core Web Vitals optimizados)",
-      "Diseño responsive pixel-perfect",
-      "CMS headless para independencia de tu equipo",
-    ],
-    variant: "default" as const,
-    iconWrapper: "bg-surface-variant text-primary-container",
-    accentColor: "from-primary-container/40 to-transparent",
-    tag: "Desarrollo Web",
-    tagColor: "text-primary-container bg-primary-container/10 border-primary-container/20",
-  },
-  {
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-      </svg>
-    ),
-    title: "Tu proceso, tu software",
-    description:
-      "Dejamos de forzar tu negocio en herramientas genéricas. Construimos exactamente lo que necesitas: sistemas de gestión de clientes y citas (CRM), asistentes virtuales inteligentes y software personalizado adaptado a las necesidades de cada negocio.",
-    bullets: [
-      "CRMs y gestión de clientes y citas a medida",
-      "Asistentes virtuales con IA para atención al cliente",
-      "Software personalizado según tus necesidades",
-    ],
-    variant: "default" as const,
-    iconWrapper: "bg-surface-variant text-primary-container",
-    accentColor: "from-blue-500/30 to-transparent",
-    tag: "Software a Medida",
-    tagColor: "text-blue-400 bg-blue-500/10 border-blue-500/20",
-  },
-  {
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-      </svg>
-    ),
-    title: "Tu equipo de 50, en un flujo",
-    description:
-      "Conectamos n8n, Python y modelos de IA para que los procesos que hoy devoran horas se ejecuten solos. Facturación, reportes, atención al cliente — automatizado y perfecto.",
-    bullets: [
-      "Integraciones con +200 herramientas",
-      "Modelos de IA entrenados en tus datos",
-      "ROI visible en las primeras 4 semanas",
-    ],
-    variant: "glow-green" as const,
-    iconWrapper: "bg-secondary/20 text-secondary shadow-[0_0_15px_rgba(78,222,163,0.3)]",
-    accentColor: "from-secondary/30 to-transparent",
-    tag: "Automatización & IA",
-    tagColor: "text-secondary bg-secondary/10 border-secondary/20",
-  },
-];
+export async function Services() {
+  const t = await getTranslations("services");
 
-export function Services() {
+  const services = [
+    {
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+        </svg>
+      ),
+      title: t("web.title"),
+      description: t("web.desc"),
+      bullets: [t("web.b1"), t("web.b2"), t("web.b3")],
+      variant: "default" as const,
+      iconWrapper: "bg-surface-variant text-primary-container",
+      accentColor: "from-primary-container/40 to-transparent",
+      tag: t("web.tag"),
+      tagColor: "text-primary-container bg-primary-container/10 border-primary-container/20",
+    },
+    {
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+        </svg>
+      ),
+      title: t("software.title"),
+      description: t("software.desc"),
+      bullets: [t("software.b1"), t("software.b2"), t("software.b3")],
+      variant: "default" as const,
+      iconWrapper: "bg-surface-variant text-primary-container",
+      accentColor: "from-blue-500/30 to-transparent",
+      tag: t("software.tag"),
+      tagColor: "text-blue-400 bg-blue-500/10 border-blue-500/20",
+    },
+    {
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+      ),
+      title: t("ia.title"),
+      description: t("ia.desc"),
+      bullets: [t("ia.b1"), t("ia.b2"), t("ia.b3")],
+      variant: "glow-green" as const,
+      iconWrapper: "bg-secondary/20 text-secondary shadow-[0_0_15px_rgba(78,222,163,0.3)]",
+      accentColor: "from-secondary/30 to-transparent",
+      tag: t("ia.tag"),
+      tagColor: "text-secondary bg-secondary/10 border-secondary/20",
+    },
+  ];
+
   return (
     <section className="py-section relative overflow-hidden" id="services" aria-label="Servicios">
       <VideoBackground src="services-bg" overlay="bg-background/40" />
       <div className="absolute inset-0 bg-gradient-to-t from-surface-container-highest/50 to-transparent" />
       <div className="max-w-[1280px] mx-auto px-4 md:px-gutter relative z-10">
         <ScrollReveal>
-          <SectionHeader overline="Capacidades" headline="Tres pilares para tu transformación" />
+          <SectionHeader overline={t("overline")} headline={t("headline")} />
         </ScrollReveal>
 
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8">

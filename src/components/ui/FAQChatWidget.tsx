@@ -1,49 +1,13 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-const FAQS = [
-  {
-    id: "tiempo",
-    chip: "¿Cuánto tarda?",
-    answer:
-      "Para proyectos sencillos mostramos avances desde la primera semana. En proyectos medios, 2-4 semanas. Los más grandes, entre 6-8 semanas — siempre con entregas parciales.",
-  },
-  {
-    id: "coste",
-    chip: "¿Cuánto cuesta?",
-    answer:
-      "Depende del alcance. La consultoría inicial es gratuita y damos un presupuesto cerrado antes de empezar. Sin sorpresas, sin costes ocultos.",
-  },
-  {
-    id: "herramientas",
-    chip: "¿Cambio mis herramientas?",
-    answer:
-      "No. Nos integramos con lo que ya usas: Excel, SAP, HubSpot, Notion... Conectamos, no reemplazamos. Sin migraciones traumáticas.",
-  },
-  {
-    id: "equipo",
-    chip: "Mi equipo no es técnico",
-    answer:
-      "Todo lo que construimos viene con interfaz simple y formación incluida. Si saben usar WhatsApp, pueden usar nuestro software.",
-  },
-  {
-    id: "postventa",
-    chip: "¿Y después de entregar?",
-    answer:
-      "Soporte continuo y optimización. No desaparecemos tras el deploy. Monitorizamos, iteramos y escalamos contigo.",
-  },
-  {
-    id: "inicio",
-    chip: "¿Cómo empezamos?",
-    answer:
-      "Reserva una llamada gratuita de 30 minutos. Analizamos tu situación, definimos el alcance y enviamos propuesta en 48h.",
-    isCta: true,
-  },
-];
+const FAQ_IDS = ["tiempo", "coste", "herramientas", "equipo", "postventa", "inicio"] as const;
+type FaqId = typeof FAQ_IDS[number];
 
 interface Message {
   id: string;
@@ -53,18 +17,26 @@ interface Message {
 }
 
 export function FAQChatWidget() {
+  const t = useTranslations("faqWidget");
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: "welcome",
-      type: "bot",
-      text: "Hola, soy el asistente de Karakura Digital. ¿Qué te puedo explicar?",
-    },
-  ]);
-  const [usedChips, setUsedChips] = useState<Set<string>>(new Set());
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [usedChips, setUsedChips] = useState<Set<FaqId>>(new Set());
   const [isTyping, setIsTyping] = useState(false);
   const [hasUnread, setHasUnread] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Build FAQS from translations
+  const FAQS = useMemo(() => FAQ_IDS.map((id) => ({
+    id,
+    chip: t(`chips.${id}` as `chips.${FaqId}`),
+    answer: t(`answers.${id}` as `answers.${FaqId}`),
+    isCta: id === "inicio",
+  })), [t]);
+
+  // Greeting uses translation
+  useEffect(() => {
+    setMessages([{ id: "welcome", type: "bot", text: t("greeting").replace(/\*\*/g, "") }]);
+  }, [t]);
 
   useEffect(() => {
     if (!isOpen) {
@@ -106,7 +78,6 @@ export function FAQChatWidget() {
 
   return (
     <div className="fixed bottom-6 right-4 md:right-6 z-40 flex flex-col items-end gap-3">
-      {/* Chat window */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -145,13 +116,13 @@ export function FAQChatWidget() {
                 </p>
                 <div className="flex items-center gap-1.5 mt-1">
                   <span className="w-1.5 h-1.5 rounded-full bg-secondary" />
-                  <span className="text-secondary text-xs">En línea</span>
+                  <span className="text-secondary text-xs">{t("online")}</span>
                 </div>
               </div>
               <button
                 onClick={() => setIsOpen(false)}
                 className="w-7 h-7 flex items-center justify-center rounded-lg text-on-surface-variant hover:text-white hover:bg-white/10 transition-all"
-                aria-label="Cerrar asistente"
+                aria-label={t("close")}
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -160,10 +131,7 @@ export function FAQChatWidget() {
             </div>
 
             {/* Messages */}
-            <div
-              className="flex-1 overflow-y-auto px-4 py-4 space-y-3"
-              style={{ minHeight: 0 }}
-            >
+            <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3" style={{ minHeight: 0 }}>
               {messages.map((msg) => (
                 <motion.div
                   key={msg.id}
@@ -190,7 +158,7 @@ export function FAQChatWidget() {
                           border: "1px solid rgba(78,222,163,0.35)",
                         }}
                       >
-                        Reservar llamada gratuita →
+                        {t("ctaButton")}
                       </a>
                     )}
                   </div>
@@ -219,11 +187,7 @@ export function FAQChatWidget() {
                           key={i}
                           className="w-1.5 h-1.5 rounded-full bg-secondary"
                           animate={{ opacity: [0.25, 1, 0.25] }}
-                          transition={{
-                            duration: 0.85,
-                            repeat: Infinity,
-                            delay: i * 0.18,
-                          }}
+                          transition={{ duration: 0.85, repeat: Infinity, delay: i * 0.18 }}
                         />
                       ))}
                     </div>
@@ -243,9 +207,7 @@ export function FAQChatWidget() {
                   className="px-4 py-3 shrink-0"
                   style={{ borderTop: "1px solid rgba(78,222,163,0.08)" }}
                 >
-                  <p className="text-xs text-on-surface-variant mb-2">
-                    Preguntas frecuentes:
-                  </p>
+                  <p className="text-xs text-on-surface-variant mb-2">{t("faqLabel")}</p>
                   <div className="flex flex-wrap gap-2">
                     {availableChips.map((faq) => (
                       <button
@@ -270,15 +232,13 @@ export function FAQChatWidget() {
                     className="px-4 py-3 shrink-0 text-center"
                     style={{ borderTop: "1px solid rgba(78,222,163,0.08)" }}
                   >
-                    <p className="text-xs text-on-surface-variant">
-                      ¿Más dudas? Cuéntanoslo directamente.
-                    </p>
+                    <p className="text-xs text-on-surface-variant">{t("moreQuestions")}</p>
                     <a
                       href="#contact"
                       onClick={() => setIsOpen(false)}
                       className="inline-block mt-1 text-xs font-semibold text-secondary hover:opacity-75 transition-opacity"
                     >
-                      Ir al contacto →
+                      {t("goContact")}
                     </a>
                   </motion.div>
                 )
@@ -301,10 +261,9 @@ export function FAQChatWidget() {
           border: "1px solid rgba(78,222,163,0.28)",
           boxShadow: "0 0 20px rgba(78,222,163,0.1)",
         }}
-        aria-label={isOpen ? "Cerrar asistente" : "Abrir asistente virtual"}
+        aria-label={isOpen ? t("closeAssistant") : t("openAssistant")}
         aria-expanded={isOpen}
       >
-        {/* Unread dot */}
         <AnimatePresence>
           {hasUnread && !isOpen && (
             <motion.span
@@ -356,7 +315,7 @@ export function FAQChatWidget() {
           </AnimatePresence>
         </div>
 
-        <span className="whitespace-nowrap">{isOpen ? "Cerrar" : "¿Tienes dudas?"}</span>
+        <span className="whitespace-nowrap">{isOpen ? t("close") : t("trigger")}</span>
       </motion.button>
     </div>
   );

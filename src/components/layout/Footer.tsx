@@ -1,7 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 
-export function Footer() {
+export async function Footer() {
+  const t = await getTranslations("footer");
+
   return (
     <footer className="w-full py-16 bg-surface-container-lowest border-t border-outline-variant/10">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-gutter px-4 md:px-gutter max-w-[1280px] mx-auto">
@@ -11,45 +14,45 @@ export function Footer() {
             <Image src="/assets/logo-kd.png" alt="Karakura Digital" width={160} height={32} className="object-contain" />
           </Link>
           <p className="text-body-md text-on-surface-variant mt-3 leading-relaxed">
-            Tecnología a medida para empresas que buscan liderar el mañana.
+            {t("tagline")}
           </p>
         </div>
 
         <div className="col-span-1 md:col-span-3 flex flex-col md:flex-row justify-end gap-10 md:gap-16 mt-10 md:mt-0">
-          <nav aria-label="Navegación del pie de página" className="flex flex-col space-y-4">
+          <nav aria-label={t("navLabel")} className="flex flex-col space-y-4">
             <span className="text-label-sm text-on-surface-variant/60 uppercase tracking-widest">
-              Navegación
+              {t("navLabel")}
             </span>
             <Link href="/#iniciativa" className="text-body-md text-on-surface-variant hover:text-white transition-colors">
-              Iniciativa
+              {t("iniciativa")}
             </Link>
             <Link href="/#services" className="text-body-md text-on-surface-variant hover:text-white transition-colors">
-              Servicios
+              {t("servicios")}
             </Link>
             <Link href="/#portfolio" className="text-body-md text-on-surface-variant hover:text-white transition-colors">
-              Portfolio
+              {t("portfolio")}
             </Link>
             <Link href="/sobre" className="text-body-md text-on-surface-variant hover:text-white transition-colors">
-              Sobre nosotros
+              {t("sobre")}
             </Link>
           </nav>
-          <nav aria-label="Servicios" className="flex flex-col space-y-4">
+          <nav aria-label={t("servicesLabel")} className="flex flex-col space-y-4">
             <span className="text-label-sm text-on-surface-variant/60 uppercase tracking-widest">
-              Servicios
+              {t("servicesLabel")}
             </span>
             <Link href="/servicios/desarrollo-web" className="text-body-md text-on-surface-variant hover:text-white transition-colors">
-              Desarrollo Web
+              {t("webDev")}
             </Link>
             <Link href="/servicios/software-a-medida" className="text-body-md text-on-surface-variant hover:text-white transition-colors">
-              Software a Medida
+              {t("softwareMedida")}
             </Link>
             <Link href="/servicios/automatizacion-ia" className="text-body-md text-on-surface-variant hover:text-white transition-colors">
-              Automatización & IA
+              {t("automatizacion")}
             </Link>
           </nav>
           <div className="flex flex-col space-y-4">
             <span className="text-label-sm text-on-surface-variant/60 uppercase tracking-widest">
-              Contacto
+              {t("contactLabel")}
             </span>
             <a
               href="mailto:enrique.karakuradigital@gmail.com"
@@ -76,13 +79,13 @@ export function Footer() {
 
         <div className="col-span-1 md:col-span-4 mt-16 pt-8 border-t border-outline-variant/10 text-center">
           <p className="text-body-md text-on-surface-variant">
-            &copy; 2026 Karakura Digital. Todos los derechos reservados. ·{" "}
+            {t("copyright")} ·{" "}
             <Link href="/privacidad" className="hover:text-white transition-colors">
-              Política de Privacidad y Cookies
+              {t("privacyLink")}
             </Link>
           </p>
           <p className="text-label-sm text-on-surface-variant/50 mt-2">
-            Modelos 3D del diorama de portfolio: Quaternius (CC0) y Poly by Google vía{" "}
+            {t("attribution")}{" "}
             <a
               href="https://poly.pizza"
               target="_blank"

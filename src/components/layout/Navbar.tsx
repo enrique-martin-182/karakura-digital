@@ -5,7 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/Button";
+import { LocaleSwitcher } from "@/components/ui/LocaleSwitcher";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -16,6 +18,7 @@ function openCommandPalette() {
 }
 
 function CommandPaletteAffordance() {
+  const t = useTranslations("nav");
   const [isMac, setIsMac] = useState(false);
   const [pulse, setPulse] = useState(false);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -36,7 +39,7 @@ function CommandPaletteAffordance() {
   return (
     <button
       onClick={openCommandPalette}
-      aria-label="Abrir paleta de comandos"
+      aria-label={t("abrirPaleta")}
       className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-lg
                  border border-outline-variant/20 bg-surface-variant/10
                  hover:bg-surface-variant/20 hover:border-outline-variant/40
@@ -52,7 +55,7 @@ function CommandPaletteAffordance() {
         <circle cx={11} cy={11} r={8} />
         <path d="m21 21-4.35-4.35" />
       </svg>
-      <span className="text-xs font-medium tracking-wide">Búsqueda</span>
+      <span className="text-xs font-medium tracking-wide">{t("buscar")}</span>
       <motion.kbd
         aria-hidden="true"
         animate={pulse
@@ -73,10 +76,11 @@ function CommandPaletteAffordance() {
 }
 
 export function Navbar() {
+  const t = useTranslations("nav");
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
-  const isHome = pathname === "/";
+  const isHome = pathname === "/" || pathname === "/en" || pathname === "/en/";
   const prefix = isHome ? "" : "/";
 
   useEffect(() => {
@@ -86,13 +90,13 @@ export function Navbar() {
   }, []);
 
   const links = [
-    { href: `${prefix}#iniciativa`, label: "Iniciativa" },
-    { href: `${prefix}#services`, label: "Servicios" },
-    { href: `${prefix}#process`, label: "Proceso" },
-    { href: `${prefix}#results`, label: "Resultados" },
-    { href: `${prefix}#portfolio`, label: "Portfolio" },
-    { href: "/estilos", label: "Catálogo" },
-    { href: "/catalogo", label: "Componentes" },
+    { href: `${prefix}#iniciativa`, label: t("iniciativa") },
+    { href: `${prefix}#services`, label: t("servicios") },
+    { href: `${prefix}#process`, label: t("proceso") },
+    { href: `${prefix}#results`, label: t("resultados") },
+    { href: `${prefix}#portfolio`, label: t("portfolio") },
+    { href: "/estilos", label: t("catalogo") },
+    { href: "/catalogo", label: t("componentes") },
   ];
 
   return (
@@ -121,16 +125,17 @@ export function Navbar() {
         </div>
 
         <div className="hidden md:flex items-center gap-3 shrink-0">
+          <LocaleSwitcher />
           <CommandPaletteAffordance />
           <Button href="#contact" className="px-6 py-2.5 text-sm">
-            Contáctanos
+            {t("contactar")}
           </Button>
         </div>
 
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
           className="md:hidden text-on-surface p-2 hover:text-white transition-colors"
-          aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
+          aria-label={mobileOpen ? t("cerrarMenu") : t("abrirMenu")}
           aria-expanded={mobileOpen}
         >
           <div className="w-6 h-6 flex flex-col items-center justify-center gap-1.5">
@@ -183,15 +188,18 @@ export function Navbar() {
                 <svg className="w-4 h-4 opacity-50" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" aria-hidden="true">
                   <circle cx={11} cy={11} r={8} /><path d="m21 21-4.35-4.35" />
                 </svg>
-                Buscar / Easter Eggs
+                {t("buscarEasterEggs")}
               </button>
-              <a
-                href="#contact"
-                onClick={() => setMobileOpen(false)}
-                className="bg-primary-container text-white px-6 py-3 rounded-xl text-label-md font-semibold text-center mt-2"
-              >
-                Contáctanos
-              </a>
+              <div className="flex gap-3 mt-2">
+                <LocaleSwitcher />
+                <a
+                  href="#contact"
+                  onClick={() => setMobileOpen(false)}
+                  className="flex-1 bg-primary-container text-white px-6 py-3 rounded-xl text-label-md font-semibold text-center"
+                >
+                  {t("contactar")}
+                </a>
+              </div>
             </div>
           </motion.div>
         )}

@@ -1,0 +1,197 @@
+{
+  "nav": {
+    "iniciativa": "About",
+    "servicios": "Services",
+    "proceso": "Process",
+    "resultados": "Results",
+    "portfolio": "Portfolio",
+    "catalogo": "Catalog",
+    "componentes": "Components",
+    "contactar": "Contact us",
+    "buscar": "Search",
+    "buscarEasterEggs": "Search / Easter Eggs",
+    "abrirMenu": "Open menu",
+    "cerrarMenu": "Close menu",
+    "abrirPaleta": "Open command palette"
+  },
+  "hero": {
+    "overline": "From Córdoba to the world",
+    "title": "Web and software development that scales without borders.",
+    "subtitle": "From Córdoba, we build software, automation and AI that simplify operations and multiply your digital reach. No borders.",
+    "ctaPrimary": "Let's talk about your project",
+    "ctaSecondary": "Our Services",
+    "budgetCta": "How much will your project cost? Estimate here",
+    "tagline": "Local drive · No hidden fees · Cutting-edge technology"
+  },
+  "services": {
+    "overline": "Capabilities",
+    "headline": "Three pillars for your transformation",
+    "web": {
+      "tag": "Web Development",
+      "title": "Websites that work for you",
+      "desc": "Sites that don't just look good — they convert. Jamstack architectures loading in under 2 seconds, integrated technical SEO and design that eliminates friction between your visitor and their next action.",
+      "b1": "Extreme speed (optimized Core Web Vitals)",
+      "b2": "Pixel-perfect responsive design",
+      "b3": "Headless CMS for your team's independence"
+    },
+    "software": {
+      "tag": "Custom Software",
+      "title": "Your process, your software",
+      "desc": "We stop forcing your business into generic tools. We build exactly what you need: CRM systems, intelligent virtual assistants, and custom software tailored to each business's needs.",
+      "b1": "Custom CRM and client/appointment management",
+      "b2": "AI-powered virtual assistants for customer service",
+      "b3": "Fully custom software to your specifications"
+    },
+    "ia": {
+      "tag": "AI Automation",
+      "title": "Your team of 50, in one flow",
+      "desc": "We connect n8n, Python and AI models so the processes that eat up hours today run on their own. Invoicing, reports, customer service — automated and perfect.",
+      "b1": "Integrations with 200+ tools",
+      "b2": "AI models trained on your data",
+      "b3": "Visible ROI within the first 4 weeks"
+    }
+  },
+  "process": {
+    "overline": "Methodology",
+    "headline": "From idea to result in 4 phases",
+    "s1": {
+      "title": "Discovery",
+      "desc": "We map your current operation. We find the 3–5 points where you're burning time and money without knowing it."
+    },
+    "s2": {
+      "title": "Architecture",
+      "desc": "We design the optimal technical solution. No over-engineering, no unnecessary technology — just what moves the needle."
+    },
+    "s3": {
+      "title": "Implementation",
+      "desc": "2-week sprints. You see real progress from week 1. No 6-month projects that never finish."
+    },
+    "s4": {
+      "title": "Optimization",
+      "desc": "We measure, iterate, improve. Your system gets smarter with every piece of data it processes."
+    }
+  },
+  "results": {
+    "overline": "Results",
+    "headline": "Numbers that speak",
+    "m1": "Reduction in repetitive manual tasks",
+    "m2": "Data processing speed",
+    "m3": "Guaranteed uptime in production",
+    "m4": "Time to first tangible result"
+  },
+  "faq": {
+    "overline": "FAQ",
+    "headline": "Frequently asked questions",
+    "q1": "How long does it take to see results?",
+    "a1": "For a simple web or product, we can show you parts of the process from week one, depending on our team's workload. For mid-sized projects, results appear in the first 2–4 weeks; for larger ones, 6–8 weeks.",
+    "q2": "Do I need to change my current tools?",
+    "a2": "No. We integrate with what you already use (Excel, SAP, HubSpot, Notion, whatever). No painful migration. We connect, not replace.",
+    "q3": "What if my team isn't technical?",
+    "a3": "Everything we build comes with a simple interface and training included. If they can use WhatsApp, they can use our software.",
+    "q4": "How much does it cost?",
+    "a4": "It depends on scope. The initial consultation is free and we give you a fixed quote before we start. No surprises, no hidden costs.",
+    "q5": "What happens after delivery?",
+    "a5": "Continuous support + optimization. We don't disappear after deploy. We monitor, iterate and scale with you."
+  },
+  "contact": {
+    "available": "Available · Córdoba, Spain · Mon–Fri 9:00–18:00 (UTC+2)",
+    "headline": "Shall we talk about your project?",
+    "subtitle": "Tell us your idea or need and we'll respond in less than 24 hours. No commitment, no fine print.",
+    "emailMain": "Main email",
+    "emailCoord": "Coordination"
+  },
+  "footer": {
+    "tagline": "Custom technology for businesses that want to lead tomorrow.",
+    "navLabel": "Navigation",
+    "servicesLabel": "Services",
+    "contactLabel": "Contact",
+    "iniciativa": "About",
+    "servicios": "Services",
+    "portfolio": "Portfolio",
+    "sobre": "About us",
+    "webDev": "Web Development",
+    "softwareMedida": "Custom Software",
+    "automatizacion": "AI & Automation",
+    "copyright": "© 2026 Karakura Digital. All rights reserved.",
+    "privacyLink": "Privacy & Cookie Policy",
+    "attribution": "3D models in the portfolio diorama: Quaternius (CC0) and Poly by Google via"
+  },
+  "stickyBar": {
+    "text": "Ready to scale your business?",
+    "subtitle": "Free 30-minute consultation, no commitment.",
+    "cta": "Talk now →",
+    "close": "Close bar"
+  },
+  "cookies": {
+    "text": "We use our own cookies for site functionality and third-party cookies to analyze traffic. You can accept all or continue with necessary ones only.",
+    "policyLink": "Cookie policy",
+    "acceptAll": "Accept all",
+    "onlyNecessary": "Necessary only"
+  },
+  "faqWidget": {
+    "trigger": "Questions?",
+    "close": "Close",
+    "greeting": "Hi 👋 I'm the **Karakura Digital** assistant. How can I help you?",
+    "chips": {
+      "tiempo": "How long does it take?",
+      "coste": "How much does it cost?",
+      "herramientas": "Do I change my tools?",
+      "equipo": "What if we're not technical?",
+      "postventa": "What happens after delivery?",
+      "inicio": "How do we start?"
+    },
+    "answers": {
+      "tiempo": "For simple projects we show progress **from week 1**. Medium projects see results in 2–4 weeks. Larger projects, 6–8 weeks.",
+      "coste": "It depends on scope. The **initial consultation is free** and the quote is fixed — no surprises. Use the calculator below for a rough estimate.",
+      "herramientas": "**No**. We integrate with what you already use — Excel, SAP, HubSpot, Notion, whatever. No painful migration.",
+      "equipo": "Everything we build comes with a **simple interface and training included**. If they can use WhatsApp, they can use our software.",
+      "postventa": "**Continuous support + optimization**. We don't disappear after deploy. We monitor, iterate and scale with you.",
+      "inicio": "Great! Book a free 30-minute call and tell us about your project."
+    },
+    "ctaButton": "Book a free call →",
+    "online": "Online",
+    "faqLabel": "FAQ:",
+    "moreQuestions": "Still have questions? Tell us directly.",
+    "goContact": "Go to contact →",
+    "closeAssistant": "Close assistant",
+    "openAssistant": "Open virtual assistant"
+  },
+  "calculator": {
+    "title": "Budget Calculator",
+    "overline": "Estimate",
+    "close": "Close",
+    "step0": "What type of project do you need?",
+    "step1": "What level of complexity do you need?",
+    "step2": "Do you need any extras? (optional)",
+    "types": {
+      "web": { "label": "Web Development", "desc": "Landing page, e-commerce, platform" },
+      "software": { "label": "Custom Software", "desc": "Internal app, SaaS, tooling" },
+      "crm": { "label": "CRM / ERP", "desc": "Customer and operations management" },
+      "ia": { "label": "AI Automation", "desc": "Workflows, bots, smart processes" }
+    },
+    "complexity": {
+      "basico": { "label": "Basic", "desc": "Essential features, fast delivery" },
+      "estandar": { "label": "Standard", "desc": "Full features with integrations" },
+      "avanzado": { "label": "Advanced", "desc": "Enterprise-grade scalable solution" }
+    },
+    "addons": {
+      "seo": "Technical SEO",
+      "analytics": "Analytics Dashboard",
+      "maint": "Monthly maintenance",
+      "integrations": "API Integrations"
+    },
+    "steps": { "tipo": "Type", "complejidad": "Complexity", "extras": "Extras", "resultado": "Result" },
+    "back": "← Back",
+    "changeType": "← Change type",
+    "seeEstimate": "See estimate →",
+    "resultTitle": "Indicative estimate for your project",
+    "resultDisclaimer": "This is an indicative estimate. The final budget is defined after the free consultation, with no surprises or hidden costs.",
+    "ctaConsult": "Request free consultation",
+    "ctaNew": "New estimate"
+  },
+  "localeSwitcher": {
+    "es": "ES",
+    "en": "EN",
+    "label": "Switch language"
+  }
+}
