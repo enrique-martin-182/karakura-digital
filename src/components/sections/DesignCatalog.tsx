@@ -1770,15 +1770,14 @@ function FlatDesign2Demo() {
 }
 
 function IsometricDemo() {
-  // col, row, height — height drives both placement AND face height
-  const bldgs: [number,number,number][] = [
-    [0,0,2],[1,0,4],[2,0,2],
-    [0,1,1],[1,1,5],[2,1,3],
-    [0,2,3],[1,2,4],[2,2,2],
+  type Bldg = [number,number,number,string];
+  const bldgs: Bldg[] = [
+    [0,0,2,"DB" ],[1,0,4,"API"],[2,0,2,"CDN" ],
+    [0,1,1,""   ],[1,1,5,"ML" ],[2,1,3,"AUTH"],
+    [0,2,3,"KV" ],[1,2,4,"MSG"],[2,2,2,""    ],
   ];
   const sorted = [...bldgs].sort((a,b)=>(a[0]+a[1])-(b[0]+b[1]));
 
-  // Color palette per depth (back → front: indigo → violet → blue)
   const pal: Record<number,[string,string,string]> = {
     0: ["#c7d2fe","#4338ca","#1e1b4b"],
     1: ["#a5b4fc","#4f46e5","#312e81"],
@@ -1788,48 +1787,66 @@ function IsometricDemo() {
   };
 
   return (
-    <div className="h-full flex flex-col items-center justify-center gap-3" style={{ background:"#060c1a", overflow:"hidden", position:"relative" }}>
-      {/* Subtle dot grid */}
+    <div className="h-full flex flex-col" style={{ background:"#060c1a", overflow:"hidden", position:"relative", padding:"16px 18px 14px" }}>
+      {/* Background dot grid */}
       <svg style={{ position:"absolute",inset:0,width:"100%",height:"100%",opacity:0.07,pointerEvents:"none" }} aria-hidden="true">
         <defs>
-          <pattern id="iso-dots" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+          <pattern id="iso-dots2" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
             <circle cx="0" cy="0" r="1" fill="#818cf8"/>
-            <circle cx="28" cy="0" r="1" fill="#818cf8"/>
-            <circle cx="0" cy="28" r="1" fill="#818cf8"/>
             <circle cx="28" cy="28" r="1" fill="#818cf8"/>
           </pattern>
         </defs>
-        <rect width="100%" height="100%" fill="url(#iso-dots)"/>
+        <rect width="100%" height="100%" fill="url(#iso-dots2)"/>
       </svg>
-      {/* Fixed-size SVG so it doesn't fill the entire panel */}
-      <svg width="240" height="290" viewBox="-55 -105 110 148" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-        {sorted.map(([c,r,h],i)=>{
-          const tx=(c-r)*17, ty=(c+r)*10-h*20;
-          const [top,right,left]=pal[Math.min(c+r,4)];
-          const rh=h*20;
-          return (
-            <g key={i} transform={`translate(${tx},${ty})`}>
-              <polygon points={`17,-10 17,${rh-10} 0,${rh} 0,0`} fill={right}/>
-              <polygon points={`-17,-10 -17,${rh-10} 0,${rh} 0,0`} fill={left}/>
-              <polygon points="0,-20 17,-10 0,0 -17,-10" fill={top}/>
-              <line x1="0" y1="-20" x2="17" y2="-10" stroke="rgba(255,255,255,0.35)" strokeWidth="0.7"/>
-              <line x1="0" y1="-20" x2="-17" y2="-10" stroke="rgba(255,255,255,0.35)" strokeWidth="0.7"/>
-            </g>
-          );
-        })}
-        {/* Data node labels inside viewBox */}
-        <circle cx="0" cy="-99" r="3" fill="#f0abfc" opacity="0.9"/>
-        <circle cx="-20" cy="-93" r="2.5" fill="#86efac" opacity="0.9"/>
-        <circle cx="20" cy="-91" r="2" fill="#fcd34d" opacity="0.8"/>
-        <line x1="-20" y1="-93" x2="0" y2="-99" stroke="rgba(240,171,252,0.45)" strokeWidth="0.7"/>
-        <line x1="20" y1="-91" x2="0" y2="-99" stroke="rgba(240,171,252,0.45)" strokeWidth="0.7"/>
-      </svg>
-      {/* Bottom label strip */}
-      <div style={{ position:"relative", display:"flex", gap:16, alignItems:"center" }}>
-        {([["#c7d2fe","98.4%"],["#86efac","+12K"],["#fcd34d","Q4"]] as const).map(([c,v])=>(
-          <div key={v} style={{ display:"flex", alignItems:"center", gap:5 }}>
-            <div style={{ width:6, height:6, borderRadius:"50%", background:c }}/>
-            <p style={{ color:"rgba(255,255,255,0.45)", fontSize:10, fontWeight:700, fontFamily:"monospace" }}>{v}</p>
+      {/* Header */}
+      <div style={{ position:"relative", marginBottom:10 }}>
+        <div style={{ display:"flex", alignItems:"center", gap:6, marginBottom:5 }}>
+          <div style={{ width:5, height:5, borderRadius:"50%", background:"#86efac" }}/>
+          <p style={{ color:"rgba(255,255,255,0.3)", fontSize:8, letterSpacing:"0.18em", textTransform:"uppercase" }}>Cloud · Infrastructure</p>
+        </div>
+        <p style={{ color:"#fff", fontSize:14, fontWeight:800, letterSpacing:"-0.02em", lineHeight:1.2, marginBottom:4 }}>
+          Scale your platform.
+        </p>
+        <p style={{ color:"rgba(255,255,255,0.28)", fontSize:9, lineHeight:1.5 }}>
+          Arquitectura modular para productos que crecen sin límite.
+        </p>
+      </div>
+      {/* Isometric city */}
+      <div style={{ flex:1, display:"flex", alignItems:"center", justifyContent:"center", position:"relative" }}>
+        <svg width="210" height="200" viewBox="-55 -105 110 148" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          {sorted.map(([c,r,h,label],i)=>{
+            const tx=(c-r)*17, ty=(c+r)*10-h*20;
+            const [top,right,left]=pal[Math.min(c+r,4)];
+            const rh=h*20;
+            return (
+              <g key={i} transform={`translate(${tx},${ty})`}>
+                <polygon points={`17,-10 17,${rh-10} 0,${rh} 0,0`} fill={right}/>
+                <polygon points={`-17,-10 -17,${rh-10} 0,${rh} 0,0`} fill={left}/>
+                <polygon points="0,-20 17,-10 0,0 -17,-10" fill={top}/>
+                <line x1="0" y1="-20" x2="17" y2="-10" stroke="rgba(255,255,255,0.28)" strokeWidth="0.6"/>
+                <line x1="0" y1="-20" x2="-17" y2="-10" stroke="rgba(255,255,255,0.28)" strokeWidth="0.6"/>
+                {label && (
+                  <text x="0" y="-23" textAnchor="middle" fill="rgba(255,255,255,0.6)" fontSize="4.5" fontWeight="700" fontFamily="monospace">{label}</text>
+                )}
+              </g>
+            );
+          })}
+          {/* Ambient glow on tallest building */}
+          <ellipse cx="0" cy="-82" rx="10" ry="4" fill="#818cf8" opacity="0.18"/>
+          {/* Status dots top */}
+          <circle cx="0" cy="-100" r="2.5" fill="#f0abfc" opacity="0.9"/>
+          <circle cx="-20" cy="-94" r="2" fill="#86efac" opacity="0.9"/>
+          <circle cx="22" cy="-92" r="2" fill="#fcd34d" opacity="0.8"/>
+          <line x1="-20" y1="-94" x2="0" y2="-100" stroke="rgba(134,239,172,0.3)" strokeWidth="0.6"/>
+          <line x1="22" y1="-92" x2="0" y2="-100" stroke="rgba(252,211,77,0.3)" strokeWidth="0.6"/>
+        </svg>
+      </div>
+      {/* Stats bar */}
+      <div style={{ position:"relative", display:"grid", gridTemplateColumns:"1fr 1fr 1fr", padding:"8px 10px", borderRadius:8, background:"rgba(255,255,255,0.04)", border:"1px solid rgba(255,255,255,0.07)" }}>
+        {([["#86efac","99.9%","Uptime"],["#a5b4fc","12K+","Usuarios"],["#fcd34d","€8.2K","MRR"]] as const).map(([c,v,l])=>(
+          <div key={l} style={{ textAlign:"center" }}>
+            <p style={{ color:c, fontSize:11, fontWeight:800, fontFamily:"monospace", lineHeight:1.2 }}>{v}</p>
+            <p style={{ color:"rgba(255,255,255,0.25)", fontSize:7.5, marginTop:2 }}>{l}</p>
           </div>
         ))}
       </div>
