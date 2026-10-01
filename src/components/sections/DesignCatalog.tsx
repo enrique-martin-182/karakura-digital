@@ -1710,69 +1710,126 @@ function DoodleDemo() {
 
 function FlatDesign2Demo() {
   return (
-    <div className="h-full flex items-center justify-center p-6" style={{ background: "#f4f4f5" }}>
-      <div style={{ width: 236 }}>
-        <div style={{ borderRadius: 16, padding: "18px 20px", background: "#0066FF", marginBottom: 10 }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 16 }}>
-            <div>
-              <p style={{ color: "rgba(255,255,255,0.55)", fontSize: 9, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase" }}>Dashboard</p>
-              <p style={{ color: "#fff", fontSize: 20, fontWeight: 800, lineHeight: 1.1, marginTop: 2 }}>Octubre 2025</p>
-            </div>
-            <div style={{ width: 36, height: 36, borderRadius: 8, background: "rgba(255,255,255,0.15)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="white" aria-hidden="true">
-                <rect x="1" y="1" width="6" height="6" rx="1.5"/><rect x="9" y="1" width="6" height="6" rx="1.5"/>
-                <rect x="1" y="9" width="6" height="6" rx="1.5"/><rect x="9" y="9" width="6" height="6" rx="1.5"/>
-              </svg>
-            </div>
+    <div className="h-full flex overflow-hidden" style={{ background: "#f4f4f6" }}>
+      {/* Sidebar */}
+      <div style={{ width: 44, background: "#fff", borderRight: "1px solid #e5e7eb", flexShrink: 0, display: "flex", flexDirection: "column", alignItems: "center", paddingTop: 14, gap: 14 }}>
+        <div style={{ width: 22, height: 22, borderRadius: 5, background: "#0066FF" }} />
+        {([["#0066FF","#eff6ff",true],["#6b7280","transparent",false],["#6b7280","transparent",false],["#6b7280","transparent",false]] as const).map(([c,bg,active],i)=>(
+          <div key={i} style={{ width: 32, height: 32, borderRadius: 7, background: bg, display:"flex",alignItems:"center",justifyContent:"center" }}>
+            <div style={{ width: 11, height: 11, borderRadius: 2.5, background: active?"#0066FF":"#d1d5db" }} />
           </div>
-          <div style={{ height: 4, borderRadius: 4, background: "rgba(255,255,255,0.18)", overflow: "hidden" }}>
-            <div style={{ width: "72%", height: "100%", background: "#fff", borderRadius: 4 }} />
+        ))}
+        <div style={{ flex:1 }}/>
+        <div style={{ width:28, height:28, borderRadius:"50%", background:"#0066FF", marginBottom:12 }}/>
+      </div>
+      {/* Main */}
+      <div style={{ flex:1, padding:"14px 12px", overflow:"hidden", display:"flex", flexDirection:"column" }}>
+        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12 }}>
+          <p style={{ color:"#111", fontSize:13, fontWeight:800 }}>Dashboard</p>
+          <div style={{ background:"#0066FF", borderRadius:6, padding:"4px 9px" }}>
+            <p style={{ color:"#fff", fontSize:8, fontWeight:700 }}>Oct 2025</p>
           </div>
-          <p style={{ color: "rgba(255,255,255,0.5)", fontSize: 9, marginTop: 6 }}>72% del objetivo · 384 leads</p>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 8, marginBottom: 10 }}>
-          {([["Visitas","12.4K","#0066FF"],["Leads","384","#22C55E"],["Conv.","3.1%","#F59E0B"]] as const).map(([label,val,c])=>(
-            <div key={label} style={{ background: "#fff", borderRadius: 10, padding: "10px 10px" }}>
-              <div style={{ width: 6, height: 6, borderRadius: 2, background: c, marginBottom: 8 }} />
-              <p style={{ color: "#111", fontSize: 14, fontWeight: 800, lineHeight: 1 }}>{val}</p>
-              <p style={{ color: "#888", fontSize: 9, marginTop: 3 }}>{label}</p>
+        {/* KPI grid */}
+        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:7, marginBottom:8 }}>
+          {([["Visitas","12.4K","#0066FF","#dbeafe"],["Leads","384","#22C55E","#dcfce7"],
+            ["Conv.","3.1%","#F59E0B","#fef9c3"],["MRR","€8.2K","#8b5cf6","#ede9fe"]] as const).map(([l,v,c,bg])=>(
+            <div key={l} style={{ background:"#fff", borderRadius:8, padding:"9px 10px", border:"1px solid #e5e7eb" }}>
+              <p style={{ color:"#6b7280", fontSize:7.5, fontWeight:600, letterSpacing:"0.05em", textTransform:"uppercase" }}>{l}</p>
+              <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-end", marginTop:4 }}>
+                <p style={{ color:"#111", fontSize:15, fontWeight:800 }}>{v}</p>
+                <div style={{ width:18, height:18, borderRadius:4, background:bg, display:"flex",alignItems:"center",justifyContent:"center" }}>
+                  <div style={{ width:7,height:7,borderRadius:1.5,background:c }}/>
+                </div>
+              </div>
             </div>
           ))}
         </div>
-        <button style={{ width: "100%", padding: "10px 0", borderRadius: 10, background: "#111", color: "#fff", fontSize: 11, fontWeight: 700, border: "none", cursor: "pointer" }}>
-          Ver informe completo
-        </button>
+        {/* Bar chart */}
+        <div style={{ background:"#fff", borderRadius:8, padding:"9px 10px", border:"1px solid #e5e7eb", flex:1 }}>
+          <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:8 }}>
+            <p style={{ color:"#111", fontSize:8.5, fontWeight:700 }}>Visitantes semanales</p>
+            <div style={{ background:"#dcfce7", borderRadius:4, padding:"2px 7px" }}>
+              <p style={{ color:"#16a34a", fontSize:7.5, fontWeight:700 }}>+12%</p>
+            </div>
+          </div>
+          <div style={{ display:"flex", alignItems:"flex-end", gap:4, height:36 }}>
+            {([38,62,44,80,52,92,68] as const).map((h,i)=>(
+              <div key={i} style={{ flex:1, height:`${h}%`, borderRadius:"2px 2px 0 0", background:i===5?"#0066FF":"#dbeafe" }}/>
+            ))}
+          </div>
+          <div style={{ display:"flex", justifyContent:"space-between", marginTop:5 }}>
+            {["L","M","X","J","V","S","D"].map(d=>(
+              <p key={d} style={{ flex:1, textAlign:"center", color:"#9ca3af", fontSize:7 }}>{d}</p>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
 }
 
 function IsometricDemo() {
-  const cubes: [number,number,number][] = [
-    [0,0,2],[1,0,3],[2,0,1],
-    [0,1,1],[1,1,4],[2,1,2],
-    [0,2,3],[1,2,1],[2,2,2],
+  // col, row, height — height drives both placement AND face height
+  const bldgs: [number,number,number][] = [
+    [0,0,2],[1,0,4],[2,0,2],
+    [0,1,1],[1,1,5],[2,1,3],
+    [0,2,3],[1,2,4],[2,2,2],
   ];
-  const sorted = [...cubes].sort((a,b) => (a[0]+a[1]) - (b[0]+b[1]));
+  const sorted = [...bldgs].sort((a,b)=>(a[0]+a[1])-(b[0]+b[1]));
+
+  // Color palette per depth (back → front: indigo → violet → blue)
+  const pal: Record<number,[string,string,string]> = {
+    0: ["#c7d2fe","#4338ca","#1e1b4b"],
+    1: ["#a5b4fc","#4f46e5","#312e81"],
+    2: ["#d8b4fe","#7c3aed","#4c1d95"],
+    3: ["#93c5fd","#2563eb","#1e3a8a"],
+    4: ["#bfdbfe","#1d4ed8","#1e3a8a"],
+  };
+
+  // Unit: half-width=17, height-per-unit=20
+  // Correct face formula: rh = h*20 (face height spans from top to ground)
+  // Bounds: x [-51,51], y top=-100 (h=5 at 1,1), y bottom=40 (h=2 at 2,2)
   return (
-    <div className="h-full flex items-center justify-center" style={{ background: "linear-gradient(150deg,#ECEEFF,#E0E3FF)" }}>
-      <svg width="220" height="220" viewBox="-50 -95 180 230" aria-hidden="true">
+    <div className="h-full flex items-center justify-center" style={{ background:"#060c1a", overflow:"hidden", position:"relative" }}>
+      {/* Subtle dot grid */}
+      <svg style={{ position:"absolute",inset:0,width:"100%",height:"100%",opacity:0.08 }} aria-hidden="true">
         <defs>
-          <filter id="iso-drop">
-            <feDropShadow dx="0" dy="4" stdDeviation="4" floodColor="#3D37B8" floodOpacity="0.18"/>
-          </filter>
+          <pattern id="iso-dots" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+            <circle cx="0" cy="0" r="1" fill="#818cf8"/>
+            <circle cx="24" cy="0" r="1" fill="#818cf8"/>
+            <circle cx="0" cy="24" r="1" fill="#818cf8"/>
+            <circle cx="24" cy="24" r="1" fill="#818cf8"/>
+          </pattern>
         </defs>
-        {sorted.map(([c,r,h],i) => {
-          const tx = (c - r) * 17;
-          const ty = (c + r) * 10 - h * 20;
+        <rect width="100%" height="100%" fill="url(#iso-dots)"/>
+      </svg>
+      <svg width="100%" height="100%" viewBox="-55 -108 110 155" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+        {sorted.map(([c,r,h],i)=>{
+          const tx=(c-r)*17, ty=(c+r)*10-h*20;
+          const [top,right,left]=pal[Math.min(c+r,4)];
+          const rh=h*20; // face spans full height from top to ground
           return (
-            <g key={i} transform={`translate(${tx},${ty})`} filter="url(#iso-drop)">
-              <polygon points="17,-10 17,10 0,20 0,0" fill="#5A52E8" />
-              <polygon points="-17,-10 -17,10 0,20 0,0" fill="#3D37B8" />
-              <polygon points="0,-20 17,-10 0,0 -17,-10" fill="#857EFF" />
+            <g key={i} transform={`translate(${tx},${ty})`}>
+              {/* right face — full height rh */}
+              <polygon points={`17,-10 17,${rh-10} 0,${rh} 0,0`} fill={right}/>
+              {/* left face — full height rh */}
+              <polygon points={`-17,-10 -17,${rh-10} 0,${rh} 0,0`} fill={left}/>
+              {/* top face */}
+              <polygon points="0,-20 17,-10 0,0 -17,-10" fill={top}/>
+              {/* edge highlights */}
+              <line x1="0" y1="-20" x2="17" y2="-10" stroke="rgba(255,255,255,0.35)" strokeWidth="0.7"/>
+              <line x1="0" y1="-20" x2="-17" y2="-10" stroke="rgba(255,255,255,0.35)" strokeWidth="0.7"/>
+              <line x1="0" y1="0" x2="0" y2={rh} stroke="rgba(255,255,255,0.1)" strokeWidth="0.5"/>
             </g>
           );
         })}
+        {/* Floating nodes above tallest buildings */}
+        <circle cx="0" cy="-114" r="3" fill="#f0abfc" opacity="0.9"/>
+        <circle cx="-17" cy="-109" r="2" fill="#86efac" opacity="0.8"/>
+        <circle cx="17" cy="-107" r="2" fill="#fcd34d" opacity="0.8"/>
+        <line x1="-17" y1="-109" x2="0" y2="-114" stroke="rgba(240,171,252,0.4)" strokeWidth="0.6"/>
+        <line x1="17" y1="-107" x2="0" y2="-114" stroke="rgba(240,171,252,0.4)" strokeWidth="0.6"/>
       </svg>
     </div>
   );
@@ -1780,24 +1837,41 @@ function IsometricDemo() {
 
 function HoloDemo() {
   return (
-    <div className="h-full flex items-center justify-center p-6" style={{ background: "linear-gradient(135deg,#0d0d1a,#130d1f)" }}>
-      <div style={{ width: 220 }}>
-        <div style={{ padding: 2, borderRadius: 20, background: "linear-gradient(135deg,#ff6b6b,#feca57,#48dbfb,#ff9ff3,#54a0ff,#5f27cd,#ff6b6b)" }}>
-          <div style={{ borderRadius: 18, padding: "20px 20px", background: "linear-gradient(135deg,#0d0d1a,#1a0d2e)" }}>
-            <div style={{ height: 3, borderRadius: 3, background: "linear-gradient(90deg,#ff6b6b,#feca57,#48dbfb,#ff9ff3,#54a0ff)", opacity: 0.85, marginBottom: 14 }} />
-            <p style={{ color: "rgba(255,255,255,0.35)", fontSize: 9, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 4 }}>Limited Edition</p>
-            <p style={{ fontSize: 24, fontWeight: 900, letterSpacing: "-0.03em", background: "linear-gradient(135deg,#ff9ff3,#48dbfb,#feca57)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", lineHeight: 1.1 }}>
-              HOLO CARD
+    <div className="h-full flex items-center justify-center" style={{ background:"#03000d", position:"relative", overflow:"hidden" }}>
+      {/* Ambient glow blobs */}
+      <div style={{ position:"absolute", width:180, height:180, borderRadius:"50%", top:"5%", left:"10%", background:"radial-gradient(circle,#7c3aed33 0%,transparent 70%)", pointerEvents:"none" }}/>
+      <div style={{ position:"absolute", width:160, height:160, borderRadius:"50%", bottom:"5%", right:"5%", background:"radial-gradient(circle,#0e7490330 0%,transparent 70%)", pointerEvents:"none" }}/>
+      <div style={{ width:220, padding:"0 8px", position:"relative" }}>
+        {/* Outer glow */}
+        <div style={{ position:"absolute", inset:-6, borderRadius:28, background:"linear-gradient(135deg,#ff6b6b,#ffd93d,#6bcb77,#48dbfb,#c084fc,#ff6b6b)", opacity:0.5, filter:"blur(10px)", pointerEvents:"none" }}/>
+        {/* Rainbow border */}
+        <div style={{ position:"relative", padding:2, borderRadius:24, background:"linear-gradient(135deg,#ff6b6b,#ffd93d,#6bcb77,#48dbfb,#c084fc,#ff6b6b)" }}>
+          <div style={{ borderRadius:22, padding:"22px 20px 20px", background:"linear-gradient(160deg,#0d001f,#050118)" }}>
+            {/* Prismatic stripe */}
+            <div style={{ height:2, borderRadius:2, background:"linear-gradient(90deg,#ff6b6b,#ffd93d,#6bcb77,#48dbfb,#c084fc)", marginBottom:16, opacity:0.95 }}/>
+            <p style={{ color:"rgba(255,255,255,0.28)", fontSize:8.5, letterSpacing:"0.18em", textTransform:"uppercase", marginBottom:6 }}>Limited Collection</p>
+            <p style={{ fontSize:28, fontWeight:900, letterSpacing:"-0.02em", lineHeight:1.0, marginBottom:4, background:"linear-gradient(110deg,#ff9ff3 0%,#48dbfb 45%,#ffd93d 85%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>
+              HOLO<br/>CARD
             </p>
-            <p style={{ color: "rgba(255,255,255,0.25)", fontSize: 9, marginTop: 6, marginBottom: 16 }}>Karakura Digital · Series 001</p>
-            {(["#ff6b6b","#feca57","#48dbfb","#ff9ff3","#54a0ff"] as const).map((c,i)=>(
-              <div key={i} style={{ height: 2, borderRadius: 2, background: c, opacity: 0.5 - i * 0.07, marginBottom: 3 }} />
-            ))}
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 14 }}>
-              <p style={{ color: "rgba(255,255,255,0.4)", fontSize: 11, fontFamily: "monospace" }}>**** 2025</p>
-              <div style={{ display:"flex", gap:4 }}>
-                <div style={{ width: 24, height: 24, borderRadius: "50%", background: "linear-gradient(135deg,#feca57,#ff9ff3)", opacity: 0.8 }} />
-                <div style={{ width: 24, height: 24, borderRadius: "50%", background: "linear-gradient(135deg,#48dbfb,#54a0ff)", opacity: 0.8, marginLeft: -10 }} />
+            {/* Spectrum bars */}
+            <div style={{ display:"flex", gap:4, marginTop:10, marginBottom:14 }}>
+              {(["#ff6b6b","#ffd93d","#6bcb77","#48dbfb","#c084fc"] as const).map((c,i)=>(
+                <div key={i} style={{ flex:1, height:4, borderRadius:2, background:c, opacity:0.8-i*0.08 }}/>
+              ))}
+            </div>
+            <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10, marginBottom:16 }}>
+              {([["SERIE","001"],["AÑO","2025"]] as const).map(([l,v])=>(
+                <div key={l}>
+                  <p style={{ color:"rgba(255,255,255,0.22)", fontSize:7.5, letterSpacing:"0.12em", textTransform:"uppercase" }}>{l}</p>
+                  <p style={{ color:"rgba(255,255,255,0.75)", fontSize:14, fontWeight:800, fontFamily:"monospace", letterSpacing:"0.08em" }}>{v}</p>
+                </div>
+              ))}
+            </div>
+            <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center" }}>
+              <p style={{ color:"rgba(255,255,255,0.22)", fontSize:9, fontFamily:"monospace", letterSpacing:"0.12em" }}>**** **** 2025</p>
+              <div style={{ position:"relative", width:40, height:26 }}>
+                <div style={{ position:"absolute", left:0, width:26, height:26, borderRadius:"50%", background:"linear-gradient(135deg,#ff6b6b,#ffd93d)", opacity:0.9 }}/>
+                <div style={{ position:"absolute", right:0, width:26, height:26, borderRadius:"50%", background:"linear-gradient(135deg,#48dbfb,#c084fc)", opacity:0.9 }}/>
               </div>
             </div>
           </div>
@@ -1808,32 +1882,59 @@ function HoloDemo() {
 }
 
 function ArtDecoDemo() {
-  const gold = "#c9a84c";
+  const gold="#c9a84c";
   return (
-    <div className="h-full flex items-center justify-center p-6" style={{ background: "#080500" }}>
-      <div style={{ textAlign: "center", width: 220 }}>
-        <svg width="220" height="36" viewBox="0 0 220 36" style={{ display: "block" }} aria-hidden="true">
-          <line x1="10" y1="18" x2="90" y2="18" stroke={gold} strokeWidth="0.7" opacity="0.45"/>
-          <line x1="130" y1="18" x2="210" y2="18" stroke={gold} strokeWidth="0.7" opacity="0.45"/>
-          <polygon points="110,4 118,18 110,32 102,18" fill="none" stroke={gold} strokeWidth="1.5"/>
-          <polygon points="88,14 94,18 88,22 82,18" fill={gold} opacity="0.5"/>
-          <polygon points="132,14 138,18 132,22 126,18" fill={gold} opacity="0.5"/>
+    <div className="h-full flex items-center justify-center" style={{ background:"#050300", overflow:"hidden", position:"relative" }}>
+      {/* Background chevron pattern */}
+      <svg style={{ position:"absolute",inset:0,width:"100%",height:"100%",opacity:0.06,pointerEvents:"none" }} aria-hidden="true">
+        <defs>
+          <pattern id="ad-v" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+            <path d="M0,12 L12,0 L24,12" fill="none" stroke={gold} strokeWidth="0.8"/>
+            <path d="M0,24 L12,12 L24,24" fill="none" stroke={gold} strokeWidth="0.8"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#ad-v)"/>
+      </svg>
+      <div style={{ textAlign:"center", width:224, position:"relative" }}>
+        {/* Top sunburst ornament */}
+        <svg width="224" height="58" viewBox="0 0 224 58" style={{ display:"block" }} aria-hidden="true">
+          {([-70,-50,-30,-10,10,30,50,70] as const).map((a,i)=>(
+            <line key={i} x1="112" y1="58" x2={112+Math.sin(a*Math.PI/180)*96} y2={58-Math.cos(a*Math.PI/180)*56}
+              stroke={gold} strokeWidth={i===3||i===4?"0.8":"0.5"} opacity={i===3||i===4?"0.65":"0.28"}/>
+          ))}
+          <line x1="22" y1="52" x2="202" y2="52" stroke={gold} strokeWidth="0.8" opacity="0.5"/>
+          <line x1="40" y1="46" x2="184" y2="46" stroke={gold} strokeWidth="0.4" opacity="0.3"/>
+          <polygon points="112,4 119,18 112,32 105,18" fill="none" stroke={gold} strokeWidth="1.4"/>
+          <polygon points="112,10 117,18 112,26 107,18" fill={gold} opacity="0.4"/>
+          <polygon points="82,44 87,52 82,60 77,52" fill={gold} opacity="0.5"/>
+          <polygon points="142,44 147,52 142,60 137,52" fill={gold} opacity="0.5"/>
         </svg>
-        <div style={{ borderLeft: `1px solid ${gold}44`, borderRight: `1px solid ${gold}44`, padding: "14px 20px" }}>
-          <p style={{ color: gold, fontSize: 8, letterSpacing: "0.45em", textTransform: "uppercase", marginBottom: 10, opacity: 0.7 }}>Maison de Design</p>
-          <p style={{ color: gold, fontSize: 30, fontWeight: 900, letterSpacing: "0.06em", textTransform: "uppercase", fontFamily: "Georgia,serif", lineHeight: 1.1, textShadow: `0 0 30px rgba(201,168,76,0.25)` }}>
-            ÉLITE
-          </p>
-          <p style={{ color: gold, fontSize: 11, letterSpacing: "0.35em", textTransform: "uppercase", fontFamily: "Georgia,serif", opacity: 0.8, marginTop: 2 }}>◆ STUDIO ◆</p>
-          <div style={{ height: 1, background: `linear-gradient(to right,transparent,${gold},transparent)`, margin: "12px 0", opacity: 0.5 }} />
-          <p style={{ color: `${gold}60`, fontSize: 8, letterSpacing: "0.2em", textTransform: "uppercase" }}>Córdoba · España · Est. MMXXIV</p>
+        {/* Center content */}
+        <div style={{ position:"relative", padding:"14px 22px", borderLeft:`1px solid ${gold}33`, borderRight:`1px solid ${gold}33` }}>
+          {/* Corner brackets */}
+          {[["top","left"],["top","right"],["bottom","left"],["bottom","right"]].map(([v,h])=>(
+            <div key={`${v}${h}`} style={{ position:"absolute", [v]:0, [h]:0, width:10, height:10,
+              borderTop:v==="top"?`1px solid ${gold}55`:"none", borderBottom:v==="bottom"?`1px solid ${gold}55`:"none",
+              borderLeft:h==="left"?`1px solid ${gold}55`:"none", borderRight:h==="right"?`1px solid ${gold}55`:"none" }}/>
+          ))}
+          <p style={{ color:`${gold}70`, fontSize:8, letterSpacing:"0.5em", textTransform:"uppercase", marginBottom:10, fontFamily:"Georgia,serif" }}>Maison Créative</p>
+          <p style={{ color:gold, fontSize:34, fontWeight:900, letterSpacing:"0.1em", textTransform:"uppercase", fontFamily:"Georgia,serif", lineHeight:1.0, textShadow:`0 0 50px rgba(201,168,76,0.35)` }}>ÉLITE</p>
+          <p style={{ color:`${gold}90`, fontSize:11, letterSpacing:"0.55em", fontFamily:"Georgia,serif", marginTop:3 }}>◆ STUDIO ◆</p>
+          <div style={{ height:1, background:`linear-gradient(to right,transparent,${gold}99,transparent)`, margin:"12px 0" }}/>
+          <p style={{ color:`${gold}45`, fontSize:7.5, letterSpacing:"0.28em", textTransform:"uppercase" }}>Córdoba · España · Est. MMXXIV</p>
         </div>
-        <svg width="220" height="36" viewBox="0 0 220 36" style={{ display: "block", transform: "scaleY(-1)" }} aria-hidden="true">
-          <line x1="10" y1="18" x2="90" y2="18" stroke={gold} strokeWidth="0.7" opacity="0.45"/>
-          <line x1="130" y1="18" x2="210" y2="18" stroke={gold} strokeWidth="0.7" opacity="0.45"/>
-          <polygon points="110,4 118,18 110,32 102,18" fill="none" stroke={gold} strokeWidth="1.5"/>
-          <polygon points="88,14 94,18 88,22 82,18" fill={gold} opacity="0.5"/>
-          <polygon points="132,14 138,18 132,22 126,18" fill={gold} opacity="0.5"/>
+        {/* Bottom ornament (mirrored) */}
+        <svg width="224" height="58" viewBox="0 0 224 58" style={{ display:"block", transform:"scaleY(-1)" }} aria-hidden="true">
+          {([-70,-50,-30,-10,10,30,50,70] as const).map((a,i)=>(
+            <line key={i} x1="112" y1="58" x2={112+Math.sin(a*Math.PI/180)*96} y2={58-Math.cos(a*Math.PI/180)*56}
+              stroke={gold} strokeWidth={i===3||i===4?"0.8":"0.5"} opacity={i===3||i===4?"0.65":"0.28"}/>
+          ))}
+          <line x1="22" y1="52" x2="202" y2="52" stroke={gold} strokeWidth="0.8" opacity="0.5"/>
+          <line x1="40" y1="46" x2="184" y2="46" stroke={gold} strokeWidth="0.4" opacity="0.3"/>
+          <polygon points="112,4 119,18 112,32 105,18" fill="none" stroke={gold} strokeWidth="1.4"/>
+          <polygon points="112,10 117,18 112,26 107,18" fill={gold} opacity="0.4"/>
+          <polygon points="82,44 87,52 82,60 77,52" fill={gold} opacity="0.5"/>
+          <polygon points="142,44 147,52 142,60 137,52" fill={gold} opacity="0.5"/>
         </svg>
       </div>
     </div>
@@ -1842,34 +1943,51 @@ function ArtDecoDemo() {
 
 function HandcraftedDemo() {
   return (
-    <div className="h-full flex items-center justify-center p-6" style={{ background: "#f0e6d3" }}>
-      <div style={{ position: "relative", width: 220, padding: "18px 20px", background: "#fdf6e3" }}>
-        <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%", overflow: "visible", pointerEvents: "none" }} viewBox="0 0 220 190" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M5,5 Q9,2 16,5 Q60,1 110,4 Q160,2 205,5 Q218,3 218,16 Q219,60 217,100 Q220,140 218,176 Q215,187 205,187 Q160,190 110,188 Q60,191 16,188 Q4,188 3,176 Q1,140 4,100 Q2,60 3,16 Q3,8 5,5Z"
-            fill="none" stroke="#8B6914" strokeWidth="1.4" strokeDasharray="5,3" opacity="0.4"/>
+    <div className="h-full flex items-center justify-center p-5" style={{ background:"linear-gradient(145deg,#f0e4cc,#e8d8b8)" }}>
+      <div style={{ position:"relative", width:216, padding:"18px 18px 14px", background:"#fdf8ed" }}>
+        {/* Hand-drawn border */}
+        <svg style={{ position:"absolute",inset:0,width:"100%",height:"100%",overflow:"visible",pointerEvents:"none" }} viewBox="0 0 216 238" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M7,7 Q11,3 18,6 Q68,2 108,5 Q148,2 198,6 Q211,3 212,9 Q215,38 213,90 Q216,140 213,196 Q215,226 208,230 Q168,235 108,232 Q48,235 10,230 Q3,225 4,196 Q2,140 4,90 Q2,38 5,9 Q6,7 7,7Z"
+            fill="none" stroke="#7a5020" strokeWidth="1.6" strokeDasharray="7,4" strokeLinecap="round" opacity="0.32"/>
+          <path d="M14,14 Q108,9 202,14 Q208,108 202,224 Q108,229 14,224 Q8,130 14,14Z"
+            fill="none" stroke="#7a5020" strokeWidth="0.5" opacity="0.1"/>
         </svg>
-        <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 12 }}>
-          <div style={{ width: 44, height: 44, borderRadius: "50%", border: "1.5px dashed #8B6914", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", flexShrink: 0, opacity: 0.8 }}>
-            <p style={{ color: "#8B6914", fontSize: 6.5, fontWeight: 800, letterSpacing: "0.04em", textTransform: "uppercase", lineHeight: 1.4, textAlign: "center" }}>HECHO<br/>A MANO</p>
+        {/* Header */}
+        <div style={{ display:"flex", alignItems:"center", gap:12, marginBottom:12 }}>
+          {/* Wax seal */}
+          <div style={{ position:"relative", flexShrink:0 }}>
+            <div style={{ width:44, height:44, borderRadius:"50%", background:"radial-gradient(circle at 38% 32%,#d4843c,#7a3210)", boxShadow:"inset 0 -3px 5px rgba(0,0,0,0.25),0 3px 8px rgba(100,40,10,0.4)" }}/>
+            <div style={{ position:"absolute", inset:7, borderRadius:"50%", border:"1px solid rgba(255,210,150,0.3)", display:"flex",alignItems:"center",justifyContent:"center" }}>
+              <p style={{ color:"rgba(255,210,140,0.85)", fontSize:8.5, fontWeight:900 }}>KD</p>
+            </div>
           </div>
           <div>
-            <p style={{ color: "#5c3a1e", fontSize: 17, fontWeight: 800, fontFamily: "Georgia,serif", lineHeight: 1.2 }}>Artesano</p>
-            <p style={{ color: "#8B6914", fontSize: 9, letterSpacing: "0.07em" }}>Córdoba, España</p>
+            <p style={{ color:"#3a1e05", fontSize:18, fontWeight:800, fontFamily:"Georgia,serif", lineHeight:1.2 }}>Artesano</p>
+            <p style={{ color:"#7a5020", fontSize:9, letterSpacing:"0.07em" }}>Córdoba · España</p>
           </div>
         </div>
-        <svg width="180" height="8" viewBox="0 0 180 8" style={{ display: "block", marginBottom: 10 }} aria-hidden="true">
-          <path d="M2,4 C20,2 55,6 90,4 C125,2 155,6 178,4" stroke="#8B6914" strokeWidth="1.2" fill="none" opacity="0.45"/>
+        {/* Wavy divider */}
+        <svg width="180" height="10" viewBox="0 0 180 10" style={{ display:"block", marginBottom:10 }} aria-hidden="true">
+          <path d="M0,5 C18,2 36,8 54,5 C72,2 90,8 108,5 C126,2 144,8 162,5 C171,3 178,5 180,5" stroke="#7a5020" strokeWidth="1.4" fill="none" opacity="0.38" strokeLinecap="round"/>
+          <path d="M0,8 C18,5 36,11 54,8 C72,5 90,11 108,8 C126,5 144,11 162,8" stroke="#7a5020" strokeWidth="0.6" fill="none" opacity="0.18" strokeLinecap="round"/>
         </svg>
-        <p style={{ color: "#5c3a1e", fontSize: 10, lineHeight: 1.9, marginBottom: 12, fontFamily: "Georgia,serif", fontStyle: "italic" }}>
+        {/* Quote */}
+        <p style={{ color:"#3a1e05", fontSize:10.5, lineHeight:1.85, marginBottom:12, fontFamily:"Georgia,serif", fontStyle:"italic", opacity:0.9 }}>
           "Cada proyecto nace de la escucha atenta y el trabajo cuidadoso."
         </p>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 12 }}>
-          {["Sostenible","Local","Artesanal"].map(tag=>(
-            <span key={tag} style={{ padding: "3px 9px", border: "1px solid #8B6914", borderRadius: 3, color: "#8B6914", fontSize: 8, fontWeight: 700, letterSpacing: "0.09em", textTransform: "uppercase", opacity: 0.8 }}>{tag}</span>
+        {/* Tags */}
+        <div style={{ display:"flex", flexWrap:"wrap", gap:6, marginBottom:12 }}>
+          {["Sostenible","Local","Artesanal"].map(t=>(
+            <span key={t} style={{ padding:"4px 10px", border:"1.5px solid rgba(122,80,32,0.4)", borderRadius:3, color:"#7a5020", fontSize:8, fontWeight:700, letterSpacing:"0.1em", textTransform:"uppercase", background:"rgba(122,80,32,0.05)" }}>{t}</span>
           ))}
         </div>
-        <div style={{ borderTop: "1px dashed rgba(139,105,20,0.3)", paddingTop: 10, textAlign: "center" }}>
-          <p style={{ color: "#8B6914", fontSize: 9, letterSpacing: "0.12em", textTransform: "uppercase", opacity: 0.7 }}>Descubre nuestra historia →</p>
+        {/* Footer */}
+        <div style={{ paddingTop:10, borderTop:"1px dashed rgba(122,80,32,0.25)", display:"flex", alignItems:"center", justifyContent:"center", gap:8 }}>
+          <svg width="10" height="12" viewBox="0 0 10 12" aria-hidden="true">
+            <path d="M5,1 C5,1 1,3.5 1,7 C1,10.5 5,11 5,11 C5,11 9,10.5 9,7 C9,3.5 5,1 5,1Z" fill="none" stroke="#7a5020" strokeWidth="0.8" opacity="0.55"/>
+            <circle cx="5" cy="7" r="1.5" fill="#7a5020" opacity="0.4"/>
+          </svg>
+          <p style={{ color:"#7a5020", fontSize:8.5, letterSpacing:"0.1em", textTransform:"uppercase", opacity:0.6 }}>Descubre nuestra historia →</p>
         </div>
       </div>
     </div>
