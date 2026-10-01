@@ -1787,50 +1787,52 @@ function IsometricDemo() {
     4: ["#bfdbfe","#1d4ed8","#1e3a8a"],
   };
 
-  // Unit: half-width=17, height-per-unit=20
-  // Correct face formula: rh = h*20 (face height spans from top to ground)
-  // Bounds: x [-51,51], y top=-100 (h=5 at 1,1), y bottom=40 (h=2 at 2,2)
   return (
-    <div className="h-full flex items-center justify-center" style={{ background:"#060c1a", overflow:"hidden", position:"relative" }}>
+    <div className="h-full flex flex-col items-center justify-center gap-3" style={{ background:"#060c1a", overflow:"hidden", position:"relative" }}>
       {/* Subtle dot grid */}
-      <svg style={{ position:"absolute",inset:0,width:"100%",height:"100%",opacity:0.08 }} aria-hidden="true">
+      <svg style={{ position:"absolute",inset:0,width:"100%",height:"100%",opacity:0.07,pointerEvents:"none" }} aria-hidden="true">
         <defs>
-          <pattern id="iso-dots" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+          <pattern id="iso-dots" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
             <circle cx="0" cy="0" r="1" fill="#818cf8"/>
-            <circle cx="24" cy="0" r="1" fill="#818cf8"/>
-            <circle cx="0" cy="24" r="1" fill="#818cf8"/>
-            <circle cx="24" cy="24" r="1" fill="#818cf8"/>
+            <circle cx="28" cy="0" r="1" fill="#818cf8"/>
+            <circle cx="0" cy="28" r="1" fill="#818cf8"/>
+            <circle cx="28" cy="28" r="1" fill="#818cf8"/>
           </pattern>
         </defs>
         <rect width="100%" height="100%" fill="url(#iso-dots)"/>
       </svg>
-      <svg width="100%" height="100%" viewBox="-55 -108 110 155" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      {/* Fixed-size SVG so it doesn't fill the entire panel */}
+      <svg width="240" height="290" viewBox="-55 -105 110 148" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
         {sorted.map(([c,r,h],i)=>{
           const tx=(c-r)*17, ty=(c+r)*10-h*20;
           const [top,right,left]=pal[Math.min(c+r,4)];
-          const rh=h*20; // face spans full height from top to ground
+          const rh=h*20;
           return (
             <g key={i} transform={`translate(${tx},${ty})`}>
-              {/* right face — full height rh */}
               <polygon points={`17,-10 17,${rh-10} 0,${rh} 0,0`} fill={right}/>
-              {/* left face — full height rh */}
               <polygon points={`-17,-10 -17,${rh-10} 0,${rh} 0,0`} fill={left}/>
-              {/* top face */}
               <polygon points="0,-20 17,-10 0,0 -17,-10" fill={top}/>
-              {/* edge highlights */}
               <line x1="0" y1="-20" x2="17" y2="-10" stroke="rgba(255,255,255,0.35)" strokeWidth="0.7"/>
               <line x1="0" y1="-20" x2="-17" y2="-10" stroke="rgba(255,255,255,0.35)" strokeWidth="0.7"/>
-              <line x1="0" y1="0" x2="0" y2={rh} stroke="rgba(255,255,255,0.1)" strokeWidth="0.5"/>
             </g>
           );
         })}
-        {/* Floating nodes above tallest buildings */}
-        <circle cx="0" cy="-114" r="3" fill="#f0abfc" opacity="0.9"/>
-        <circle cx="-17" cy="-109" r="2" fill="#86efac" opacity="0.8"/>
-        <circle cx="17" cy="-107" r="2" fill="#fcd34d" opacity="0.8"/>
-        <line x1="-17" y1="-109" x2="0" y2="-114" stroke="rgba(240,171,252,0.4)" strokeWidth="0.6"/>
-        <line x1="17" y1="-107" x2="0" y2="-114" stroke="rgba(240,171,252,0.4)" strokeWidth="0.6"/>
+        {/* Data node labels inside viewBox */}
+        <circle cx="0" cy="-99" r="3" fill="#f0abfc" opacity="0.9"/>
+        <circle cx="-20" cy="-93" r="2.5" fill="#86efac" opacity="0.9"/>
+        <circle cx="20" cy="-91" r="2" fill="#fcd34d" opacity="0.8"/>
+        <line x1="-20" y1="-93" x2="0" y2="-99" stroke="rgba(240,171,252,0.45)" strokeWidth="0.7"/>
+        <line x1="20" y1="-91" x2="0" y2="-99" stroke="rgba(240,171,252,0.45)" strokeWidth="0.7"/>
       </svg>
+      {/* Bottom label strip */}
+      <div style={{ position:"relative", display:"flex", gap:16, alignItems:"center" }}>
+        {([["#c7d2fe","98.4%"],["#86efac","+12K"],["#fcd34d","Q4"]] as const).map(([c,v])=>(
+          <div key={v} style={{ display:"flex", alignItems:"center", gap:5 }}>
+            <div style={{ width:6, height:6, borderRadius:"50%", background:c }}/>
+            <p style={{ color:"rgba(255,255,255,0.45)", fontSize:10, fontWeight:700, fontFamily:"monospace" }}>{v}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
