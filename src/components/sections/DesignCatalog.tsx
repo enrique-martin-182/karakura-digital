@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // ── Demo components ────────────────────────────────────────────────────────
 
@@ -1708,6 +1708,174 @@ function DoodleDemo() {
   );
 }
 
+function FlatDesign2Demo() {
+  return (
+    <div className="h-full flex items-center justify-center p-6" style={{ background: "#f4f4f5" }}>
+      <div style={{ width: 236 }}>
+        <div style={{ borderRadius: 16, padding: "18px 20px", background: "#0066FF", marginBottom: 10 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 16 }}>
+            <div>
+              <p style={{ color: "rgba(255,255,255,0.55)", fontSize: 9, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase" }}>Dashboard</p>
+              <p style={{ color: "#fff", fontSize: 20, fontWeight: 800, lineHeight: 1.1, marginTop: 2 }}>Octubre 2025</p>
+            </div>
+            <div style={{ width: 36, height: 36, borderRadius: 8, background: "rgba(255,255,255,0.15)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="white" aria-hidden="true">
+                <rect x="1" y="1" width="6" height="6" rx="1.5"/><rect x="9" y="1" width="6" height="6" rx="1.5"/>
+                <rect x="1" y="9" width="6" height="6" rx="1.5"/><rect x="9" y="9" width="6" height="6" rx="1.5"/>
+              </svg>
+            </div>
+          </div>
+          <div style={{ height: 4, borderRadius: 4, background: "rgba(255,255,255,0.18)", overflow: "hidden" }}>
+            <div style={{ width: "72%", height: "100%", background: "#fff", borderRadius: 4 }} />
+          </div>
+          <p style={{ color: "rgba(255,255,255,0.5)", fontSize: 9, marginTop: 6 }}>72% del objetivo · 384 leads</p>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 8, marginBottom: 10 }}>
+          {([["Visitas","12.4K","#0066FF"],["Leads","384","#22C55E"],["Conv.","3.1%","#F59E0B"]] as const).map(([label,val,c])=>(
+            <div key={label} style={{ background: "#fff", borderRadius: 10, padding: "10px 10px" }}>
+              <div style={{ width: 6, height: 6, borderRadius: 2, background: c, marginBottom: 8 }} />
+              <p style={{ color: "#111", fontSize: 14, fontWeight: 800, lineHeight: 1 }}>{val}</p>
+              <p style={{ color: "#888", fontSize: 9, marginTop: 3 }}>{label}</p>
+            </div>
+          ))}
+        </div>
+        <button style={{ width: "100%", padding: "10px 0", borderRadius: 10, background: "#111", color: "#fff", fontSize: 11, fontWeight: 700, border: "none", cursor: "pointer" }}>
+          Ver informe completo
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function IsometricDemo() {
+  const cubes: [number,number,number][] = [
+    [0,0,2],[1,0,3],[2,0,1],
+    [0,1,1],[1,1,4],[2,1,2],
+    [0,2,3],[1,2,1],[2,2,2],
+  ];
+  const sorted = [...cubes].sort((a,b) => (a[0]+a[1]) - (b[0]+b[1]));
+  return (
+    <div className="h-full flex items-center justify-center" style={{ background: "linear-gradient(150deg,#ECEEFF,#E0E3FF)" }}>
+      <svg width="220" height="220" viewBox="-50 -95 180 230" aria-hidden="true">
+        <defs>
+          <filter id="iso-drop">
+            <feDropShadow dx="0" dy="4" stdDeviation="4" floodColor="#3D37B8" floodOpacity="0.18"/>
+          </filter>
+        </defs>
+        {sorted.map(([c,r,h],i) => {
+          const tx = (c - r) * 17;
+          const ty = (c + r) * 10 - h * 20;
+          return (
+            <g key={i} transform={`translate(${tx},${ty})`} filter="url(#iso-drop)">
+              <polygon points="17,-10 17,10 0,20 0,0" fill="#5A52E8" />
+              <polygon points="-17,-10 -17,10 0,20 0,0" fill="#3D37B8" />
+              <polygon points="0,-20 17,-10 0,0 -17,-10" fill="#857EFF" />
+            </g>
+          );
+        })}
+      </svg>
+    </div>
+  );
+}
+
+function HoloDemo() {
+  return (
+    <div className="h-full flex items-center justify-center p-6" style={{ background: "linear-gradient(135deg,#0d0d1a,#130d1f)" }}>
+      <div style={{ width: 220 }}>
+        <div style={{ padding: 2, borderRadius: 20, background: "linear-gradient(135deg,#ff6b6b,#feca57,#48dbfb,#ff9ff3,#54a0ff,#5f27cd,#ff6b6b)" }}>
+          <div style={{ borderRadius: 18, padding: "20px 20px", background: "linear-gradient(135deg,#0d0d1a,#1a0d2e)" }}>
+            <div style={{ height: 3, borderRadius: 3, background: "linear-gradient(90deg,#ff6b6b,#feca57,#48dbfb,#ff9ff3,#54a0ff)", opacity: 0.85, marginBottom: 14 }} />
+            <p style={{ color: "rgba(255,255,255,0.35)", fontSize: 9, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 4 }}>Limited Edition</p>
+            <p style={{ fontSize: 24, fontWeight: 900, letterSpacing: "-0.03em", background: "linear-gradient(135deg,#ff9ff3,#48dbfb,#feca57)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", lineHeight: 1.1 }}>
+              HOLO CARD
+            </p>
+            <p style={{ color: "rgba(255,255,255,0.25)", fontSize: 9, marginTop: 6, marginBottom: 16 }}>Karakura Digital · Series 001</p>
+            {(["#ff6b6b","#feca57","#48dbfb","#ff9ff3","#54a0ff"] as const).map((c,i)=>(
+              <div key={i} style={{ height: 2, borderRadius: 2, background: c, opacity: 0.5 - i * 0.07, marginBottom: 3 }} />
+            ))}
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 14 }}>
+              <p style={{ color: "rgba(255,255,255,0.4)", fontSize: 11, fontFamily: "monospace" }}>**** 2025</p>
+              <div style={{ display:"flex", gap:4 }}>
+                <div style={{ width: 24, height: 24, borderRadius: "50%", background: "linear-gradient(135deg,#feca57,#ff9ff3)", opacity: 0.8 }} />
+                <div style={{ width: 24, height: 24, borderRadius: "50%", background: "linear-gradient(135deg,#48dbfb,#54a0ff)", opacity: 0.8, marginLeft: -10 }} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ArtDecoDemo() {
+  const gold = "#c9a84c";
+  return (
+    <div className="h-full flex items-center justify-center p-6" style={{ background: "#080500" }}>
+      <div style={{ textAlign: "center", width: 220 }}>
+        <svg width="220" height="36" viewBox="0 0 220 36" style={{ display: "block" }} aria-hidden="true">
+          <line x1="10" y1="18" x2="90" y2="18" stroke={gold} strokeWidth="0.7" opacity="0.45"/>
+          <line x1="130" y1="18" x2="210" y2="18" stroke={gold} strokeWidth="0.7" opacity="0.45"/>
+          <polygon points="110,4 118,18 110,32 102,18" fill="none" stroke={gold} strokeWidth="1.5"/>
+          <polygon points="88,14 94,18 88,22 82,18" fill={gold} opacity="0.5"/>
+          <polygon points="132,14 138,18 132,22 126,18" fill={gold} opacity="0.5"/>
+        </svg>
+        <div style={{ borderLeft: `1px solid ${gold}44`, borderRight: `1px solid ${gold}44`, padding: "14px 20px" }}>
+          <p style={{ color: gold, fontSize: 8, letterSpacing: "0.45em", textTransform: "uppercase", marginBottom: 10, opacity: 0.7 }}>Maison de Design</p>
+          <p style={{ color: gold, fontSize: 30, fontWeight: 900, letterSpacing: "0.06em", textTransform: "uppercase", fontFamily: "Georgia,serif", lineHeight: 1.1, textShadow: `0 0 30px rgba(201,168,76,0.25)` }}>
+            ÉLITE
+          </p>
+          <p style={{ color: gold, fontSize: 11, letterSpacing: "0.35em", textTransform: "uppercase", fontFamily: "Georgia,serif", opacity: 0.8, marginTop: 2 }}>◆ STUDIO ◆</p>
+          <div style={{ height: 1, background: `linear-gradient(to right,transparent,${gold},transparent)`, margin: "12px 0", opacity: 0.5 }} />
+          <p style={{ color: `${gold}60`, fontSize: 8, letterSpacing: "0.2em", textTransform: "uppercase" }}>Córdoba · España · Est. MMXXIV</p>
+        </div>
+        <svg width="220" height="36" viewBox="0 0 220 36" style={{ display: "block", transform: "scaleY(-1)" }} aria-hidden="true">
+          <line x1="10" y1="18" x2="90" y2="18" stroke={gold} strokeWidth="0.7" opacity="0.45"/>
+          <line x1="130" y1="18" x2="210" y2="18" stroke={gold} strokeWidth="0.7" opacity="0.45"/>
+          <polygon points="110,4 118,18 110,32 102,18" fill="none" stroke={gold} strokeWidth="1.5"/>
+          <polygon points="88,14 94,18 88,22 82,18" fill={gold} opacity="0.5"/>
+          <polygon points="132,14 138,18 132,22 126,18" fill={gold} opacity="0.5"/>
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function HandcraftedDemo() {
+  return (
+    <div className="h-full flex items-center justify-center p-6" style={{ background: "#f0e6d3" }}>
+      <div style={{ position: "relative", width: 220, padding: "18px 20px", background: "#fdf6e3" }}>
+        <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%", overflow: "visible", pointerEvents: "none" }} viewBox="0 0 220 190" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M5,5 Q9,2 16,5 Q60,1 110,4 Q160,2 205,5 Q218,3 218,16 Q219,60 217,100 Q220,140 218,176 Q215,187 205,187 Q160,190 110,188 Q60,191 16,188 Q4,188 3,176 Q1,140 4,100 Q2,60 3,16 Q3,8 5,5Z"
+            fill="none" stroke="#8B6914" strokeWidth="1.4" strokeDasharray="5,3" opacity="0.4"/>
+        </svg>
+        <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 12 }}>
+          <div style={{ width: 44, height: 44, borderRadius: "50%", border: "1.5px dashed #8B6914", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", flexShrink: 0, opacity: 0.8 }}>
+            <p style={{ color: "#8B6914", fontSize: 6.5, fontWeight: 800, letterSpacing: "0.04em", textTransform: "uppercase", lineHeight: 1.4, textAlign: "center" }}>HECHO<br/>A MANO</p>
+          </div>
+          <div>
+            <p style={{ color: "#5c3a1e", fontSize: 17, fontWeight: 800, fontFamily: "Georgia,serif", lineHeight: 1.2 }}>Artesano</p>
+            <p style={{ color: "#8B6914", fontSize: 9, letterSpacing: "0.07em" }}>Córdoba, España</p>
+          </div>
+        </div>
+        <svg width="180" height="8" viewBox="0 0 180 8" style={{ display: "block", marginBottom: 10 }} aria-hidden="true">
+          <path d="M2,4 C20,2 55,6 90,4 C125,2 155,6 178,4" stroke="#8B6914" strokeWidth="1.2" fill="none" opacity="0.45"/>
+        </svg>
+        <p style={{ color: "#5c3a1e", fontSize: 10, lineHeight: 1.9, marginBottom: 12, fontFamily: "Georgia,serif", fontStyle: "italic" }}>
+          "Cada proyecto nace de la escucha atenta y el trabajo cuidadoso."
+        </p>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 12 }}>
+          {["Sostenible","Local","Artesanal"].map(tag=>(
+            <span key={tag} style={{ padding: "3px 9px", border: "1px solid #8B6914", borderRadius: 3, color: "#8B6914", fontSize: 8, fontWeight: 700, letterSpacing: "0.09em", textTransform: "uppercase", opacity: 0.8 }}>{tag}</span>
+          ))}
+        </div>
+        <div style={{ borderTop: "1px dashed rgba(139,105,20,0.3)", paddingTop: 10, textAlign: "center" }}>
+          <p style={{ color: "#8B6914", fontSize: 9, letterSpacing: "0.12em", textTransform: "uppercase", opacity: 0.7 }}>Descubre nuestra historia →</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ── Data ──────────────────────────────────────────────────────────────────────
 
 interface StyleDef {
@@ -2051,6 +2219,61 @@ const STYLES: StyleDef[] = [
     accent: "#2563eb",
     Demo: DoodleDemo,
   },
+  {
+    id: "flat2",
+    name: "Flat Design 2.0",
+    tagline: "Claridad radical, sin ornamento",
+    description:
+      "La evolución del flat design original. Colores puros, sombras cero o casi cero, jerarquía visual construida exclusivamente con tamaño, peso tipográfico y color. Sin gradientes innecesarios. La comunicación es la estética. Google, Apple y Stripe lo elevan como estándar de producto digital.",
+    ideal:
+      "Apps SaaS, dashboards de gestión, herramientas B2B y de productividad, plataformas donde la densidad de información y la claridad cognitiva importan más que la expresión visual.",
+    accent: "#0066FF",
+    Demo: FlatDesign2Demo,
+  },
+  {
+    id: "isometric",
+    name: "Isométrico / 3D plano",
+    tagline: "Profundidad sin renderizador",
+    description:
+      "Perspectiva axonométrica a 30° que crea ilusión de tridimensionalidad sin distorsión de punto de fuga. Los elementos flotan en un espacio visual ordenado. Dominante en ilustraciones hero de startups, fintechs y productos SaaS que quieren transmitir complejidad de forma accesible y memorable.",
+    ideal:
+      "Páginas de producto SaaS, secciones de características técnicas, fintechs y herramientas B2B que necesitan ilustrar conceptos abstractos de forma visual sin recurrir a fotografía ni render 3D.",
+    accent: "#6C63FF",
+    Demo: IsometricDemo,
+  },
+  {
+    id: "holo",
+    name: "Holo / Iridiscente",
+    tagline: "Prismas digitales que no se olvidan",
+    description:
+      "Superficies que imitan la refracción de luz en hologramas. Gradientes que van del violeta al cyan al dorado. Efectos iridiscentes donde cada ángulo revela un color diferente. Dominante en gaming, Web3, moda digital y marcas de lujo joven que buscan impacto visual instantáneo en audiencias nativas digitales.",
+    ideal:
+      "Marcas de gaming, crypto/Web3, moda streetwear, festivales, artistas digitales, lanzamientos de producto premium y cualquier marca que necesite impactar en menos de un segundo.",
+    accent: "#c084fc",
+    Demo: HoloDemo,
+  },
+  {
+    id: "artdeco",
+    name: "Art Deco",
+    tagline: "La elegancia geométrica del siglo XX",
+    description:
+      "Simetría absoluta, motivos geométricos repetitivos, dorados sobre fondos oscuros profundos. Tipografías serifadas con tracking exagerado. Inspirado en los años 20-30 y traducido al lenguaje web contemporáneo. El lujo que comunica permanencia, distinción y una historia detrás de cada línea.",
+    ideal:
+      "Hoteles de lujo, restaurantes fine dining, joyerías, boutiques de alta gama, bufetes de abogados y marcas donde la sofisticación atemporal y la exclusividad son el mensaje principal.",
+    accent: "#c9a84c",
+    Demo: ArtDecoDemo,
+  },
+  {
+    id: "handcrafted",
+    name: "Handcrafted / Artesanal",
+    tagline: "La calidez de lo hecho a mano, en pantalla",
+    description:
+      "Papel rugoso, trazos irregulares, sellos y etiquetas con imperfecciones deliberadas. El antídoto visual a la frialdad algorítmica. Comunica proceso, autenticidad y cuidado. Está ganando fuerza como reacción al diseño corporativo homogéneo y los templates generados por IA.",
+    ideal:
+      "Restaurantes y cafeterías artesanales, marcas ecológicas, productores locales, estudios creativos independientes, vitivinicultores y cualquier negocio donde 'hecho con manos' es el diferenciador real.",
+    accent: "#b45309",
+    Demo: HandcraftedDemo,
+  },
 ];
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -2079,6 +2302,15 @@ export default function DesignCatalog() {
   const nextIdx = (activeIdx + 1) % STYLES.length;
   const accent = visibleAccent(active.accent);
 
+  useEffect(() => {
+    function handleKey(e: KeyboardEvent) {
+      if (e.key === "ArrowLeft") setActiveId(STYLES[prevIdx].id);
+      if (e.key === "ArrowRight") setActiveId(STYLES[nextIdx].id);
+    }
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [prevIdx, nextIdx]);
+
   return (
     <>
       <style>{`
@@ -2090,6 +2322,40 @@ export default function DesignCatalog() {
           animation: catalogEnter 200ms ease forwards;
           will-change: transform, opacity;
         }
+        @media (prefers-reduced-motion: reduce) {
+          .catalog-enter { animation: none; }
+        }
+        .catalog-pill:hover {
+          background: rgba(255,255,255,0.07) !important;
+          color: rgba(224,192,175,0.7) !important;
+          border-color: rgba(255,255,255,0.14) !important;
+        }
+        .catalog-pill-active:hover {
+          opacity: 0.88;
+        }
+        .catalog-pill:focus-visible {
+          outline: none;
+          box-shadow: 0 0 0 2px rgba(255,255,255,0.22);
+        }
+        .catalog-pill-active:focus-visible {
+          box-shadow: 0 0 0 2px rgba(255,122,0,0.45);
+        }
+        .catalog-nav-btn:hover {
+          background: rgba(255,255,255,0.09) !important;
+          color: rgba(224,192,175,0.8) !important;
+        }
+        .catalog-nav-btn:focus-visible {
+          outline: none;
+          box-shadow: 0 0 0 2px rgba(255,255,255,0.22);
+        }
+        .catalog-cta:hover {
+          background: rgba(255,122,0,0.2) !important;
+          color: #ffaa44 !important;
+        }
+        .catalog-cta:focus-visible {
+          outline: none;
+          box-shadow: 0 0 0 2px rgba(255,122,0,0.45);
+        }
       `}</style>
       <section className="py-20 px-4" style={{ background: "#001711" }}>
         <div className="max-w-6xl mx-auto">
@@ -2100,16 +2366,14 @@ export default function DesignCatalog() {
               className="inline-flex items-center gap-2 mb-5 px-3 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase"
               style={{ color: "#ff7a00", background: "rgba(255,122,0,0.08)", border: "1px solid rgba(255,122,0,0.2)" }}
             >
-              <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "#ff7a00" }} />
-              Catálogo de estilos · 30
+              <span className="w-1.5 h-1.5 rounded-full shrink-0" aria-hidden="true" style={{ background: "#ff7a00" }} />
+              Catálogo de estilos · {STYLES.length}
             </div>
             <h2
               className="text-3xl md:text-5xl font-bold text-white mb-4"
-              style={{ letterSpacing: "-0.025em", lineHeight: 1.1 }}
+              style={{ letterSpacing: "-0.025em", lineHeight: 1.1, textWrap: "balance" } as React.CSSProperties}
             >
-              ¿Qué lenguaje visual
-              <br className="hidden md:block" />
-              {" "}habla tu marca?
+              ¿Qué lenguaje visual habla tu marca?
             </h2>
             <p className="max-w-lg mx-auto text-sm leading-relaxed" style={{ color: "rgba(224,192,175,0.5)" }}>
               Cada estilo es una decisión estratégica sobre cómo percibe tu cliente tu marca.
@@ -2118,7 +2382,7 @@ export default function DesignCatalog() {
           </div>
 
           {/* ── Grid selector ── */}
-          <div className="grid grid-cols-3 md:grid-cols-5 gap-1.5 mb-6">
+          <div className="grid grid-cols-3 md:grid-cols-5 gap-1.5 mb-6" role="listbox" aria-label="Estilos de diseño">
             {STYLES.map((s) => {
               const isActive = s.id === activeId;
               const va = visibleAccent(s.accent);
@@ -2126,8 +2390,10 @@ export default function DesignCatalog() {
               return (
                 <button
                   key={s.id}
+                  role="option"
+                  aria-selected={isActive}
                   onClick={() => setActiveId(s.id)}
-                  className="flex items-center gap-2 px-2.5 py-2.5 rounded-xl text-left text-xs font-medium truncate transition-all duration-150 hover:opacity-75"
+                  className={`catalog-pill${isActive ? " catalog-pill-active" : ""} flex items-center gap-2 px-2.5 py-2.5 rounded-xl text-left text-xs font-medium truncate transition-[background,color,border-color] duration-150`}
                   style={
                     isActive
                       ? {
@@ -2144,6 +2410,7 @@ export default function DesignCatalog() {
                 >
                   <span
                     className="w-2 h-2 rounded-full shrink-0"
+                    aria-hidden="true"
                     style={{
                       background: va,
                       boxShadow: isActive ? `0 0 6px rgba(${rgb},0.7)` : "none",
@@ -2179,22 +2446,39 @@ export default function DesignCatalog() {
               <div className="flex-1 p-6 md:p-8">
                 <div key={activeId} className="catalog-enter flex flex-col justify-between h-full">
                   <div>
+                    {/* Progress bar */}
+                    <div className="flex items-center gap-2.5 mb-5">
+                      <div
+                        className="flex-1 h-0.5 rounded-full overflow-hidden"
+                        style={{ background: "rgba(255,255,255,0.06)" }}
+                      >
+                        <div
+                          className="h-full rounded-full transition-[width] duration-300"
+                          style={{
+                            width: `${((activeIdx + 1) / STYLES.length) * 100}%`,
+                            background: accent,
+                          }}
+                        />
+                      </div>
+                      <span
+                        className="text-[10px] shrink-0 tabular-nums"
+                        style={{ color: "rgba(224,192,175,0.3)", fontVariantNumeric: "tabular-nums" }}
+                      >
+                        {activeIdx + 1}/{STYLES.length}
+                      </span>
+                    </div>
+
                     {/* Title block */}
                     <div className="flex items-start gap-3 mb-5">
                       <div
                         className="w-2.5 h-2.5 rounded-full shrink-0 mt-2"
+                        aria-hidden="true"
                         style={{
                           background: accent,
                           boxShadow: `0 0 10px rgba(${accentRgb(accent)},0.6)`,
                         }}
                       />
                       <div>
-                        <p
-                          className="text-[10px] uppercase tracking-widest mb-1.5"
-                          style={{ color: "rgba(224,192,175,0.35)" }}
-                        >
-                          Estilo {activeIdx + 1} de {STYLES.length}
-                        </p>
                         <h3
                           className="text-white text-2xl font-bold mb-1"
                           style={{ letterSpacing: "-0.02em" }}
@@ -2244,19 +2528,20 @@ export default function DesignCatalog() {
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => setActiveId(STYLES[prevIdx].id)}
-                        className="px-3 py-2 rounded-lg text-sm transition-opacity hover:opacity-70"
+                        className="catalog-nav-btn w-11 h-11 flex items-center justify-center rounded-lg text-sm transition-[background,color] duration-150"
                         style={{
                           background: "rgba(255,255,255,0.04)",
                           color: "rgba(224,192,175,0.4)",
                           border: "1px solid rgba(255,255,255,0.07)",
                         }}
-                        aria-label="Estilo anterior"
+                        aria-label={`Estilo anterior: ${STYLES[prevIdx].name}`}
+                        title={STYLES[prevIdx].name}
                       >
                         ←
                       </button>
                       <a
                         href="/#contact"
-                        className="flex-1 py-2 rounded-xl text-xs font-semibold text-center transition-opacity hover:opacity-80"
+                        className="catalog-cta flex-1 py-2.5 rounded-xl text-xs font-semibold text-center transition-[background,color] duration-150"
                         style={{
                           background: "rgba(255,122,0,0.12)",
                           color: "#ff7a00",
@@ -2267,17 +2552,21 @@ export default function DesignCatalog() {
                       </a>
                       <button
                         onClick={() => setActiveId(STYLES[nextIdx].id)}
-                        className="px-3 py-2 rounded-lg text-sm transition-opacity hover:opacity-70"
+                        className="catalog-nav-btn w-11 h-11 flex items-center justify-center rounded-lg text-sm transition-[background,color] duration-150"
                         style={{
                           background: "rgba(255,255,255,0.04)",
                           color: "rgba(224,192,175,0.4)",
                           border: "1px solid rgba(255,255,255,0.07)",
                         }}
-                        aria-label="Siguiente estilo"
+                        aria-label={`Siguiente estilo: ${STYLES[nextIdx].name}`}
+                        title={STYLES[nextIdx].name}
                       >
                         →
                       </button>
                     </div>
+                    <p className="mt-3 text-center text-[10px]" style={{ color: "rgba(255,255,255,0.12)" }}>
+                      Usa ← → para navegar
+                    </p>
                   </div>
                 </div>
               </div>
