@@ -150,7 +150,7 @@ export function FAQChatWidget() {
                     {msg.text}
                     {msg.isCta && (
                       <a
-                        href="#contact"
+                        href="/#contact"
                         onClick={() => setIsOpen(false)}
                         className="block mt-2 text-center py-1.5 px-3 rounded-lg text-xs font-semibold transition-opacity hover:opacity-80 text-secondary"
                         style={{
@@ -234,7 +234,7 @@ export function FAQChatWidget() {
                   >
                     <p className="text-xs text-on-surface-variant">{t("moreQuestions")}</p>
                     <a
-                      href="#contact"
+                      href="/#contact"
                       onClick={() => setIsOpen(false)}
                       className="inline-block mt-1 text-xs font-semibold text-secondary hover:opacity-75 transition-opacity"
                     >

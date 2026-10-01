@@ -127,7 +127,7 @@ export function Navbar() {
         <div className="hidden md:flex items-center gap-3 shrink-0">
           <LocaleSwitcher />
           <CommandPaletteAffordance />
-          <Button href="#contact" className="px-6 py-2.5 text-sm">
+          <Button href={`${prefix}#contact`} className="px-6 py-2.5 text-sm">
             {t("contactar")}
           </Button>
         </div>
@@ -193,7 +193,7 @@ export function Navbar() {
               <div className="flex gap-3 mt-2">
                 <LocaleSwitcher />
                 <a
-                  href="#contact"
+                  href={`${prefix}#contact`}
                   onClick={() => setMobileOpen(false)}
                   className="flex-1 bg-primary-container text-white px-6 py-3 rounded-xl text-label-md font-semibold text-center"
                 >
