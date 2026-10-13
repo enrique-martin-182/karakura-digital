@@ -1,5 +1,24 @@
+import type { Metadata } from "next";
+import { getLocale } from "next-intl/server";
 import dynamic from "next/dynamic";
 import { Navbar } from "@/components/layout/Navbar";
+
+const BASE = "https://karakuradigital.es";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  const canonical = locale === "es" ? `${BASE}/` : `${BASE}/${locale}/`;
+  return {
+    alternates: {
+      canonical,
+      languages: {
+        es: `${BASE}/`,
+        en: `${BASE}/en/`,
+        "x-default": `${BASE}/`,
+      },
+    },
+  };
+}
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { LocalImpact } from "@/components/sections/LocalImpact";
