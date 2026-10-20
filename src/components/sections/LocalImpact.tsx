@@ -11,8 +11,8 @@ import { MapPin, Users, Zap, Globe, Sparkles } from "lucide-react";
 const impactStats = [
   {
     icon: <Zap className="w-6 h-6" />,
-    label: "Eficiencia Operativa",
-    value: "+40%",
+    label: "Eficiencia Operativa (típico)",
+    value: "hasta +40%",
     color: "text-secondary",
     bgColor: "bg-secondary/10",
     borderColor: "border-secondary/20",

@@ -82,7 +82,7 @@ export function GapComparison() {
         <ScrollReveal>
           <SectionHeader
             headline="Deja de perder tiempo en procesos manuales."
-            subheadline="El 73% de las empresas B2B pierden +20 horas semanales en procesos que una máquina haría en segundos. La diferencia entre liderar el mercado y perseguirlo está en la eficiencia operativa."
+            subheadline="Según estudios de McKinsey y el Foro Económico Mundial, las empresas medianas destinan entre un 20% y un 40% de su capacidad operativa a tareas manuales automatizables. La diferencia entre liderar el mercado y perseguirlo está en la eficiencia operativa."
           />
         </ScrollReveal>
 

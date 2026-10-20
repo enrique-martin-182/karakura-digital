@@ -91,6 +91,10 @@ export async function Footer() {
             <Link href="/politica-de-cookies" className="hover:text-white transition-colors">
               Cookies
             </Link>
+            {" "}·{" "}
+            <Link href="/condiciones" className="hover:text-white transition-colors">
+              Condiciones
+            </Link>
           </p>
           <p className="text-label-sm text-on-surface-variant/50 mt-2">
             {t("attribution")}{" "}
