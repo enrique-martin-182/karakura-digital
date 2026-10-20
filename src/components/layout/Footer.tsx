@@ -80,8 +80,16 @@ export async function Footer() {
         <div className="col-span-1 md:col-span-4 mt-16 pt-8 border-t border-outline-variant/10 text-center">
           <p className="text-body-md text-on-surface-variant">
             {t("copyright")} ·{" "}
+            <Link href="/aviso-legal" className="hover:text-white transition-colors">
+              Aviso Legal
+            </Link>
+            {" "}·{" "}
             <Link href="/privacidad" className="hover:text-white transition-colors">
               {t("privacyLink")}
+            </Link>
+            {" "}·{" "}
+            <Link href="/politica-de-cookies" className="hover:text-white transition-colors">
+              Cookies
             </Link>
           </p>
           <p className="text-label-sm text-on-surface-variant/50 mt-2">

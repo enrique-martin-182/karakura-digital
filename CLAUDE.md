@@ -26,9 +26,13 @@ No test framework is configured. If Turbopack panics ("Next.js package not found
 
 Single-page marketing site for Karakura Digital (based in Cordoba, Spain; international clients). Next.js 16 + React 19 + Tailwind CSS 4 + Framer Motion. Spanish language throughout.
 
-**Stack:** Next.js 16.2.7, Tailwind v4 (uses `@theme inline` in globals.css, not tailwind.config), Framer Motion 12, Spline 3D (lazy loaded).
+**Stack:** Next.js 16.2.7, Tailwind v4 (uses `@theme inline` in globals.css, not tailwind.config), Framer Motion 12.
 
-**Page flow** (src/app/page.tsx): Navbar, Hero, Interactive3D, LocalImpact, GapComparison, Services, Process, Results, Portfolio, FAQ, ContactCTA, Footer.
+**Page flow** (src/app/page.tsx): Navbar, Hero, HeroWebGL (Three.js shader, lazy), LocalImpact, GapComparison, Services, B2BTerminalPreview (with InteractiveDataBackground, lazy), TechStack, Process, Results, Portfolio, FAQ, ContactCTA, Footer, FAQChatWidget.
+
+**i18n:** next-intl v4, middleware at `src/proxy.ts`. `localePrefix: "as-needed"` — Spanish at `/` (no prefix), English at `/en/`. Root layout has static `alternates.canonical`; `src/app/page.tsx` overrides it via `generateMetadata` + `getLocale()` to emit correct per-locale canonical and hreflang tags.
+
+**Unused components:** `src/components/sections/Testimonials.tsx` and `src/components/sections/Interactive3D.tsx` (Spline-based) are built but not imported in page.tsx.
 
 **Design system:** Material Design 3 color tokens defined as CSS custom properties in `globals.css` via `@theme inline`. Dark theme only. Two brand colors: orange (#ff7a00 / primary-container) and green (#4edea3 / secondary). Font: Plus Jakarta Sans.
 
@@ -41,7 +45,7 @@ Single-page marketing site for Karakura Digital (based in Cordoba, Spain; intern
 - `GradientBlob` for ambient background blobs (uses radial-gradient, not CSS blur)
 - `VideoBackground` with IntersectionObserver lazy loading
 
-**Performance constraints:** No `backdrop-filter: blur()` or CSS `filter: blur()` on animated elements. Use `radial-gradient` fading to transparent instead. All background animations must use `will-change: transform`, `contain: strict`, and `translate3d` for GPU compositing. Videos and Spline scenes lazy-load via IntersectionObserver.
+**Performance constraints:** No `backdrop-filter: blur()` or CSS `filter: blur()` on animated elements. Use `radial-gradient` fading to transparent instead. All background animations must use `will-change: transform`, `contain: strict`, and `translate3d` for GPU compositing. Heavy sections (Three.js, canvas) wrapped in `LazySection` with `rootMargin` for IntersectionObserver gating.
 
 **Path alias:** `@/*` maps to `./src/*`.
 
